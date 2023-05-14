@@ -1,0 +1,65 @@
+.highlight{
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+.highlight pre code {
+    font-size: inherit;
+}
+pre{
+    color: inherit;
+}
+.nt {
+    color: #2f6f9f;
+}
+.na {
+    color: #4f9fcf;
+}
+.s {
+    color: #d44950;
+}
+pre.prettyprint {
+    background-color: #eee;
+    border: 0px;
+    margin: 0;        
+    padding: 20px;
+    text-align: left;
+}
+.atv,
+.str {
+    color: #05AE0E;
+}
+.tag,
+.pln,
+.kwd {
+    color: #3472F7;
+}
+.atn {
+    color: #2C93FF;
+}
+.pln {
+    color: #333;
+}
+.com {
+    color: #999;
+}
+
+.icons-list div {
+    line-height: 40px;
+    white-space: nowrap;
+    cursor: default;
+    position: relative;
+    z-index: 1;
+}
+.icons-list div i {
+    display: inline-block;
+    width: 40px;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-transition: font-size 0.2s;
+    -moz-transition: font-size 0.2s;
+    transition: font-size 0.2s;
+}
+.icons-list div:hover i {
+    font-size: 26px;
+}
