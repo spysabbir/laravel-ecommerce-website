@@ -19,14 +19,9 @@ class DatabaseSeeder extends Seeder
             BackendUserSeeder::class,
             DefaultSettingTableSeeder::class,
             MailSettingTableSeeder::class,
+            PaymentSettingSeeder::class,
+            SocialLoginSettingSeeder::class,
+            SeoSettingSeeder::class,
         ]);
-
-
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

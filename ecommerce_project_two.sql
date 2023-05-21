@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2023 at 07:22 AM
+-- Generation Time: May 21, 2023 at 07:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,9 +51,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `last_active`, `password`, `role`, `warehouse_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', '01878136530', 'Male', '2023-04-18', 'Dhaka, Bd', 'default_profile_photo.png', 'Yes', '2023-04-18 08:26:48', '$2y$10$SGSkO7gZiYtznlR5wChYI.VJqtOZKK8kuZG6rjq9wGLpseM5FcQoO', 'Super Admin', NULL, 'TxV22uXw8Uk1zlf1wGXBFlMk4RLz4bJCeR7oypdF4eIrikmQk5KLX791BTcd', '2023-04-18 04:49:43', '2023-04-18 08:26:48'),
-(2, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '0000-00-00 00:00:00', '$2y$10$n2LLVVBDLfpjUEfe0wwI3uIx7trqcCuqJiKpGtBQfYEY7IJfs7d0a', 'Admin', NULL, NULL, '2023-04-18 04:49:57', NULL),
-(3, 'Warehouse', 'dhakawarehouse@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '0000-00-00 00:00:00', '$2y$10$xE0/pbkEIdk8iJQLtdjWmeFFzZUBzGjhjHCBESnVhs4AEF5vo7J8u', 'Warehouse', NULL, NULL, '2023-04-17 18:00:00', NULL);
+(1, 'Super Admin', 'superadmin@email.com', '01878136530', 'Male', '2023-04-18', 'Dhaka, Bd', 'default_profile_photo.png', 'Yes', '2023-05-21 04:56:26', '$2y$10$UzWedPfwJe1MXcc3hBB1lePKhTb6VQzbJL2um0DgkEeqT8UONLJhK', 'Super Admin', NULL, '5ty7K4DbtKxstUgzyVQXxfR8xhrrnxz1RVBv4OP7bUhdGXvf4lUvQ1ZQKOkr', '2023-04-18 04:49:43', '2023-05-21 04:56:26'),
+(2, 'Admin', 'admin@email.com', '01878136530', 'Male', '2023-05-21', 'Dhaka, BD', 'default_profile_photo.png', 'Yes', '2023-05-21 04:59:40', '$2y$10$OLVc7RWAVhtIPztbErjEsOXM85FS8pExNIr9BofdRRN69JMxP3rk6', 'Admin', NULL, NULL, '2023-04-18 04:49:57', '2023-05-21 04:59:40'),
+(3, 'Warehouse', 'dhakawarehouse@email.com', '01878136530', 'Male', '2023-05-21', 'Khulna ,BD', 'default_profile_photo.png', 'Yes', '2023-05-21 05:03:17', '$2y$10$jxEZdQdUifkjk48t/o32k.UmZ/HIvf9263ZhKjAGviRo0Km3QtVl.', 'Warehouse', NULL, 'PRBRycrTr3rS201BWbCW7io9JpOsZubWBnQhBb5wYJs3rTFRq3Koy4X5Hbli', '2023-04-17 18:00:00', '2023-05-21 05:03:17');
 
 -- --------------------------------------------------------
 
@@ -123,7 +123,7 @@ CREATE TABLE `blogs` (
 
 INSERT INTO `blogs` (`id`, `blog_headline`, `blog_slug`, `blog_category_id`, `blog_quota`, `blog_thumbnail_photo`, `blog_cover_photo`, `blog_details`, `view_count`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'What is Lorem Ipsum?', 'what-is-lorem-ipsum-w447oXkABa', 1, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.<br></p>', 2, 'Yes', 1, NULL, NULL, '2023-02-17 23:30:52', '2023-02-27 10:50:40', NULL),
-(2, 'Where can I get some?', 'where-can-i-get-some-KmmgmYVnrZ', 2, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)<br></p>', 0, 'Yes', 1, NULL, NULL, '2023-02-17 23:31:34', NULL, NULL),
+(2, 'Where can I get some?', 'where-can-i-get-some-KmmgmYVnrZ', 2, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)<br></p>', 1, 'Yes', 1, NULL, NULL, '2023-02-17 23:31:34', '2023-05-21 04:15:51', NULL),
 (3, 'Where does it come from?', 'where-does-it-come-from-k1AqCaalYt', 3, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.<br></p>', 1, 'Yes', 1, NULL, NULL, '2023-02-17 23:32:24', '2023-02-27 06:25:31', NULL);
 
 -- --------------------------------------------------------
@@ -364,7 +364,7 @@ CREATE TABLE `contact_messages` (
 --
 
 INSERT INTO `contact_messages` (`id`, `full_name`, `email_address`, `phone_number`, `subject`, `message`, `status`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Sabbir', 'sabbir1@gmail.com', '01953321402', 'Testt', 'dfgfdlkfguyd jnhfuyasfuidfh xdbfujdhfiuv mnjksdhuidfh', 'Read', NULL, NULL, '2023-04-18 05:21:44', '2023-04-18 06:22:47', NULL);
+(1, 'Sabbir', 'sabbir1@gmail.com', '01953321402', 'Testt', 'dfgfdlkfguyd jnhfuyasfuidfh xdbfujdhfiuv mnjksdhuidfh', 'Read', NULL, NULL, '2023-04-18 05:21:44', '2023-05-21 04:18:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -700,7 +700,7 @@ CREATE TABLE `default_settings` (
 --
 
 INSERT INTO `default_settings` (`id`, `app_name`, `app_url`, `time_zone`, `favicon`, `logo_photo`, `main_phone`, `support_phone`, `main_email`, `support_email`, `address`, `google_map_link`, `facebook_link`, `twitter_link`, `instagram_link`, `linkedin_link`, `youtube_link`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'Spy Zone', 'http://127.0.0.1:8000/', 'Asia/Dhaka', 'Favicon.png', 'Logo-Photo.png', '01878136530', '01878136530', 'info@spyzone', 'support@spyzone.com', 'Dhaka, BD', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116834.13673771221!2d90.41928169999998!3d23.780636450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1677494841456!5m2!1sbn!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'spyzone', 'spyzone', 'spyzone', 'spyzone', 'spyzone', 1, 1, '2023-02-18 04:50:05', '2023-04-18 08:26:47');
+(1, 'Spy Zone', 'http://127.0.0.1:8000/', 'Asia/Dhaka', 'Favicon.png', 'Logo-Photo.png', '01878136530', '01878136530', 'info@spyzone', 'support@spyzone.com', 'Dhaka, BD', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116834.13673771221!2d90.41928169999998!3d23.780636450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1677494841456!5m2!1sbn!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'spyzone', 'spyzone', 'spyzone', 'spyzone', 'spyzone', 1, 1, '2023-02-18 04:50:05', '2023-05-21 04:21:08');
 
 -- --------------------------------------------------------
 
@@ -851,7 +851,7 @@ CREATE TABLE `mail_settings` (
 --
 
 INSERT INTO `mail_settings` (`id`, `mailer`, `host`, `port`, `username`, `password`, `encryption`, `from_address`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'smtp', 'smtp.mailtrap.io', '2525', '071aa50653a80d', '8dd8b67f9819e0', 'tls', 'info@spyzone.com', 1, 1, '2023-02-18 05:02:38', '2023-02-17 23:04:21');
+(1, 'smtp', 'sandbox.smtp.mailtrap.io', '2525', '071aa50653a80d', '8dd8b67f9819e0', 'tls', 'info@spyzone.com', 1, 1, '2023-02-18 05:02:38', '2023-05-21 04:28:49');
 
 -- --------------------------------------------------------
 
@@ -1100,7 +1100,7 @@ CREATE TABLE `payment_settings` (
 --
 
 INSERT INTO `payment_settings` (`id`, `store_id`, `store_password`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'spyit63536b5a2eac1', 'spyit63536b5a2eac1@ssl', 1, 1, '2023-02-18 05:02:56', '2023-02-17 23:05:15');
+(1, 'spyit63536b5a2eac1', 'spyit63536b5a2eac1@ssl', 1, 1, '2023-02-18 05:02:56', '2023-05-21 04:39:34');
 
 -- --------------------------------------------------------
 
@@ -1167,8 +1167,8 @@ INSERT INTO `products` (`id`, `product_name`, `regular_price`, `discounted_price
 (2, 'Dhupiyan Check Saree For Women', 1200, 1120, 'dhupiyan-check-saree-for-women-qkFx4sPwso', 'Product Type: Silk Saree Color: Black & White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari  Occasion: Casual, Party & Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', 'xfvEXf1Hxd', 2, 8, 8, 2, 'No', NULL, 'No', 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', NULL, NULL, NULL, 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', '2-Dhupiyan Check Saree For Women-Photo.jpg', 3, 'Yes', 1, 1, NULL, '2023-02-18 00:09:40', '2023-02-27 11:02:56', NULL),
 (3, 'Gumboot JCD Waterproof Rain Boots', 1500, 1400, 'gumboot-jcd-waterproof-rain-boots-GcIkqa3xW2', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', 'Ukqhw0BsVg', 1, 1, 1, 2, 'No', NULL, 'Yes', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', NULL, NULL, NULL, 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', '3-Gumboot JCD Waterproof Rain Boots-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:10:53', '2023-02-27 11:03:34', NULL),
 (4, 'HP ProBook 450 G4', 60000, 58000, 'hp-probook-450-g4-4XBmC2G8Ul', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', 'l1rQuZc9bO', 3, 6, 3, 6, 'No', NULL, 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', NULL, NULL, NULL, '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', '4-HP ProBook 450 G4-Photo.jpg', 5, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-02-27 11:03:38', NULL),
-(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'No', NULL, 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-02-27 11:02:51', NULL),
-(6, 'ELECTRIC WATER KETTLE', 1200, 1100, 'electric-water-kettle-8B9LPbRu0v', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '56ECyvWMHQ', 4, 7, 10, 5, 'No', NULL, 'No', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', NULL, NULL, NULL, 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '6-ELECTRIC WATER KETTLE-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:14:52', '2023-02-27 06:09:28', NULL),
+(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'No', NULL, 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 3, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-05-21 04:13:22', NULL),
+(6, 'ELECTRIC WATER KETTLE', 1200, 1100, 'electric-water-kettle-8B9LPbRu0v', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '56ECyvWMHQ', 4, 7, 10, 5, 'No', NULL, 'No', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', NULL, NULL, NULL, 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '6-ELECTRIC WATER KETTLE-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:14:52', '2023-05-21 04:14:16', NULL),
 (7, 'Keyboard Standard English with Bangla', 600, 550, 'keyboard-standard-english-with-bangla-7za7kBWoLB', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '2nVMdjnCxT', 3, 3, 2, 3, 'No', NULL, 'Yes', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', NULL, NULL, NULL, 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '7-Keyboard Standard English with Bangla-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:15:39', '2023-02-27 06:09:47', NULL),
 (8, 'Wireless Mouse Speedy Lite 2.4G', 500, 480, 'wireless-mouse-speedy-lite-24g-YN4OLQFFf6', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', 'SiZbgCmykz', 3, 3, 7, 6, 'No', NULL, 'No', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', NULL, NULL, NULL, 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', '8-Wireless Mouse Speedy Lite 2.4G-Photo.jpg', 0, 'Yes', 1, 1, NULL, '2023-02-18 00:16:27', '2023-02-27 06:11:01', NULL),
 (9, 'Heart Wave Long Chain Necklace', 60000, 58000, 'heart-wave-long-chain-necklace-RVCuuIytkU', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', 't0UudonZpG', 2, 2, 5, 2, 'No', NULL, 'Yes', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', NULL, NULL, 'Gold', NULL, '9-Heart Wave Long Chain Necklace-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:17:34', '2023-02-27 10:07:59', NULL),
@@ -1406,11 +1406,9 @@ CREATE TABLE `social_login_settings` (
   `google_auth_status` varchar(255) NOT NULL DEFAULT 'No',
   `google_client_id` varchar(255) DEFAULT NULL,
   `google_client_secret` varchar(255) DEFAULT NULL,
-  `google_redirect_url` varchar(255) DEFAULT NULL,
   `facebook_auth_status` varchar(255) NOT NULL DEFAULT 'No',
   `facebook_client_id` varchar(255) DEFAULT NULL,
   `facebook_client_secret` varchar(255) DEFAULT NULL,
-  `facebook_redirect_url` varchar(255) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1421,8 +1419,8 @@ CREATE TABLE `social_login_settings` (
 -- Dumping data for table `social_login_settings`
 --
 
-INSERT INTO `social_login_settings` (`id`, `google_auth_status`, `google_client_id`, `google_client_secret`, `google_redirect_url`, `facebook_auth_status`, `facebook_client_id`, `facebook_client_secret`, `facebook_redirect_url`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'No', '94152419762-kot722ibqmsiodh3l38dajmut3e2ot5o.apps.googleusercontent.com', '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', NULL, 'No', '3531091607174199', '4e3359ed937b50ac9598f8b0fdd001d5', NULL, 1, 1, '2023-02-18 05:03:21', '2023-02-17 23:06:22');
+INSERT INTO `social_login_settings` (`id`, `google_auth_status`, `google_client_id`, `google_client_secret`, `facebook_auth_status`, `facebook_client_id`, `facebook_client_secret`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'No', '94152419762-kot722ibqmsiodh3l38dajmut3e2ot5o.apps.googleusercontent.com', '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', 'No', '3531091607174199', '4e3359ed937b50ac9598f8b0fdd001d5', 1, 1, '2023-02-18 05:03:21', '2023-02-17 23:06:22');
 
 -- --------------------------------------------------------
 
@@ -1548,7 +1546,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `last_active`, `password`, `status`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Customer Sabbir', 'customer@gmail.com', '01878136530', 'Male', '2023-02-27', 'Dhaka BD', 'default_profile_photo.png', '2023-02-27 11:06:06', '$2y$10$EA./bf7HzxdUlFAv5Fc9ku89e8bai.pHRBOctr/kL./2Kexkk2LU.', 'Yes', '2023-02-20 14:42:51', NULL, '2023-02-20 08:41:59', '2023-02-27 11:06:06');
+(1, NULL, NULL, 'Customer Sabbir', 'customer@email.com', '01878136530', 'Male', '2023-02-27', 'Dhaka BD', 'default_profile_photo.png', '2023-05-21 05:08:03', '$2y$10$rzpK1DN3zj2vFEg7RE60bO7WyKd36Z6CFjKG9VrUL5nY0/QitXv2i', 'Yes', '2023-02-20 14:42:51', 'l4qZHxmOFOMrIhdguMCQnZ7sHlWveG4nx8FqLe17gPCSVUVHfpC3lncwrs4l', '2023-02-20 08:41:59', '2023-05-21 05:08:03');
 
 -- --------------------------------------------------------
 
@@ -1734,7 +1732,38 @@ INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
 (165, '127.0.0.1', '2023-04-18 03:01:43'),
 (166, '127.0.0.1', '2023-04-18 03:02:05'),
 (167, '127.0.0.1', '2023-04-18 03:02:57'),
-(168, '127.0.0.1', '2023-04-18 04:22:15');
+(168, '127.0.0.1', '2023-04-18 04:22:15'),
+(169, '127.0.0.1', '2023-05-21 04:10:28'),
+(170, '127.0.0.1', '2023-05-21 04:13:18'),
+(171, '127.0.0.1', '2023-05-21 04:13:23'),
+(172, '127.0.0.1', '2023-05-21 04:14:16'),
+(173, '127.0.0.1', '2023-05-21 04:14:37'),
+(174, '127.0.0.1', '2023-05-21 04:15:26'),
+(175, '127.0.0.1', '2023-05-21 04:15:37'),
+(176, '127.0.0.1', '2023-05-21 04:15:41'),
+(177, '127.0.0.1', '2023-05-21 04:15:51'),
+(178, '127.0.0.1', '2023-05-21 04:16:00'),
+(179, '127.0.0.1', '2023-05-21 04:16:06'),
+(180, '127.0.0.1', '2023-05-21 04:16:12'),
+(181, '127.0.0.1', '2023-05-21 04:16:20'),
+(182, '127.0.0.1', '2023-05-21 04:17:36'),
+(183, '127.0.0.1', '2023-05-21 04:21:33'),
+(184, '127.0.0.1', '2023-05-21 04:52:41'),
+(185, '127.0.0.1', '2023-05-21 04:52:48'),
+(186, '127.0.0.1', '2023-05-21 04:52:57'),
+(187, '127.0.0.1', '2023-05-21 05:03:20'),
+(188, '127.0.0.1', '2023-05-21 05:04:00'),
+(189, '127.0.0.1', '2023-05-21 05:04:10'),
+(190, '127.0.0.1', '2023-05-21 05:04:43'),
+(191, '127.0.0.1', '2023-05-21 05:05:00'),
+(192, '127.0.0.1', '2023-05-21 05:05:20'),
+(193, '127.0.0.1', '2023-05-21 05:05:40'),
+(194, '127.0.0.1', '2023-05-21 05:07:10'),
+(195, '127.0.0.1', '2023-05-21 05:07:28'),
+(196, '127.0.0.1', '2023-05-21 05:07:45'),
+(197, '127.0.0.1', '2023-05-21 05:07:54'),
+(198, '127.0.0.1', '2023-05-21 05:08:03'),
+(199, '127.0.0.1', '2023-05-21 05:08:08');
 
 -- --------------------------------------------------------
 
@@ -1783,7 +1812,8 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`id`, `user_id`, `product_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 9, '2023-02-20 08:52:25', NULL);
+(1, 1, 9, '2023-02-20 08:52:25', NULL),
+(2, 1, 11, '2023-05-21 05:07:33', NULL);
 
 --
 -- Indexes for dumped tables
@@ -2324,7 +2354,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
 
 --
 -- AUTO_INCREMENT for table `warehouses`
@@ -2336,7 +2366,7 @@ ALTER TABLE `warehouses`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

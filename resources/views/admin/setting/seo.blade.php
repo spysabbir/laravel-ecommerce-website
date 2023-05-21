@@ -21,6 +21,7 @@ Seo Setting
                         @error('seo_image')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
+                        <img width="180" height="100" src="{{asset('uploads/default_photo')}}/{{$seo_setting->seo_image}}" class="mt-2" alt="{{ env('APP_NAME') }}">
                     </div>
                     <div class="m-3">
                         <label>Title</label>

@@ -185,7 +185,7 @@ $default_setting = App\Models\Default_setting::first();
     <br>
     <span style="float:right">
         <strong>Total Amount in Words:</strong>
-        {{ Str::ucfirst(Terbilang::make($order_summery->grand_total)) ;}} Taka Only
+        {{ Str::ucfirst(Terbilang::make($order_summery->grand_total))}} Taka Only
     </span>
     <br>
     <div class="" style="text-align: center">

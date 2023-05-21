@@ -3,59 +3,6 @@
 
         <li class="{{(Route::currentRouteName() == 'admin.dashboard') ? 'active' : ''}}"><a href="{{route('admin.dashboard')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
         <li><a target="_blank" href="{{route('index')}}"><i class="fa fa-globe" aria-hidden="true"></i><span>Frontend</span></a></li>
-        {{-- Admin Panel Start--}}
-        @if (Auth::guard('admin')->user()->role != 'Warehouse')
-        <span class="mb-2 badge badge-info">Admin Panel</span>
-        <li class="{{(Route::currentRouteName() == 'category.index' || Route::currentRouteName() == 'subcategory.index' || Route::currentRouteName() == 'childcategory.index' || Route::currentRouteName() == 'brand.index' || Route::currentRouteName() == 'color.index' || Route::currentRouteName() == 'size.index' || Route::currentRouteName() == 'product.index' || Route::currentRouteName() == 'coupon.index' || Route::currentRouteName() == 'flashsale.index' || Route::currentRouteName() == 'shipping.index' || Route::currentRouteName() == 'flashsale.product.added') ? 'active' : ''}}">
-            <a href="#ProductResource" class="has-arrow"><i class="fa fa-file" aria-hidden="true"></i><span>Product Resource</span></a>
-            <ul>
-                <li class="{{(Route::currentRouteName() == 'category.index') ? 'active' : ''}}"><a href="{{route('category.index')}}">Category</a></li>
-                <li class="{{(Route::currentRouteName() == 'subcategory.index') ? 'active' : ''}}"><a href="{{route('subcategory.index')}}">Subcategory</a></li>
-                <li class="{{(Route::currentRouteName() == 'childcategory.index') ? 'active' : ''}}"><a href="{{route('childcategory.index')}}">Childcategory</a></li>
-                <li class="{{(Route::currentRouteName() == 'brand.index') ? 'active' : ''}}"><a href="{{route('brand.index')}}">Brand</a></li>
-                <li class="{{(Route::currentRouteName() == 'color.index') ? 'active' : ''}}"><a href="{{route('color.index')}}">Color</a></li>
-                <li class="{{(Route::currentRouteName() == 'size.index') ? 'active' : ''}}"><a href="{{route('size.index')}}">Size</a></li>
-                <li class="{{(Route::currentRouteName() == 'product.index') ? 'active' : ''}}"><a href="{{route('product.index')}}">Product</a></li>
-                <li class="{{(Route::currentRouteName() == 'coupon.index') ? 'active' : ''}}"><a href="{{route('coupon.index')}}">Coupon</a></li>
-                <li class="{{(Route::currentRouteName() == 'flashsale.index' || Route::currentRouteName() == 'flashsale.product.added') ? 'active' : ''}}"><a href="{{route('flashsale.index')}}">Flashsale</a></li>
-                <li class="{{(Route::currentRouteName() == 'shipping.index') ? 'active' : ''}}"><a href="{{route('shipping.index')}}">Shipping</a></li>
-            </ul>
-        </li>
-        <li class="{{(Route::currentRouteName() == 'blog_category.index' || Route::currentRouteName() == 'blog.index') ? 'active' : ''}}">
-            <a href="#BlogResource" class="has-arrow"><i class="fa fa-rss" aria-hidden="true"></i><span>Blog Resource</span></a>
-            <ul>
-                <li class="{{(Route::currentRouteName() == 'blog_category.index') ? 'active' : ''}}"><a href="{{route('blog_category.index')}}">Category</a></li>
-                <li class="{{(Route::currentRouteName() == 'blog.index') ? 'active' : ''}}"><a href="{{route('blog.index')}}">Blog</a></li>
-            </ul>
-        </li>
-        <li class="{{(Route::currentRouteName() == 'slider.index' || Route::currentRouteName() == 'feature.index' || Route::currentRouteName() == 'faq.index' || Route::currentRouteName() == 'banner.index' || Route::currentRouteName() == 'team.index' || Route::currentRouteName() == 'warehouse.index') ? 'active' : ''}}">
-            <a href="#OtherResource" class="has-arrow"><i class="fa fa-sitemap" aria-hidden="true"></i><span>Other Resource</span></a>
-            <ul>
-                <li class="{{(Route::currentRouteName() == 'slider.index') ? 'active' : ''}}"><a href="{{route('slider.index')}}">Slider</a></li>
-                <li class="{{(Route::currentRouteName() == 'feature.index') ? 'active' : ''}}"><a href="{{route('feature.index')}}">Feature</a></li>
-                <li class="{{(Route::currentRouteName() == 'faq.index') ? 'active' : ''}}"><a href="{{route('faq.index')}}">Faq</a></li>
-                <li class="{{(Route::currentRouteName() == 'banner.index') ? 'active' : ''}}"><a href="{{route('banner.index')}}">Banner</a></li>
-                <li class="{{(Route::currentRouteName() == 'team.index') ? 'active' : ''}}"><a href="{{route('team.index')}}">Team</a></li>
-                <li class="{{(Route::currentRouteName() == 'warehouse.index') ? 'active' : ''}}"><a href="{{route('warehouse.index')}}">Warehouse</a></li>
-            </ul>
-        </li>
-        @endif
-        {{-- Admin Panel End--}}
-        {{-- Warehouse Panel Start--}}
-        <span class="mb-2 badge badge-info">Warehouse Panel</span>
-        <li class="{{(Route::currentRouteName() == 'processing.orders' || Route::currentRouteName() == 'delivered.orders' || Route::currentRouteName() == 'cancel.orders' || Route::currentRouteName() == 'return.orders') ? 'active' : ''}}">
-            <a href="#AllOrders" class="has-arrow"><i class="fa fa-sitemap" aria-hidden="true"></i><span>All Orders</span></a>
-            <ul>
-                <li class="{{(Route::currentRouteName() == 'processing.orders') ? 'active' : ''}}"><a href="{{route('processing.orders')}}">Processing Order</a></li>
-                <li class="{{(Route::currentRouteName() == 'delivered.orders') ? 'active' : ''}}"><a href="{{route('delivered.orders')}}">Delivered Orders</a></li>
-                @if (Auth::guard('admin')->user()->role != 'Warehouse')
-                <li class="{{(Route::currentRouteName() == 'cancel.orders') ? 'active' : ''}}"><a href="{{route('cancel.orders')}}">Cancel Orders</a></li>
-                <li class="{{(Route::currentRouteName() == 'return.orders') ? 'active' : ''}}"><a href="{{route('return.orders')}}">Return Orders</a></li>
-                @endif
-            </ul>
-        </li>
-        {{-- Warehouse Panel End--}}
-
         {{-- Super Admin Panel Start --}}
         @if (Auth::guard('admin')->user()->role == 'Super Admin')
         <span class="mb-2 badge badge-info">Super Admin Panel</span>
@@ -96,5 +43,59 @@
         </li>
         @endif
         {{-- Super Admin Panel End --}}
+        {{-- Admin Panel Start--}}
+        @if (Auth::guard('admin')->user()->role != 'Warehouse')
+        <span class="mb-2 badge badge-info">Admin Panel</span>
+        <li class="{{(Route::currentRouteName() == 'category.index' || Route::currentRouteName() == 'subcategory.index' || Route::currentRouteName() == 'childcategory.index' || Route::currentRouteName() == 'brand.index' || Route::currentRouteName() == 'color.index' || Route::currentRouteName() == 'size.index' || Route::currentRouteName() == 'product.index' || Route::currentRouteName() == 'coupon.index' || Route::currentRouteName() == 'flashsale.index' || Route::currentRouteName() == 'shipping.index' || Route::currentRouteName() == 'flashsale.product.added') ? 'active' : ''}}">
+            <a href="#ProductResource" class="has-arrow"><i class="fa fa-file" aria-hidden="true"></i><span>Product Resource</span></a>
+            <ul>
+                <li class="{{(Route::currentRouteName() == 'category.index') ? 'active' : ''}}"><a href="{{route('category.index')}}">Category</a></li>
+                <li class="{{(Route::currentRouteName() == 'subcategory.index') ? 'active' : ''}}"><a href="{{route('subcategory.index')}}">Subcategory</a></li>
+                <li class="{{(Route::currentRouteName() == 'childcategory.index') ? 'active' : ''}}"><a href="{{route('childcategory.index')}}">Childcategory</a></li>
+                <li class="{{(Route::currentRouteName() == 'brand.index') ? 'active' : ''}}"><a href="{{route('brand.index')}}">Brand</a></li>
+                <li class="{{(Route::currentRouteName() == 'color.index') ? 'active' : ''}}"><a href="{{route('color.index')}}">Color</a></li>
+                <li class="{{(Route::currentRouteName() == 'size.index') ? 'active' : ''}}"><a href="{{route('size.index')}}">Size</a></li>
+                <li class="{{(Route::currentRouteName() == 'product.index') ? 'active' : ''}}"><a href="{{route('product.index')}}">Product</a></li>
+                <li class="{{(Route::currentRouteName() == 'coupon.index') ? 'active' : ''}}"><a href="{{route('coupon.index')}}">Coupon</a></li>
+                <li class="{{(Route::currentRouteName() == 'flashsale.index' || Route::currentRouteName() == 'flashsale.product.added') ? 'active' : ''}}"><a href="{{route('flashsale.index')}}">Flashsale</a></li>
+                <li class="{{(Route::currentRouteName() == 'shipping.index') ? 'active' : ''}}"><a href="{{route('shipping.index')}}">Shipping</a></li>
+            </ul>
+        </li>
+        <li class="{{(Route::currentRouteName() == 'blog_category.index' || Route::currentRouteName() == 'blog.index') ? 'active' : ''}}">
+            <a href="#BlogResource" class="has-arrow"><i class="fa fa-rss" aria-hidden="true"></i><span>Blog Resource</span></a>
+            <ul>
+                <li class="{{(Route::currentRouteName() == 'blog_category.index') ? 'active' : ''}}"><a href="{{route('blog_category.index')}}">Category</a></li>
+                <li class="{{(Route::currentRouteName() == 'blog.index') ? 'active' : ''}}"><a href="{{route('blog.index')}}">Blog</a></li>
+            </ul>
+        </li>
+        <li class="{{(Route::currentRouteName() == 'slider.index' || Route::currentRouteName() == 'feature.index' || Route::currentRouteName() == 'faq.index' || Route::currentRouteName() == 'banner.index' || Route::currentRouteName() == 'team.index' || Route::currentRouteName() == 'warehouse.index') ? 'active' : ''}}">
+            <a href="#OtherResource" class="has-arrow"><i class="fa fa-sitemap" aria-hidden="true"></i><span>Other Resource</span></a>
+            <ul>
+                <li class="{{(Route::currentRouteName() == 'slider.index') ? 'active' : ''}}"><a href="{{route('slider.index')}}">Slider</a></li>
+                <li class="{{(Route::currentRouteName() == 'feature.index') ? 'active' : ''}}"><a href="{{route('feature.index')}}">Feature</a></li>
+                <li class="{{(Route::currentRouteName() == 'faq.index') ? 'active' : ''}}"><a href="{{route('faq.index')}}">Faq</a></li>
+                <li class="{{(Route::currentRouteName() == 'banner.index') ? 'active' : ''}}"><a href="{{route('banner.index')}}">Banner</a></li>
+                <li class="{{(Route::currentRouteName() == 'team.index') ? 'active' : ''}}"><a href="{{route('team.index')}}">Team</a></li>
+                <li class="{{(Route::currentRouteName() == 'warehouse.index') ? 'active' : ''}}"><a href="{{route('warehouse.index')}}">Warehouse</a></li>
+            </ul>
+        </li>
+        @endif
+        {{-- Admin Panel End--}}
+        {{-- Warehouse Panel Start--}}
+        @if (Auth::guard('admin')->user()->role != 'Super Admin')
+        <span class="mb-2 badge badge-info">Warehouse Panel</span>
+        <li class="{{(Route::currentRouteName() == 'processing.orders' || Route::currentRouteName() == 'delivered.orders' || Route::currentRouteName() == 'cancel.orders' || Route::currentRouteName() == 'return.orders') ? 'active' : ''}}">
+            <a href="#AllOrders" class="has-arrow"><i class="fa fa-sitemap" aria-hidden="true"></i><span>All Orders</span></a>
+            <ul>
+                <li class="{{(Route::currentRouteName() == 'processing.orders') ? 'active' : ''}}"><a href="{{route('processing.orders')}}">Processing Order</a></li>
+                <li class="{{(Route::currentRouteName() == 'delivered.orders') ? 'active' : ''}}"><a href="{{route('delivered.orders')}}">Delivered Orders</a></li>
+                @if (Auth::guard('admin')->user()->role != 'Warehouse')
+                <li class="{{(Route::currentRouteName() == 'cancel.orders') ? 'active' : ''}}"><a href="{{route('cancel.orders')}}">Cancel Orders</a></li>
+                <li class="{{(Route::currentRouteName() == 'return.orders') ? 'active' : ''}}"><a href="{{route('return.orders')}}">Return Orders</a></li>
+                @endif
+            </ul>
+        </li>
+        @endif
+        {{-- Warehouse Panel End--}}
     </ul>
 </nav>

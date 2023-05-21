@@ -22,7 +22,7 @@ Default Setting
                             @error('logo_photo')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
-                            <img width="180" height="180" src="{{asset('uploads/profile_photo')}}/{{$default_setting->app_name}}" class="rounded-circle" alt="{{Auth::guard('admin')->user()->name}}" id="profilePhotoPreview">
+                            <img width="100" height="80" src="{{asset('uploads/default_photo')}}/{{$default_setting->logo_photo}}" class="rounded-circle" alt="{{ env('APP_NAME') }}">
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label>Favicon</label>
@@ -30,7 +30,7 @@ Default Setting
                             @error('favicon')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
-                            <img width="180" height="180" src="{{asset('uploads/profile_photo')}}/{{$default_setting->app_name}}" class="rounded-circle" alt="{{Auth::guard('admin')->user()->name}}" id="profilePhotoPreview">
+                            <img width="80" height="80" src="{{asset('uploads/default_photo')}}/{{$default_setting->favicon}}" class="rounded-circle" alt="{{ env('APP_NAME') }}">
                         </div>
                         <div class="col-lg-4 mb-3">
                             <label>App Name</label>

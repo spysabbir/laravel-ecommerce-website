@@ -58,7 +58,7 @@ Checkout
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Phone Number<span class="required">*</span></label>
-                                    <input type="text" class="@error('billing_phone') is-invalid @enderror" placeholder="Phone Number" name="billing_phone" value="{{auth()->user()->phone_number, old('billing_phone')}}" >
+                                    <input type="text" class="@error('billing_phone') is-invalid @enderror" placeholder="Phone Number" name="billing_phone" value="{{old('billing_phone', auth()->user()->phone_number)}}" >
                                     @error('billing_phone')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror

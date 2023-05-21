@@ -190,6 +190,10 @@ Dashboard
                                         @enderror
                                     </div>
                                     <div class="m-3">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control"  value="{{auth()->user()->email}}" disabled>
+                                    </div>
+                                    <div class="m-3">
                                         <label>Phone Number</label>
                                         <input type="text" class="form-control" name="phone_number" placeholder="Phone Number"
                                             value="{{auth()->user()->phone_number}}">
