@@ -413,7 +413,7 @@ Dashboard
                         }
                     })
                     Toast.fire({
-                        icon: 'danger',
+                        icon: 'warning',
                         title: 'Log out successfully'
                     })
                 }
