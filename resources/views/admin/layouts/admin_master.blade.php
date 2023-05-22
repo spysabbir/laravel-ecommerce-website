@@ -165,10 +165,12 @@
                                     @endif
                                 </ul>
                             </li>
-                            <li class="bg-danger"><a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="icon-menu"><i class="icon-power"></i></a></li>
-                            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                            <li class="bg-danger">
+                                <button type="button" id="logoutBtn" class="icon-menu btn-danger"><i class="icon-power"></i></button>
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -249,24 +251,59 @@
 
     <script>
         $(document).ready(function() {
-           @if(Session::has('message'))
-               var type = "{{ Session::get('alert-type', 'info') }}";
-               switch(type){
-                   case 'info':
-                       toastr.info("{{ Session::get('message') }}");
-                       break;
-
-                   case 'warning':
-                       toastr.warning("{{ Session::get('message') }}");
-                       break;
-
-                   case 'success':
-                       toastr.success("{{ Session::get('message') }}");
-                       break;
-
-                   case 'error':
-                       toastr.error("{{ Session::get('message') }}");
-                       break;
+           $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            // Log out
+            $(document).on('click', '#logoutBtn', function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You Log out!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Log out'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#logout-form').submit();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-center',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave',  Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'danger',
+                            title: 'Log out successfully'
+                        })
+                    }
+                })
+            })
+            // Swweet alert
+            @if(Session::has('message'))
+                var type = "{{ Session::get('alert-type', 'info') }}";
+                switch(type){
+                    case 'info':
+                        toastr.info("{{ Session::get('message') }}");
+                        break;
+                    case 'warning':
+                        toastr.warning("{{ Session::get('message') }}");
+                        break;
+                    case 'success':
+                        toastr.success("{{ Session::get('message') }}");
+                        break;
+                    case 'error':
+                        toastr.error("{{ Session::get('message') }}");
+                        break;
                }
            @endif
        });
