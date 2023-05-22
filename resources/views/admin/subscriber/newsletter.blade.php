@@ -33,6 +33,15 @@ Newsletter
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-lg-12">
+                                            <label class="form-label">Received By</label>
+                                            <select name="received_by" class="form-control" >
+                                                <option value="">--Select Type--</option>
+                                                <option value="All User">All User</option>
+                                                <option value="All Subscriber">All Subscriber</option>
+                                            </select>
+                                            <span class="text-danger error-text received_by_error"></span>
+                                        </div>
+                                        <div class="col-lg-12">
                                             <label class="form-label">Newsletter Subject</label>
                                             <textarea name="newsletter_subject" class="form-control" placeholder="Newsletter Subject"></textarea>
                                             <span class="text-danger error-text newsletter_subject_error"></span>

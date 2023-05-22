@@ -431,6 +431,7 @@ class AdminController extends Controller
             ]);
         }else{
             $newsletter_id = Newsletter::insertGetId([
+                'received_by' => $request->received_by,
                 'newsletter_subject' => $request->newsletter_subject,
                 'newsletter_body' => $request->newsletter_body,
                 'created_at' => Carbon::now(),

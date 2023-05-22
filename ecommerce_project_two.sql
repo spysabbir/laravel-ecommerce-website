@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2023 at 07:08 AM
+-- Generation Time: May 22, 2023 at 01:18 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,7 +51,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `last_active`, `password`, `role`, `warehouse_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', '01878136530', 'Male', '2023-04-18', 'Dhaka, Bd', 'default_profile_photo.png', 'Yes', '2023-05-21 04:56:26', '$2y$10$UzWedPfwJe1MXcc3hBB1lePKhTb6VQzbJL2um0DgkEeqT8UONLJhK', 'Super Admin', NULL, '5ty7K4DbtKxstUgzyVQXxfR8xhrrnxz1RVBv4OP7bUhdGXvf4lUvQ1ZQKOkr', '2023-04-18 04:49:43', '2023-05-21 04:56:26'),
+(1, 'Super Admin', 'superadmin@email.com', '01878136530', 'Male', '2023-04-18', 'Dhaka, Bd', 'default_profile_photo.png', 'Yes', '2023-05-22 11:18:24', '$2y$10$UzWedPfwJe1MXcc3hBB1lePKhTb6VQzbJL2um0DgkEeqT8UONLJhK', 'Super Admin', NULL, 'nHwzZaagIwUitPluzzbg4atwKTH5ZazjxJKm4NkEFuyoQ6edceW8eKbRLssu', '2023-04-18 04:49:43', '2023-05-22 11:18:24'),
 (2, 'Admin', 'admin@email.com', '01878136530', 'Male', '2023-05-21', 'Dhaka, BD', 'default_profile_photo.png', 'Yes', '2023-05-21 04:59:40', '$2y$10$OLVc7RWAVhtIPztbErjEsOXM85FS8pExNIr9BofdRRN69JMxP3rk6', 'Admin', NULL, NULL, '2023-04-18 04:49:57', '2023-05-21 04:59:40'),
 (3, 'Warehouse', 'dhakawarehouse@email.com', '01878136530', 'Male', '2023-05-21', 'Khulna ,BD', 'default_profile_photo.png', 'Yes', '2023-05-21 05:03:17', '$2y$10$jxEZdQdUifkjk48t/o32k.UmZ/HIvf9263ZhKjAGviRo0Km3QtVl.', 'Warehouse', NULL, 'PRBRycrTr3rS201BWbCW7io9JpOsZubWBnQhBb5wYJs3rTFRq3Koy4X5Hbli', '2023-04-17 18:00:00', '2023-05-21 05:03:17');
 
@@ -923,6 +923,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `newsletters` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `received_by` varchar(255) NOT NULL,
   `newsletter_subject` text NOT NULL,
   `newsletter_body` longtext NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -933,12 +934,14 @@ CREATE TABLE `newsletters` (
 -- Dumping data for table `newsletters`
 --
 
-INSERT INTO `newsletters` (`id`, `newsletter_subject`, `newsletter_body`, `created_at`, `updated_at`) VALUES
-(1, 'Test1 Normal', 'Test1 Normal', '2023-04-18 05:28:42', NULL),
-(2, 'Test2 Jobs', 'Test2 Jobs', '2023-04-18 05:46:15', NULL),
-(3, 'Test 3', 'Test 3', '2023-04-18 06:04:50', NULL),
-(4, 'hfghfgh', 'gfhfghf', '2023-04-18 06:09:17', NULL),
-(5, 'Final Test', 'Final Test', '2023-04-18 06:15:58', NULL);
+INSERT INTO `newsletters` (`id`, `received_by`, `newsletter_subject`, `newsletter_body`, `created_at`, `updated_at`) VALUES
+(1, 'All Subscriber', 'Test1 Normal', 'Test1 Normal', '2023-04-18 05:28:42', NULL),
+(2, 'All Subscriber', 'Test2 Jobs', 'Test2 Jobs', '2023-04-18 05:46:15', NULL),
+(3, 'All Subscriber', 'Test 3', 'Test 3', '2023-04-18 06:04:50', NULL),
+(4, 'All Subscriber', 'hfghfgh', 'gfhfghf', '2023-04-18 06:09:17', NULL),
+(5, 'All Subscriber', 'Final Test', 'Final Test', '2023-04-18 06:15:58', NULL),
+(6, 'All User', 'Send User', 'Send User', '2023-05-22 11:11:47', NULL),
+(7, 'All Subscriber', 'Send Subscriber', 'Send Subscriber', '2023-05-22 11:17:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -1763,7 +1766,8 @@ INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
 (196, '127.0.0.1', '2023-05-21 05:07:45'),
 (197, '127.0.0.1', '2023-05-21 05:07:54'),
 (198, '127.0.0.1', '2023-05-21 05:08:03'),
-(199, '127.0.0.1', '2023-05-21 05:08:08');
+(199, '127.0.0.1', '2023-05-21 05:08:08'),
+(200, '127.0.0.1', '2023-05-22 09:05:16');
 
 -- --------------------------------------------------------
 
@@ -2216,7 +2220,7 @@ ALTER TABLE `flashsales`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mail_settings`
@@ -2234,7 +2238,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `newsletters`
 --
 ALTER TABLE `newsletters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -2354,7 +2358,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT for table `warehouses`
