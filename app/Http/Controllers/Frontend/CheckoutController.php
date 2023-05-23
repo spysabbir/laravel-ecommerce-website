@@ -150,31 +150,34 @@ class CheckoutController extends Controller
             return redirect('pay');
         }else{
             // Send SMS
-            // $url = "https://bulksmsbd.net/api/smsapi";
-            // $api_key = "VjkIEblFGYFP7yH5NyOk";
-            // $senderid = "03590740020";
-            // $number = "$request->billing_phone";
-            // $message = "Hello $request->billing_name, your Order place successfully in eCommerce";
-            // $data = [
-            //     "api_key" => $api_key,
-            //     "senderid" => $senderid,
-            //     "number" => $number,
-            //     "message" => $message
-            // ];
-            // $ch = curl_init();
-            // curl_setopt($ch, CURLOPT_URL, $url);
-            // curl_setopt($ch, CURLOPT_POST, 1);
-            // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            // $response = curl_exec($ch);
-            // curl_close($ch);
+            $siteName = env('APP_NAME');
+
+            $url = "https://bulksmsbd.net/api/smsapi";
+            $api_key = env('SMS_API_KEY');
+            $senderid = env('SMS_SENDER_ID');
+            $number = "$request->billing_phone";
+            $message = "Hello $request->billing_name, your order place successfully in $siteName.";
+            $data = [
+                "api_key" => $api_key,
+                "senderid" => $senderid,
+                "number" => $number,
+                "message" => $message
+            ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            curl_close($ch);
             // return $response;
 
             $order_summery = Order_summery::find($order_summery_id);
             Mail::to($order_summery->billing_email)
                 ->cc($order_summery->shipping_email)
                 ->send(new Order_placedMail($order_summery));
+
             return redirect()->route('dashboard')->with('success', 'Order Place Successfully.');
         }
     }

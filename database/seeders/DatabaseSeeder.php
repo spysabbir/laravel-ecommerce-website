@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             PaymentSettingSeeder::class,
             SocialLoginSettingSeeder::class,
             SeoSettingSeeder::class,
+            SmsSettingSeeder::class,
         ]);
     }
 }

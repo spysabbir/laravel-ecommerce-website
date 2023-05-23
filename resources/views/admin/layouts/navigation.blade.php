@@ -23,7 +23,7 @@
                 <li class="{{(Route::currentRouteName() == 'report.product.inventory') ? 'active' : ''}}"><a href="{{route('report.product.inventory')}}">Product Inventory</a></li>
             </ul>
         </li>
-        <li class="{{(Route::currentRouteName() == 'mail.setting' || Route::currentRouteName() == 'default.setting' || Route::currentRouteName() == 'social-login.setting' || Route::currentRouteName() == 'payment.setting' || Route::currentRouteName() == 'seo.setting' || Route::currentRouteName() == 'page-setting.index' || Route::currentRouteName() == 'page-setting.create' || Route::currentRouteName() == 'page-setting.edit' || Route::currentRouteName() == 'page-setting.show') ? 'active' : ''}}">
+        <li class="{{(Route::currentRouteName() == 'mail.setting' || Route::currentRouteName() == 'default.setting' || Route::currentRouteName() == 'social-login.setting' || Route::currentRouteName() == 'payment.setting' || Route::currentRouteName() == 'seo.setting' || Route::currentRouteName() == 'sms.setting' || Route::currentRouteName() == 'page-setting.index' || Route::currentRouteName() == 'page-setting.create' || Route::currentRouteName() == 'page-setting.edit' || Route::currentRouteName() == 'page-setting.show') ? 'active' : ''}}">
             <a href="#Setting" class="has-arrow"><i class="fa fa-cog" aria-hidden="true"></i><span>Setting</span></a>
             <ul>
                 <li class="{{(Route::currentRouteName() == 'default.setting') ? 'active' : ''}}"><a href="{{route('default.setting')}}">Default Setting</a></li>
@@ -31,6 +31,7 @@
                 <li class="{{(Route::currentRouteName() == 'payment.setting') ? 'active' : ''}}"><a href="{{route('payment.setting')}}">Payment Setting</a></li>
                 <li class="{{(Route::currentRouteName() == 'social-login.setting') ? 'active' : ''}}"><a href="{{route('social-login.setting')}}">Social Login Setting</a></li>
                 <li class="{{(Route::currentRouteName() == 'seo.setting') ? 'active' : ''}}"><a href="{{route('seo.setting')}}">Seo Setting</a></li>
+                <li class="{{(Route::currentRouteName() == 'sms.setting') ? 'active' : ''}}"><a href="{{route('sms.setting')}}">Sms Setting</a></li>
                 <li class="{{(Route::currentRouteName() == 'page-setting.index' || Route::currentRouteName() == 'page-setting.create' || Route::currentRouteName() == 'page-setting.edit' || Route::currentRouteName() == 'page-setting.show') ? 'active' : ''}}"><a href="{{route('page-setting.index')}}">Page Setting</a></li>
             </ul>
         </li>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 01:18 PM
+-- Generation Time: May 23, 2023 at 07:25 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,7 +51,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `last_active`, `password`, `role`, `warehouse_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', '01878136530', 'Male', '2023-04-18', 'Dhaka, Bd', 'default_profile_photo.png', 'Yes', '2023-05-22 11:18:24', '$2y$10$UzWedPfwJe1MXcc3hBB1lePKhTb6VQzbJL2um0DgkEeqT8UONLJhK', 'Super Admin', NULL, 'nHwzZaagIwUitPluzzbg4atwKTH5ZazjxJKm4NkEFuyoQ6edceW8eKbRLssu', '2023-04-18 04:49:43', '2023-05-22 11:18:24'),
+(1, 'Super Admin', 'superadmin@email.com', '01878136530', 'Male', '2023-04-18', 'Dhaka, Bd', 'default_profile_photo.png', 'Yes', '2023-05-23 05:09:56', '$2y$10$UzWedPfwJe1MXcc3hBB1lePKhTb6VQzbJL2um0DgkEeqT8UONLJhK', 'Super Admin', NULL, 'nHwzZaagIwUitPluzzbg4atwKTH5ZazjxJKm4NkEFuyoQ6edceW8eKbRLssu', '2023-04-18 04:49:43', '2023-05-23 05:09:56'),
 (2, 'Admin', 'admin@email.com', '01878136530', 'Male', '2023-05-21', 'Dhaka, BD', 'default_profile_photo.png', 'Yes', '2023-05-21 04:59:40', '$2y$10$OLVc7RWAVhtIPztbErjEsOXM85FS8pExNIr9BofdRRN69JMxP3rk6', 'Admin', NULL, NULL, '2023-04-18 04:49:57', '2023-05-21 04:59:40'),
 (3, 'Warehouse', 'dhakawarehouse@email.com', '01878136530', 'Male', '2023-05-21', 'Khulna ,BD', 'default_profile_photo.png', 'Yes', '2023-05-21 05:03:17', '$2y$10$jxEZdQdUifkjk48t/o32k.UmZ/HIvf9263ZhKjAGviRo0Km3QtVl.', 'Warehouse', NULL, 'PRBRycrTr3rS201BWbCW7io9JpOsZubWBnQhBb5wYJs3rTFRq3Koy4X5Hbli', '2023-04-17 18:00:00', '2023-05-21 05:03:17');
 
@@ -913,7 +913,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (41, '2022_12_31_164048_create_seo_settings_table', 1),
 (42, '2023_01_07_141146_create_social_login_settings_table', 1),
 (43, '2023_02_21_165741_create_newsletters_table', 2),
-(44, '2023_04_18_112539_create_jobs_table', 3);
+(44, '2023_04_18_112539_create_jobs_table', 3),
+(45, '2023_05_23_103244_create_sms_settings_table', 4);
 
 -- --------------------------------------------------------
 
@@ -1401,6 +1402,29 @@ INSERT INTO `sliders` (`id`, `slider_title`, `slider_subtitle`, `slider_link`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sms_settings`
+--
+
+CREATE TABLE `sms_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `api_key` text NOT NULL,
+  `sender_id` text NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sms_settings`
+--
+
+INSERT INTO `sms_settings` (`id`, `api_key`, `sender_id`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'VjkIEblFGYFP7yH5NyOk', '8809601004416', 1, 1, '2023-05-23 04:58:28', '2023-05-23 05:08:27');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `social_login_settings`
 --
 
@@ -1767,7 +1791,9 @@ INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
 (197, '127.0.0.1', '2023-05-21 05:07:54'),
 (198, '127.0.0.1', '2023-05-21 05:08:03'),
 (199, '127.0.0.1', '2023-05-21 05:08:08'),
-(200, '127.0.0.1', '2023-05-22 09:05:16');
+(200, '127.0.0.1', '2023-05-22 09:05:16'),
+(201, '127.0.0.1', '2023-05-23 04:31:12'),
+(202, '127.0.0.1', '2023-05-23 04:31:13');
 
 -- --------------------------------------------------------
 
@@ -2054,6 +2080,12 @@ ALTER TABLE `sliders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sms_settings`
+--
+ALTER TABLE `sms_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `social_login_settings`
 --
 ALTER TABLE `social_login_settings`
@@ -2232,7 +2264,7 @@ ALTER TABLE `mail_settings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
@@ -2325,6 +2357,12 @@ ALTER TABLE `sliders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `sms_settings`
+--
+ALTER TABLE `sms_settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `social_login_settings`
 --
 ALTER TABLE `social_login_settings`
@@ -2358,7 +2396,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- AUTO_INCREMENT for table `warehouses`

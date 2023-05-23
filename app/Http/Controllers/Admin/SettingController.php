@@ -7,6 +7,7 @@ use App\Models\Default_setting;
 use App\Models\Mail_setting;
 use App\Models\Payment_setting;
 use App\Models\Seo_setting;
+use App\Models\SmsSetting;
 use App\Models\Social_login_setting;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -252,6 +253,31 @@ class SettingController extends Controller
 
         $notification = array(
             'message' => 'Seo details updated successfully.',
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
+    }
+
+    public function smsSetting(){
+        $sms_setting = SmsSetting::first();
+        return view('admin.setting.sms', compact('sms_setting'));
+    }
+
+    public function smsSettingUpdate(Request $request, $id){
+        $request->validate([
+            '*' => 'required',
+        ]);
+
+        SmsSetting::where('id', $id)->update([
+            'api_key' => $request->api_key,
+            'sender_id' => $request->sender_id,
+            'updated_by' => Auth::guard('admin')->user()->id,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Sms details updated successfully.',
             'alert-type' => 'success'
         );
 

@@ -77,6 +77,9 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('/seo-setting', [SettingController::class, 'seoSetting'])->name('seo.setting');
         Route::post('/seo/setting/update/{id}', [SettingController::class, 'seoSettingUpdate'])->name('seo.setting.update');
 
+        Route::get('/sms-setting', [SettingController::class, 'smsSetting'])->name('sms.setting');
+        Route::post('/sms/setting/update/{id}', [SettingController::class, 'smsSettingUpdate'])->name('sms.setting.update');
+
         Route::resource('page-setting', Page_settingController::class);
         Route::get('/page/setting/restore/{id}', [Page_settingController::class, 'pageSettingRestore'])->name('page-setting.restore');
         Route::get('/page/setting/forcedelete/{id}', [Page_settingController::class, 'pageSettingForceDelete'])->name('page-setting.forcedelete');
