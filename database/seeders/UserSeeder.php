@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class BackendUserSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,14 +22,14 @@ class BackendUserSeeder extends Seeder
             [
                 'name' => 'Super Admin',
                 'email' => 'superadmin@gmail.com',
-                'password' => Hash::make('123456789'),
+                'password' => Hash::make('12345678'),
                 'role' => 'Super Admin',
             ],
             // Admin
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('123456789'),
+                'password' => Hash::make('12345678'),
                 'role' => 'Admin',
             ],
             // Warehouse
@@ -38,6 +39,16 @@ class BackendUserSeeder extends Seeder
                 'password' => Hash::make('12345678'),
                 'role' => 'Warehouse',
             ],
+        ]);
+
+        DB::table('users')->insert([
+            // Customer
+            [
+                'name' => 'Customer 1',
+                'email' => 'customer1@gmail.com',
+                'password' => Hash::make('12345678'),
+                'last_active' => Carbon::now(),
+            ]
         ]);
     }
 }

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CountrySeeder::class,
-            BackendUserSeeder::class,
+            UserSeeder::class,
             DefaultSettingTableSeeder::class,
             MailSettingTableSeeder::class,
             PaymentSettingSeeder::class,

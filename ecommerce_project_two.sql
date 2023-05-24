@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 07:25 AM
+-- Generation Time: May 24, 2023 at 11:54 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,9 +51,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `last_active`, `password`, `role`, `warehouse_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', '01878136530', 'Male', '2023-04-18', 'Dhaka, Bd', 'default_profile_photo.png', 'Yes', '2023-05-23 05:09:56', '$2y$10$UzWedPfwJe1MXcc3hBB1lePKhTb6VQzbJL2um0DgkEeqT8UONLJhK', 'Super Admin', NULL, 'nHwzZaagIwUitPluzzbg4atwKTH5ZazjxJKm4NkEFuyoQ6edceW8eKbRLssu', '2023-04-18 04:49:43', '2023-05-23 05:09:56'),
-(2, 'Admin', 'admin@email.com', '01878136530', 'Male', '2023-05-21', 'Dhaka, BD', 'default_profile_photo.png', 'Yes', '2023-05-21 04:59:40', '$2y$10$OLVc7RWAVhtIPztbErjEsOXM85FS8pExNIr9BofdRRN69JMxP3rk6', 'Admin', NULL, NULL, '2023-04-18 04:49:57', '2023-05-21 04:59:40'),
-(3, 'Warehouse', 'dhakawarehouse@email.com', '01878136530', 'Male', '2023-05-21', 'Khulna ,BD', 'default_profile_photo.png', 'Yes', '2023-05-21 05:03:17', '$2y$10$jxEZdQdUifkjk48t/o32k.UmZ/HIvf9263ZhKjAGviRo0Km3QtVl.', 'Warehouse', NULL, 'PRBRycrTr3rS201BWbCW7io9JpOsZubWBnQhBb5wYJs3rTFRq3Koy4X5Hbli', '2023-04-17 18:00:00', '2023-05-21 05:03:17');
+(1, 'Super Admin', 'superadmin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$CAcFMkGYrHnfPGn4pl8rguKMvf799pp57LUGqJMyc/Yzsq1BI4s/2', 'Super Admin', NULL, NULL, NULL, NULL),
+(2, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$vXW3rTLZMRzTRZ74VGY5jOQHEz6xKRgCRAVJd/n9HBfutx5JuOTaq', 'Admin', NULL, NULL, NULL, NULL),
+(3, 'Warehouse', 'dhakawarehouse@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$3kkZzTLRBqO3ouqweO7jnO1weoQbvHFqif8QRmYFcMmNfOcK4oj/S', 'Warehouse', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1573,7 +1573,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `last_active`, `password`, `status`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Customer Sabbir', 'customer@email.com', '01878136530', 'Male', '2023-02-27', 'Dhaka BD', 'default_profile_photo.png', '2023-05-21 05:08:03', '$2y$10$rzpK1DN3zj2vFEg7RE60bO7WyKd36Z6CFjKG9VrUL5nY0/QitXv2i', 'Yes', '2023-02-20 14:42:51', 'l4qZHxmOFOMrIhdguMCQnZ7sHlWveG4nx8FqLe17gPCSVUVHfpC3lncwrs4l', '2023-02-20 08:41:59', '2023-05-21 05:08:03');
+(1, NULL, NULL, 'Customer 1', 'customer1@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', '2023-05-24 09:53:41', '$2y$10$QRy53lLpdvPEQgAPED.8JuEt.9ytjmcmtjJGi9k/dOxxgl/4arfDW', 'Yes', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1793,7 +1793,10 @@ INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
 (199, '127.0.0.1', '2023-05-21 05:08:08'),
 (200, '127.0.0.1', '2023-05-22 09:05:16'),
 (201, '127.0.0.1', '2023-05-23 04:31:12'),
-(202, '127.0.0.1', '2023-05-23 04:31:13');
+(202, '127.0.0.1', '2023-05-23 04:31:13'),
+(203, '127.0.0.1', '2023-05-23 09:53:20'),
+(204, '127.0.0.1', '2023-05-23 09:53:43'),
+(205, '127.0.0.1', '2023-05-23 09:53:53');
 
 -- --------------------------------------------------------
 
@@ -2396,7 +2399,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
 -- AUTO_INCREMENT for table `warehouses`
