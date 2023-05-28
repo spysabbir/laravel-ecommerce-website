@@ -53,6 +53,14 @@ class AdminLoginRequest extends FormRequest
             ]);
         }
 
+        if (Auth::guard('admin')->user()->status != 'Yes') {
+            Auth::logout();
+
+            throw ValidationException::withMessages([
+                'email' => trans('auth.inactive'),
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 
