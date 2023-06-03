@@ -21,21 +21,21 @@ class UserSeeder extends Seeder
             // Super Admin
             [
                 'name' => 'Super Admin',
-                'email' => 'superadmin@gmail.com',
+                'email' => 'superadmin@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 'Super Admin',
             ],
             // Admin
             [
                 'name' => 'Admin',
-                'email' => 'admin@gmail.com',
+                'email' => 'admin@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 'Admin',
             ],
             // Warehouse
             [
                 'name' => 'Warehouse',
-                'email' => 'dhakawarehouse@gmail.com',
+                'email' => 'dhakawarehouse@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 'Warehouse',
             ],
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
             // Customer
             [
                 'name' => 'Customer 1',
-                'email' => 'customer1@gmail.com',
+                'email' => 'customer1@email.com',
                 'password' => Hash::make('12345678'),
                 'last_active' => Carbon::now(),
             ]

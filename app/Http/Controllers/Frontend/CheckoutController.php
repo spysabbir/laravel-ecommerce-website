@@ -121,6 +121,7 @@ class CheckoutController extends Controller
             'grand_total' => $grand_total,
             'created_at' => Carbon::now(),
         ]);
+
         $cart_products =  Cart::where('user_id', auth()->id())->where('status', 'Yes')->get();
         foreach($cart_products as $cart_product){
             Order_detail::insert([
@@ -141,9 +142,11 @@ class CheckoutController extends Controller
             // Delete for cart
             $cart_product->delete();
         }
+
         if(Session::get('session_coupon_name')){
             Coupon::where('coupon_name', Session::get('session_coupon_name'))->decrement('coupon_user_limit');
         }
+
         if($request->payment_method == 'Online'){
             Session::put('session_order_summery_id', $order_summery_id);
             Session::put('session_final_grand_total', $grand_total);
@@ -177,7 +180,7 @@ class CheckoutController extends Controller
             Mail::to($order_summery->billing_email)
                 ->cc($order_summery->shipping_email)
                 ->send(new Order_placedMail($order_summery));
-
+                
             return redirect()->route('dashboard')->with('success', 'Order Place Successfully.');
         }
     }

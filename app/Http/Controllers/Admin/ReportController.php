@@ -237,7 +237,16 @@ class ReportController extends Controller
                     ->rawColumns(['category_name', 'subcategory_name', 'childcategory_name', 'brand_name'])
                     ->make(true);
         }
-        return view('admin.report.product-inventory');
+
+        $categories = Category::where('status', 'Yes')->get();
+        $subcategories = Subcategory::where('status', 'Yes')->get();
+        $childcategories = Childcategory::where('status', 'Yes')->get();
+        $brands = Brand::where('status', 'Yes')->get();
+        $products = Product::where('status', 'Yes')->get();
+        $colors = Color::where('status', 'Yes')->get();
+        $sizes = Size::where('status', 'Yes')->get();
+
+        return view('admin.report.product-inventory', compact('categories', 'subcategories', 'childcategories', 'brands', 'products', 'colors', 'sizes'));
     }
 
     public function reportProductInventoryPrint(Request $request)
@@ -248,49 +257,61 @@ class ReportController extends Controller
                             ->leftJoin('colors', 'product_inventories.color_id', 'colors.id')
                             ->leftJoin('sizes', 'product_inventories.size_id', 'sizes.id');
 
-            $product_name = Product::find($request->product_id)->product_name;
             if($request->product_id){
                 $query->where('product_inventories.product_id', $request->product_id);
+                $product_name = Product::find($request->product_id)->product_name;
+            }else{
+                $product_name = "All";
             }
 
-            $color_name = Color::find($request->color_id)->color_name;
             if($request->color_id){
                 $query->where('product_inventories.color_id', $request->color_id);
+                $color_name = Color::find($request->color_id)->color_name;
+            }else{
+                $color_name = "All";
             }
 
-            $size_name = Size::find($request->size_id)->size_name;
             if($request->size_id){
                 $query->where('product_inventories.size_id', $request->size_id);
+                $size_name = Size::find($request->size_id)->size_name;
+            }else{
+                $size_name = "All";
             }
 
             $all_product_inventories = $query->select('product_inventories.*', 'products.product_name', 'products.category_id', 'products.subcategory_id', 'products.childcategory_id', 'products.brand_id', 'colors.color_name', 'sizes.size_name');
 
-            $category_name = Category::find($request->category_id)->category_name;
             if($request->category_id){
                 $all_product_inventories->where('category_id', $request->category_id);
+                $category_name = Category::find($request->category_id)->category_name;
+            }else{
+                $category_name = "All";
             }
 
-            $subcategory_name = Subcategory::find($request->subcategory_id)->subcategory_name;
             if($request->subcategory_id){
                 $all_product_inventories->where('subcategory_id', $request->subcategory_id);
+                $subcategory_name = Subcategory::find($request->subcategory_id)->subcategory_name;
+            }else{
+                $subcategory_name = "All";
             }
 
-            $childcategory_name = Childcategory::find($request->childcategory_id)->childcategory_name;
             if($request->childcategory_id){
                 $all_product_inventories->where('childcategory_id', $request->childcategory_id);
+                $childcategory_name = Childcategory::find($request->childcategory_id)->childcategory_name;
+            }else{
+                $childcategory_name = "All";
             }
 
-            $brand_name = Brand::find($request->brand_id)->brand_name;
             if($request->brand_id){
                 $all_product_inventories->where('brand_id', $request->brand_id);
+                $brand_name = Brand::find($request->brand_id)->brand_name;
+            }else{
+                $brand_name = "All";
             }
 
             $product_inventories = $all_product_inventories->get();
         }
 
-        return response()->json($product_inventories);
-
-        // return view('admin.report.product-inventory-print', compact('product_inventories', 'category_name', 'subcategory_name', 'childcategory_name', 'brand_name', 'product_name', 'color_name', 'size_name'));
+        return view('admin.report.product-inventory-print', compact('product_inventories', 'category_name', 'subcategory_name', 'childcategory_name', 'brand_name', 'product_name', 'color_name', 'size_name'));
     }
 
     public function reportProductInventoryExport(Request $request)

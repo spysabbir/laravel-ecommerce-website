@@ -15,15 +15,6 @@ Product Inventory
                 </div>
             </div>
             <div class="card-body">
-                @php
-                    $categories = App\Models\CategorY::where('status', 'Yes')->get();
-                    $subcategories = App\Models\SubcategorY::where('status', 'Yes')->get();
-                    $childcategories = App\Models\ChildcategorY::where('status', 'Yes')->get();
-                    $brands = App\Models\Brand::where('status', 'Yes')->get();
-                    $products = App\Models\Product::where('status', 'Yes')->get();
-                    $colors = App\Models\Color::where('status', 'Yes')->get();
-                    $sizes = App\Models\Size::where('status', 'Yes')->get();
-                @endphp
                 <div class="filter">
                     <form action="{{ route('report.product.inventory.export') }}" method="POST">
                         @csrf
@@ -177,16 +168,15 @@ Product Inventory
                     size_id: $('#size_id').val(),
                     },
                 success: function(data) {
-                    // $(data).printThis({
-                    //     debug: false,
-                    //     importCSS: true,
-                    //     importStyle: true,
-                    //     removeInline: false,
-                    //     printDelay: 500,
-                    //     header: null,
-                    //     footer: null,
-                    // })
-                    console.log(data);
+                    $(data).printThis({
+                        debug: false,
+                        importCSS: true,
+                        importStyle: true,
+                        removeInline: false,
+                        printDelay: 500,
+                        header: null,
+                        footer: null,
+                    })
                 }
             });
         })

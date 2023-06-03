@@ -5,7 +5,6 @@ Register
 @endsection
 
 @section('body_content')
-
 <!-- page-banner-area-start -->
 <div class="page-banner-area page-banner-height-2" data-background="{{asset('frontend')}}/img/banner.jpg">
     <div class="container">

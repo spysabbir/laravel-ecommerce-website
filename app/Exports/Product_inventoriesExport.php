@@ -39,10 +39,10 @@ class Product_inventoriesExport implements FromCollection, WithHeadings, WithMap
     {
         return [
             $product_inventories->id,
-            $product_inventories->category_name,
-            $product_inventories->subcategory_name,
-            $product_inventories->childcategory_name,
-            $product_inventories->brand_name,
+            $product_inventories->relationtocategory->category_name,
+            $product_inventories->relationtosubcategory->subcategory_name,
+            $product_inventories->relationtochildcategory->childcategory_name,
+            $product_inventories->relationtobrand->brand_name,
             $product_inventories->product_name,
             $product_inventories->color_name,
             $product_inventories->size_name,

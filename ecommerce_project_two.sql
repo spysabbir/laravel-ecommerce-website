@@ -51,9 +51,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `last_active`, `password`, `role`, `warehouse_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$CAcFMkGYrHnfPGn4pl8rguKMvf799pp57LUGqJMyc/Yzsq1BI4s/2', 'Super Admin', NULL, NULL, NULL, NULL),
-(2, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$vXW3rTLZMRzTRZ74VGY5jOQHEz6xKRgCRAVJd/n9HBfutx5JuOTaq', 'Admin', NULL, NULL, NULL, NULL),
-(3, 'Warehouse', 'dhakawarehouse@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$3kkZzTLRBqO3ouqweO7jnO1weoQbvHFqif8QRmYFcMmNfOcK4oj/S', 'Warehouse', NULL, NULL, NULL, NULL);
+(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$CAcFMkGYrHnfPGn4pl8rguKMvf799pp57LUGqJMyc/Yzsq1BI4s/2', 'Super Admin', NULL, NULL, NULL, NULL),
+(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$vXW3rTLZMRzTRZ74VGY5jOQHEz6xKRgCRAVJd/n9HBfutx5JuOTaq', 'Admin', NULL, NULL, NULL, NULL),
+(3, 'Warehouse', 'dhakawarehouse@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-05-24 09:53:41', '$2y$10$3kkZzTLRBqO3ouqweO7jnO1weoQbvHFqif8QRmYFcMmNfOcK4oj/S', 'Warehouse', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1573,7 +1573,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `last_active`, `password`, `status`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Customer 1', 'customer1@gmail.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', '2023-05-24 09:53:41', '$2y$10$QRy53lLpdvPEQgAPED.8JuEt.9ytjmcmtjJGi9k/dOxxgl/4arfDW', 'Yes', NULL, NULL, NULL, NULL);
+(1, NULL, NULL, 'Customer 1', 'customer1@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', '2023-05-24 09:53:41', '$2y$10$QRy53lLpdvPEQgAPED.8JuEt.9ytjmcmtjJGi9k/dOxxgl/4arfDW', 'Yes', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

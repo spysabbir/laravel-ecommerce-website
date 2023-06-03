@@ -91,20 +91,47 @@ class SslCommerzPaymentController extends Controller
                     'payment_status' => 'Paid',
                     'transaction_id' => $tran_id,
                 ]);
+
+                // Send SMS
+                $siteName = env('APP_NAME');
                 $order_summery = Order_summery::find(Session::get('session_order_summery_id'));
+
+                $url = "https://bulksmsbd.net/api/smsapi";
+                $api_key = env('SMS_API_KEY');
+                $senderid = env('SMS_SENDER_ID');
+                $number = "$order_summery->billing_phone";
+                $message = "Hello $order_summery->billing_name, your order place successfully in $siteName.";
+                $data = [
+                    "api_key" => $api_key,
+                    "senderid" => $senderid,
+                    "number" => $number,
+                    "message" => $message
+                ];
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                $response = curl_exec($ch);
+                curl_close($ch);
+                // return $response;
+
                 Mail::to($order_summery->billing_email)
                         ->cc($order_summery->shipping_email)
                         ->send(new Order_placedMail($order_summery));
-                return redirect()->route('dashboard')->with('success', 'Transaction is Successful');
+
+                return redirect()->route('dashboard')->with('success', 'Transaction is Successfully');
             } else {
                 Order_summery::where('transaction_id', $tran_id)->update([
                     'payment_status' => 'Failed',
                     'transaction_id' => $tran_id,
                 ]);
+
                 return redirect()->route('dashboard')->with('error', 'Transaction is Failed');
             }
         } else if ($order_details->payment_status == 'Paid') {
-            return redirect()->route('dashboard')->with('success', 'Transaction is already Successful');
+            return redirect()->route('dashboard')->with('success', 'Transaction is already Successfully');
         } else {
             return redirect()->route('dashboard')->with('error', 'Transaction is Invalid');
         }
@@ -114,18 +141,18 @@ class SslCommerzPaymentController extends Controller
     {
         $tran_id = $request->input('tran_id');
 
-        $$order_details = Order_summery::where('transaction_id', $tran_id)
+        $order_details = Order_summery::where('transaction_id', $tran_id)
             ->select('transaction_id', 'payment_status')
             ->first();
 
-        if ($order_detials->payment_status == 'Pending') {
+        if ($order_details->payment_status == 'Pending') {
             Order_summery::where('transaction_id', $tran_id)->update([
                 'payment_status' => 'Failed',
                 'transaction_id' => $tran_id,
             ]);
             return redirect()->route('dashboard')->with('error', 'Transaction is Failed');
-        } else if ($order_detials->payment_status == 'Paid') {
-            return redirect()->route('dashboard')->with('success', 'Transaction is already Successful');
+        } else if ($order_details->payment_status == 'Paid') {
+            return redirect()->route('dashboard')->with('success', 'Transaction is already Successfully');
         } else {
             return redirect()->route('dashboard')->with('error', 'Transaction is Invalid');
         }
@@ -136,18 +163,18 @@ class SslCommerzPaymentController extends Controller
     {
         $tran_id = $request->input('tran_id');
 
-        $$order_details = Order_summery::where('transaction_id', $tran_id)
+        $order_details = Order_summery::where('transaction_id', $tran_id)
             ->select('transaction_id', 'payment_status')
             ->first();
 
-        if ($order_detials->payment_status == 'Pending') {
+        if ($order_details->payment_status == 'Pending') {
             Order_summery::where('transaction_id', $tran_id)->update([
                 'payment_status' => 'Canceled',
                 'transaction_id' => $tran_id,
             ]);
             return redirect()->route('dashboard')->with('error', 'Transaction is Cancel');
-        } else if ($order_detials->payment_status == 'Paid') {
-            return redirect()->route('dashboard')->with('success', 'Transaction is already Successful');
+        } else if ($order_details->payment_status == 'Paid') {
+            return redirect()->route('dashboard')->with('success', 'Transaction is already Successfully');
         } else {
             return redirect()->route('dashboard')->with('error', 'Transaction is Invalid');
         }
@@ -164,7 +191,7 @@ class SslCommerzPaymentController extends Controller
             $tran_id = $request->input('tran_id');
 
             #Check order status in order tabel against the transaction id or order id.
-            $$order_details = Order_summery::where('transaction_id', $tran_id)
+            $order_details = Order_summery::where('transaction_id', $tran_id)
             ->select('transaction_id', 'payment_status')
             ->first();
 
@@ -176,7 +203,7 @@ class SslCommerzPaymentController extends Controller
                         'payment_status' => 'Paid',
                         'transaction_id' => $tran_id,
                     ]);
-                    return redirect()->route('dashboard')->with('success', 'Transaction is Successful');
+                    return redirect()->route('dashboard')->with('success', 'Transaction is Successfully');
                 } else {
                     Order_summery::where('transaction_id', $tran_id)->update([
                         'payment_status' => 'Failed',
@@ -186,7 +213,7 @@ class SslCommerzPaymentController extends Controller
                 }
 
             } else if ($order_details->payment_status == 'Paid') {
-                return redirect()->route('dashboard')->with('success', 'Transaction is already Successful');
+                return redirect()->route('dashboard')->with('success', 'Transaction is already Successfully');
             } else {
                 return redirect()->route('dashboard')->with('error', 'Transaction is Invalid');
             }

@@ -92,7 +92,7 @@ Login
                             </div>
                             <button type="submit" class="tp-in-btn w-100">log in</button>
                             <div class="text-center mt-5">
-                                <a class="tp-in-btn bg-info" href="{{route('register')}}">Register...</a>
+                                <a class="tp-in-btn bg-info mt-5" href="{{route('register')}}">Register...</a>
                             </div>
                         </form>
                     </div>

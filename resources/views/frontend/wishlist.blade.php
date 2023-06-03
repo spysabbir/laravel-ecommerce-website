@@ -46,7 +46,7 @@ Wishlist
                                     <th class="product-thumbnail">Images</th>
                                     <th class="cart-product-name">Product</th>
                                     <th class="product-price">Unit Price</th>
-                                    <th class="product-quantity">Abbalety</th>
+                                    <th class="product-quantity">Stock</th>
                                     <th class="product-remove">Action</th>
                                 </tr>
                             </thead>
