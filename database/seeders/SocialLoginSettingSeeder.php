@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Social_login_setting;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,7 @@ class SocialLoginSettingSeeder extends Seeder
             'facebook_client_id' => '3531091607174199',
             'facebook_client_secret' => '4e3359ed937b50ac9598f8b0fdd001d5',
             'created_by' => 1,
+            'created_at' => Carbon::now(),
         ]);
     }
 }

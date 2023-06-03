@@ -19,6 +19,7 @@ class DefaultSettingTableSeeder extends Seeder
             'app_url' => 'http://127.0.0.1:8000',
             'time_zone' => 'UTC',
             'created_by' => 1,
+            'created_at' => Carbon::now(),
         ]);
     }
 }

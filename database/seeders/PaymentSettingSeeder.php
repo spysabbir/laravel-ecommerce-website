@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Payment_setting;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,7 @@ class PaymentSettingSeeder extends Seeder
             'store_id' => 'spyit63536b5a2eac1',
             'store_password' => 'spyit63536b5a2eac1@ssl',
             'created_by' => 1,
+            'created_at' => Carbon::now(),
         ]);
     }
 }

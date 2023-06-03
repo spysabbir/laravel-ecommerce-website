@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Seo_setting;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,7 @@ class SeoSettingSeeder extends Seeder
             'description' => 'Ecommerce Website',
             'seo_image' => 'Seo-Image.jpg',
             'created_by' => 1,
+            'created_at' => Carbon::now(),
         ]);
     }
 }
