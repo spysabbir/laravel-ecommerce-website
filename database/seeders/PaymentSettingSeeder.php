@@ -17,8 +17,8 @@ class PaymentSettingSeeder extends Seeder
     public function run()
     {
         Payment_setting::create([
-            'store_id' => 'spyit63536b5a2eac1',
-            'store_password' => 'spyit63536b5a2eac1@ssl',
+            'store_id' => 'store_id',
+            'store_password' => 'store_password',
             'created_by' => 1,
             'created_at' => Carbon::now(),
         ]);

@@ -15,11 +15,11 @@ class MailSettingTableSeeder extends Seeder
     public function run(): void
     {
         Mail_setting::create([
-            'mailer' => 'smtp',
-            'host' => 'sandbox.smtp.mailtrap.io',
-            'port' => '2525',
-            'username' => '071aa50653a80d',
-            'password' => '8dd8b67f9819e0',
+            'mailer' => 'mailer',
+            'host' => 'host',
+            'port' => 'port',
+            'username' => 'username',
+            'password' => 'password',
             'encryption' => 'tls',
             'from_address' => 'info@gmail.com',
             'created_by' => 1,

@@ -17,8 +17,8 @@ class SmsSettingSeeder extends Seeder
     public function run()
     {
         SmsSetting::create([
-            'api_key' => 'VjkIEblFGYFP7yH5NyOk',
-            'sender_id' => '8809601004416',
+            'api_key' => 'api_key',
+            'sender_id' => 'sender_id',
             'created_by' => 1,
             'created_at' => Carbon::now(),
         ]);
