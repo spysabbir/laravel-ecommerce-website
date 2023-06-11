@@ -62,7 +62,6 @@ class CustomerController extends Controller
 
     public function handleFacebookCallback()
     {
-
         try {
             $socialUser = Socialite::driver('facebook')->user();
         } catch (\Exception $e) {
@@ -86,7 +85,6 @@ class CustomerController extends Controller
         $loginUrl = Session::get('loginUrl');
 
         return redirect($loginUrl);
-
     }
 
     public function dashboard()
