@@ -9,14 +9,14 @@ Login
 
 @section('body_content')
 <div class="row clearfix">
-    <div class="col-12">
+    {{-- <div class="col-12">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="javascript:void(0);">
                 <img src="{{asset('uploads/default_photo')}}/{{$default_setting->logo_photo}}" class="d-inline-block align-top mr-2" alt="">
             </a>
         </nav>
-    </div>
-    <div class="col-lg-8">
+    </div> --}}
+    <div class="col-lg-6">
         <div class="auth_detail">
             <h2 class="text-monospace">
                 Everything<br> you need for
@@ -50,7 +50,7 @@ Login
             </ul>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-6">
         <div class="card">
             <div class="header">
                 <p class="lead">Login to your account</p>
@@ -100,6 +100,38 @@ Login
                         </a>
                     </div>
                 </form>
+
+                <div class="demo mt-2">
+                    <h5 class="text-center">Demo User Details</h5>
+                    <div class="table-responsive">
+                        <table class="table table-primary">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>superadmin@email.com</td>
+                                    <td>12345678</td>
+                                    <td>Super Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>admin@email.com</td>
+                                    <td>12345678</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>dhakawarehouse@email.com</td>
+                                    <td>12345678</td>
+                                    <td>Warehouse</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
