@@ -43,7 +43,7 @@ Reset Password
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="card">
+                <div class="card mt-75">
                     <div class="card-header">
                         <h4 class="card-title">Reset Password</h4>
                         <p class="card-text">Password Reset</p>

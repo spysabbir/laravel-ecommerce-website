@@ -43,7 +43,7 @@ Forgot Password
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="card">
+                <div class="card mt-100">
                     <div class="card-header">
                         <h4 class="card-title">Forgot Password</h4>
                         <p class="card-text">Password Reset</p>
@@ -67,10 +67,10 @@ Forgot Password
                                 @enderror
                             </div>
                             <button type="submit" class="tp-in-btn w-100">Send Password Reset Link</button>
-                            <div class="text-center mt-5">
-                                <a class="tp-in-btn bg-info" href="{{route('login')}}">Login ...</a>
-                            </div>
                         </form>
+                        <div class="text-center my-3">
+                            <a class="text-info" href="{{route('login')}}">If remember password? Login here...</a>
+                        </div>
                     </div>
                 </div>
             </div>
