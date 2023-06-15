@@ -464,16 +464,16 @@
         <!-- Body Contant End -->
 
         @auth
-        <input type="hidden" id="login_status" value="yes">
+            <input type="hidden" id="login_status" value="yes">
+            
+            @if (auth()->user()->email_verified_at == NULL)
+            <input type="hidden" id="verified_status" value="no">
+            @else
+            <input type="hidden" id="verified_status" value="yes">
+            @endif
         @else
-        <input type="hidden" id="login_status" value="no">
+            <input type="hidden" id="login_status" value="no">
         @endauth
-
-        @if (auth()->user()->email_verified_at == NULL)
-        <input type="hidden" id="verified_status" value="no">
-        @else
-        <input type="hidden" id="verified_status" value="yes">
-        @endif
 
         <!-- Quick View Modal Start -->
         <div class="modal fade" id="quickViewProductModal" tabindex="-1" role="dialog" aria-hidden="true">
