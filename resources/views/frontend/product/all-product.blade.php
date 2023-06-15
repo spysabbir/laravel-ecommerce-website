@@ -168,7 +168,8 @@ $(document).ready(function() {
         })
         // ajax end
     })
-    // Brand
+
+    // get Brand
     $(document).on('change', '.filter_data', function(e){
         e.preventDefault();
         var category_id = $('#category_id').val();
@@ -191,6 +192,7 @@ $(document).ready(function() {
         // ajax end
     })
 
+    // brand wise product
     $(document).on('click', '.select_brand', function(){
         var category_id = $('#category_id').val();
         var subcategory_id = $('#subcategory_id').val();

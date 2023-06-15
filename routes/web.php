@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Admin\SslCommerzPaymentController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +27,6 @@ Route::get('/all-brand', [FrontendController::class, 'allBrand'])->name('all.bra
 Route::get('/all-flashsale', [FrontendController::class, 'allFlashsale'])->name('all.flashsale');
 
 Route::get('/faqs', [FrontendController::class, 'faqs'])->name('faqs');
-Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
 
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact/message/send', [FrontendController::class, 'contactMessageSend'])->name('contact.message.send');

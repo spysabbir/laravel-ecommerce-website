@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    public function cart()
+    {
+        Session::put('session_coupon_name', '');
+        return view('frontend.cart');
+    }
+
     public function insertCart(Request $request){
         $is_exists = Cart::where([
             'user_id' => $request-> user_id,
@@ -40,16 +46,6 @@ class CartController extends Controller
                 'status' => 400,
                 'cart_qty_status' => $cart_qty_status,
             ]);
-        }
-    }
-
-    public function cart()
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('status', 'Please Login First.');
-        } else {
-            Session::put('session_coupon_name', '');
-            return view('frontend.cart');
         }
     }
 

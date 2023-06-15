@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
+    public function wishlist()
+    {
+        return view('frontend.wishlist');
+    }
+
     public function insertWishlist(Request $request){
         $is_exists = Wishlist::where([
             'product_id' => $request-> product_id,

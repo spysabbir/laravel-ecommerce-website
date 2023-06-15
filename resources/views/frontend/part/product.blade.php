@@ -28,12 +28,6 @@
             @endif
         @endif
 
-        @auth
-        <input type="hidden" id="login_status" value="yes">
-        @else
-        <input type="hidden" id="login_status" value="no">
-        @endauth
-
         <div class="product-action">
             <a href="#" class="icon-box icon-box-1 quickViewProductBtn" id="{{$product->id}}" data-bs-toggle="modal"
                 data-bs-target="#quickViewProductModal">

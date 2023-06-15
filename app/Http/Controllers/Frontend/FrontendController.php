@@ -31,6 +31,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
@@ -64,15 +65,6 @@ class FrontendController extends Controller
         }
 
         return view('frontend.index', compact('categories', 'subcategories', 'brands', 'products', 'blogs', 'sliders', 'features', 'today_deal_products', 'random_products', 'top_selling_products', 'top_view_products', 'new_products', 'banners'));
-    }
-
-    public function wishlist()
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('status', 'Please Login First.');
-        } else {
-            return view('frontend.wishlist');
-        }
     }
 
     public function fetchHeaderCart()

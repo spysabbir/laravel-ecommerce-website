@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Frontend\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Frontend\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Frontend\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Frontend\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Frontend\Auth\NewPasswordController;
@@ -51,6 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::get('view-invoice/{id}', [CustomerController::class, 'viewInvoice'])->name('view.invoice');
         Route::get('download-invoice/{id}', [CustomerController::class, 'downloadInvoice'])->name('download.invoice');
 
+        Route::get('/wishlist', [WishlistController::class, 'wishlist'])->name('wishlist');
         Route::post('insert/wishlist', [WishlistController::class, 'insertWishlist'])->name('insert.wishlist');
         Route::get('fetch/wishlist', [WishlistController::class, 'fetchWishlist'])->name('fetch.wishlist');
         Route::get('wishlist/forcedelete/{id}', [WishlistController::class, 'wishlistForceDelete'])->name('wishlist.forcedelete');

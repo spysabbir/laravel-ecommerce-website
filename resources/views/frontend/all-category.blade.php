@@ -40,28 +40,36 @@ All Category
             <div class="col-lg-12">
                 @forelse ($categories as $category)
                 <div class="border p-2 m-2">
-                    <span class="item p-1 m-1">
-                        <strong>Category: </strong> <a href="{{ route('category.wise.product', $category->category_slug) }}">" {{ $category->category_name }} "</a>
-                        <div class="ml-50 mt-10">
-                            @forelse ($subcategories->where('category_id', $category->id) as $subcategory)
-                            <span class="item p-1 m-1">
-                                <strong>Subcategory: </strong> <a href="{{ route('subcategory.wise.product', $subcategory->subcategory_slug) }}">" {{ $subcategory->subcategory_name }} "</a>
-                                <div class="ml-50 mt-10">
-                                    <strong>Childcategory: </strong>
-                                    @forelse ($childcategories->where('subcategory_id', $subcategory->id) as $childcategory)
-                                    <span class="item p-1 m-1">
-                                        <a href="{{ route('childcategory.wise.product', $childcategory->childcategory_slug) }}">" {{ $childcategory->childcategory_name }} "</a>
-                                    </span>
-                                    @empty
-                                    <strong class="text-warning">Childcategory Item Not Found!</strong>
-                                    @endforelse
-                                </div>
-                            </span>
-                            @empty
-                            <strong class="text-warning">Subcategory Item Not Found!</strong>
-                            @endforelse
+                    <div class="item p-1 m-1 d-flex justify-content-start">
+                        <div class="category text-center border p-2">
+                            <a href="{{ route('category.wise.product', $category->category_slug) }}">
+                                <img width="150" height="150" src="{{ asset('uploads/category_photo') }}/{{ $category->category_photo }}" alt="Category Photo">
+                                <br>
+                                <span class="badge bg-success">{{ $category->category_name }}</span>
+                            </a>
                         </div>
-                    </span>
+                        <div class="subcategory">
+                            <div class="ml-10">
+                                @forelse ($subcategories->where('category_id', $category->id) as $subcategory)
+                                <div class="item p-1 m-1 border">
+                                    <span class="badge bg-info">Subcategory: </span> <a href="{{ route('subcategory.wise.product', $subcategory->subcategory_slug) }}">" <span class="text-warning">{{ $subcategory->subcategory_name }}</span> "</a>
+                                    <div class="ml-50">
+                                        <span class="badge bg-primary">Childcategory: </span>
+                                        @forelse ($childcategories->where('subcategory_id', $subcategory->id) as $childcategory)
+                                        <span class="item p-1 m-1">
+                                            <a href="{{ route('childcategory.wise.product', $childcategory->childcategory_slug) }}">" <span class="text-warning">{{ $childcategory->childcategory_name }}</span> "</a>
+                                        </span>
+                                        @empty
+                                        <strong class="text-warning">Childcategory Item Not Found!</strong>
+                                        @endforelse
+                                    </div>
+                                </div>
+                                @empty
+                                <strong class="text-warning">Subcategory Item Not Found!</strong>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 @empty
                 <div class="alert alert-warning text-center" role="alert">

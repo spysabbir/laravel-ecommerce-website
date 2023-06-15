@@ -45,8 +45,7 @@ Login
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Login</h4>
-                        <p class="card-text">Login</p>
+                        <h4 class="card-title">Login Now</h4>
                     </div>
                     <div class="card-body">
                         @if (session('status'))
@@ -91,12 +90,12 @@ Login
                                 </span>
                             </div>
                             <button type="submit" class="tp-in-btn w-100">log in</button>
-                            <div class="text-center mt-5">
-                                <a class="tp-in-btn bg-info mt-5" href="{{route('register')}}">Register...</a>
-                            </div>
                         </form>
+                        <div class="text-center my-3">
+                            <a class="text-info" href="{{route('register')}}">Already not register? Register here...</a>
+                        </div>
                     </div>
-                    <div class="demo mt-2">
+                    <div class="demo my-2">
                         <h5 class="text-center">Demo User Details</h5>
                         <div class="table-responsive">
                             <table class="table table-primary">
@@ -117,7 +116,8 @@ Login
                             </table>
                         </div>
                     </div>
-                    <div class="text-center my-3">
+                    <div class="card-footer text-center">
+                        <strong class="px-3 text-info">OR</strong>
                         @if (App\Models\Social_login_setting::first()->google_auth_status == "Yes" )
                         <a class="btn btn-danger" href="{{route('google.login')}}">Google</a>
                         @endif

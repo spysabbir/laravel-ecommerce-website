@@ -11,7 +11,7 @@
         <div class="smblog-content smblog-content-3">
             <h6><a href="{{route('blog.details', $blog->blog_slug)}}">{{$blog->blog_headline}}</a></h6>
             <span class="author mb-10">posted by <a href="#">{{App\Models\Admin::find($blog->created_by)->name}}</a></span>
-            <p>{!! Str::words($blog->blog_details, 30, '...') !!}</p>
+            {!! Str::words($blog->blog_details, 30, '...') !!}
             <div class="smblog-foot pt-15">
                 <div class="post-readmore">
                     <a href="{{route('blog.details', $blog->blog_slug)}}"> Read More <span class="icon"></span></a>

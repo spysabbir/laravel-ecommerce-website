@@ -463,6 +463,18 @@
         @yield('body_content')
         <!-- Body Contant End -->
 
+        @auth
+        <input type="hidden" id="login_status" value="yes">
+        @else
+        <input type="hidden" id="login_status" value="no">
+        @endauth
+
+        @if (auth()->user()->email_verified_at == NULL)
+        <input type="hidden" id="verified_status" value="no">
+        @else
+        <input type="hidden" id="verified_status" value="yes">
+        @endif
+
         <!-- Quick View Modal Start -->
         <div class="modal fade" id="quickViewProductModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered product__modal" role="document" id="modal_content">
@@ -739,7 +751,7 @@
                 });
             }
 
-            // Read Data
+            // Read Card Data
             fetchAllCart();
             function fetchAllCart(){
                 $.ajax({
@@ -894,98 +906,106 @@
                     })
                 }
                 else {
-                    var available_qty = parseInt($('.model_available_qty').html());
-                    var cart_qty = parseInt($('#cart_qty').val());
-                    if (cart_qty > available_qty) {
-                        Swal.fire(
-                            'Stock not available this qty!',
-                            'Please select available qty.',
-                            'warning'
-                        )
+                    if ($('#verified_status').val() == 'no') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'You are not verified user!',
+                            text: 'Please go to your email and verified your account.',
+                        })
                     } else {
-                        var color_id = $('#model_color_id').val();
-                        var size_id = $('#model_size_id').val();
-                        if (color_id == 0) {
+                        var available_qty = parseInt($('.model_available_qty').html());
+                        var cart_qty = parseInt($('#cart_qty').val());
+                        if (cart_qty > available_qty) {
                             Swal.fire(
-                                'Please select color first',
-                                'Importent!',
+                                'Stock not available this qty!',
+                                'Please select available qty.',
                                 'warning'
                             )
                         } else {
-                            if (size_id == 0) {
+                            var color_id = $('#model_color_id').val();
+                            var size_id = $('#model_size_id').val();
+                            if (color_id == 0) {
                                 Swal.fire(
-                                    'Please select size!',
+                                    'Please select color first',
                                     'Importent!',
                                     'warning'
                                 )
                             } else {
-                                var cart_qty = $('#cart_qty').val();
-                                if (cart_qty <= 0) {
+                                if (size_id == 0) {
                                     Swal.fire(
-                                        'Please select QTY!',
+                                        'Please select size!',
                                         'Importent!',
                                         'warning'
                                     )
                                 } else {
-                                    var product_id = $('#model_product_id').val();
-                                    var product_current_price = $('#product_discounted_price').val();
-                                    var size_id = $('#model_size_id').val();
-                                    var color_id = $('#model_color_id').val();
                                     var cart_qty = $('#cart_qty').val();
-                                    var user_id = "{{ auth()->id() }}"
+                                    if (cart_qty <= 0) {
+                                        Swal.fire(
+                                            'Please select QTY!',
+                                            'Importent!',
+                                            'warning'
+                                        )
+                                    } else {
+                                        var product_id = $('#model_product_id').val();
+                                        var product_current_price = $('#product_discounted_price').val();
+                                        var size_id = $('#model_size_id').val();
+                                        var color_id = $('#model_color_id').val();
+                                        var cart_qty = $('#cart_qty').val();
+                                        var user_id = "{{ auth()->id() }}"
 
-                                    // ajax start
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: "{{route('insert.cart')}}",
-                                        data: {
-                                            product_id: product_id,
-                                            product_current_price: product_current_price,
-                                            color_id: color_id,
-                                            size_id: size_id,
-                                            cart_qty: cart_qty,
-                                            user_id: user_id
-                                        },
-                                        success: function (data) {
-                                            if (data.status == 200) {
-                                                $('#header_cart_count').html(data.cart_qty_status + parseInt($('#header_cart_count').html()));
-                                                const Toast = Swal.mixin({
-                                                    toast: true,
-                                                    position: 'top-center',
-                                                    showConfirmButton: false,
-                                                    timer: 3000,
-                                                    timerProgressBar: true,
-                                                    didOpen: (toast) => {
-                                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                                    }
-                                                })
-                                                Toast.fire({
-                                                    icon: 'success',
-                                                    title: 'Product Added successfully in Cart'
-                                                })
-                                                fetchHeaderCart();
-                                            } else {
-                                                $('#header_cart_count').html(data.cart_qty_status + parseInt($('#header_cart_count').html()));
-                                                const Toast = Swal.mixin({
-                                                    toast: true,
-                                                    position: 'top-center',
-                                                    showConfirmButton: false,
-                                                    timer: 3000,
-                                                    timerProgressBar: true,
-                                                    didOpen: (toast) => {
-                                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                                    }
-                                                })
-                                                Toast.fire({
-                                                    icon: 'warning',
-                                                    title: 'This Product Already Added in Cart'
-                                                })
+                                        // ajax start
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: "{{route('insert.cart')}}",
+                                            data: {
+                                                product_id: product_id,
+                                                product_current_price: product_current_price,
+                                                color_id: color_id,
+                                                size_id: size_id,
+                                                cart_qty: cart_qty,
+                                                user_id: user_id
+                                            },
+                                            success: function (data) {
+                                                if (data.status == 200) {
+                                                    $('#header_cart_count').html(data.cart_qty_status + parseInt($('#header_cart_count').html()));
+                                                    const Toast = Swal.mixin({
+                                                        toast: true,
+                                                        position: 'top-center',
+                                                        showConfirmButton: false,
+                                                        timer: 3000,
+                                                        timerProgressBar: true,
+                                                        didOpen: (toast) => {
+                                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                        }
+                                                    })
+                                                    Toast.fire({
+                                                        icon: 'success',
+                                                        title: 'Product Added successfully in Cart'
+                                                    })
+                                                    fetchHeaderCart();
+                                                } else {
+                                                    $('#header_cart_count').html(data.cart_qty_status + parseInt($('#header_cart_count').html()));
+                                                    const Toast = Swal.mixin({
+                                                        toast: true,
+                                                        position: 'top-center',
+                                                        showConfirmButton: false,
+                                                        timer: 3000,
+                                                        timerProgressBar: true,
+                                                        didOpen: (toast) => {
+                                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                        }
+                                                    })
+                                                    Toast.fire({
+                                                        icon: 'warning',
+                                                        title: 'This Product Already Added in Cart'
+                                                    })
+                                                }
                                             }
-                                        }
-                                    })
-                                    // ajax end
+                                        })
+                                        // ajax end
+                                    }
                                 }
                             }
                         }
@@ -1011,20 +1031,43 @@
                         }
                     })
                 } else {
-                    var product_id = $(this).attr('id');
-                    var user_id = "{{ auth()->id() }}";
-                    // ajax start
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{route('insert.wishlist')}}",
-                        data: {
-                            product_id: product_id,
-                            user_id: user_id
-                        },
-
-                        success: function (data) {
-                            if (data.status == 200) {
-                                $('#header_wishlist_num').html(data.wishlist_qty_status + parseInt($('#header_wishlist_num').html()));
+                    if ($('#verified_status').val() == 'no') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'You are not verified user!',
+                            text: 'Please go to your email and verified your account.',
+                        })
+                    } else {
+                        var product_id = $(this).attr('id');
+                        var user_id = "{{ auth()->id() }}";
+                        // ajax start
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{route('insert.wishlist')}}",
+                            data: {
+                                product_id: product_id,
+                                user_id: user_id
+                            },
+                            success: function (data) {
+                                if (data.status == 200) {
+                                    $('#header_wishlist_num').html(data.wishlist_qty_status + parseInt($('#header_wishlist_num').html()));
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-center',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                        Toast.fire({
+                                            icon: 'success',
+                                            title: 'Product Added successfully in Wishlist'
+                                        })
+                                } else {
+                                    $('#header_wishlist_num').html(data.wishlist_qty_status + parseInt($('#header_wishlist_num').html()));
                                     const Toast = Swal.mixin({
                                         toast: true,
                                         position: 'top-center',
@@ -1037,30 +1080,14 @@
                                         }
                                     })
                                     Toast.fire({
-                                        icon: 'success',
-                                        title: 'Product Added successfully in Wishlist'
+                                        icon: 'warning',
+                                        title: 'This Product Already Added in Wishlist'
                                     })
-                            } else {
-                                $('#header_wishlist_num').html(data.wishlist_qty_status + parseInt($('#header_wishlist_num').html()));
-                                const Toast = Swal.mixin({
-                                    toast: true,
-                                    position: 'top-center',
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                    }
-                                })
-                                Toast.fire({
-                                    icon: 'warning',
-                                    title: 'This Product Already Added in Wishlist'
-                                })
+                                }
                             }
-                        }
-                    })
-                    // ajax end
+                        })
+                        // ajax end
+                    }
                 }
             })
 

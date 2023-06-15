@@ -43,13 +43,12 @@ Verify Email
                 </div>
             </div>
             <div class="col-lg-6 ">
-                <div class="card ">
+                <div class="card mt-150">
                     <div class="card-header">
                         <h4 class="card-title">Verify Email</h4>
                         <p class="card-text">Verify Email</p>
                     </div>
                     <div class="card-body">
-
                         @if (session('status' == 'verification-link-sent'))
                         <div class="alert alert-info" role="alert">
                             <strong>A new verification link has been sent to the email address you provided during registration.</strong>

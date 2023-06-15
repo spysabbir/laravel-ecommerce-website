@@ -45,8 +45,7 @@ Register
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Register</h4>
-                        <p class="card-text">Register</p>
+                        <h4 class="card-title">Register Now</h4>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -84,15 +83,29 @@ Register
                             </div>
                             <div class="mb-3">
                                 <label for="password-confirm">Confirm Password <span>*</span></label>
-                                <input id="password-confirm" type="password" class="form-control"
+                                <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
                                     name="password_confirmation" placeholder="Confirm Password">
+                                @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
                             <button type="submit" class="tp-in-btn w-100">Register</button>
-                            <div class="text-center mt-5">
-                                <a class="tp-in-btn bg-info" href="{{route('login')}}">Login ...</a>
-                            </div>
                         </form>
+                        <div class="text-center my-3">
+                            <a class="text-info" href="{{route('login')}}">Already registered? Login here...</a>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <strong class="px-3 text-info">OR</strong>
+                        @if (App\Models\Social_login_setting::first()->google_auth_status == "Yes" )
+                        <a class="btn btn-danger" href="{{route('google.login')}}">Google</a>
+                        @endif
+                        @if (App\Models\Social_login_setting::first()->facebook_auth_status == "Yes" )
+                        <a class="btn btn-primary" href="{{route('facebook.login')}}">Facebook</a>
+                        @endif
                     </div>
                 </div>
             </div>

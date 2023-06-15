@@ -196,7 +196,7 @@ $(document).ready(function() {
         })
         // ajax end
     })
-
+    // brand wise product
     $(document).on('click', '.select_brand', function(){
         var search_data = $('#search_data').val();
         var category_id = $('#category_id').val();

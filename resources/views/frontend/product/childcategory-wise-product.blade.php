@@ -170,7 +170,7 @@ $(document).ready(function() {
         })
         // ajax end
     })
-
+    // brand wise product
     $(document).on('click', '.select_brand', function(){
         var category_id = $('#category_id').val();
         var subcategory_id = $('#subcategory_id').val();
