@@ -32,6 +32,9 @@ Profile
                 <small class="text-muted">Phone Number: </small>
                 <p>{{Auth::guard('admin')->user()->phone_number}}</p>
                 <hr>
+                <small class="text-muted">Date of Birth: </small>
+                <p class="m-b-0">{{Auth::guard('admin')->user()->date_of_birth}}</p>
+                <hr>
                 <small class="text-muted">Gender: </small>
                 <p class="m-b-0">{{Auth::guard('admin')->user()->gender}}</p>
                 <hr>
@@ -69,7 +72,7 @@ Profile
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="phone_number" value="{{Auth::guard('admin')->user()->phone_number}}">
+                                <input type="text" class="form-control" name="phone_number" value="{{Auth::guard('admin')->user()->phone_number}}" placeholder="Enter phone number">
                                 @error('phone_number')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -103,7 +106,7 @@ Profile
                         </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="form-group">
-                                <textarea name="address" class="form-control" placeholder="Address">{{Auth::guard('admin')->user()->address}}</textarea>
+                                <textarea name="address" class="form-control" placeholder="Enter address">{{Auth::guard('admin')->user()->address}}</textarea>
                             </div>
                         </div>
                     </div>

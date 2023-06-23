@@ -3,11 +3,7 @@
 @section('title_bar')
 Cart
 @endsection
-@auth
-    @php
-        App\Models\Cart::where('user_id', Auth::user()->id)->update(['status' =>  'No'])
-    @endphp
-@endauth
+
 @section('body_content')
 <!-- page-banner-area-start -->
 <div class="page-banner-area page-banner-height-2" data-background="{{asset('frontend')}}/img/banner.jpg">
@@ -46,7 +42,7 @@ Cart
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="product-thumbnail">Status</th>
+                                <th class="">Select</th>
                                 <th class="product-thumbnail">Images</th>
                                 <th class="cart-product-name">Product</th>
                                 <th class="product-price">Unit Price</th>

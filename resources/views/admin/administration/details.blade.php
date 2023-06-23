@@ -13,7 +13,7 @@
         </div>
         <div>
             <p class="p-0 m-0"><strong>Created At: </strong> <span class="badge badge-info">{{ $administration_details->created_at->format('d-M-Y h:m:s A') }}</span></p>
-            <p class="p-0 m-0"><strong>Updated At: </strong> <span class="badge badge-info">{{ $administration_details->updated_at->format('d-M-Y h:m:s A') }}</span></p>
+            <p class="p-0 m-0"><strong>Updated At: </strong> <span class="badge badge-info">{{ ($administration_details->updated_at) ? $administration_details->updated_at->format('d-M-Y h:m:s A') : 'N/A' }}</span></p>
             <p class="p-0 m-0"><strong>Status: </strong>
                 @if ($administration_details->status == "Yes")
                     <span class="badge badge-success">{{ $administration_details->status }}</span>
@@ -28,7 +28,7 @@
                     <span class="badge badge-primary">{{ $administration_details->role }}</span>
                 @else
                     <span class="badge badge-info">{{ $administration_details->role }}</span>
-                    <span class="badge badge-primary">{{ $administration_details->relationtowarehouse->warehouse_name }}</span>
+                    <span class="badge badge-primary">{{ ($administration_details->warehouse_id) ? $administration_details->relationtowarehouse->warehouse_name : "N/A" }}</span>
                 @endif
             </p>
         </div>

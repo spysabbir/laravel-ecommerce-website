@@ -67,13 +67,13 @@ Checkout
                             <div class="col-md-12">
                                 <div class="country-select">
                                     <label>Country Name <span class="required">*</span></label>
-                                    <select style="display: none;" name="country_id" id="select_country">
+                                    <select style="display: none;" name="country_id" id="select_country" class="country_select">
                                         <option value="">Select Country</option>
                                         @foreach ($shippings as $shipping)
                                         <option value="{{$shipping->country_id}}">{{$shipping->relationtocountry->country_name}}</option>
                                         @endforeach
                                     </select>
-                                    <div class="nice-select" tabindex="0">
+                                    <div class="nice-select" tabindex="0" hidden>
                                         <span class="current">Select Country</span>
                                         <ul class="list">
                                             @foreach ($shippings as $shipping)
@@ -86,16 +86,17 @@ Checkout
                             <div class="col-md-12">
                                 <div class="country-select">
                                     <label>City Name <span class="required">*</span></label>
-                                    <select style="display: none;" name="city_name" id="select_city_details">
-                                        <option value="">Select Country First</option>
+                                    <select style="display: none;" name="city_name" id="select_city_details" class="city_select">
+                                        <option value="">Select City</option>
 
                                     </select>
-                                    <div class="nice-select" tabindex="0">
+                                    <div class="nice-select" tabindex="0" hidden>
                                         <span class="current">Select Country First</span>
                                         <ul class="list" id="ul_city_details">
 
                                         </ul>
                                     </div>
+                                    <small class="text-warning">First select a country then the list of city will show.</small>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -352,6 +353,16 @@ Checkout
             })
             // ajax end
         })
+
+        // Select2 Option
+        $('.country_select').select2({
+            placeholder: 'Select country',
+        });
+
+        $('.city_select').select2({
+            placeholder: 'Select City',
+        });
+
     });
 </script>
 @endsection

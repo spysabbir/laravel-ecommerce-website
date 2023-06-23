@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin_master')
 
 @section('title_bar')
-Administration
+Staff
 @endsection
 
 @section('body_content')
@@ -10,36 +10,28 @@ Administration
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="text">
-                    <h4 class="card-title">Administration</h4>
+                    <h4 class="card-title">Staff</h4>
                     <p class="card-text">List</p>
                 </div>
                 <div class="action">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAdministrationModel">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createStaffModel">
                         <i class="fa fa-plus-square"></i>
                     </button>
                 </div>
-                <!-- createAdministrationModel -->
-                <div class="modal fade" id="createAdministrationModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- createStaffModel -->
+                <div class="modal fade" id="createStaffModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create Administration</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create Staff</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
-                            <form action="#" id="create_administration_form" method="POST" enctype="multipart/form-data">
+                            <form action="#" id="create_staff_form" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
-                                    <div class="mb-2">
-                                        <label class="form-label">Role</label>
-                                        <select name="role" class="form-control">
-                                            <option value="">--Select Role--</option>
-                                            <option value="Super Admin">Super Admin</option>
-                                            <option value="Admin">Admin</option>
-                                        </select>
-                                        <span class="text-danger error-text role_error"></span>
-                                    </div>
+                                    <input type="hidden" name="role" value="Manager">
                                     <div class="mb-2">
                                         <label class="form-label">Full Name</label>
                                         <input type="text" name="name" class="form-control" placeholder="Your name">
@@ -60,11 +52,20 @@ Administration
                                         <input type="password" name="password_confirmation" class="form-control" placeholder="Your confirm password">
                                         <span class="text-danger error-text password_confirmation_error"></span>
                                     </div>
-                                    <input type="hidden" name="warehouse_id" value="NULL">
+                                    <div class="mb-2">
+                                        <label class="form-label">Warehouse Name</label>
+                                        <select name="warehouse_id" class="form-control">
+                                            <option value="">--Select Warehouse--</option>
+                                            @foreach ($warehouses as $warehouse)
+                                            <option value="{{ $warehouse->id }}">{{ $warehouse->warehouse_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger error-text warehouse_id_error"></span>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" id="create_administration_btn" class="btn btn-primary">Create Administration</button>
+                                    <button type="submit" id="create_staff_btn" class="btn btn-primary">Create Staff</button>
                                 </div>
                             </form>
                         </div>
@@ -75,44 +76,35 @@ Administration
                 <div class="filter">
                     <div class="row mb-3">
                         <div class="col-lg-3">
-                            <label class="form-label">Administration Status</label>
+                            <label class="form-label">Staff Status</label>
                             <select class="form-control filter_data" id="status">
                                 <option value="">--Status--</option>
                                 <option value="Yes">Active</option>
                                 <option value="No">Inactive</option>
                             </select>
                         </div>
-                        <div class="col-lg-3">
-                            <label class="form-label">Administration Role</label>
-                            <select class="form-control filter_data" id="role">
-                                <option value="">--Role--</option>
-                                <option value="Super Admin">Super Admin</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Manager">Manager</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
-                <table class="table table-bordered table-info all_administration_table">
+                <table class="table table-bordered table-info all_staff_table">
                     <thead>
                         <tr>
                             <th>Sl No</th>
-                            <th>Administration Photo</th>
-                            <th>Administration Name</th>
-                            <th>Administration Email</th>
-                            <th>Administration Role</th>
+                            <th>Staff Photo</th>
+                            <th>Staff Name</th>
+                            <th>Staff Email</th>
+                            <th>Warehouse Name</th>
                             <th>Created Date</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- View Administrations Model -->
-                        <div class="modal fade" id="viewAdministrationModel" tabindex="-1" aria-labelledby="viewAdministrationModelLabel" aria-hidden="true">
+                        <!-- View Staffs Model -->
+                        <div class="modal fade" id="viewStaffModel" tabindex="-1" aria-labelledby="viewStaffModelLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="viewAdministrationModelLabel">View Administration Details</h5>
+                                        <h5 class="modal-title" id="viewStaffModelLabel">View Staff Details</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -126,47 +118,37 @@ Administration
                                 </div>
                             </div>
                         </div>
-                        <!-- editAdministrationModel -->
-                        <div class="modal fade" id="editAdministrationModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- editStaffModel -->
+                        <div class="modal fade" id="editStaffModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Administration</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Staff</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     </div>
-                                    <form action="#" id="edit_administration_form" method="POST">
+                                    <form action="#" id="edit_staff_form" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <div class="modal-body">
                                             <div class="row">
-                                                <input type="hidden" name="administration_id" id="administration_id">
+                                                <input type="hidden" name="staff_id" id="staff_id">
                                                 <div class="col-lg-6">
-                                                    <label class="form-label">Role</label>
-                                                    <select name="role" class="form-control role" id="role">
-                                                        <option value="">--Select Role--</option>
-                                                        <option value="Super Admin">Super Admin</option>
-                                                        <option value="Admin">Admin</option>
-                                                        <option value="Manager">Manager</option>
-                                                    </select>
-                                                    <span class="text-danger error-text update_role_error"></span>
-                                                </div>
-                                                <div class="col-lg-6 d-none warehouse">
                                                     <label class="form-label">Warehouse Name</label>
-                                                    <select name="warehouse_id" class="form-control warehouse_id" id="warehouse_id">
+                                                    <select name="warehouse_id" class="form-control warehouse_id">
                                                         <option value="">--Select Warehouse--</option>
                                                         @foreach ($warehouses as $warehouse)
                                                         <option value="{{ $warehouse->id }}">{{ $warehouse->warehouse_name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <span class="text-danger" id="warehouse_id_error"></span>
+                                                    <span class="text-danger error-text update_warehouse_id_error"></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" id="edit_administration_btn" class="btn btn-primary">Edit Administration</button>
+                                            <button type="submit" id="edit_staff_btn" class="btn btn-primary">Edit Staff</button>
                                         </div>
                                     </form>
                                 </div>
@@ -189,15 +171,14 @@ Administration
             }
         });
         // Read Data
-        table = $('.all_administration_table').DataTable({
+        table = $('.all_staff_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
             ajax: {
-                url: "{{ route('all.administration') }}",
+                url: "{{ route('all.staff') }}",
                 "data":function(e){
                     e.status = $('#status').val();
-                    e.role = $('#role').val();
                 },
             },
             columns: [
@@ -205,7 +186,7 @@ Administration
                 {data: 'profile_photo', name: 'profile_photo'},
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
-                {data: 'role', name: 'role'},
+                {data: 'warehouse_name', name: 'warehouse_name'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -214,14 +195,14 @@ Administration
 
         $(document).on('change', '.filter_data', function(e){
             e.preventDefault();
-            $('.all_administration_table').DataTable().ajax.reload()
+            $('.all_staff_table').DataTable().ajax.reload()
         })
 
         // Store Data
-        $("#create_administration_form").submit(function(e) {
+        $("#create_staff_form").submit(function(e) {
             e.preventDefault();
             const form_data = new FormData(this);
-            $("#create_administration_btn").text('Adding...');
+            $("#create_staff_btn").text('Adding...');
             $.ajax({
                 url: "{{ route('auth.register') }}",
                 method: 'POST',
@@ -242,19 +223,19 @@ Administration
                     else{
                         toastr.success(response.message);
                         table.ajax.reload();
-                        $("#create_administration_btn").text('Add Auth');
-                        $("#create_administration_form")[0].reset();
-                        $("#createAdministrationModel").modal('hide');
+                        $("#create_staff_btn").text('Add Auth');
+                        $("#create_staff_form")[0].reset();
+                        $("#createStaffModel").modal('hide');
                     }
                 }
             });
         });
 
         // View Details
-        $(document).on('click', '.viewAdministrationModelBtn', function(e){
+        $(document).on('click', '.viewStaffModelBtn', function(e){
             e.preventDefault();
             var id = $(this).attr('id');
-            var url = "{{ route('administration.details', ":id") }}";
+            var url = "{{ route('staff.details', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url:  url,
@@ -266,10 +247,10 @@ Administration
         })
 
         // Edit Form
-        $(document).on('click', '.editAdministrationModelBtn', function(e){
+        $(document).on('click', '.editStaffModelBtn', function(e){
             e.preventDefault();
             var id = $(this).attr('id');
-            var url = "{{ route('administration.edit', ":id") }}";
+            var url = "{{ route('staff.edit', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url:  url,
@@ -277,34 +258,19 @@ Administration
                 success: function(response) {
                     $('.role').val(response.role)
                     $('.warehouse_id').val(response.warehouse_id)
-                    $('#administration_id').val(response.id)
-                    if (response.role == 'Manager') {
-                        $('.warehouse').removeClass('d-none')
-                    }else{
-                        $('.warehouse').addClass('d-none')
-                    }
+                    $('#staff_id').val(response.id)
                 }
             });
         })
 
-        //Show warehouse
-        $(document).on('change', '.role', function(e){
-            e.preventDefault();
-            if ($('.role').val() == 'Manager') {
-                $('.warehouse').removeClass('d-none')
-            }else{
-                $('.warehouse').addClass('d-none')
-            }
-        })
-
         // Update Data
-        $("#edit_administration_form").submit(function(e) {
+        $("#edit_staff_form").submit(function(e) {
             e.preventDefault();
-            var id = $('#administration_id').val();
-            var url = "{{ route('administration.update', ":id") }}";
+            var id = $('#staff_id').val();
+            var url = "{{ route('staff.update', ":id") }}";
             url = url.replace(':id', id)
             const form_data = new FormData(this);
-            $("#edit_administration_btn").text('Updating...');
+            $("#edit_staff_btn").text('Updating...');
             $.ajax({
                 url: url,
                 method: 'POST',
@@ -324,25 +290,21 @@ Administration
                         })
                     }
                     else{
-                        if(response.status == 401){
-                            $("#warehouse_id_error").html(response.message);
-                        }else{
-                            toastr.success(response.message);
-                            table.ajax.reload();
-                            $("#edit_administration_btn").text('Updated Administration');
-                            $("#edit_administration_form")[0].reset();
-                            $("#editAdministrationModel").modal('hide');
-                        }
+                        toastr.success(response.message);
+                        table.ajax.reload();
+                        $("#edit_staff_btn").text('Updated Staff');
+                        $("#edit_staff_form")[0].reset();
+                        $("#editStaffModel").modal('hide');
                     }
                 }
             });
         });
 
         // Status Change
-        $(document).on('click', '.administrationStatusBtn', function(e){
+        $(document).on('click', '.staffStatusBtn', function(e){
             e.preventDefault();
             let id = $(this).attr('id');
-            var url = "{{ route('administration.status', ":id") }}";
+            var url = "{{ route('staff.status', ":id") }}";
             url = url.replace(':id', id)
             $.ajax({
                 url: url,

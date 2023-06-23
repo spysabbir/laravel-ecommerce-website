@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Warehouse
+class Manager
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class Warehouse
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('admin')->user()->role == 'Super Admin' || Auth::guard('admin')->user()->role == 'Admin' || Auth::guard('admin')->user()->role == 'Warehouse') {
+        if (Auth::guard('admin')->user()->role != 'Super Admin') {
             return $next($request);
         }else{
-            return redirect()->route('admin.dashboard')->with('error', "You are not a warehouse member. You can't access this link.");
+            return redirect()->route('admin.dashboard')->with('error', "You are not a warehouse manager. You can't access this link.");
         }
-
     }
 }

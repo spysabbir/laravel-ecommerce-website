@@ -159,7 +159,7 @@ class CheckoutController extends Controller
             $api_key = env('SMS_API_KEY');
             $senderid = env('SMS_SENDER_ID');
             $number = "$request->billing_phone";
-            $message = "Hello $request->billing_name, your order place successfully in $siteName.";
+            $message = "Hello $request->billing_name, your order place successfully in $siteName. Your order no $order_summery_id.";
             $data = [
                 "api_key" => $api_key,
                 "senderid" => $senderid,
@@ -180,7 +180,7 @@ class CheckoutController extends Controller
             Mail::to($order_summery->billing_email)
                 ->cc($order_summery->shipping_email)
                 ->send(new Order_placedMail($order_summery));
-                
+
             return redirect()->route('dashboard')->with('success', 'Order Place Successfully.');
         }
     }

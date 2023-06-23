@@ -89,7 +89,7 @@ class CustomerController extends Controller
 
     public function dashboard()
     {
-        $order_summeries = Order_summery::where('user_id', Auth::user()->id)->get();
+        $order_summeries = Order_summery::where('user_id', Auth::user()->id)->latest()->get();
         return view('frontend.dashboard', compact('order_summeries'));
     }
 

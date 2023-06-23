@@ -465,7 +465,7 @@
 
         @auth
             <input type="hidden" id="login_status" value="yes">
-            
+
             @if (auth()->user()->email_verified_at == NULL)
             <input type="hidden" id="verified_status" value="no">
             @else
@@ -882,6 +882,118 @@
                 })
                 // ajax end
             })
+
+            // Product Buy Now
+            $(document).on('click', '.buyNowBtn', function(e){
+                e.preventDefault();
+                var size_count = $('#model_sizes_count').val();
+                if(size_count == 1){
+                    $('.model_select_size').trigger('click');
+                }
+                if ($('#login_status').val() == 'no') {
+                    Swal.fire({
+                        title: 'You are not log in!',
+                        text: "Please login first.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Go to login.'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "{{route('login')}}"
+                        }
+                    })
+                }
+                else {
+                    if ($('#verified_status').val() == 'no') {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'You are not verified user!',
+                            text: 'Please go to your email and verified your account.',
+                        })
+                    } else {
+                        var available_qty = parseInt($('.model_available_qty').html());
+                        var cart_qty = parseInt($('#cart_qty').val());
+                        if (cart_qty > available_qty) {
+                            Swal.fire(
+                                'Stock not available this qty!',
+                                'Please select available qty.',
+                                'warning'
+                            )
+                        } else {
+                            var color_id = $('#model_color_id').val();
+                            var size_id = $('#model_size_id').val();
+                            if (color_id == 0) {
+                                Swal.fire(
+                                    'Please select color first',
+                                    'Importent!',
+                                    'warning'
+                                )
+                            } else {
+                                if (size_id == 0) {
+                                    Swal.fire(
+                                        'Please select size!',
+                                        'Importent!',
+                                        'warning'
+                                    )
+                                } else {
+                                    var cart_qty = $('#cart_qty').val();
+                                    if (cart_qty <= 0) {
+                                        Swal.fire(
+                                            'Please select QTY!',
+                                            'Importent!',
+                                            'warning'
+                                        )
+                                    } else {
+                                        var product_id = $('#model_product_id').val();
+                                        var product_current_price = $('#product_discounted_price').val();
+                                        var size_id = $('#model_size_id').val();
+                                        var color_id = $('#model_color_id').val();
+                                        var cart_qty = $('#cart_qty').val();
+                                        var user_id = "{{ auth()->id() }}"
+
+                                        // ajax start
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: "{{route('buy.now')}}",
+                                            data: {
+                                                product_id: product_id,
+                                                product_current_price: product_current_price,
+                                                color_id: color_id,
+                                                size_id: size_id,
+                                                cart_qty: cart_qty,
+                                                user_id: user_id
+                                            },
+                                            success: function (data) {
+                                                const Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: 'top-center',
+                                                    showConfirmButton: false,
+                                                    timer: 3000,
+                                                    timerProgressBar: true,
+                                                    didOpen: (toast) => {
+                                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                    }
+                                                })
+                                                Toast.fire({
+                                                    icon: 'success',
+                                                    title: 'Product select successfully'
+                                                })
+
+                                                var url = "{{ route('checkout') }}";
+                                                window.location.href = url;
+                                            }
+                                        })
+                                        // ajax end
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
 
             // Product Add To Cart
             $(document).on('click', '.addToCartBtn', function(e){

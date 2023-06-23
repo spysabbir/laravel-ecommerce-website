@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdministrationController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\WarehouseController;
@@ -45,9 +47,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::middleware('admin_auth')->group(function () {
-        Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
-        Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
-
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -60,6 +59,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 //
 Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('auth.register');
+
     Route::middleware(['super_admin'])->group(function(){
         // Setting
         Route::get('/mail-setting', [SettingController::class, 'mailSetting'])->name('mail.setting');
@@ -90,28 +91,11 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('customer-details/{id}', [AdminController::class, 'customerDetails'])->name('customer.details');
         Route::get('customer/status/{id}', [AdminController::class, 'customerStatus'])->name('customer.status');
 
-        // All Administration
-        Route::get('register', [RegisteredUserController::class, 'create'])->name('administration.register');
-        Route::post('register', [RegisteredUserController::class, 'store']);
-
-        Route::get('all-administration', [AdminController::class, 'allAdministration'])->name('all.administration');
-        Route::get('administration-details/{id}', [AdminController::class, 'administrationDetails'])->name('administration.details');
-        Route::get('administration-edit/{id}', [AdminController::class, 'administrationEdit'])->name('administration.edit');
-        Route::put('administration-update/{id}', [AdminController::class, 'administrationUpdate'])->name('administration.update');
-        Route::get('administration/status/{id}', [AdminController::class, 'administrationStatus'])->name('administration.status');
-
-        // All Subscriber
-        Route::get('all-subscriber', [AdminController::class, 'allSubscriber'])->name('all.subscriber');
-        Route::get('subscriber/status/{id}', [AdminController::class, 'subscriberStatus'])->name('subscriber.status');
-        Route::delete('subscriber/destroy/{id}', [AdminController::class, 'subscriberDestroy'])->name('subscriber.destroy');
-        Route::get('all-newsletter', [AdminController::class, 'allNewsletter'])->name('all.newsletter');
-        Route::post('send-newsletter', [AdminController::class, 'sendNewsletter'])->name('send.newsletter');
-        Route::get('view-newsletter/{id}', [AdminController::class, 'viewNewsletter'])->name('view.newsletter');
-
-        // Contact Message
-        Route::get('contact-message', [AdminController::class, 'contactMessage'])->name('contact.message');
-        Route::get('contact-message-details/{id}', [AdminController::class, 'contactMessageDetails'])->name('contact.message.details');
-        Route::delete('contact/message/destroy/{id}', [AdminController::class, 'contactMessageDestroy'])->name('contact.message.destroy');
+        Route::get('all-administration', [AdministrationController::class, 'allAdministration'])->name('all.administration');
+        Route::get('administration-details/{id}', [AdministrationController::class, 'administrationDetails'])->name('administration.details');
+        Route::get('administration-edit/{id}', [AdministrationController::class, 'administrationEdit'])->name('administration.edit');
+        Route::put('administration-update/{id}', [AdministrationController::class, 'administrationUpdate'])->name('administration.update');
+        Route::get('administration/status/{id}', [AdministrationController::class, 'administrationStatus'])->name('administration.status');
 
         // Report
         Route::get('report-all-order', [ReportController::class, 'reportAllOrder'])->name('report.all.order');
@@ -124,6 +108,19 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
     });
 
     Route::middleware(['admin'])->group(function () {
+        // Contact Message
+        Route::get('contact-message', [AdminController::class, 'contactMessage'])->name('contact.message');
+        Route::get('contact-message-details/{id}', [AdminController::class, 'contactMessageDetails'])->name('contact.message.details');
+        Route::delete('contact/message/destroy/{id}', [AdminController::class, 'contactMessageDestroy'])->name('contact.message.destroy');
+
+        // All Subscriber
+        Route::get('all-subscriber', [AdminController::class, 'allSubscriber'])->name('all.subscriber');
+        Route::get('subscriber/status/{id}', [AdminController::class, 'subscriberStatus'])->name('subscriber.status');
+        Route::delete('subscriber/destroy/{id}', [AdminController::class, 'subscriberDestroy'])->name('subscriber.destroy');
+        Route::get('all-newsletter', [AdminController::class, 'allNewsletter'])->name('all.newsletter');
+        Route::post('send-newsletter', [AdminController::class, 'sendNewsletter'])->name('send.newsletter');
+        Route::get('view-newsletter/{id}', [AdminController::class, 'viewNewsletter'])->name('view.newsletter');
+
         // Product Resource
         Route::resource('category', CategoryController::class);
         Route::get('/fetch/trashed/category', [CategoryController::class, 'fetchTrashedCategory'])->name('fetch.trashed.category');
@@ -254,13 +251,19 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('/warehouse/forcedelete/{id}', [WarehouseController::class, 'warehouseForceDelete'])->name('warehouse.forcedelete');
         Route::get('/warehouse/status/{id}', [WarehouseController::class, 'warehouseStatus'])->name('warehouse.status');
 
+        Route::get('all-staff', [StaffController::class, 'allStaff'])->name('all.staff');
+        Route::get('staff-details/{id}', [StaffController::class, 'staffDetails'])->name('staff.details');
+        Route::get('staff-edit/{id}', [StaffController::class, 'staffEdit'])->name('staff.edit');
+        Route::put('staff-update/{id}', [StaffController::class, 'staffUpdate'])->name('staff.update');
+        Route::get('staff/status/{id}', [StaffController::class, 'staffStatus'])->name('staff.status');
+
         Route::get('return-orders', [Order_Controller::class, 'returnOrders'])->name('return.orders');
         Route::get('return-order-details/{id}', [Order_Controller::class, 'returnOrderDetails'])->name('return.order.details');
         Route::get('return/order/status/edit/{id}', [Order_Controller::class, 'returnOrderStatusEdit'])->name('return.order.status.edit');
         Route::post('return/order/status/update/{id}', [Order_Controller::class, 'returnOrderStatusUpdate'])->name('return.order.status.update');
     });
 
-    Route::middleware(['warehouse'])->group(function () {
+    Route::middleware(['manager'])->group(function () {
         // All Order
         Route::get('processing-orders', [Order_Controller::class, 'processingOrders'])->name('processing.orders');
         Route::get('delivered-orders', [Order_Controller::class, 'deliveredOrders'])->name('delivered.orders');

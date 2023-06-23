@@ -127,7 +127,7 @@
                         <input type="hidden" id="login_status" value="no">
                         @endauth
                         <div class="product__modal-form my-3">
-                            <div class="pro-quan-area d-lg-flex align-items-center">
+                            <div class="pro-quan-area">
                                 @if ($sum_quantity_inventories != 0)
                                 <div class="product-quantity mr-20">
                                     <div class="cart-plus-minus p-relative">
@@ -136,7 +136,8 @@
                                         <div class="inc qtybutton" onclick="incrementValue()">+</div>
                                     </div>
                                 </div>
-                                <div class="pro-cart-btn ">
+                                <div class="pro-cart-btn mt-3">
+                                    <button class="btn btn-success mx-3 buyNowBtn" id="{{$product->id}}" type="submit">Buy Now</button>
                                     <button class="cart-btn addToCartBtn" id="{{$product->id}}" type="submit">Add to cart</button>
                                 </div>
                                 @else

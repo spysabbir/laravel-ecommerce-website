@@ -278,7 +278,7 @@ Dashboard
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-primary">
+                                    <table class="table table-primary" id="orderTable">
                                         <thead>
                                             <tr>
                                                 <th>Order No</th>
@@ -387,6 +387,7 @@ Dashboard
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         // Log out
         $(document).on('click', '#logout_btn', function (e) {
             e.preventDefault();
@@ -419,6 +420,11 @@ Dashboard
                 }
             })
         })
+
+        // Order Datatable
+        $('#orderTable').DataTable({
+            order: [[5, 'desc']],
+        });
     });
 </script>
 @endsection

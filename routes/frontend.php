@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function () {
         Route::get('remove/coupon', [CartController::class, 'removeCoupon'])->name('remove.coupon');
         Route::get('change/cart/status/{id}', [CartController::class, 'changeCartStatus'])->name('change.cart.status');
 
+        Route::post('buy/now', [CartController::class, 'buyNow'])->name('buy.now');
+
         Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
         Route::post('get/city/list', [CheckoutController::class, 'getCityList'])->name('get.city.list');
         Route::post('set/country/city', [CheckoutController::class, 'setCountryCity'])->name('set.country.city');

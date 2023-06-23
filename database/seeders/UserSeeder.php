@@ -34,12 +34,12 @@ class UserSeeder extends Seeder
                 'role' => 'Admin',
                 'created_at' => Carbon::now(),
             ],
-            // Warehouse
+            // Warehouse Manager
             [
-                'name' => 'Warehouse',
+                'name' => 'Warehouse Manager',
                 'email' => 'dhakawarehouse@email.com',
                 'password' => Hash::make('12345678'),
-                'role' => 'Warehouse',
+                'role' => 'Manager',
                 'created_at' => Carbon::now(),
             ],
         ]);
@@ -50,6 +50,7 @@ class UserSeeder extends Seeder
                 'name' => 'Customer 1',
                 'email' => 'customer1@email.com',
                 'password' => Hash::make('12345678'),
+                'email_verified_at' => Carbon::now(),
                 'last_active' => Carbon::now(),
                 'created_at' => Carbon::now(),
             ]

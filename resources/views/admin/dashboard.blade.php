@@ -236,11 +236,11 @@ Dashboard
             <div class="body">
                 <div class="row clearfix">
                     <div class="col-8">
-                        <h5 class="mb-0">Total Staff</h5>
+                        <h5 class="mb-0">Warehouse Staff</h5>
                         <small class="info">All</small>
                     </div>
                     <div class="col-4 text-right">
-                        <h2 class="m-b-0">{{ App\Models\Admin::count() }}</h2>
+                        <h2 class="m-b-0">{{ App\Models\Admin::where('role', 'Manager')->count() }}</h2>
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@ Dashboard
             <div class="body">
                 <div class="row clearfix">
                     <div class="col-8">
-                        <h5 class="mb-0">Total User</h5>
+                        <h5 class="mb-0">Customer</h5>
                         <small class="info">All</small>
                     </div>
                     <div class="col-4 text-right">

@@ -15,7 +15,25 @@ class CartController extends Controller
     public function cart()
     {
         Session::put('session_coupon_name', '');
+        Cart::where('user_id', Auth::user()->id)->update(['status' =>  'No']);
         return view('frontend.cart');
+    }
+
+    public function buyNow(Request $request){
+        Cart::where('user_id', Auth::user()->id)->update(['status' =>  'No']);
+        Cart::insert([
+            'user_id' => $request-> user_id,
+            'product_id' => $request-> product_id,
+            'color_id' => $request-> color_id,
+            'size_id' => $request-> size_id,
+            'product_current_price' => $request-> product_current_price,
+            'cart_qty' => $request-> cart_qty,
+            'status' => 'Yes',
+            'created_at' => Carbon::now(),
+        ]);
+        return response()->json([
+            'status' => 200,
+        ]);
     }
 
     public function insertCart(Request $request){

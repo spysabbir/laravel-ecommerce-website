@@ -18,11 +18,11 @@ Default Setting
                     <div class="row">
                         <div class="col-lg-6 mb-3">
                             <label>Logo Photo</label>
-                            <input type="file" class="form-control" name="logo_photo" id="logo_photo">
+                            <input type="file" class="form-control" name="logo_photo" id="logoImage">
                             @error('logo_photo')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
-                            <img width="100" height="80" src="{{asset('uploads/default_photo')}}/{{$default_setting->logo_photo}}" class="rounded-circle" alt="{{ env('APP_NAME') }}">
+                            <img width="100" height="80" src="{{asset('uploads/default_photo')}}/{{$default_setting->logo_photo}}" id="logoImagePreview" class="rounded-circle" alt="{{ env('APP_NAME') }}">
                         </div>
                         <div class="col-lg-6 mb-3">
                             <label>Favicon</label>
@@ -30,7 +30,7 @@ Default Setting
                             @error('favicon')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
-                            <img width="80" height="80" src="{{asset('uploads/default_photo')}}/{{$default_setting->favicon}}" class="rounded-circle" alt="{{ env('APP_NAME') }}">
+                            <img width="80" height="80" src="{{asset('uploads/default_photo')}}/{{$default_setting->favicon}}" id="faviconPreview" class="rounded-circle" alt="{{ env('APP_NAME') }}">
                         </div>
                         <div class="col-lg-4 mb-3">
                             <label>App Name</label>
@@ -148,5 +148,24 @@ Default Setting
 @endsection
 
 @section('custom_script')
-
+<script>
+    $(document).ready(function(){
+        // Logo Image Preview
+        $('#logoImage').change(function(){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#logoImagePreview').attr('src', e.target.result).show();
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+        // Favicon Preview
+        $('#favicon').change(function(){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#faviconPreview').attr('src', e.target.result).show();
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    })
+</script>
 @endsection

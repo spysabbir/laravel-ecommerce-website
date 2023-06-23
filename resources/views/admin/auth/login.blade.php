@@ -126,7 +126,7 @@ Login
                                 <tr>
                                     <td>dhakawarehouse@email.com</td>
                                     <td>12345678</td>
-                                    <td>Warehouse</td>
+                                    <td>Manager</td>
                                 </tr>
                             </tbody>
                         </table>

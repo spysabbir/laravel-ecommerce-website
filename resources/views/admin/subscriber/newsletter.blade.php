@@ -31,6 +31,7 @@ Newsletter
                             <form action="#" id="send_newsletter_form" method="POST">
                                 @csrf
                                 <div class="modal-body">
+                                    <h5 class="text-info text-center">Please run cron job.</h5>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <label class="form-label">Received By</label>
@@ -68,6 +69,7 @@ Newsletter
                         <thead>
                             <tr>
                                 <th>Sl No</th>
+                                <th>Received By</th>
                                 <th>Newsletter Subject</th>
                                 <th>Send Date</th>
                                 <th>Action</th>
@@ -121,6 +123,7 @@ Newsletter
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'received_by', name: 'received_by'},
                 {data: 'newsletter_subject', name: 'newsletter_subject'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
