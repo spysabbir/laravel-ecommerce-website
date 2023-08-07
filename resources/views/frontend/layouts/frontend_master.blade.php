@@ -194,13 +194,13 @@
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
                             <div class="header__info">
                                 <div class="logo">
-                                    <a href="{{route('index')}}" class="logo-image"><img src="{{asset('uploads/default_photo')}}/{{$default_setting->logo_photo}}" alt="logo"></a>
+                                    <a href="{{ route('index') }}" class="logo-image"><img src="{{asset('uploads/default_photo')}}/{{$default_setting->logo_photo}}" alt="logo"></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-4 d-none d-lg-block">
                             <div class="header__search">
-                                <form action="{{route('search.products')}}" method="GET">
+                                <form action="{{ route('search.products') }}" method="GET">
                                     <div class="header__search-box">
                                         <input class="search-input" name="product_name" id="findProduct" onfocus="showSearchResult()" onblur="hideSearchResult()" type="text" placeholder="I'm shopping for..."  value="{{request('product_name')}}">
                                         <button class="button" type="submit"><i class="far fa-search"></i></button>
@@ -212,7 +212,7 @@
                                         <select name="category_id">
                                             <option value="ALL" {{ request('category_id') == "All" ? 'selected' : '' }}>All Categories</option>
                                             @foreach ($categories as $category)
-                                            <option value="{{$category->id}}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
+                                            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -236,7 +236,7 @@
                                         </span>
                                     </a>
                                     @else
-                                    <a class="icon-link" href="{{route('dashboard')}}">
+                                    <a class="icon-link" href="{{ route('dashboard') }}">
                                         <i class="flaticon-user"></i>
                                         <span class="text">
                                             <span class="sub">Dashboard </span>
@@ -246,11 +246,11 @@
                                     @endguest
                                 </div>
                                 <div class="block-wishlist action">
-                                    <a class="icon-link" href="{{route('wishlist')}}">
+                                    <a class="icon-link" href="{{ route('wishlist') }}">
                                         <i class="flaticon-heart"></i>
                                         <span class="count" id="header_wishlist_num">
                                             @auth
-                                                {{App\Models\Wishlist::where('user_id', Auth::user()->id)->count()}}
+                                                {{ App\Models\Wishlist::where('user_id', Auth::user()->id)->count() }}
                                             @else
                                             0
                                             @endauth
@@ -262,7 +262,7 @@
                                     </a>
                                 </div>
                                 <div class="block-cart action">
-                                    <a class="icon-link" href="{{route('cart')}}">
+                                    <a class="icon-link" href="{{ route('cart') }}">
                                         <i class="flaticon-shopping-bag"></i>
                                         <span class="count" id="header_cart_count">
                                             0
@@ -295,7 +295,7 @@
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <a href="{{route('cart')}}" class="wc-cart mb-10">View cart</a>
+                                                    <a href="{{ route('cart') }}" class="wc-cart mb-10">View cart</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -687,6 +687,7 @@
     <script src="{{asset('frontend')}}/js/sweetalert2@11.js"></script>
     <script src="{{asset('frontend')}}/js/main.js"></script>
     <!-- Scripts -->
+
     @yield('custom_script')
 
     <script>
@@ -752,10 +753,9 @@
             }
 
             // Read Card Data
-            fetchAllCart();
             function fetchAllCart(){
                 $.ajax({
-                    url: '{{ route('fetch.cart') }}',
+                    url: "{{ route('fetch.cart') }}",
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
@@ -803,7 +803,7 @@
                                     }
                                 })
                                 Toast.fire({
-                                    icon: 'success',
+                                    icon: 'warning',
                                     title: 'Cart item delete successfully'
                                 })
                                 fetchHeaderCart();
@@ -1237,6 +1237,7 @@
             $('#suggest_products').slideUp()
         }
     </script>
+
 </body>
 
 </html>

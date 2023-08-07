@@ -71,6 +71,7 @@ Wishlist
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         // Read Data
         fetchAllWishlist();
         function fetchAllWishlist() {
@@ -120,7 +121,7 @@ Wishlist
                                 }
                             })
                             Toast.fire({
-                                icon: 'success',
+                                icon: 'warning',
                                 title: 'Wishlist force delete successfully'
                             })
                             fetchAllWishlist();

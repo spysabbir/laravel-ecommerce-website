@@ -174,19 +174,19 @@ $default_setting = App\Models\Default_setting::first();
     <table width="100%" style="background:#eee;padding:20px;">
         <tr style="text-align:right">
             <td><strong>Sub Total:</strong></td>
-            <td>{{$order_summery->sub_total}}</td>
+            <td>৳ {{$order_summery->sub_total}}</td>
         </tr>
         <tr style="text-align:right">
             <td><strong>Shipping Fee:</strong></td>
-            <td>{{$order_summery->shipping_charge}}</td>
+            <td>৳ {{$order_summery->shipping_charge}}</td>
         </tr>
         <tr style="text-align:right">
             <td><strong>Discount Amount:</strong></td>
-            <td>{{$order_summery->discount_amount}}</td>
+            <td>৳ {{$order_summery->discount_amount}}</td>
         </tr>
         <tr style="text-align:right">
             <td><strong>Grand Total:</strong></td>
-            <td>{{$order_summery->grand_total}}</td>
+            <td>৳ {{$order_summery->grand_total}}</td>
         </tr>
     </table>
     <br>

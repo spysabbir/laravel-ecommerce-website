@@ -6,7 +6,7 @@ Cart
 
 @section('body_content')
 <!-- page-banner-area-start -->
-<div class="page-banner-area page-banner-height-2" data-background="{{asset('frontend')}}/img/banner.jpg">
+<div class="page-banner-area page-banner-height-2" data-background="{{ asset('frontend') }}/img/banner.jpg">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
@@ -17,7 +17,7 @@ Cart
                             <nav class="breadcrumb-trail breadcrumbs">
                                 <ul class="breadcrumb-menu">
                                     <li class="breadcrumb-trail">
-                                        <a href="{{route('index')}}"><span>Home</span></a>
+                                        <a href="{{ route('index') }}"><span>Home</span></a>
                                     </li>
                                     <li class="trail-item">
                                         <span>Cart</span>
@@ -78,7 +78,7 @@ Cart
                         <li>Coupon Discount (-)<span id="discount_amount">00</span></li>
                         <li>Grand Total<span id="grand_total">00</span></li>
                     </ul>
-                    <a class="tp-btn-h1 d-none" id="checkout_btn" href="{{route('checkout')}}">Proceed to checkout</a>
+                    <a class="tp-btn-h1 d-none" id="checkout_btn" href="{{ route('checkout') }}">Proceed to checkout</a>
                 </div>
             </div>
         </div>
@@ -95,8 +95,8 @@ Cart
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         // Read Header Cart Data
-        fetchHeaderCart();
         function fetchHeaderCart(){
             $.ajax({
                 url: '{{ route('fetch.header.cart') }}',
@@ -141,21 +141,6 @@ Cart
                 data:{cart_item_id:cart_item_id},
                 success: function(response) {
                     if (response.status == 200) {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                        icon: 'success',
-                        title: 'Cart qty increment successfully'
-                        })
                         fetchAllCart();
                         fetchHeaderCart();
                     } else {
@@ -191,21 +176,6 @@ Cart
                 data:{cart_item_id:cart_item_id},
                 success: function(response) {
                     if (response.status == 200) {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-center',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                        icon: 'success',
-                        title: 'Cart qty decrement successfully'
-                        })
                         fetchAllCart();
                         fetchHeaderCart();
                     } else {
@@ -236,7 +206,6 @@ Cart
             let id = $(this).attr('id');
             var url = "{{ route('cart.forcedelete', ":id") }}";
             url = url.replace(':id', id)
-
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -265,7 +234,7 @@ Cart
                                 }
                             })
                             Toast.fire({
-                                icon: 'success',
+                                icon: 'warning',
                                 title: 'Cart item force delete successfully'
                             })
                             fetchAllCart();
@@ -276,7 +245,7 @@ Cart
             })
         })
 
-        // status_change
+        // Status Change
         $(document).on('change', '.status_change', function(e){
             let id = $(this).attr('id');
             var url = "{{ route('change.cart.status', ":id") }}";

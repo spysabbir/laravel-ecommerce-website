@@ -99,11 +99,16 @@ Register
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <strong class="px-3 text-info">OR</strong>
-                        @if (App\Models\Social_login_setting::first()->google_auth_status == "Yes" )
+                        @php
+                            $socialLoginSetting = App\Models\Social_login_setting::first();
+                        @endphp
+                        @if ($socialLoginSetting->google_auth_status == "Yes" || $socialLoginSetting->facebook_auth_status == "Yes")
+                            <strong class="px-3 text-info">OR</strong>
+                        @endif
+                        @if ($socialLoginSetting->google_auth_status == "Yes" )
                         <a class="btn btn-danger" href="{{route('google.login')}}">Google</a>
                         @endif
-                        @if (App\Models\Social_login_setting::first()->facebook_auth_status == "Yes" )
+                        @if ($socialLoginSetting->facebook_auth_status == "Yes" )
                         <a class="btn btn-primary" href="{{route('facebook.login')}}">Facebook</a>
                         @endif
                     </div>

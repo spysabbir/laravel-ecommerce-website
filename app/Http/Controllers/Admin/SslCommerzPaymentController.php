@@ -121,7 +121,7 @@ class SslCommerzPaymentController extends Controller
                         ->cc($order_summery->shipping_email)
                         ->send(new Order_placedMail($order_summery));
 
-                return redirect()->route('dashboard')->with('success', 'Transaction is Successfully');
+                return redirect()->route('dashboard')->with('success', 'Order Place Successfully');
             } else {
                 Order_summery::where('transaction_id', $tran_id)->update([
                     'payment_status' => 'Failed',

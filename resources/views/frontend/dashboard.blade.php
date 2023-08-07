@@ -281,8 +281,9 @@ Dashboard
                                     <table class="table table-primary" id="orderTable">
                                         <thead>
                                             <tr>
+                                                <th>Sl No</th>
                                                 <th>Order No</th>
-                                                <th>Charge Details</th>
+                                                <th>Grand Total</th>
                                                 <th>Payment Details</th>
                                                 <th>Order Status</th>
                                                 <th>Order Date</th>
@@ -290,14 +291,12 @@ Dashboard
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($order_summeries as $order_summery)
+                                            @foreach ($order_summeries as $order_summery)
                                             <tr>
-                                                <td>#{{ $order_summery->id }}</td>
+                                                <td>{{ $order_summery->index+1 }}</td>
+                                                <td>{{ $order_summery->id }}</td>
                                                 <td>
-                                                    <span>Subtotal: <strong>{{ $order_summery->sub_total }}</strong></span><br>
-                                                    <span>Discount: <strong>{{ $order_summery->discount_amount }}</strong></span><br>
-                                                    <span>Shipping Charge<strong>{{ $order_summery->shipping_charge }}</strong></span><br>
-                                                    <span>Grand Total: <strong>{{ $order_summery->grand_total }}</strong></span><br>
+                                                    <span>৳ {{ $order_summery->grand_total }}</span>
                                                 </td>
                                                 <td>
                                                     @if ($order_summery->payment_method == "COD")
@@ -357,14 +356,7 @@ Dashboard
                                                     <a class="btn btn-success btn-sm" href="{{route('download.invoice', Crypt::encrypt($order_summery->id))}}"><i class="fa fa-download"></i></a>
                                                 </td>
                                             </tr>
-                                            @empty
-                                            <tr>
-                                                <td colspan="50" class="text-center">
-                                                    <strong class="text-danger">Order Not Found!</strong>
-                                                    <a class="text-info" href="{{route('all.product')}}">Continue Shopping <i class="fa fa-arrow-right"> </i></a>
-                                                </td>
-                                            </tr>
-                                            @endforelse
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -423,7 +415,7 @@ Dashboard
 
         // Order Datatable
         $('#orderTable').DataTable({
-            order: [[5, 'desc']],
+            order: [[6, 'desc']],
         });
     });
 </script>
