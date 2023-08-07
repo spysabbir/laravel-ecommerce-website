@@ -23,7 +23,7 @@ class Order_Controller extends Controller
         if ($request->ajax()) {
             $processing_orders = "";
 
-            if(Auth::guard('admin')->user()->role == 'Warehouse'){
+            if(Auth::guard('admin')->user()->role == 'Manager'){
                 $query = Order_summery::where('warehouse_id', Auth::guard('admin')->user()->warehouse_id)
                     ->where('order_status', '!=', 'Panding')
                     ->where('order_status', '!=', 'Delivered')
@@ -133,7 +133,7 @@ class Order_Controller extends Controller
 
         if ($request->ajax()) {
             $delivered_orders = "";
-            if(Auth::guard('admin')->user()->role == 'Warehouse'){
+            if(Auth::guard('admin')->user()->role == 'Manager'){
                 $query = Order_summery::where('warehouse_id', Auth::guard('admin')->user()->warehouse_id)
                     ->where('order_status', 'Delivered')
                     ->leftJoin('users', 'order_summeries.user_id', 'users.id');
