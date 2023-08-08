@@ -293,7 +293,7 @@ Dashboard
                                         <tbody>
                                             @foreach ($order_summeries as $order_summery)
                                             <tr>
-                                                <td>{{ $order_summery->index+1 }}</td>
+                                                <td>{{ $loop->index+1 }}</td>
                                                 <td>{{ $order_summery->id }}</td>
                                                 <td>
                                                     <span>৳ {{ $order_summery->grand_total }}</span>
