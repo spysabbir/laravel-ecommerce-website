@@ -8,11 +8,11 @@ This is project is the eCommerce Website. Built with `Laravel` & various package
 
 - First of all we have to `clone` the project at our local machine using below command
  ```
-git clone https://github.com/spysabbir/Laravel-eCommerce-Website-Application.git
+git clone https://github.com/spysabbir/laravel-ecommerce-website.git
 ``` 
 - Now change the command line present working directory (pwd) by
  ```
-cd Laravel-eCommerce-Website-Application
+cd laravel-ecommerce-website
 ``` 
 - Now with help of `composer` download all required packages those need to run this laravel project
  ```
