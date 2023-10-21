@@ -184,7 +184,7 @@ class ProductController extends Controller
             'childcategory_id' => 'required',
             'brand_id' => 'required',
             'long_description' => 'required',
-            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -265,7 +265,7 @@ class ProductController extends Controller
             'subcategory_id' => 'required',
             'childcategory_id' => 'required',
             'long_description' => 'required',
-            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -480,7 +480,7 @@ class ProductController extends Controller
 
     public function productFeaturedPhotoStore(Request $request, $id){
         $validator = Validator::make($request->all(), [
-            'product_featured_photos' => 'required'
+            'product_featured_photos' => 'required|image|mimes:png,jpg,jpeg,webp'
         ]);
         if($validator->fails()){
             return response()->json([
@@ -490,7 +490,7 @@ class ProductController extends Controller
         }else{
             $status = true;
             foreach($request->file('product_featured_photos') as $product_featured_photo){
-                if(!in_array($product_featured_photo->getClientOriginalExtension(), ['jpg', 'png', 'jpeg', 'webp', 'svg'])){
+                if(!in_array($product_featured_photo->getClientOriginalExtension(), ['jpg', 'png', 'jpeg', 'webp'])){
                     $status = false;
                 }
             }

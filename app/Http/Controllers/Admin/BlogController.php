@@ -104,8 +104,8 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             '*' => 'required',
             'blog_headline' => 'required|unique:blogs',
-            'blog_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
-            'blog_cover_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'blog_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'blog_cover_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -171,8 +171,8 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             '*' => 'required',
             'blog_headline' => 'required|unique:blogs,blog_headline,'. $blog->id,
-            'blog_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
-            'blog_cover_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'blog_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'blog_cover_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

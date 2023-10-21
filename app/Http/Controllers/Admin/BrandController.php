@@ -90,7 +90,7 @@ class BrandController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'brand_name' => 'required|unique:brands',
-            'brand_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'brand_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -132,7 +132,7 @@ class BrandController extends Controller
 
         $validator = Validator::make($request->all(), [
             'brand_name' => 'required|unique:brands,brand_name,'.$brand->id,
-            'brand_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'brand_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

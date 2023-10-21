@@ -86,7 +86,7 @@ class FeatureController extends Controller
         $validator = Validator::make($request->all(), [
             '*' => 'required',
             'feature_title' => 'required|unique:features',
-            'feature_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'feature_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -127,7 +127,7 @@ class FeatureController extends Controller
         $validator = Validator::make($request->all(), [
             '*' => 'required',
             'feature_title' => 'required|unique:features,feature_title,'. $feature->id,
-            'feature_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'feature_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

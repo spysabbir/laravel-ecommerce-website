@@ -85,7 +85,7 @@ class SliderController extends Controller
     {
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'slider_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'slider_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -125,7 +125,7 @@ class SliderController extends Controller
         $slider = Slider::where('id', $id)->first();
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'slider_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'slider_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

@@ -67,7 +67,6 @@ class SslCommerzPaymentController extends Controller
             print_r($payment_options);
             $payment_options = array();
         }
-
     }
 
     public function success(Request $request)
@@ -99,7 +98,7 @@ class SslCommerzPaymentController extends Controller
                 $url = "https://bulksmsbd.net/api/smsapi";
                 $api_key = env('SMS_API_KEY');
                 $senderid = env('SMS_SENDER_ID');
-                $number = "$order_summery->billing_phone";
+                $number = $order_summery->billing_phone;
                 $message = "Hello $order_summery->billing_name, your order place successfully in $siteName.";
                 $data = [
                     "api_key" => $api_key,
@@ -156,7 +155,6 @@ class SslCommerzPaymentController extends Controller
         } else {
             return redirect()->route('dashboard')->with('error', 'Transaction is Invalid');
         }
-
     }
 
     public function cancel(Request $request)
@@ -187,7 +185,6 @@ class SslCommerzPaymentController extends Controller
         #Received all the payement information from the gateway
         if ($request->input('tran_id')) #Check transation id is posted or not.
         {
-
             $tran_id = $request->input('tran_id');
 
             #Check order status in order tabel against the transaction id or order id.

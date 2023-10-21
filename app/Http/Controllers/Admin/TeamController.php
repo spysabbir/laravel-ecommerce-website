@@ -86,7 +86,7 @@ class TeamController extends Controller
     {
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'team_member_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'team_member_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -130,7 +130,7 @@ class TeamController extends Controller
 
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'team_member_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'team_member_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

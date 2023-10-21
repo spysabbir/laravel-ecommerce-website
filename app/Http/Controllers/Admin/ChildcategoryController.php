@@ -100,7 +100,7 @@ class ChildcategoryController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'childcategory_name' => 'required',
-            'childcategory_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'childcategory_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails())
@@ -156,7 +156,7 @@ class ChildcategoryController extends Controller
 
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'childcategory_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'childcategory_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

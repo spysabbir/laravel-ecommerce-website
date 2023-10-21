@@ -93,7 +93,7 @@ class SubcategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'subcategory_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'subcategory_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -148,7 +148,7 @@ class SubcategoryController extends Controller
 
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'subcategory_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'subcategory_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

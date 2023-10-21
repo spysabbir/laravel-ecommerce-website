@@ -90,7 +90,7 @@ class BannerController extends Controller
     {
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'banner_photo' => 'required|image|mimes:png,jpg,jpeg,webp,svg',
+            'banner_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){
@@ -131,7 +131,7 @@ class BannerController extends Controller
         $banner = Banner::where('id', $id)->first();
         $validator = Validator::make($request->all(), [
             '*' => 'required',
-            'banner_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'banner_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         if($validator->fails()){

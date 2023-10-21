@@ -76,7 +76,6 @@
                     <div class="product__filter-wrap">
                         <div class="row align-items-center justify-content-end">
                             <div class="col-lg-3">
-                                <strong>Total: </strong>{{ $products->count() }}
                             </div>
                             <input type="hidden" value="{{ $subcategory->id }}" class="form-control filter_data" id="subcategory_id" name="subcategory_id">
                             <div class="col-lg-3 col-md-6">

@@ -185,7 +185,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             '*' => 'required',
-            'return_reason_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp,svg',
+            'return_reason_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
         ]);
 
         $order_detail = Order_detail::where('id', $id)->first();
