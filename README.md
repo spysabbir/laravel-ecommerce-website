@@ -31,7 +31,8 @@ php artisan key:generate
 Variable Name | Description
 --- | ---
 DB_* | database settings to connect the database with this project
-MAIL_* | database settings to send email via SMTP
+MAIL_* | mail settings to send email via smtp server
+SMS_* | sms settings to send sms via sms api
 
 - Now migrate and seed the database using
  ```
@@ -45,15 +46,18 @@ php artisan serve
 
 - Demo login credentials 
  ```
+Backend.....
 For Super Admin:- 
 Email: superadmin@email.com
 For Admin:- 
 Email: admin@email.com
 For Warehouse:- 
 Email: dhakawarehouse@email.com
-Password: 12345678
 
+Frontend.....
 For Customer:- 
 Email: customer1@email.com
+
+All account password as same
 Password: 12345678
 ```
