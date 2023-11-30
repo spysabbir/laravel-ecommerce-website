@@ -73,7 +73,7 @@ FAQs
                         <h5>Know Business</h5>
                     </div>
                     <div class="faq-content mt-10">
-                        <div class="accordion" id="accordionExample2">
+                         <div class="accordion" id="accordionExample1">
                             @forelse ($faqs->where('faq_position', 'Right') as $faq)
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="heading{{$faq->id}}">
@@ -81,7 +81,7 @@ FAQs
                                     {{$faq->faq_question}}
                                 </button>
                               </h2>
-                              <div id="collapse{{$faq->id}}" class="accordion-collapse collapse {{($loop->first == 1) ? 'show' : ''}}" aria-labelledby="heading{{$faq->id}}" data-bs-parent="#accordionExample">
+                              <div id="collapse{{$faq->id}}" class="accordion-collapse collapse {{($loop->first == 1) ? 'show' : ''}}" aria-labelledby="heading{{$faq->id}}" data-bs-parent="#accordionExample1">
                                 <div class="accordion-body">
                                   <p>{{$faq->faq_answer}}</p>
                                 </div>
@@ -92,7 +92,7 @@ FAQs
                                 <strong>Faq Item Not Found!</strong>
                             </div>
                             @endforelse
-                        </div>
+                          </div>
                     </div>
                 </div>
             </div>
