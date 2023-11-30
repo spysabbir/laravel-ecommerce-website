@@ -17,7 +17,7 @@
             </p>
             <p class="p-0 m-0"><strong>Created By: </strong>{{ App\Models\Admin::find($blog->created_by)->name }}</p>
             <p class="p-0 m-0"><strong>Created At: </strong>{{ $blog->created_at }}</p>
-            <p class="p-0 m-0"><strong>Updated By: </strong>{{ App\Models\Admin::find($blog->updated_by)->name }}</p>
+            <p class="p-0 m-0"><strong>Updated By: </strong>{{ $blog->updated_by ? App\Models\Admin::find($blog->updated_by)->name : 'N/A'}}</p>
             <p class="p-0 m-0"><strong>Updated At: </strong>{{ $blog->updated_at }}</p>
         </div>
     </div>

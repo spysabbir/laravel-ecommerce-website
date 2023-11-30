@@ -64,6 +64,7 @@
                 <div class="navbar-right">
                     <div id="navbar-menu">
                         <ul class="nav navbar-nav">
+                            @if (Auth::guard('admin')->user()->role != 'Manager')
                             <li class="dropdown dropdown-animated scale-left bg-info">
                                 @php
                                     $messages = App\Models\Contact_message::where('status', 'Unread')->get()
@@ -165,6 +166,7 @@
                                     @endif
                                 </ul>
                             </li>
+                            @endif
                             <li class="bg-danger">
                                 <button type="button" id="logoutBtn" class="icon-menu btn-danger"><i class="icon-power"></i></button>
                                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">

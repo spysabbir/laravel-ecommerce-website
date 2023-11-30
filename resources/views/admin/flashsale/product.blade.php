@@ -97,7 +97,7 @@ Flashsale Product
         // Read Data
         table = $('.all_products_table').DataTable({
             processing: true,
-            serverSide: true,
+            //serverSide: true,
             searching: true,
             ajax: {
                 url: "{{ route('flashsale.product.list') }}",
@@ -136,8 +136,8 @@ Flashsale Product
                 method: 'POST',
                 data: {flashsale_id:flashsale_id},
                 success: function(response) {
-                    toastr.success(response.message);
-                    table.ajax.reload()
+                    toastr.info(response.message);
+                    table.ajax.reload(null, false);
                 }
             });
         })
