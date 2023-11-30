@@ -175,10 +175,10 @@
                             <div class="header-inner-end text-md-end">
                                 <div class="ovic-menu-wrapper">
                                     <ul>
-                                        <li><a href="{{route('order.tracking')}}">Order Tracking</a></li>
-                                        <li><a href="{{route('faqs')}}">FAQs</a></li>
-                                        <li><a href="{{route('about')}}">About Us</a></li>
-                                        <li><a href="{{route('contact')}}">Contact Us</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'order.tracking' ? 'text-warning' : '' }}" href="{{route('order.tracking')}}">Order Tracking</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'faqs' ? 'text-warning' : '' }}" href="{{route('faqs')}}">FAQs</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'about' ? 'text-warning' : '' }}" href="{{route('about')}}">About Us</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'contact' ? 'text-warning' : '' }}" href="{{route('contact')}}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -230,8 +230,8 @@
                                     @guest
                                     <a class="icon-link" href="{{ route('login') }}">
                                         <i class="flaticon-user"></i>
-                                        <span class="text">
-                                            <span class="sub">Register </span>
+                                        <span class="text {{ Route::currentRouteName() == 'login' ? 'text-warning' : '' }}">
+                                            <span class="sub {{ Route::currentRouteName() == 'register' ? 'text-warning' : '' }}">Register </span>
                                             Login
                                         </span>
                                     </a>
@@ -239,7 +239,7 @@
                                     <a class="icon-link" href="{{ route('dashboard') }}">
                                         <i class="flaticon-user"></i>
                                         <span class="text">
-                                            <span class="sub">Dashboard </span>
+                                            <span class="sub {{ Route::currentRouteName() == 'dashboard' ? 'text-warning' : '' }}">Dashboard </span>
                                             {{ Auth::user()->name }}
                                         </span>
                                     </a>
@@ -255,7 +255,7 @@
                                             0
                                             @endauth
                                         </span>
-                                        <span class="text">
+                                        <span class="text {{ Route::currentRouteName() == 'wishlist' ? 'text-warning' : '' }}">
                                             <span class="sub">Favorite</span>
                                             My Wishlist
                                         </span>
@@ -268,7 +268,7 @@
                                             0
                                         </span>
                                         <span class="text">
-                                            <span class="sub">Your Cart:</span>
+                                            <span class="sub {{ Route::currentRouteName() == 'cart' ? 'text-warning' : '' }}">Your Cart:</span>
                                             ৳ <strong class="header_cart_sub_total">00</strong>
                                         </span>
                                     </a>
@@ -363,11 +363,11 @@
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul>
-                                        <li><a href="{{route('all.product')}}">All Product</a></li>
-                                        <li><a href="{{route('all.category')}}">All Category</a></li>
-                                        <li><a href="{{route('all.brand')}}">All Brand</a></li>
-                                        <li><a href="{{route('all.blog')}}">All Blog</a></li>
-                                        <li><a href="{{route('all.flashsale')}}">All Flashsale</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'all.product' ? 'active' : '' }}" href="{{route('all.product')}}">All Product</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'all.category' ? 'active' : '' }}" href="{{route('all.category')}}">All Category</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'all.brand' ? 'active' : '' }}" href="{{route('all.brand')}}">All Brand</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'all.blog' ? 'active' : '' }}" href="{{route('all.blog')}}">All Blog</a></li>
+                                        <li><a class="{{ Route::currentRouteName() == 'all.flashsale' ? 'active' : '' }}" href="{{route('all.flashsale')}}">All Flashsale</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -379,14 +379,14 @@
                                 @guest
                                 <a class="icon-link" href="{{ route('login') }}">
                                     <i class="flaticon-user"></i>
-                                    <span class="text">
+                                    <span class="text {{ Route::currentRouteName() == 'login' ? 'text-warning' : '' }}">
                                         <span class="sub">Login</span>
                                     </span>
                                 </a>
                                 @else
                                 <a class="icon-link" href="{{route('dashboard')}}">
                                     <i class="flaticon-user"></i>
-                                    <span class="text">
+                                    <span class="text {{ Route::currentRouteName() == 'dashboard' ? 'text-warning' : '' }}">
                                         {{ Auth::user()->name }}
                                     </span>
                                 </a>
@@ -395,7 +395,7 @@
                             <div class="block-cart action text-white">
                                 <a class="icon-link" href="{{route('cart')}}">
                                     <i class="flaticon-shopping-bag"></i>
-                                    <span class="text">
+                                    <span class="text {{ Route::currentRouteName() == 'cart' ? 'text-warning' : '' }}">
                                         ৳ <strong class="header_cart_sub_total">00</strong>
                                     </span>
                                 </a>
@@ -548,12 +548,17 @@
                                     <div class="footer__widget">
                                         <div class="footer__widget-title">
                                             <h4>Quick Links</h4>
+                                            @php
+                                                $path = request()->path();
+                                                $segments = explode('/', $path);
+                                                $pageName = end($segments);
+                                            @endphp
                                         </div>
                                         <div class="footer__widget-content">
                                             <div class="footer__link">
                                                 <ul>
                                                     @foreach ($page_settings->where('page_position', 1) as $page)
-                                                    <li><a href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
+                                                    <li><a class="{{ $pageName == $page->page_slug ? 'text-warning' : '' }}" href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -569,7 +574,7 @@
                                             <div class="footer__link">
                                                 <ul>
                                                     @foreach ($page_settings->where('page_position', 2) as $page)
-                                                    <li><a href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
+                                                    <li><a class="{{ $pageName == $page->page_slug ? 'text-warning' : '' }}" href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -592,7 +597,7 @@
                                                         <div class="footer__link">
                                                             <ul>
                                                                 @foreach ($page_settings->where('page_position', 3) as $page)
-                                                                <li><a href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
+                                                                <li><a class="{{ $pageName == $page->page_slug ? 'text-warning' : '' }}" href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
                                                                 @endforeach
                                                             </ul>
                                                         </div>
@@ -608,7 +613,7 @@
                                                         <div class="footer__link">
                                                             <ul>
                                                                 @foreach ($page_settings->where('page_position', 4) as $page)
-                                                                <li><a href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
+                                                                <li><a class="{{ $pageName == $page->page_slug ? 'text-warning' : '' }}" href="{{ route('page', $page->page_slug) }}">{{ $page->page_name }}</a></li>
                                                                 @endforeach
                                                             </ul>
                                                         </div>
