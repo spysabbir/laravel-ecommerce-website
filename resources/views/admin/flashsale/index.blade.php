@@ -280,7 +280,7 @@ Flashsale
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_flashsale_btn").text('Add Flashsale');
                         $("#create_flashsale_form")[0].reset();
                         $("#createFlashsaleModel").modal('hide');
@@ -334,7 +334,7 @@ Flashsale
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_flashsale_btn").text('Updated Flashsale');
                         $("#edit_flashsale_form")[0].reset();
                         $("#editFlashsaleModel").modal('hide');
@@ -365,7 +365,7 @@ Flashsale
                         success: function(response) {
                             toastr.warning(response.message);
                             fetchAllTrashedFlashsale();
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                         }
                     });
                 }
@@ -384,7 +384,7 @@ Flashsale
                 success: function(response) {
                     toastr.success(response.message);
                     fetchAllTrashedFlashsale();
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     $("#deleteFlashsaleModel").modal('hide');
                 }
             });
@@ -430,7 +430,7 @@ Flashsale
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

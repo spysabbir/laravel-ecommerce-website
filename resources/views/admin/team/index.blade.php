@@ -276,7 +276,7 @@ Team
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_team_btn").text('Add Team Member');
                         $("#create_team_form")[0].reset();
                         $("#createTeamModel").modal('hide');
@@ -331,7 +331,7 @@ Team
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_team_btn").text('Updated Team Member');
                         $("#edit_team_form")[0].reset();
                         $("#editTeamModel").modal('hide');
@@ -362,7 +362,7 @@ Team
                         success: function(response) {
                             toastr.warning(response.message);
                             fetchAllTrashedTeam()
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                         }
                     });
                 }
@@ -381,7 +381,7 @@ Team
                 success: function(response) {
                     toastr.success(response.message);
                     fetchAllTrashedTeam();
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     $("#deleteTeamModel").modal('hide');
                 }
             });
@@ -427,7 +427,7 @@ Team
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

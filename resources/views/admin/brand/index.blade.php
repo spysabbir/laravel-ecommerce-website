@@ -225,7 +225,7 @@ Brand
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_brand_btn").text('Add Brand');
                         $("#create_brand_form")[0].reset();
                         $("#createBrandModel").modal('hide');
@@ -275,7 +275,7 @@ Brand
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_brand_btn").text('Updated Brand');
                         $("#edit_brand_form")[0].reset();
                         $("#editBrandModel").modal('hide');
@@ -305,7 +305,7 @@ Brand
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedBrand();
                         }
                     });
@@ -324,7 +324,7 @@ Brand
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedBrand();
                     $("#deleteBrandModel").modal('hide');
                 }
@@ -371,7 +371,7 @@ Brand
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

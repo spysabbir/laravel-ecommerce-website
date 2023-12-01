@@ -222,7 +222,7 @@ Staff
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_staff_btn").text('Add Auth');
                         $("#create_staff_form")[0].reset();
                         $("#createStaffModel").modal('hide');
@@ -291,7 +291,7 @@ Staff
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_staff_btn").text('Updated Staff');
                         $("#edit_staff_form")[0].reset();
                         $("#editStaffModel").modal('hide');
@@ -311,7 +311,7 @@ Staff
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                 }
             });
         })

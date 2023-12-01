@@ -235,7 +235,7 @@ Feature
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_feature_btn").text('Add Feature');
                         $("#create_feature_form")[0].reset();
                         $("#createFeatureModel").modal('hide');
@@ -286,7 +286,7 @@ Feature
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_feature_btn").text('Updated Feature');
                         $("#edit_feature_form")[0].reset();
                         $("#editFeatureModel").modal('hide');
@@ -316,7 +316,7 @@ Feature
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedFeature();
                         }
                     });
@@ -336,7 +336,7 @@ Feature
                 success: function(response) {
                     toastr.success(response.message);
                     fetchAllTrashedFeature();
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     $("#deleteFeatureModel").modal('hide');
                 }
             });
@@ -382,7 +382,7 @@ Feature
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

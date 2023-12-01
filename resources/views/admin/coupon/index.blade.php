@@ -281,7 +281,7 @@ Coupon
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_coupon_btn").text('Add Coupon');
                         $("#create_coupon_form")[0].reset();
                         $("#createCouponModel").modal('hide');
@@ -335,7 +335,7 @@ Coupon
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_coupon_btn").text('Updated Coupon');
                         $("#edit_coupon_form")[0].reset();
                         $("#editCouponModel").modal('hide');
@@ -365,7 +365,7 @@ Coupon
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedCoupon();
                         }
                     });
@@ -384,7 +384,7 @@ Coupon
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedCoupon();
                     $("#deleteCouponModel").modal('hide');
                 }
@@ -431,7 +431,7 @@ Coupon
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

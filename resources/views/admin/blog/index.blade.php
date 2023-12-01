@@ -249,7 +249,7 @@ Blog
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        
+
         // Summernote
         $('.blog_details_style').summernote();
 
@@ -318,7 +318,7 @@ Blog
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload()
+                        table.ajax.reload(null, false)
                         $("#create_blog_btn").text('Add Blog');
                         $("#create_blog_form")[0].reset();
                         $("#createBlogModel").modal('hide');
@@ -387,7 +387,7 @@ Blog
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_blog_btn").text('Updated Blog');
                         $("#editBlogModel").modal('hide');
                     }
@@ -416,7 +416,7 @@ Blog
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchTrashedBlog();
                         }
                     });
@@ -435,7 +435,7 @@ Blog
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchTrashedBlog();
                     $("#deleteBlogModel").modal('hide');
                 }
@@ -463,7 +463,7 @@ Blog
                     method: 'GET',
                     success: function(response) {
                         toastr.error(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         fetchTrashedBlog();
                         $("#deleteBlogModel").modal('hide');
                     }
@@ -483,7 +483,7 @@ Blog
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                 }
             });
         })

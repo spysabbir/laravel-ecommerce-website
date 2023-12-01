@@ -255,7 +255,7 @@ Slider
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_slider_btn").text('Add Slider');
                         $("#create_slider_form")[0].reset();
                         $("#createSliderModel").modal('hide');
@@ -306,7 +306,7 @@ Slider
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_slider_btn").text('Updated Slider');
                         $("#edit_slider_form")[0].reset();
                         $("#editSliderModel").modal('hide');
@@ -336,7 +336,7 @@ Slider
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedSlider();
                         }
                     });
@@ -355,7 +355,7 @@ Slider
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedSlider();
                     $("#deleteSliderModel").modal('hide');
                 }
@@ -402,7 +402,7 @@ Slider
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

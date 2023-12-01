@@ -190,7 +190,7 @@ Cancel Orders
                 dataType: 'json',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                     $("#editOrderModelBtn").text('Updated Order');
                     $("#editOrderDetailsModel").modal('hide');
                 }

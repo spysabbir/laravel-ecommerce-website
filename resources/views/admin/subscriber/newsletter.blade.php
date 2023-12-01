@@ -153,7 +153,7 @@ Newsletter
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#send_newsletter_btn").text('Send Success');
                         $("#send_newsletter_form")[0].reset();
                         $("#sendNewsletterModel").modal('hide');

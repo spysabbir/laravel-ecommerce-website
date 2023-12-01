@@ -252,7 +252,7 @@ Faq
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_faq_btn").text('Add Faq');
                         $("#create_faq_form")[0].reset();
                         $("#createFaqModel").modal('hide');
@@ -303,7 +303,7 @@ Faq
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_faq_btn").text('Updated Faq');
                         $("#editFaqModel").modal('hide');
                     }
@@ -332,7 +332,7 @@ Faq
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedFaq();
                         }
                     });
@@ -351,7 +351,7 @@ Faq
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedFaq();
                     $("#deleteFaqModel").modal('hide');
                 }
@@ -398,7 +398,7 @@ Faq
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

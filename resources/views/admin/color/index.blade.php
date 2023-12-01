@@ -226,7 +226,7 @@ Color
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_color_btn").text('Add Color');
                         $("#create_color_form")[0].reset();
                         $("#createColorModel").modal('hide');
@@ -276,7 +276,7 @@ Color
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_color_btn").text('Updated Color');
                         $("#edit_color_form")[0].reset();
                         $("#editColorModel").modal('hide');
@@ -306,7 +306,7 @@ Color
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedColor();
                         }
                     });
@@ -325,7 +325,7 @@ Color
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedColor();
                     $("#deleteColorModel").modal('hide');
                 }
@@ -372,7 +372,7 @@ Color
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

@@ -191,7 +191,7 @@ Blog Category
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload()
+                        table.ajax.reload(null, false)
                         $("#create_blog_category_btn").text('Add Blog Category');
                         $("#create_blog_category_form")[0].reset();
                         $("#createBlogCategoryModel").modal('hide');
@@ -240,7 +240,7 @@ Blog Category
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload()
+                        table.ajax.reload(null, false)
                         $("#edit_blog_category_btn").text('Updated Blog Category');
                         $("#editBlogCategoryModel").modal('hide');
                     }
@@ -269,7 +269,7 @@ Blog Category
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchTrashedBlogCategory();
                         }
                     });
@@ -288,7 +288,7 @@ Blog Category
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchTrashedBlogCategory();
                     $("#deleteBlogCategoryModel").modal('hide');
                 }
@@ -316,7 +316,7 @@ Blog Category
                     method: 'GET',
                     success: function(response) {
                         toastr.error(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         fetchTrashedBlogCategory();
                         $("#deleteBlogCategoryModel").modal('hide');
                     }
@@ -336,7 +336,7 @@ Blog Category
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                 }
             });
         })

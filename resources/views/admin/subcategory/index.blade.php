@@ -262,7 +262,7 @@ Subcategory
                             $("#subcategory_exists_error").html('This subcategory already exists');
                         } else {
                             toastr.success(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#create_subcategory_btn").text('Add Subcategory');
                             $("#create_subcategory_form")[0].reset();
                             $("#createSubcategoryModel").modal('hide');
@@ -317,7 +317,7 @@ Subcategory
                             $("#update_subcategory_exists_error").html('This subcategory already exists');
                         } else {
                             toastr.success(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#edit_subcategory_btn").text('Updated Subcategory');
                             $("#edit_subcategory_form")[0].reset();
                             $("#editSubcategoryModel").modal('hide');
@@ -348,7 +348,7 @@ Subcategory
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedSubcategory();
                         }
                     });
@@ -368,7 +368,7 @@ Subcategory
                 success: function(response) {
                     toastr.success(response.message);
                     fetchAllTrashedSubcategory();
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     $("#deleteSubcategoryModel").modal('hide');
                 }
             });
@@ -414,7 +414,7 @@ Subcategory
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                 }
             });
         })

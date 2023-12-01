@@ -249,7 +249,7 @@ Warehouse
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_warehouse_btn").text('Add Warehouse');
                         $("#create_warehouse_form")[0].reset();
                         $("#createWarehouseModel").modal('hide');
@@ -301,7 +301,7 @@ Warehouse
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_warehouse_btn").text('Updated Warehouse');
                         $("#edit_warehouse_form")[0].reset();
                         $("#editWarehouseModel").modal('hide');
@@ -331,7 +331,7 @@ Warehouse
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedWarehouse();
                         }
                     });
@@ -350,7 +350,7 @@ Warehouse
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedWarehouse();
                     $("#deleteWarehouseModel").modal('hide');
                 }
@@ -397,7 +397,7 @@ Warehouse
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

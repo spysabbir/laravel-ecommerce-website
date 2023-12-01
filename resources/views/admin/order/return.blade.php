@@ -214,7 +214,7 @@ Return Orders
                             icon: 'success',
                             title: 'Order Return Status Updated Successfully'
                         })
-                        table.ajax.reload()
+                        table.ajax.reload(null, false)
                         $("#edit_return_order_btn").text('Updated Order Status');
                         $("#editReturnDetailsModel").modal('hide');
                     }

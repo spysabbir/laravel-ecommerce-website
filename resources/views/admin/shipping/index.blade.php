@@ -263,7 +263,7 @@ Shipping
                             $('#shipping_charge_exists_error').html(response.error);
                         }else{
                             toastr.success(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#create_shipping_btn").text('Add Shipping');
                             $("#create_shipping_form")[0].reset();
                             $("#createShippingModel").modal('hide');
@@ -315,7 +315,7 @@ Shipping
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_shipping_btn").text('Updated Shipping');
                         $("#edit_shipping_form")[0].reset();
                         $("#editShippingModel").modal('hide');
@@ -345,7 +345,7 @@ Shipping
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedShipping();
                         }
                     });
@@ -364,7 +364,7 @@ Shipping
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedShipping();
                     $("#deleteShippingModel").modal('hide');
                 }
@@ -411,7 +411,7 @@ Shipping
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

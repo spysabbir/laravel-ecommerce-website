@@ -213,7 +213,7 @@ Size
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_size_btn").text('Add Size');
                         $("#create_size_form")[0].reset();
                         $("#createSizeModel").modal('hide');
@@ -262,7 +262,7 @@ Size
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_size_btn").text('Updated Size');
                         $("#edit_size_form")[0].reset();
                         $("#editSizeModel").modal('hide');
@@ -293,7 +293,7 @@ Size
                         success: function(response) {
                             toastr.warning(response.message);
                             fetchAllTrashedSize();
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                         }
                     });
                 }
@@ -311,7 +311,7 @@ Size
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedSize();
                     $("#deleteSizeModel").modal('hide');
                 }
@@ -358,7 +358,7 @@ Size
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

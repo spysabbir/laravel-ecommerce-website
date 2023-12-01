@@ -93,7 +93,7 @@ Subscriber
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                 }
             });
         })
@@ -119,7 +119,7 @@ Subscriber
                         method: 'DELETE',
                         success: function(response) {
                             toastr.error(response.message);
-                            table.ajax.reload()
+                            table.ajax.reload(null, false)
                         }
                     });
                 }

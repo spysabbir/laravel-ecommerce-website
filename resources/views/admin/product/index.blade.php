@@ -674,7 +674,7 @@ Product
                                 $('#flashsale_id_error').html(response.error);
                             } else {
                                 toastr.success(response.message);
-                                table.ajax.reload();
+                                table.ajax.reload(null, false);
                                 $("#create_product_btn").text('Add Product');
                                 $("#create_product_form")[0].reset();
                                 $("#createProductModel").modal('hide');
@@ -759,7 +759,7 @@ Product
                             $("#update_discounted_price_error").html('Discounted price not more than regular price.');
                         }else{
                             toastr.success(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#edit_product_btn").text('Updated Product');
                             $("#editProductModel").modal('hide');
                         }
@@ -789,7 +789,7 @@ Product
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedProduct();
                         }
                     });
@@ -808,7 +808,7 @@ Product
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                     fetchAllTrashedProduct();
                     $("#deleteProductModel").modal('hide');
                 }
@@ -855,7 +855,7 @@ Product
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                 }
             });
         })
@@ -871,7 +871,7 @@ Product
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false);
                 }
             });
         })
@@ -930,7 +930,7 @@ Product
                             $('#update_flashsale_status_error').html('Please check flashsale status.');
                         }else{
                             toastr.info(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#edit_flashsale_status_btn").text('Updated Status');
                             $("#editFlashsaleStatusModel").modal('hide');
                         }
@@ -985,7 +985,7 @@ Product
                             $('#featured_photo_extension_error').html(response.error)
                         }else{
                             toastr.success(response.message);
-                            table.ajax.reload()
+                            table.ajax.reload(null, false)
                             $("#add_featured_photo_btn").text('Add Product');
                             $("#featured_photo_form")[0].reset();
                             $("#featuredPhotoModel").modal('hide');
@@ -1068,13 +1068,13 @@ Product
                     }else{
                         if (response.status == 201) {
                             toastr.info(response.message);
-                            table.ajax.reload()
+                            table.ajax.reload(null, false)
                             $("#add_inventory_btn").text('Increment inventory');
                             $("#inventory_form")[0].reset();
                             $("#inventoryModel").modal('hide');
                         } else {
                             toastr.success(response.message);
-                            table.ajax.reload()
+                            table.ajax.reload(null, false)
                             $("#add_inventory_btn").text('Added inventory');
                             $("#inventory_form")[0].reset();
                             $("#inventoryModel").modal('hide');

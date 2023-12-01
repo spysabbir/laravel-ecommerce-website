@@ -258,7 +258,7 @@ Processing Orders
                                 toastr.warning(response.message);
                             }else{
                                 toastr.success(response.message);
-                                table.ajax.reload()
+                                table.ajax.reload(null, false)
                                 $("#editOrderModelBtn").text('Updated Order');
                                 $("#editOrderDetailsModel").modal('hide');
                             }

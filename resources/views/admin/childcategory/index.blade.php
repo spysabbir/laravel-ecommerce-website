@@ -303,7 +303,7 @@ Childcategory
                             $("#childcategory_exists_error").html('This childcategory already exists');
                         } else {
                             toastr.success(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#create_childcategory_btn").text('Add Childcategory');
                             $("#create_childcategory_form")[0].reset();
                             $("#createChildcategoryModel").modal('hide');
@@ -359,7 +359,7 @@ Childcategory
                             $("#update_childcategory_exists_error").html('This childcategory already exists');
                         } else {
                             toastr.success(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#edit_childcategory_btn").text('Updated Childcategory');
                             $("#edit_childcategory_form")[0].reset();
                             $("#editChildcategoryModel").modal('hide');
@@ -390,7 +390,7 @@ Childcategory
                         method: 'DELETE',
                         success: function(response) {
                             toastr.warning(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             fetchAllTrashedChildcategory();
                         }
                     });
@@ -409,7 +409,7 @@ Childcategory
                 method: 'GET',
                 success: function(response) {
                     toastr.success(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     fetchAllTrashedChildcategory();
                     $("#deleteChildcategoryModel").modal('hide');
                 }
@@ -456,7 +456,7 @@ Childcategory
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })

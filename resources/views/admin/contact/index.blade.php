@@ -117,7 +117,7 @@ Contact Message
                 url:  url,
                 method: 'GET',
                 success: function(response) {
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     $("#model_body").html(response);
                 }
             });
@@ -144,7 +144,7 @@ Contact Message
                         method: 'DELETE',
                         success: function(response) {
                             toastr.error(response.message);
-                            table.ajax.reload()
+                            table.ajax.reload(null, false)
                         }
                     });
                 }

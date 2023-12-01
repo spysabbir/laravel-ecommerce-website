@@ -241,7 +241,7 @@ Administration
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_administration_btn").text('Add Auth');
                         $("#create_administration_form")[0].reset();
                         $("#createAdministrationModel").modal('hide');
@@ -328,7 +328,7 @@ Administration
                             $("#warehouse_id_error").html(response.message);
                         }else{
                             toastr.success(response.message);
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                             $("#edit_administration_btn").text('Updated Administration');
                             $("#edit_administration_form")[0].reset();
                             $("#editAdministrationModel").modal('hide');
@@ -349,7 +349,7 @@ Administration
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload()
+                    table.ajax.reload(null, false)
                 }
             });
         })

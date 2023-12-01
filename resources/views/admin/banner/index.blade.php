@@ -286,7 +286,7 @@ Banner
                         })
                     }else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#create_banner_btn").text('Add Banner');
                         $("#create_banner_form")[0].reset();
                         $("#createBannerModel").modal('hide');
@@ -339,7 +339,7 @@ Banner
                     }
                     else{
                         toastr.success(response.message);
-                        table.ajax.reload();
+                        table.ajax.reload(null, false);
                         $("#edit_banner_btn").text('Updated Banner');
                         $("#edit_banner_form")[0].reset();
                         $("#editBannerModel").modal('hide');
@@ -370,7 +370,7 @@ Banner
                         success: function(response) {
                             toastr.warning(response.message);
                             fetchAllTrashedBanner()
-                            table.ajax.reload();
+                            table.ajax.reload(null, false);
                         }
                     });
                 }
@@ -389,7 +389,7 @@ Banner
                 success: function(response) {
                     toastr.success(response.message);
                     fetchAllTrashedBanner();
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                     $("#deleteBannerModel").modal('hide');
                 }
             });
@@ -435,7 +435,7 @@ Banner
                 method: 'GET',
                 success: function(response) {
                     toastr.info(response.message);
-                    table.ajax.reload();
+                    table.ajax.reload(null, false);
                 }
             });
         })
