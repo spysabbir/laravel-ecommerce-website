@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Childcategory;
 use App\Models\Flashsale;
+use App\Models\FlashsaleProduct;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Carbon\Carbon;
@@ -58,7 +59,7 @@ class FlashsaleController extends Controller
                     })
                     ->addColumn('action', function($row){
                         $btn = '
-                        <a href="'.route('flashsale.product.added', $row->id).'" class="btn btn-info btn-sm">Add Product</a>
+                        <a href="'.route('flashsale.product.added', $row->id).'" class="btn btn-info btn-sm">Manage Product</a>
                         <button type="button" id="'.$row->id.'" class="btn btn-success btn-sm editFlashsaleModelBtn" data-toggle="modal" data-target="#editFlashsaleModel"><i class="fa fa-pencil-square-o"></i></button>
                         <button type="button" id="'.$row->id.'" class="btn btn-danger btn-sm deleteFlashsaleBtn"><i class="fa fa-trash"></i></button>
                             ';
@@ -222,16 +223,16 @@ class FlashsaleController extends Controller
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
             return response()->json([
-            'message' => 'Flashsale status inactive',
-        ]);
+                'message' => 'Flashsale status inactive',
+            ]);
         }else{
             $flashsale->update([
                 'status' =>"Yes",
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
             return response()->json([
-            'message' => 'Flashsale status active',
-        ]);
+                'message' => 'Flashsale status active',
+            ]);
         }
     }
 
@@ -308,27 +309,69 @@ class FlashsaleController extends Controller
 
     public function flashsaleProductUpdate(Request $request, $id)
     {
-        $product = Product::where('id', $id)->first();
+        $flashsaleProduct = FlashsaleProduct::where('flashsale_id', $request->flashsale_id)->where('product_id', $id);
 
-        if($product->flashsale_status == "No"){
-            $product->update([
-                'flashsale_status' => 'Yes',
-                'flashsale_id' => $request->flashsale_id,
-                'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
+        if($flashsaleProduct->exists()){
+            $flashsaleProduct->delete();
+
+            if(!FlashsaleProduct::where('product_id', $id)->exists()){
+                Product::find($id)->update([
+                    'flashsale_status' =>"No",
+                    'updated_by' => Auth::guard('admin')->user()->id,
+                ]);
+            };
+
             return response()->json([
-                'message' => 'Flashsale product inactive',
+                'message' => 'Product remove',
             ]);
         }else{
-            $product->update([
-                'flashsale_status' => 'No',
-                'flashsale_id' => NULL,
+            $flashsaleProduct->create([
+                'flashsale_id' => $request->flashsale_id,
+                'product_id' => $id,
+            ]);
+
+            Product::find($id)->update([
+                'flashsale_status' =>"Yes",
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
+
             return response()->json([
-                'message' => 'Flashsale product active',
+                'message' => 'Product added',
             ]);
         }
+    }
+
+    public function flashsaleAllProductAdded($id)
+    {
+        $productIdsToAdd  = Product::where('flashsale_status', 'No')->pluck('id');
+        Product::whereIn('id', $productIdsToAdd)->update(['flashsale_status' => 'Yes']);
+
+        $flashSale = FlashSale::find($id);
+        $flashSale->products()->attach($productIdsToAdd);
+
+
+        $notification = array(
+            'message' => 'All product added in flashsale.',
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
+    }
+
+    public function flashsaleAllProductRemove($id)
+    {
+        $productIdsToAdd  = FlashsaleProduct::where('flashsale_id', $id)->pluck('product_id');
+        Product::whereIn('id', $productIdsToAdd)->update(['flashsale_status' => 'No']);
+
+        $flashSale = FlashSale::find($id);
+        $flashSale->products()->detach();
+
+        $notification = array(
+            'message' => 'All product remove in flashsale.',
+            'alert-type' => 'warning'
+        );
+
+        return back()->with($notification);
     }
 }
 

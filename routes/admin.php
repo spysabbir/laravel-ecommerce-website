@@ -190,6 +190,8 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('/flashsale/product/added/{id}', [FlashsaleController::class, 'flashsaleProductAdded'])->name('flashsale.product.added');
         Route::get('/flashsale/product/list', [FlashsaleController::class, 'flashsaleProductList'])->name('flashsale.product.list');
         Route::post('/flashsale/product/update/{id}', [FlashsaleController::class, 'flashsaleProductUpdate'])->name('flashsale.product.update');
+        Route::get('/flashsale/all-product/added/{id}', [FlashsaleController::class, 'flashsaleAllProductAdded'])->name('flashsale.all-product.added');
+        Route::get('/flashsale/all-product/remove/{id}', [FlashsaleController::class, 'flashsaleAllProductRemove'])->name('flashsale.all-product.remove');
 
         Route::resource('shipping', ShippingController::class);
         Route::get('/fetch/trashed/shipping', [ShippingController::class, 'fetchTrashedShipping'])->name('fetch.trashed.shipping');

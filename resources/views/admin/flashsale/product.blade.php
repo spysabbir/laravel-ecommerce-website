@@ -14,6 +14,9 @@ Flashsale Product
                     <input type="hidden" name="flashsale_id" id="flashsale_id" value="{{ $flashsale->id }}">
                     <p class="card-text">Product List</p>
                 </div>
+                <div class="action">
+                    <a href="javascript:history.go(-1)" class="btn btn-info btn-block"><i class="fa fa-arrow-left"></i> <span>Go Back</span></a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="filter">
@@ -62,6 +65,10 @@ Flashsale Product
                                 <option value="No">No</option>
                             </select>
                         </div>
+                        <div class="col-lg-2">
+                            <a href="{{ route('flashsale.all-product.added', $flashsale->id) }}" class="btn btn-success btn-sm mb-2">Added All Product</a>
+                            <a href="{{ route('flashsale.all-product.remove', $flashsale->id) }}" class="btn btn-warning btn-sm">Remove All Product</a>
+                        </div>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -71,7 +78,7 @@ Flashsale Product
                                 <th>Sl No</th>
                                 <th>Product Code</th>
                                 <th>Product Photo</th>
-                                <th>Category Details</th>
+                                <th>Product Details</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -97,10 +104,11 @@ Flashsale Product
         // Read Data
         table = $('.all_products_table').DataTable({
             processing: true,
-            //serverSide: true,
+            serverSide: true,
             searching: true,
             ajax: {
-                url: "{{ route('flashsale.product.list') }}",
+                // url: "{{ route('flashsale.product.list') }}",
+                url: "{{ route('flashsale.product.list') }}" + "?flashsale_id=" + $('#flashsale_id').val(),
                 "data":function(e){
                     e.category_id = $('#category_id').val();
                     e.subcategory_id = $('#subcategory_id').val();

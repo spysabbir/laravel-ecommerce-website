@@ -26,7 +26,6 @@ return new class extends Migration
             $table->integer('childcategory_id');
             $table->integer('brand_id');
             $table->string('flashsale_status')->default('No');
-            $table->integer('flashsale_id')->nullable();
             $table->string('today_deal_status')->default('No');
             $table->longText('long_description');
             $table->string('weight')->nullable();
