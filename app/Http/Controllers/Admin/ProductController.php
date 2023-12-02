@@ -8,7 +8,6 @@ use App\Models\Subcategory;
 use App\Models\Brand;
 use App\Models\Childcategory;
 use App\Models\Color;
-use App\Models\Flashsale;
 use App\Models\Product;
 use App\Models\Product_featured_photo;
 use App\Models\Product_inventory;
@@ -85,12 +84,10 @@ class ProductController extends Controller
                         if($row->flashsale_status == "Yes"){
                             return'
                             <span class="badge bg-success">'.$row->flashsale_status.'</span>
-                            <button type="button" id="'.$row->id.'" class="btn btn-info btn-sm editFlashsaleStatusModelBtn" data-toggle="modal" data-target="#editFlashsaleStatusModel"><i class="fa fa-pencil-square-o"></i></button>
                             ';
                         }else{
                             return'
                             <span class="badge bg-warning">'.$row->flashsale_status.'</span>
-                            <button type="button" id="'.$row->id.'" class="btn btn-info btn-sm editFlashsaleStatusModelBtn" data-toggle="modal" data-target="#editFlashsaleStatusModel"><i class="fa fa-pencil-square-o"></i></button>
                             ';
                         }
                     })
@@ -125,10 +122,9 @@ class ProductController extends Controller
         $subcategories = Subcategory::all();
         $childcategories = Childcategory::all();
         $brands = Brand::all();
-        $flashsales = Flashsale::all();
         $colors = Color::all();
         $sizes = Size::all();
-        return view('admin.product.index', compact('categories', 'subcategories', 'childcategories', 'brands', 'flashsales', 'colors', 'sizes'));
+        return view('admin.product.index', compact('categories', 'subcategories', 'childcategories', 'brands', 'colors', 'sizes'));
     }
 
     public function fetchTrashedProduct()
@@ -205,37 +201,30 @@ class ProductController extends Controller
                     'error' => 'Discounted price not more than regular price.',
                 ]);
             }else{
-                if ($request->flashsale_status == "Yes" && $request->flashsale_id == NULL) {
-                    return response()->json([
-                        'status' => 402,
-                        'error' => 'Please select flashsale title.',
-                    ]);
-                } else {
-                    $product_slug = Str::slug($request->product_name).'-'.Str::random(10);
-                    $sku = Str::random(10);
+                $product_slug = Str::slug($request->product_name).'-'.Str::random(10);
+                $sku = Str::random(10);
 
-                    $product_id = Product::insertGetId($request->except('_token', 'discounted_price')+[
-                        'product_slug' => $product_slug,
-                        'discounted_price' => $discounted_price,
-                        'sku' => $sku,
-                        'created_by' => Auth::guard('admin')->user()->id,
-                        'created_at' => Carbon::now(),
-                    ]);
-                    // Product Thumbnail Photo Upload
-                    if($request->hasFile('product_thumbnail_photo')){
-                        $product_thumbnail_photo_name =  $product_id."-".$request->product_name."-Photo".".". $request->file('product_thumbnail_photo')->getClientOriginalExtension();
-                        $upload_link = base_path("public/uploads/product_thumbnail_photo/").$product_thumbnail_photo_name;
-                        Image::make($request->file('product_thumbnail_photo'))->resize(600, 600)->save($upload_link);
-                        Product::find($product_id)->update([
-                            'product_thumbnail_photo' => $product_thumbnail_photo_name,
-                            'updated_by' => Auth::guard('admin')->user()->id
-                        ]);
-                    }
-                    return response()->json([
-                        'status' => 200,
-                        'message' => 'Product create successfully',
+                $product_id = Product::insertGetId($request->except('_token', 'discounted_price')+[
+                    'product_slug' => $product_slug,
+                    'discounted_price' => $discounted_price,
+                    'sku' => $sku,
+                    'created_by' => Auth::guard('admin')->user()->id,
+                    'created_at' => Carbon::now(),
+                ]);
+                // Product Thumbnail Photo Upload
+                if($request->hasFile('product_thumbnail_photo')){
+                    $product_thumbnail_photo_name =  $product_id."-".$request->product_name."-Photo".".". $request->file('product_thumbnail_photo')->getClientOriginalExtension();
+                    $upload_link = base_path("public/uploads/product_thumbnail_photo/").$product_thumbnail_photo_name;
+                    Image::make($request->file('product_thumbnail_photo'))->resize(600, 600)->save($upload_link);
+                    Product::find($product_id)->update([
+                        'product_thumbnail_photo' => $product_thumbnail_photo_name,
+                        'updated_by' => Auth::guard('admin')->user()->id
                     ]);
                 }
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Product create successfully',
+                ]);
             }
         }
     }
@@ -409,46 +398,6 @@ class ProductController extends Controller
             return response()->json([
                 'message' => 'Product status inactive',
             ]);
-        }
-    }
-
-    public function productFlashsaleStatusForm($id)
-    {
-        $product = Product::where('id', $id)->first();
-        return response()->json($product);
-    }
-
-    public function productFlashsaleStatusUpdate(Request $request, $id){
-
-        $product = Product::where('id', $id)->first();
-
-        if($request->flashsale_status == "Yes" && $request->flashsale_id == NULL){
-            return response()->json([
-                'status' => 400,
-            ]);
-        }else{
-            if($request->flashsale_status == NULL && $request->flashsale_id){
-                return response()->json([
-                    'status' => 401,
-                ]);
-            }else{
-                if (!$request->flashsale_status) {
-                    $flashsale_status = "No";
-                } else {
-                    $flashsale_status = $request->flashsale_status;
-                }
-
-                $product->update([
-                    'flashsale_status' => $flashsale_status,
-                    'flashsale_id' => $request->flashsale_id,
-                    'updated_by' => Auth::guard('admin')->user()->id,
-                ]);
-
-                return response()->json([
-                    'status' => 200,
-                    'message' => 'Product flashsale status active',
-                ]);
-            }
         }
     }
 

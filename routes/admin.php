@@ -161,9 +161,6 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('/product/inventory/form/{id}', [ProductController::class, 'productInventoryForm'])->name('product.inventory.form');
         Route::post('/product/inventory/store/{id}', [ProductController::class, 'productInventoryStore'])->name('product.inventory.store');
 
-        Route::get('/product/flashsale/status/form/{id}', [ProductController::class, 'productFlashsaleStatusForm'])->name('product.flashsale.status.form');
-        Route::post('/product/flashsale/status/update/{id}', [ProductController::class, 'productFlashsaleStatusUpdate'])->name('product.flashsale.status.update');
-
         Route::resource('size', SizeController::class);
         Route::get('/fetch/trashed/size', [SizeController::class, 'fetchTrashedSize'])->name('fetch.trashed.size');
         Route::get('/size/restore/{id}', [SizeController::class, 'sizeRestore'])->name('size.restore');
@@ -189,8 +186,6 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('/flashsale/status/{id}', [FlashsaleController::class, 'flashsaleStatus'])->name('flashsale.status');
         Route::get('/flashsale/product/added/{id}', [FlashsaleController::class, 'flashsaleProductAdded'])->name('flashsale.product.added');
         Route::get('/flashsale/manage/product/list/{id}', [FlashsaleController::class, 'flashsaleManageProductList'])->name('flashsale.manage.product.list');
-
-
         Route::post('/flashsale/product/update/{id}', [FlashsaleController::class, 'flashsaleProductUpdate'])->name('flashsale.product.update');
         Route::get('/flashsale/all-product/added/{id}', [FlashsaleController::class, 'flashsaleAllProductAdded'])->name('flashsale.all-product.added');
         Route::get('/flashsale/all-product/remove/{id}', [FlashsaleController::class, 'flashsaleAllProductRemove'])->name('flashsale.all-product.remove');

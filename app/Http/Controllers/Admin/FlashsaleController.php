@@ -362,8 +362,9 @@ class FlashsaleController extends Controller
 
     public function flashsaleAllProductRemove($id)
     {
-        $productIdsToAdd  = FlashsaleProduct::where('flashsale_id', $id)->pluck('product_id');
-        Product::whereIn('id', $productIdsToAdd)->update(['flashsale_status' => 'No']);
+        $productIds  = FlashsaleProduct::where('flashsale_id', '!=', $id)->pluck('product_id');
+        $finalProductIds  = FlashsaleProduct::whereNotIn('product_id', $productIds)->pluck('product_id');
+        Product::whereIn('id', $finalProductIds)->update(['flashsale_status' => 'No']);
 
         $flashSale = FlashSale::find($id);
         $flashSale->products()->detach();

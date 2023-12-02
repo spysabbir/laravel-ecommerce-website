@@ -122,19 +122,6 @@ Product
                                                     value="Yes" id="checkTodayDeal">
                                                 <label class="form-check-label" for="checkTodayDeal">Today Deal Status</label>
                                             </div>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" type="checkbox" name="flashsale_status"
-                                                    value="Yes" id="checkFlashsale" >
-                                                <label class="form-check-label" for="checkFlashsale">Flashsale Status</label>
-                                            </div>
-                                            <label class="form-label">Flashsale Title</label>
-                                            <select class="form-control" name="flashsale_id">
-                                                <option value="">--Select Flashsale--</option>
-                                                @foreach ($flashsales as $flashsale)
-                                                <option value="{{$flashsale->id}}">{{$flashsale->flashsale_offer_name}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span id="flashsale_id_error" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -249,48 +236,6 @@ Product
                             </tr>
                         </thead>
                         <tbody id="all_products">
-                            <!-- editFlashsaleStatusModel -->
-                            <div class="modal fade" id="editFlashsaleStatusModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit Flashsale Status</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                        <form action="#" id="edit_flashsale_status_form" method="POST">
-                                            @csrf
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <input type="hidden" name="product_id" id="product_id">
-                                                    <div class="col-lg-12 mb-3" >
-                                                        <div class="form-check mb-3">
-                                                            <input type="checkbox" class="form-check-input flashsale_status" value="Yes" name="flashsale_status" id="check_flashsale">
-                                                            <label class="form-check-label" for="check_flashsale">Flashsale Status</label>
-                                                        </div>
-                                                        <span id="update_flashsale_status_error" class="text-danger"></span>
-                                                    </div>
-                                                    <div class="col-lg-6 mb-3" >
-                                                        <label class="form-label">Flashsale Title</label>
-                                                        <select class="form-control" name="flashsale_id" id="flashsale_id">
-                                                            <option value="">--Select Flashsale--</option>
-                                                            @foreach ($flashsales as $flashsale)
-                                                            <option value="{{$flashsale->id}}" >{{$flashsale->flashsale_offer_name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span id="update_flashsale_id_error" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" id="edit_flashsale_status_btn" class="btn btn-primary">Update Flashsale Status</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- View Product Details Model -->
                             <div class="modal fade" id="viewProductDetailsModel" tabindex="-1" aria-labelledby="viewProductDetailsModelLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -657,7 +602,6 @@ Product
                 beforeSend:function(){
                     $(document).find('span.error-text').text('');
                     $('#discounted_price_error').html('');
-                    $('#flashsale_id_error').html('');
                 },
                 success: function(response) {
                     if (response.status == 400) {
@@ -670,15 +614,11 @@ Product
                             $('#discounted_price_error').html(response.error);
                         }
                         else{
-                            if (response.status == 402) {
-                                $('#flashsale_id_error').html(response.error);
-                            } else {
-                                toastr.success(response.message);
-                                table.ajax.reload(null, false);
-                                $("#create_product_btn").text('Add Product');
-                                $("#create_product_form")[0].reset();
-                                $("#createProductModel").modal('hide');
-                            }
+                            toastr.success(response.message);
+                            table.ajax.reload(null, false);
+                            $("#create_product_btn").text('Add Product');
+                            $("#create_product_form")[0].reset();
+                            $("#createProductModel").modal('hide');
                         }
                     }
                 }
@@ -875,69 +815,6 @@ Product
                 }
             });
         })
-
-        // Edit Flashsale Status Form
-        $(document).on('click', '.editFlashsaleStatusModelBtn', function(e){
-            e.preventDefault();
-            var id = $(this).attr('id');
-            var url = "{{ route('product.flashsale.status.form', ":id") }}";
-            url = url.replace(':id', id)
-            $.ajax({
-                url:  url,
-                method: 'GET',
-                success: function(response) {
-                    $("#flashsale_id").val(response.flashsale_id);
-                    $('#product_id').val(response.id)
-                    if (response.flashsale_status == "Yes") {
-                        $(".flashsale_status").prop( "checked", true );
-                    } else {
-                        $(".flashsale_status").prop( "checked", false );
-                    }
-                }
-            });
-        })
-
-        // Remove Flashsale Id
-        $(document).on('click', '.flashsale_status', function(e){
-            $('#flashsale_id').val('')
-        })
-
-        // Update Flashsale Status Data
-        $("#edit_flashsale_status_form").submit(function(e) {
-            e.preventDefault();
-            var id = $('#product_id').val();
-            var url = "{{ route('product.flashsale.status.update', ":id") }}";
-            url = url.replace(':id', id)
-            const form_data = new FormData(this);
-            $("#edit_flashsale_status_btn").text('Updating...');
-            $.ajax({
-                url: url,
-                method: 'POST',
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                beforeSend:function(){
-                    $('#update_flashsale_id_error').html('');
-                },
-                success: function(response) {
-                    if (response.status == 400) {
-                        $('#update_flashsale_id_error').html('Please select flashsale title.');
-                    }
-                    else{
-                        if(response.status == 401){
-                            $('#update_flashsale_status_error').html('Please check flashsale status.');
-                        }else{
-                            toastr.info(response.message);
-                            table.ajax.reload(null, false);
-                            $("#edit_flashsale_status_btn").text('Updated Status');
-                            $("#editFlashsaleStatusModel").modal('hide');
-                        }
-                    }
-                }
-            });
-        });
 
         // Featured Photo Form
         $(document).on('click', '.featuredPhotoModelBtn', function(e){

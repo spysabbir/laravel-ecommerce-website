@@ -28,13 +28,6 @@
         <p class="card-title"><strong>Childcategory Name: </strong> {{ $product->relationtochildcategory->childcategory_name }}</p>
         <p class="card-title"><strong>Brand Name: </strong> {{ $product->relationtobrand->brand_name }}</p>
         <p class="card-title"><strong>Flashsale Status: </strong> {{ $product->flashsale_status }}</p>
-        <p class="card-title"><strong>Flashsale Name: </strong>
-            @if ( $product->flashsale_status == 'Yes')
-            {{ $product->relationtoflashsale->flashsale_offer_name }}
-            @else
-                N/A
-            @endif
-        </p>
         <p class="card-title"><strong>Today Deal Status:</strong> {{ $product->today_deal_status }}</p>
         <p class="card-title"><strong>Long Description:</strong> {{  $product->long_description  }}</p>
         <p class="card-title"><strong>Weight:</strong> {{ $product->weight }}</p>
