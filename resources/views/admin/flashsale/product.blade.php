@@ -102,13 +102,16 @@ Flashsale Product
             }
         });
         // Read Data
+        let id =  $('#flashsale_id').val();
+        var url = "{{ route('flashsale.manage.product.list', ":id") }}";
+        url = url.replace(':id', id);
+        
         table = $('.all_products_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
             ajax: {
-                // url: "{{ route('flashsale.product.list') }}",
-                url: "{{ route('flashsale.product.list') }}" + "?flashsale_id=" + $('#flashsale_id').val(),
+                url: url,
                 "data":function(e){
                     e.category_id = $('#category_id').val();
                     e.subcategory_id = $('#subcategory_id').val();

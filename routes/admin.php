@@ -188,7 +188,9 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('/flashsale/forcedelete/{id}', [FlashsaleController::class, 'flashsaleForceDelete'])->name('flashsale.forcedelete');
         Route::get('/flashsale/status/{id}', [FlashsaleController::class, 'flashsaleStatus'])->name('flashsale.status');
         Route::get('/flashsale/product/added/{id}', [FlashsaleController::class, 'flashsaleProductAdded'])->name('flashsale.product.added');
-        Route::get('/flashsale/product/list', [FlashsaleController::class, 'flashsaleProductList'])->name('flashsale.product.list');
+        Route::get('/flashsale/manage/product/list/{id}', [FlashsaleController::class, 'flashsaleManageProductList'])->name('flashsale.manage.product.list');
+
+
         Route::post('/flashsale/product/update/{id}', [FlashsaleController::class, 'flashsaleProductUpdate'])->name('flashsale.product.update');
         Route::get('/flashsale/all-product/added/{id}', [FlashsaleController::class, 'flashsaleAllProductAdded'])->name('flashsale.all-product.added');
         Route::get('/flashsale/all-product/remove/{id}', [FlashsaleController::class, 'flashsaleAllProductRemove'])->name('flashsale.all-product.remove');

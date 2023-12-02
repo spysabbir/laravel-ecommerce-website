@@ -245,7 +245,8 @@ class FlashsaleController extends Controller
         return view('admin.flashsale.product', compact('categories', 'subcategories', 'childcategories', 'brands', 'flashsale'));
     }
 
-    public function flashsaleProductList(Request $request){
+    public function flashsaleManageProductList(Request $request, $id){
+        $get_flashsale_id = $id;
         if ($request->ajax()) {
             $products = "";
             $query = DB::table('products')
@@ -287,16 +288,17 @@ class FlashsaleController extends Controller
                         <span class="badge badge-primary">Brand: '.$row->brand_name.'</span>
                         ';
                     })
-                    ->addColumn('action', function($row){
-                        if($row->flashsale_status == "Yes"){
+                    ->addColumn('action', function($row) use ($get_flashsale_id){
+                        $flashsaleCount = FlashsaleProduct::where('product_id', $row->id)->where('flashsale_id', $get_flashsale_id)->count();
+                        if($row->flashsale_status == "Yes" && $flashsaleCount > 0){
                             $btn = '
-                            <span class="badge bg-success">'.$row->flashsale_status.'</span>
+                            <span class="badge bg-success">Yes</span>
                             <button type="button" id="'.$row->id.'" class="btn btn-danger btn-sm flashsaleProductAddedBtn"><i class="fa fa-ban"></i></button>
                             ';
                             return $btn;
                         }else{
                             $btn = '
-                            <span class="badge bg-warning">'.$row->flashsale_status.'</span>
+                            <span class="badge bg-warning">No</span>
                             <button type="button" id="'.$row->id.'" class="btn btn-success btn-sm flashsaleProductAddedBtn"><i class="fa fa-check"></i></button>
                             ';
                             return $btn;
@@ -343,7 +345,7 @@ class FlashsaleController extends Controller
 
     public function flashsaleAllProductAdded($id)
     {
-        $productIdsToAdd  = Product::where('flashsale_status', 'No')->pluck('id');
+        $productIdsToAdd  = Product::where('status', 'Yes')->pluck('id');
         Product::whereIn('id', $productIdsToAdd)->update(['flashsale_status' => 'Yes']);
 
         $flashSale = FlashSale::find($id);
