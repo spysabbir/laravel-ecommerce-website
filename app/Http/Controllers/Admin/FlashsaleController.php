@@ -109,27 +109,35 @@ class FlashsaleController extends Controller
                 'error'=> $validator->errors()->toArray()
             ]);
         }else{
-            $flashsale_offer_slug = Str::slug($request->flashsale_offer_name);
-            // Offer Banner Photo Upload
-            $flashsale_offer_banner_photo_name = "Offer-Banner-Photo-".Str::random(5).".". $request->file('flashsale_offer_banner_photo')->getClientOriginalExtension();
-            $upload_link = base_path("public/uploads/flashsale_offer_banner_photo/").$flashsale_offer_banner_photo_name;
-            Image::make($request->file('flashsale_offer_banner_photo'))->resize(640, 315)->save($upload_link);
+            if ($request->flashsale_offer_type == 'Flat' && $request->flashsale_minimum_product_price <= $request->flashsale_offer_amount) {
+                return response()->json([
+                    'status' => 401,
+                    'message' => 'Flashsale offer amount less than minimum product price.',
+                ]);
+            } else {
+                $flashsale_offer_slug = Str::slug($request->flashsale_offer_name);
+                // Offer Banner Photo Upload
+                $flashsale_offer_banner_photo_name = "Offer-Banner-Photo-".Str::random(5).".". $request->file('flashsale_offer_banner_photo')->getClientOriginalExtension();
+                $upload_link = base_path("public/uploads/flashsale_offer_banner_photo/").$flashsale_offer_banner_photo_name;
+                Image::make($request->file('flashsale_offer_banner_photo'))->resize(640, 315)->save($upload_link);
 
-            Flashsale::insert([
-                'flashsale_offer_name' => $request->flashsale_offer_name,
-                'flashsale_offer_slug' => $flashsale_offer_slug,
-                'flashsale_offer_type' => $request->flashsale_offer_type,
-                'flashsale_offer_amount' => $request->flashsale_offer_amount,
-                'flashsale_offer_start_date' => $request->flashsale_offer_start_date,
-                'flashsale_offer_end_date' => $request->flashsale_offer_end_date,
-                'flashsale_offer_banner_photo' => $flashsale_offer_banner_photo_name,
-                'created_by' => Auth::guard('admin')->user()->id,
-                'created_at' => Carbon::now(),
-            ]);
-            return response()->json([
-                'status' => 200,
-                'message' => 'Flashsale create successfully',
-            ]);
+                Flashsale::insert([
+                    'flashsale_offer_name' => $request->flashsale_offer_name,
+                    'flashsale_offer_slug' => $flashsale_offer_slug,
+                    'flashsale_offer_type' => $request->flashsale_offer_type,
+                    'flashsale_offer_amount' => $request->flashsale_offer_amount,
+                    'flashsale_minimum_product_price' => $request->flashsale_minimum_product_price,
+                    'flashsale_offer_start_date' => $request->flashsale_offer_start_date,
+                    'flashsale_offer_end_date' => $request->flashsale_offer_end_date,
+                    'flashsale_offer_banner_photo' => $flashsale_offer_banner_photo_name,
+                    'created_by' => Auth::guard('admin')->user()->id,
+                    'created_at' => Carbon::now(),
+                ]);
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Flashsale create successfully',
+                ]);
+            }
         }
     }
 
@@ -154,32 +162,40 @@ class FlashsaleController extends Controller
                 'error'=> $validator->errors()->toArray()
             ]);
         }else{
-            $flashsale_offer_slug = Str::slug($request->flashsale_offer_name);
-            // Offer Banner Photo Upload
-            if($request->hasFile('flashsale_offer_banner_photo')){
-                unlink(base_path("public/uploads/flashsale_offer_banner_photo/").$flashsale->flashsale_offer_banner_photo);
-                $flashsale_offer_banner_photo_name = "Offer-Banner-Photo-".Str::random(5).".". $request->file('flashsale_offer_banner_photo')->getClientOriginalExtension();
-                $upload_link = base_path("public/uploads/flashsale_offer_banner_photo/").$flashsale_offer_banner_photo_name;
-                Image::make($request->file('flashsale_offer_banner_photo'))->resize(640, 315)->save($upload_link);
+            if ($request->flashsale_offer_type == 'Flat' && $request->flashsale_minimum_product_price <= $request->flashsale_offer_amount) {
+                return response()->json([
+                    'status' => 401,
+                    'message' => 'Flashsale offer amount less than minimum product price.',
+                ]);
+            } else {
+                $flashsale_offer_slug = Str::slug($request->flashsale_offer_name);
+                // Offer Banner Photo Upload
+                if($request->hasFile('flashsale_offer_banner_photo')){
+                    unlink(base_path("public/uploads/flashsale_offer_banner_photo/").$flashsale->flashsale_offer_banner_photo);
+                    $flashsale_offer_banner_photo_name = "Offer-Banner-Photo-".Str::random(5).".". $request->file('flashsale_offer_banner_photo')->getClientOriginalExtension();
+                    $upload_link = base_path("public/uploads/flashsale_offer_banner_photo/").$flashsale_offer_banner_photo_name;
+                    Image::make($request->file('flashsale_offer_banner_photo'))->resize(640, 315)->save($upload_link);
+                    $flashsale->update([
+                        'flashsale_offer_banner_photo' => $flashsale_offer_banner_photo_name,
+                        'updated_by' => Auth::guard('admin')->user()->id,
+                    ]);
+                }
+
                 $flashsale->update([
-                    'flashsale_offer_banner_photo' => $flashsale_offer_banner_photo_name,
+                    'flashsale_offer_name' => $request->flashsale_offer_name,
+                    'flashsale_offer_slug' => $flashsale_offer_slug,
+                    'flashsale_offer_type' => $request->flashsale_offer_type,
+                    'flashsale_offer_amount' => $request->flashsale_offer_amount,
+                    'flashsale_minimum_product_price' => $request->flashsale_minimum_product_price,
+                    'flashsale_offer_start_date' => $request->flashsale_offer_start_date,
+                    'flashsale_offer_end_date' => $request->flashsale_offer_end_date,
                     'updated_by' => Auth::guard('admin')->user()->id,
                 ]);
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Flashsale update successfully',
+                ]);
             }
-
-            $flashsale->update([
-                'flashsale_offer_name' => $request->flashsale_offer_name,
-                'flashsale_offer_slug' => $flashsale_offer_slug,
-                'flashsale_offer_type' => $request->flashsale_offer_type,
-                'flashsale_offer_amount' => $request->flashsale_offer_amount,
-                'flashsale_offer_start_date' => $request->flashsale_offer_start_date,
-                'flashsale_offer_end_date' => $request->flashsale_offer_end_date,
-                'updated_by' => Auth::guard('admin')->user()->id,
-            ]);
-            return response()->json([
-                'status' => 200,
-                'message' => 'Flashsale update successfully',
-            ]);
         }
     }
 
@@ -247,6 +263,7 @@ class FlashsaleController extends Controller
 
     public function flashsaleManageProductList(Request $request, $id){
         $get_flashsale_id = $id;
+        $flashSale = FlashSale::find($get_flashsale_id);
         if ($request->ajax()) {
             $products = "";
             $query = DB::table('products')
@@ -274,7 +291,7 @@ class FlashsaleController extends Controller
             $products = $query->select('products.*', 'categories.category_name', 'subcategories.subcategory_name', 'childcategories.childcategory_name', 'brands.brand_name')
             ->get();
 
-            return Datatables::of($products->where('status', 'Yes'))
+            return Datatables::of($products->where('status', 'Yes')->where('regular_price', '>', $flashSale->flashsale_minimum_product_price))
                     ->addIndexColumn()
                     ->editColumn('product_thumbnail_photo', function($row){
                         return '<img src="'.asset('uploads/product_thumbnail_photo').'/'.$row->product_thumbnail_photo.'" width="40" >';
@@ -345,10 +362,10 @@ class FlashsaleController extends Controller
 
     public function flashsaleAllProductAdded($id)
     {
-        $productIdsToAdd  = Product::where('status', 'Yes')->pluck('id');
+        $flashSale = FlashSale::find($id);
+        $productIdsToAdd  = Product::where('status', 'Yes')->where('regular_price', '>', $flashSale->flashsale_minimum_product_price)->pluck('id');
         Product::whereIn('id', $productIdsToAdd)->update(['flashsale_status' => 'Yes']);
 
-        $flashSale = FlashSale::find($id);
         $flashSale->products()->attach($productIdsToAdd);
 
 

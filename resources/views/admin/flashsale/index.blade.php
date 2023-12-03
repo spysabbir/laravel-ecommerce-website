@@ -50,9 +50,14 @@ Flashsale
                                             <span class="text-danger error-text flashsale_offer_type_error"></span>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label class="form-label">Flashsale Offer Amount</label>
-                                            <input type="number" name="flashsale_offer_amount" class="form-control" placeholder="Flashsale Offer Amount">
+                                            <label class="form-label">Flashsale Offer Amount / Percentage</label>
+                                            <input type="number" name="flashsale_offer_amount" class="form-control" placeholder="Flashsale Offer Amount / Percentage">
                                             <span class="text-danger error-text flashsale_offer_amount_error"></span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label class="form-label">Flashsale Minimum Product Price</label>
+                                            <input type="number" name="flashsale_minimum_product_price" class="form-control" placeholder="Flashsale Minimum Product Price">
+                                            <span class="text-danger error-text flashsale_minimum_product_price_error"></span>
                                         </div>
                                         <div class="col-lg-6">
                                             <label class="form-label">Flashsale Offer Start Date</label>
@@ -132,6 +137,7 @@ Flashsale
                                 <th>Flashsale Name</th>
                                 <th>Flashsale Offer Type</th>
                                 <th>Flashsale Offer Amount</th>
+                                <th>Flashsale Minimum Product Price</th>
                                 <th>Flashsale Offer Duration</th>
                                 <th>Flashsale Status</th>
                                 <th>Action</th>
@@ -173,6 +179,11 @@ Flashsale
                                                         <label class="form-label">Flashsale Offer Amount</label>
                                                         <input type="number" name="flashsale_offer_amount" id="flashsale_offer_amount" class="form-control" placeholder="Flashsale Offer Amount">
                                                         <span class="text-danger error-text update_flashsale_offer_amount_error"></span>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <label class="form-label">Flashsale Minimum Product Price</label>
+                                                        <input type="number" name="flashsale_minimum_product_price" id="flashsale_minimum_product_price" class="form-control" placeholder="Flashsale Minimum Product Price">
+                                                        <span class="text-danger error-text update_flashsale_minimum_product_price_error"></span>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label class="form-label">Flashsale Offer Start Date</label>
@@ -246,6 +257,7 @@ Flashsale
                 {data: 'flashsale_offer_name', name: 'flashsale_offer_name'},
                 {data: 'flashsale_offer_type', name: 'flashsale_offer_type'},
                 {data: 'flashsale_offer_amount', name: 'flashsale_offer_amount'},
+                {data: 'flashsale_minimum_product_price', name: 'flashsale_minimum_product_price'},
                 {data: 'flashsale_offer_duration', name: 'flashsale_offer_duration'},
                 {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -279,11 +291,15 @@ Flashsale
                             $('span.'+prefix+'_error').text(val[0]);
                         })
                     }else{
-                        toastr.success(response.message);
-                        table.ajax.reload(null, false);
-                        $("#create_flashsale_btn").text('Add Flashsale');
-                        $("#create_flashsale_form")[0].reset();
-                        $("#createFlashsaleModel").modal('hide');
+                        if (response.status == 401) {
+                            toastr.error(response.message);
+                        }else{
+                            toastr.success(response.message);
+                            table.ajax.reload(null, false);
+                            $("#create_flashsale_btn").text('Add Flashsale');
+                            $("#create_flashsale_form")[0].reset();
+                            $("#createFlashsaleModel").modal('hide');
+                        }
                     }
                 }
             });
@@ -302,6 +318,7 @@ Flashsale
                     $("#flashsale_offer_name").val(response.flashsale_offer_name);
                     $("#flashsale_offer_type").val(response.flashsale_offer_type);
                     $("#flashsale_offer_amount").val(response.flashsale_offer_amount);
+                    $("#flashsale_minimum_product_price").val(response.flashsale_minimum_product_price);
                     $("#flashsale_offer_start_date").val(response.flashsale_offer_start_date);
                     $("#flashsale_offer_end_date").val(response.flashsale_offer_end_date);
                     $('#flashsale_offer_banner_photo').val(response.flashsale_offer_banner_photo)
@@ -333,11 +350,15 @@ Flashsale
                         })
                     }
                     else{
-                        toastr.success(response.message);
-                        table.ajax.reload(null, false);
-                        $("#edit_flashsale_btn").text('Updated Flashsale');
-                        $("#edit_flashsale_form")[0].reset();
-                        $("#editFlashsaleModel").modal('hide');
+                        if (response.status == 401) {
+                            toastr.error(response.message);
+                        }else{
+                            toastr.success(response.message);
+                            table.ajax.reload(null, false);
+                            $("#edit_flashsale_btn").text('Updated Flashsale');
+                            $("#edit_flashsale_form")[0].reset();
+                            $("#editFlashsaleModel").modal('hide');
+                        }
                     }
                 }
             });

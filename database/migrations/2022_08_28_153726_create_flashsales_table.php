@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('flashsale_offer_slug');
             $table->string('flashsale_offer_type');
             $table->float('flashsale_offer_amount');
+            $table->float('flashsale_minimum_product_price');
             $table->dateTime('flashsale_offer_start_date');
             $table->dateTime('flashsale_offer_end_date');
             $table->string('flashsale_offer_banner_photo');
