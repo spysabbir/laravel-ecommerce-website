@@ -37,7 +37,6 @@ All Flashsale
 <section class="brand-area brand-area-d pt-40">
     <div class="container">
         <div class="row pt-50 pb-45">
-
             @forelse ($flashsales as $flashsale)
             <div class="col-xl-12 mb-3">
                 <div class="shop-banner mb-30">
@@ -49,7 +48,6 @@ All Flashsale
                             <p class="m-0 p-0"><strong>Offer : </strong>{{ $flashsale->flashsale_offer_amount }} {{ ($flashsale->flashsale_offer_type == 'Percentage') ? '%' : '৳' }}</p>
                             <p class="m-0 p-0"><strong>Start End: </strong>{{ date('d-M-Y H:i:s A', strtotime($flashsale->flashsale_offer_start_date)) }}</p>
                             <p class="m-0 p-0"><strong>Offer End: </strong>{{ date('d-M-Y H:i:s A', strtotime($flashsale->flashsale_offer_end_date)) }}</p>
-                            <input type="hidden" value="{{ $flashsale->id }}" name="flashsale_id" id="flashsale_id">
                         </div>
                     </div>
                 </div>

@@ -355,12 +355,9 @@ eCommerce | Home
             </div>
         </div>
         <div class="row align-items-center">
-            @forelse ($top_selling_products as $product)
-            @php
-                $flashsale = App\Models\Flashsale::where('id', $product->flashsale_id)->first()
-            @endphp
+            @foreach ($top_selling_products as $product)
             @if ($loop->first == 1)
-            <div class="col-xl-5 col-lg-12">
+            <div class="col-xl-5 col-md-12">
                 <div class="single-features-item single-features-item-d b-radius mb-20">
                     <div class="row  g-0 align-items-center">
                         <div class="col-md-6">
@@ -378,15 +375,7 @@ eCommerce | Home
                                 @else
                                     @if ($product->discounted_price != $product->regular_price)
                                     <div class="product__offer">
-                                        @if ($product->flashsale_status == "Yes")
-                                            @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                                                <span class="discount">{{100-round((($product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)))/$product->regular_price) * 100, 1)}}% OFF</span>
-                                            @else
-                                                <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
-                                            @endif
-                                        @else
-                                            <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
-                                        @endif
+                                        <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF<span>
                                     </div>
                                     @endif
                                 @endif
@@ -438,19 +427,7 @@ eCommerce | Home
                                 </div>
                                 <div class="price d-price">
                                     <span class="text-danger"><del>৳ {{$product->regular_price}}</del></span>
-                                    @if ($product->flashsale_status == "Yes")
-                                        @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                                            @if($flashsale->flashsale_offer_type == 'Percentage')
-                                            ৳ {{ $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}
-                                            @else
-                                            ৳ {{ $product->regular_price - $flashsale->flashsale_offer_amount }}
-                                            @endif
-                                        @else
-                                            ৳ {{$product->discounted_price}}
-                                        @endif
-                                    @else
                                     ৳ {{$product->discounted_price}}
-                                    @endif
                                 </div>
                                 <div class="features-des mb-25">
                                     {!! Str::words($product->short_description, 15, '...') !!}
@@ -461,23 +438,12 @@ eCommerce | Home
                 </div>
             </div>
             @endif
-            @empty
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="alert alert-warning text-center" role="alert">
-                            <strong>Top Selling Product Item Not Found!</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforelse
+            @endforeach
+
+
             <div class="col-xl-7 col-lg-12">
                 <div class="row d-flex align-items-center">
                     @foreach ($top_selling_products as $product)
-                    @php
-                        $flashsale = App\Models\Flashsale::where('id', $product->flashsale_id)->first()
-                    @endphp
                     @if ($loop->first != 1)
                     <div class="col-md-6">
                         <div class="single-features-item b-radius mb-20">
@@ -496,15 +462,7 @@ eCommerce | Home
                                         @else
                                             @if ($product->discounted_price != $product->regular_price)
                                             <div class="product__offer">
-                                                @if ($product->flashsale_status == "Yes")
-                                                    @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                                                        <span class="discount">{{100-round((($product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)))/$product->regular_price) * 100, 1)}}% OFF</span>
-                                                    @else
-                                                        <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
-                                                    @endif
-                                                @else
-                                                    <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
-                                                @endif
+                                                <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
                                             </div>
                                             @endif
                                         @endif
@@ -551,19 +509,7 @@ eCommerce | Home
                                         <span>({{ $product_reviews->count() }} review)</span>
                                         <div class="price d-price">
                                             <span class="text-danger"><del>৳ {{$product->regular_price}}</del></span>
-                                            @if ($product->flashsale_status == "Yes")
-                                                @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                                                    @if($flashsale->flashsale_offer_type == 'Percentage')
-                                                    ৳ {{ $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}
-                                                    @else
-                                                    ৳ {{ $product->regular_price - $flashsale->flashsale_offer_amount }}
-                                                    @endif
-                                                @else
-                                                    ৳ {{$product->discounted_price}}
-                                                @endif
-                                            @else
                                             ৳ {{$product->discounted_price}}
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -571,10 +517,10 @@ eCommerce | Home
                         </div>
                     </div>
                     @endif
-
                     @endforeach
                 </div>
             </div>
+
         </div>
     </div>
 </section>

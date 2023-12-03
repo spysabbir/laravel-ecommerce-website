@@ -20,6 +20,7 @@ use App\Models\Contact_message;
 use App\Models\Default_setting;
 use App\Models\Faq;
 use App\Models\Flashsale;
+use App\Models\FlashsaleProduct;
 use App\Models\Order_summery;
 use App\Models\Page_setting;
 use App\Models\Review;
@@ -154,7 +155,8 @@ class FrontendController extends Controller
         $filter_products = Product::where('status', "Yes");
 
         if($request->flashsale_id){
-            $filter_products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $request->flashsale_id);
+            $flashsaleProductIds = FlashsaleProduct::where('flashsale_id', $request->flashsale_id)->pluck('product_id');
+            $filter_products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds);
         }
 
         if($request->search_data){
@@ -197,7 +199,8 @@ class FrontendController extends Controller
         $filter_products = Product::where('status', "Yes");
 
         if($request->flashsale_id){
-            $filter_products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $request->flashsale_id);
+            $flashsaleProductIds = FlashsaleProduct::where('flashsale_id', $request->flashsale_id)->pluck('product_id');
+            $filter_products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds);
         }
 
         if($request->search_data){
@@ -228,7 +231,8 @@ class FrontendController extends Controller
         $filter_products = Product::where('status', "Yes");
 
         if($request->flashsale_id){
-            $filter_products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $request->flashsale_id);
+            $flashsaleProductIds = FlashsaleProduct::where('flashsale_id', $request->flashsale_id)->pluck('product_id');
+            $filter_products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds);
         }
 
         if($request->search_data){
@@ -429,12 +433,14 @@ class FrontendController extends Controller
     {
         $flashsale = Flashsale::where('status', 'Yes')->where('flashsale_offer_slug', $slug)->first();
 
-        $categories = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $flashsale->id)->select('category_id')->groupBy('category_id')->get();
-        $subcategories = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $flashsale->id)->select('subcategory_id')->groupBy('subcategory_id')->get();
-        $childcategories = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $flashsale->id)->select('childcategory_id')->groupBy('childcategory_id')->get();
-        $brands = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $flashsale->id)->select('brand_id')->groupBy('brand_id')->get();
+        $flashsaleProductIds = FlashsaleProduct::where('flashsale_id', $flashsale->id)->pluck('product_id');
 
-        $products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->where('flashsale_id', $flashsale->id)->paginate(16);
+        $categories = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds)->select('category_id')->groupBy('category_id')->get();
+        $subcategories = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds)->select('subcategory_id')->groupBy('subcategory_id')->get();
+        $childcategories = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds)->select('childcategory_id')->groupBy('childcategory_id')->get();
+        $brands = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds)->select('brand_id')->groupBy('brand_id')->get();
+
+        $products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds)->paginate(16);
         $top_view_products = Product::where('status', 'Yes')->orderBy('view_count', 'DESC')->limit(8)->get();
         return view('frontend.product.flashsale-product', compact('categories', 'subcategories', 'childcategories', 'products', 'brands', 'flashsale', 'top_view_products'));
     }
