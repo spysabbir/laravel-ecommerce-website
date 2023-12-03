@@ -1,6 +1,3 @@
-@php
-    $flashsale = App\Models\Flashsale::where('id', $product->flashsale_id)->first()
-@endphp
 <div class="product__item swiper-slide">
     <div class="product__thumb fix">
         <div class="product-image w-img">
@@ -15,15 +12,7 @@
         @else
             @if ($product->discounted_price != $product->regular_price)
             <div class="product__offer">
-                @if ($product->flashsale_status == "Yes")
-                    @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                        <span class="discount">{{100-round((($product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)))/$product->regular_price) * 100, 1)}}% OFF</span>
-                    @else
-                        <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
-                    @endif
-                @else
-                    <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
-                @endif
+                <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
             </div>
             @endif
         @endif
@@ -67,19 +56,7 @@
 
         <div class="price mb-10">
             <span class="text-danger"><del>৳ {{$product->regular_price}}</del></span>
-            @if ($product->flashsale_status == "Yes")
-                @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                    @if($flashsale->flashsale_offer_type == 'Percentage')
-                    ৳ {{ $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}
-                    @else
-                    ৳ {{ $product->regular_price - $flashsale->flashsale_offer_amount }}
-                    @endif
-                @else
-                    ৳ {{$product->discounted_price}}
-                @endif
-            @else
             ৳ {{$product->discounted_price}}
-            @endif
         </div>
     </div>
     <div class="product__add-cart text-center">

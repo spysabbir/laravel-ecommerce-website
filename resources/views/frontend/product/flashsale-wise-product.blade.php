@@ -119,7 +119,7 @@
                 <div class="product-list my-3">
                     <div class="tp-wrapper">
                         <div class="row g-0" id="filteringResult">
-                            @include('frontend.part.product-list')
+                            @include('frontend.part.flashsale-product-list')
                         </div>
                     </div>
                 </div>

@@ -442,7 +442,7 @@ class FrontendController extends Controller
 
         $products = Product::where('flashsale_status', 'Yes')->where('status', 'Yes')->whereIn('id', $flashsaleProductIds)->paginate(16);
         $top_view_products = Product::where('status', 'Yes')->orderBy('view_count', 'DESC')->limit(8)->get();
-        return view('frontend.product.flashsale-product', compact('categories', 'subcategories', 'childcategories', 'products', 'brands', 'flashsale', 'top_view_products'));
+        return view('frontend.product.flashsale-wise-product', compact('categories', 'subcategories', 'childcategories', 'products', 'brands', 'flashsale', 'top_view_products'));
     }
 
 

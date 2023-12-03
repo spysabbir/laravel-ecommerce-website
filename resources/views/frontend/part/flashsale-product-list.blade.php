@@ -1,4 +1,7 @@
 @forelse ($products as $product)
+@php
+    $flashsale = App\Models\Flashsale::find($flashsale->id)
+@endphp
 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
     <div class="product__item product__item-d">
         <div class="product__thumb fix">
@@ -15,7 +18,18 @@
             @else
                 @if ($product->discounted_price != $product->regular_price)
                 <div class="product__offer">
-                    <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
+                    @if ($product->flashsale_status == "Yes")
+                        @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
+                            <span class="discount">
+                                {{-- {{100-round((($product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)))/$product->regular_price) * 100, 1)}} --}}
+                                {{round(($flashsale->flashsale_offer_amount/$product->regular_price) * 100, 2)}}
+                                % OFF</span>
+                        @else
+                            <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
+                        @endif
+                    @else
+                        <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
+                    @endif
                 </div>
                 @endif
             @endif
@@ -58,7 +72,19 @@
             </div>
             <div class="price mb-10">
                 <span class="text-danger"><del>৳ {{$product->regular_price}}</del></span>
-                ৳ {{$product->discounted_price}}
+                @if ($product->flashsale_status == "Yes")
+                    @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
+                        @if($flashsale->flashsale_offer_type == 'Percentage')
+                            ৳ {{ $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}
+                        @else
+                            ৳ {{ $product->regular_price - $flashsale->flashsale_offer_amount }}
+                        @endif
+                    @else
+                        ৳ {{$product->discounted_price}}
+                    @endif
+                @else
+                    ৳ {{$product->discounted_price}}
+                @endif
             </div>
         </div>
         <div class="product__add-cart-s text-center">
