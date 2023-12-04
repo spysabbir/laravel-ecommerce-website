@@ -278,6 +278,14 @@ class FrontendController extends Controller
         return view('frontend.product.quick-view-product', compact('product', 'product_reviews'));
     }
 
+    public function quickViewFlashsaleProduct($productId, $flashsaleId)
+    {
+        $product = Product::where('id', $productId)->first();
+        $flashsale = Flashsale::where('id', $flashsaleId)->first();
+        $product_reviews = Review::where('product_id', $product->id)->get();
+        return view('frontend.product.quick-view-flashsale-product', compact('product', 'flashsale', 'product_reviews'));
+    }
+
     public function productDetails($product_slug)
     {
         Product::where('status', 'Yes')->where('product_slug', $product_slug)->increment('view_count');
@@ -289,6 +297,20 @@ class FrontendController extends Controller
         $product_inventories = Product_inventory::where('product_id', $product->id)->select('color_id')->groupBy('color_id')->get();
 
         return view('frontend.product.product-details', compact('product', 'product_reviews', 'product_featured_photos', 'related_products', 'sum_quantity_inventories', 'product_inventories'));
+    }
+
+    public function flashsaleProductDetails($flashsaleSlug, $productSlug)
+    {
+        Product::where('status', 'Yes')->where('product_slug', $productSlug)->increment('view_count');
+        $product = Product::where('status', 'Yes')->where('product_slug', $productSlug)->first();
+        $product_featured_photos = Product_featured_photo::where('product_id', $product->id)->get();
+        $sum_quantity_inventories = Product_inventory::where('product_id', $product->id)->sum('quantity');
+        $related_products = Product::where('subcategory_id', $product->subcategory_id)->where('id', '!=', $product->id)->get();
+        $product_reviews = Review::where('product_id', $product->id)->get();
+        $product_inventories = Product_inventory::where('product_id', $product->id)->select('color_id')->groupBy('color_id')->get();
+        $flashsale = Flashsale::where('flashsale_offer_slug', $flashsaleSlug)->first();
+
+        return view('frontend.product.flashsale-product-details', compact('product', 'product_reviews', 'product_featured_photos', 'related_products', 'sum_quantity_inventories', 'product_inventories', 'flashsale'));
     }
 
     public function getSizes(Request $request)

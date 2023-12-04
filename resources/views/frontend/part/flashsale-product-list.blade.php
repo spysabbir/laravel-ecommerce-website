@@ -6,7 +6,7 @@
     <div class="product__item product__item-d">
         <div class="product__thumb fix">
             <div class="product-image w-img">
-                <a href="{{route('product.details', $product->product_slug)}}">
+                <a href="{{ route('flashsale.product.details', ['flashsaleSlug' => $flashsale->flashsale_offer_slug, 'productSlug' => $product->product_slug]) }}">
                     <img src="{{asset('uploads/product_thumbnail_photo')}}/{{$product->product_thumbnail_photo}}"
                         alt="product">
                 </a>
@@ -18,24 +18,19 @@
             @else
                 @if ($product->discounted_price != $product->regular_price)
                 <div class="product__offer">
-                    @if ($product->flashsale_status == "Yes")
-                        @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                            <span class="discount">
-                                {{-- {{100-round((($product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)))/$product->regular_price) * 100, 1)}} --}}
-                                {{round(($flashsale->flashsale_offer_amount/$product->regular_price) * 100, 2)}}
-                                % OFF</span>
-                        @else
-                            <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
-                        @endif
+                    @if ($flashsale->flashsale_offer_type == 'Flat')
+                        <span class="discount">
+                            {{round(($flashsale->flashsale_offer_amount/$product->regular_price) * 100, 2)}}% OFF
+                        </span>
                     @else
-                        <span class="discount">{{100-round(($product->discounted_price/$product->regular_price) * 100, 1)}}% OFF</span>
+                        <span class="discount">{{$flashsale->flashsale_offer_amount}}% OFF</span>
                     @endif
                 </div>
                 @endif
             @endif
             <div class="product-action">
-                <a href="#" class="icon-box icon-box-1 quickViewProductBtn" id="{{$product->id}}" data-bs-toggle="modal"
-                    data-bs-target="#quickViewProductModal">
+                <a href="#" class="icon-box icon-box-1 quickViewFlashsaleProductBtn" data-product-id="{{$product->id}}" data-flashsale-id="{{$flashsale->id}}" data-bs-toggle="modal"
+                    data-bs-target="#quickViewFlashsaleProductModal">
                     <i class="fal fa-eye"></i>
                     <i class="fal fa-eye"></i>
                 </a>
@@ -46,7 +41,7 @@
             </div>
         </div>
         <div class="product__content-3 py-2">
-            <h6><a href="{{route('product.details', $product->product_slug)}}">{{$product->product_name}}</a>
+            <h6><a href="{{ route('flashsale.product.details', ['flashsaleSlug' => $flashsale->flashsale_offer_slug, 'productSlug' => $product->product_slug]) }}">{{$product->product_name}}</a>
             </h6>
             @php
                 $product_reviews = App\Models\Review::where('product_id', $product->id)->get();
@@ -72,30 +67,22 @@
             </div>
             <div class="price mb-10">
                 <span class="text-danger"><del>৳ {{$product->regular_price}}</del></span>
-                @if ($product->flashsale_status == "Yes")
-                    @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                        @if($flashsale->flashsale_offer_type == 'Percentage')
-                            ৳ {{ $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}
-                        @else
-                            ৳ {{ $product->regular_price - $flashsale->flashsale_offer_amount }}
-                        @endif
-                    @else
-                        ৳ {{$product->discounted_price}}
-                    @endif
+                @if($flashsale->flashsale_offer_type == 'Percentage')
+                    ৳ {{ $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}
                 @else
-                    ৳ {{$product->discounted_price}}
+                    ৳ {{ $product->regular_price - $flashsale->flashsale_offer_amount }}
                 @endif
             </div>
         </div>
         <div class="product__add-cart-s text-center">
             <button type="button"
-                class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100 quickViewProductBtn"
-                id="{{$product->id}}" data-bs-toggle="modal" data-bs-target="#quickViewProductModal">
+                class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100 quickViewFlashsaleProductBtn"
+                data-product-id="{{$product->id}}" data-flashsale-id="{{$flashsale->id}}" data-bs-toggle="modal" data-bs-target="#quickViewFlashsaleProductModal">
                 Add to Cart
             </button>
             <button type="button"
-                class="wc-checkout d-flex align-items-center justify-content-center w-100 quickViewProductBtn"
-                id="{{$product->id}}" data-bs-toggle="modal" data-bs-target="#quickViewProductModal">
+                class="wc-checkout d-flex align-items-center justify-content-center w-100 quickViewFlashsaleProductBtn"
+                data-product-id="{{$product->id}}" data-flashsale-id="{{$flashsale->id}}" data-bs-toggle="modal" data-bs-target="#quickViewFlashsaleProductModal">
                 Quick View
             </button>
         </div>

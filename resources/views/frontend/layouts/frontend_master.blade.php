@@ -483,6 +483,14 @@
         </div>
         <!-- Quick View Modal End -->
 
+        <!-- Quick View Modal Start -->
+        <div class="modal fade" id="quickViewFlashsaleProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document" id="flashsale_modal_content">
+                <!-- Content will be lodded ajax -->
+            </div>
+        </div>
+        <!-- Quick View Modal End -->
+
         <!-- Contact-area-start -->
         <section class="cta-area d-ldark-bg pt-55 pb-10">
             <div class="container">
@@ -830,6 +838,26 @@
                     method: 'GET',
                     success: function(response) {
                         $("#modal_content").html(response);
+                        var color_count = $('.model_color_count').val();
+                        if(color_count == 1){
+                            $('.model_select_color').trigger('click');
+                        }
+                    }
+                });
+            })
+
+            // Quick View Flashsale Product
+            $(document).on('click', '.quickViewFlashsaleProductBtn', function(e){
+                e.preventDefault();
+                var productId = $(this).data('product-id');
+                var flashsaleId = $(this).data('flashsale-id');
+                var url = "{{ route('quick.view.flashsale.product', ['productId' => ':productId', 'flashsaleId' => ':flashsaleId']) }}";
+                url = url.replace(':productId', productId).replace(':flashsaleId', flashsaleId);
+                $.ajax({
+                    url:  url,
+                    method: 'GET',
+                    success: function(response) {
+                        $("#flashsale_modal_content").html(response);
                         var color_count = $('.model_color_count').val();
                         if(color_count == 1){
                             $('.model_select_color').trigger('click');

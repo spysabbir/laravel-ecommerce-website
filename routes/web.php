@@ -51,6 +51,8 @@ Route::post('/product/filtering', [FrontendController::class, 'productFiltering'
 Route::post('/product/filtering/brand', [FrontendController::class, 'productFilteringBrand'])->name('product.filtering.brand');
 Route::post('/product/brand/wise/filtering', [FrontendController::class, 'productBrandWiseFiltering'])->name('product.brand.wise.filtering');
 
+Route::get('/flashsale-product-details/{flashsaleSlug}/{productSlug}', [FrontendController::class, 'flashsaleProductDetails'])->name('flashsale.product.details');
+Route::get('/quick-view-flashsale-product/{productId}/{flashsaleId}', [FrontendController::class, 'quickViewFlashsaleProduct'])->name('quick.view.flashsale.product');
 // Blog Route
 Route::get('/all-blog', [FrontendController::class, 'allBlog'])->name('all.blog');
 Route::get('/blog_category/{slug}', [FrontendController::class, 'categoryWiseBlog'])->name('category.wise.blog');

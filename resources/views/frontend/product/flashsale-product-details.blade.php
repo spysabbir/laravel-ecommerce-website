@@ -94,22 +94,13 @@
                     </div>
                     <div class="price mb-10">
                         <span class="text-danger"><del>৳ {{$product->regular_price}}</del></span>
-                        @php
-                            $flashsale = App\Models\Flashsale::find($product->flashsale_id)
-                        @endphp
-                        @if ($product->flashsale_status == "Yes")
-                            @if ($flashsale->status == "Yes" && $flashsale->flashsale_offer_start_date < Carbon\Carbon::now() && $flashsale->flashsale_offer_end_date > Carbon\Carbon::now())
-                                @if($flashsale->flashsale_offer_type == 'Percentage')
-                                    <span class="text-success">৳ {{ $product_discounted_price = $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}</span>
-                                @else
-                                    <span class="text-success">৳ {{ $product_discounted_price = $product->regular_price - $flashsale->flashsale_offer_amount }}</span>
-                                @endif
-                            @else
-                                <span class="text-success">৳ {{$product_discounted_price = $product->discounted_price}}</span>
-                            @endif
+
+                        @if($flashsale->flashsale_offer_type == 'Percentage')
+                            <span class="text-success">৳ {{ $product_discounted_price = $product->regular_price - ($product->regular_price*($flashsale->flashsale_offer_amount/100)) }}</span>
                         @else
-                            <span class="text-success">৳ {{$product_discounted_price = $product->discounted_price}}</span>
+                            <span class="text-success">৳ {{ $product_discounted_price = $product->regular_price - $flashsale->flashsale_offer_amount }}</span>
                         @endif
+
                         <input type="hidden" value="{{$product_discounted_price}}" id="product_discounted_price">
                     </div>
                     <div class="features-des pb-5">
