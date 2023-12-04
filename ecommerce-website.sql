@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2023 at 11:35 AM
+-- Generation Time: Dec 04, 2023 at 07:18 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -51,9 +51,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `last_active`, `password`, `role`, `warehouse_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-06-18 04:13:02', '$2y$10$CAcFMkGYrHnfPGn4pl8rguKMvf799pp57LUGqJMyc/Yzsq1BI4s/2', 'Super Admin', NULL, 'kX3aT2ptFay5WEYQeBGDJvXYwbPQ7fXgOXGiRHzgQu45idi7dUrZ1jy1Cihn', '2023-06-14 05:35:31', '2023-06-18 04:13:02'),
-(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-06-18 04:27:29', '$2y$10$vXW3rTLZMRzTRZ74VGY5jOQHEz6xKRgCRAVJd/n9HBfutx5JuOTaq', 'Admin', NULL, NULL, '2023-06-13 18:00:00', '2023-06-18 04:27:29'),
-(3, 'Warehouse Manager', 'dhakawarehouse@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-06-18 04:28:26', '$2y$10$3kkZzTLRBqO3ouqweO7jnO1weoQbvHFqif8QRmYFcMmNfOcK4oj/S', 'Manager', 1, NULL, '2023-06-15 05:35:53', '2023-06-18 04:28:26');
+(1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-12-01 05:54:07', '$2y$10$CAcFMkGYrHnfPGn4pl8rguKMvf799pp57LUGqJMyc/Yzsq1BI4s/2', 'Super Admin', NULL, '7uklGLKg3jU6UruQiCi9c2fRrv8bdzYeY9EnBiS1Idekm8ilNMs5Myqsqu6c', '2023-06-14 05:35:31', '2023-12-01 05:54:07'),
+(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-12-04 04:16:28', '$2y$10$vXW3rTLZMRzTRZ74VGY5jOQHEz6xKRgCRAVJd/n9HBfutx5JuOTaq', 'Admin', NULL, '036fYNxGn99nOTChFXlyCeExR5YA18RselV8wR3n2wc62q2R5rDCWa4I2GwS', '2023-06-13 18:00:00', '2023-12-04 04:16:28'),
+(3, 'Warehouse Manager', 'dhakawarehouse@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-11-30 12:15:09', '$2y$10$3kkZzTLRBqO3ouqweO7jnO1weoQbvHFqif8QRmYFcMmNfOcK4oj/S', 'Manager', 1, NULL, '2023-06-15 05:35:53', '2023-11-30 12:15:09');
 
 -- --------------------------------------------------------
 
@@ -122,9 +122,9 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`id`, `blog_headline`, `blog_slug`, `blog_category_id`, `blog_quota`, `blog_thumbnail_photo`, `blog_cover_photo`, `blog_details`, `view_count`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'What is Lorem Ipsum?', 'what-is-lorem-ipsum-w447oXkABa', 1, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.<br></p>', 2, 'Yes', 1, NULL, NULL, '2023-02-17 23:30:52', '2023-02-27 10:50:40', NULL),
-(2, 'Where can I get some?', 'where-can-i-get-some-KmmgmYVnrZ', 2, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)<br></p>', 1, 'Yes', 1, NULL, NULL, '2023-02-17 23:31:34', '2023-05-21 04:15:51', NULL),
-(3, 'Where does it come from?', 'where-does-it-come-from-k1AqCaalYt', 3, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.<br></p>', 1, 'Yes', 1, NULL, NULL, '2023-02-17 23:32:24', '2023-02-27 06:25:31', NULL);
+(1, 'What is Lorem Ipsum?', 'what-is-lorem-ipsum-jpRUOpwDN6', 1, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.<br></p>', 2, 'Yes', 1, 1, NULL, '2023-02-17 23:30:52', '2023-11-30 12:04:49', NULL),
+(2, 'Where can I get some?', 'where-can-i-get-some-hdf629Sgdu', 2, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)<br></p>', 1, 'Yes', 1, 1, NULL, '2023-02-17 23:31:34', '2023-11-30 12:05:10', NULL),
+(3, 'Where does it come from?', 'where-does-it-come-from-O4xXSvRllH', 3, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\" \"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', 'default_blog_thumbnail_photo.jpg', 'default_blog_cover_photo.jpg', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.<br></p>', 1, 'Yes', 1, 1, NULL, '2023-02-17 23:32:24', '2023-11-30 12:05:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -364,7 +364,7 @@ CREATE TABLE `contact_messages` (
 --
 
 INSERT INTO `contact_messages` (`id`, `full_name`, `email_address`, `phone_number`, `subject`, `message`, `status`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Sabbir', 'sabbir1@gmail.com', '01953321402', 'Testt', 'dfgfdlkfguyd jnhfuyasfuidfh xdbfujdhfiuv mnjksdhuidfh', 'Read', NULL, NULL, '2023-04-18 05:21:44', '2023-06-17 05:19:21', NULL);
+(1, 'Sabbir', 'sabbir1@gmail.com', '01953321402', 'Testt', 'dfgfdlkfguyd jnhfuyasfuidfh xdbfujdhfiuv mnjksdhuidfh', 'Read', NULL, NULL, '2023-04-18 05:21:44', '2023-12-01 04:38:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -790,6 +790,7 @@ CREATE TABLE `flashsales` (
   `flashsale_offer_slug` varchar(255) NOT NULL,
   `flashsale_offer_type` varchar(255) NOT NULL,
   `flashsale_offer_amount` double(8,2) NOT NULL,
+  `flashsale_minimum_product_price` double(8,2) NOT NULL,
   `flashsale_offer_start_date` datetime NOT NULL,
   `flashsale_offer_end_date` datetime NOT NULL,
   `flashsale_offer_banner_photo` varchar(255) NOT NULL,
@@ -806,8 +807,52 @@ CREATE TABLE `flashsales` (
 -- Dumping data for table `flashsales`
 --
 
-INSERT INTO `flashsales` (`id`, `flashsale_offer_name`, `flashsale_offer_slug`, `flashsale_offer_type`, `flashsale_offer_amount`, `flashsale_offer_start_date`, `flashsale_offer_end_date`, `flashsale_offer_banner_photo`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'New Year Offer', 'new-year-offer', 'Flat', 10.00, '2023-02-15 12:21:00', '2023-02-28 12:21:00', 'Offer-Banner-Photo-JqQDE.jpg', 'Yes', 1, NULL, NULL, '2023-02-18 00:21:45', NULL, NULL);
+INSERT INTO `flashsales` (`id`, `flashsale_offer_name`, `flashsale_offer_slug`, `flashsale_offer_type`, `flashsale_offer_amount`, `flashsale_minimum_product_price`, `flashsale_offer_start_date`, `flashsale_offer_end_date`, `flashsale_offer_banner_photo`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'New Year Offer', 'new-year-offer', 'Flat', 100.00, 1001.00, '2023-12-03 12:21:00', '2024-12-30 12:21:00', 'Offer-Banner-Photo-JqQDE.jpg', 'Yes', 1, 2, NULL, '2023-02-18 00:21:45', '2023-12-04 04:09:48', NULL),
+(3, 'Year Ending Offer', 'year-ending-offer', 'Percentage', 5.00, 5.00, '2023-12-01 15:54:00', '2023-12-31 15:55:00', 'Offer-Banner-Photo-WmySV.png', 'Yes', 2, 2, NULL, '2023-12-01 09:55:16', '2023-12-03 11:19:45', NULL),
+(4, 'December Offer', 'december-offer', 'Flat', 50.00, 501.00, '2023-12-02 15:41:00', '2024-01-05 15:41:00', 'Offer-Banner-Photo-Z6sAc.jpg', 'Yes', 2, 2, NULL, '2023-12-02 09:41:48', '2023-12-03 11:19:31', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flashsale_products`
+--
+
+CREATE TABLE `flashsale_products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `flashsale_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flashsale_products`
+--
+
+INSERT INTO `flashsale_products` (`id`, `flashsale_id`, `product_id`) VALUES
+(265, 1, 1),
+(266, 1, 2),
+(267, 1, 3),
+(268, 1, 4),
+(269, 1, 5),
+(270, 1, 6),
+(271, 1, 7),
+(272, 1, 8),
+(273, 1, 9),
+(274, 1, 10),
+(275, 1, 11),
+(276, 1, 12),
+(277, 3, 1),
+(278, 3, 2),
+(279, 3, 3),
+(280, 3, 4),
+(281, 3, 5),
+(282, 3, 6),
+(283, 3, 7),
+(284, 3, 8),
+(285, 3, 9),
+(286, 3, 10),
+(287, 3, 11),
+(288, 3, 12);
 
 -- --------------------------------------------------------
 
@@ -914,7 +959,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (42, '2023_01_07_141146_create_social_login_settings_table', 1),
 (43, '2023_02_21_165741_create_newsletters_table', 2),
 (44, '2023_04_18_112539_create_jobs_table', 3),
-(45, '2023_05_23_103244_create_sms_settings_table', 4);
+(45, '2023_05_23_103244_create_sms_settings_table', 4),
+(47, '2023_12_01_145403_create_flashsale_products_table', 5);
 
 -- --------------------------------------------------------
 
@@ -1121,7 +1167,6 @@ CREATE TABLE `products` (
   `childcategory_id` int(11) NOT NULL,
   `brand_id` int(11) NOT NULL,
   `flashsale_status` varchar(255) NOT NULL DEFAULT 'No',
-  `flashsale_id` int(11) DEFAULT NULL,
   `today_deal_status` varchar(255) NOT NULL DEFAULT 'No',
   `long_description` longtext NOT NULL,
   `weight` varchar(255) DEFAULT NULL,
@@ -1143,19 +1188,19 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `product_name`, `regular_price`, `discounted_price`, `product_slug`, `short_description`, `sku`, `category_id`, `subcategory_id`, `childcategory_id`, `brand_id`, `flashsale_status`, `flashsale_id`, `today_deal_status`, `long_description`, `weight`, `dimensions`, `materials`, `other_info`, `product_thumbnail_photo`, `view_count`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Stylish Stretchy Skinny Tais Pant For Woman', 800, 750, 'stylish-stretchy-skinny-tais-pant-for-woman-NqP6D60znL', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', 'hAeGktSxTl', 2, 8, 9, 8, 'No', NULL, 'Yes', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '400G', NULL, NULL, 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '1-Stylish Stretchy Skinny Tais Pant For Woman-Photo.jpg', 9, 'Yes', 1, 1, NULL, '2023-02-18 00:07:37', '2023-06-17 04:01:45', NULL),
-(2, 'Dhupiyan Check Saree For Women', 1200, 1120, 'dhupiyan-check-saree-for-women-qkFx4sPwso', 'Product Type: Silk Saree Color: Black & White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari  Occasion: Casual, Party & Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', 'xfvEXf1Hxd', 2, 8, 8, 2, 'No', NULL, 'No', 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', NULL, NULL, NULL, 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', '2-Dhupiyan Check Saree For Women-Photo.jpg', 3, 'Yes', 1, 1, NULL, '2023-02-18 00:09:40', '2023-02-27 11:02:56', NULL),
-(3, 'Gumboot JCD Waterproof Rain Boots', 1500, 1400, 'gumboot-jcd-waterproof-rain-boots-GcIkqa3xW2', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', 'Ukqhw0BsVg', 1, 1, 1, 2, 'No', NULL, 'Yes', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', NULL, NULL, NULL, 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', '3-Gumboot JCD Waterproof Rain Boots-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:10:53', '2023-02-27 11:03:34', NULL),
-(4, 'HP ProBook 450 G4', 60000, 58000, 'hp-probook-450-g4-4XBmC2G8Ul', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', 'l1rQuZc9bO', 3, 6, 3, 6, 'No', NULL, 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', NULL, NULL, NULL, '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', '4-HP ProBook 450 G4-Photo.jpg', 5, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-02-27 11:03:38', NULL),
-(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'No', NULL, 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 3, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-05-21 04:13:22', NULL),
-(6, 'ELECTRIC WATER KETTLE', 1200, 1100, 'electric-water-kettle-8B9LPbRu0v', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '56ECyvWMHQ', 4, 7, 10, 5, 'No', NULL, 'No', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', NULL, NULL, NULL, 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '6-ELECTRIC WATER KETTLE-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:14:52', '2023-05-21 04:14:16', NULL),
-(7, 'Keyboard Standard English with Bangla', 600, 550, 'keyboard-standard-english-with-bangla-7za7kBWoLB', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '2nVMdjnCxT', 3, 3, 2, 3, 'No', NULL, 'Yes', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', NULL, NULL, NULL, 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '7-Keyboard Standard English with Bangla-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:15:39', '2023-02-27 06:09:47', NULL),
-(8, 'Wireless Mouse Speedy Lite 2.4G', 500, 480, 'wireless-mouse-speedy-lite-24g-YN4OLQFFf6', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', 'SiZbgCmykz', 3, 3, 7, 6, 'No', NULL, 'No', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', NULL, NULL, NULL, 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', '8-Wireless Mouse Speedy Lite 2.4G-Photo.jpg', 0, 'Yes', 1, 1, NULL, '2023-02-18 00:16:27', '2023-02-27 06:11:01', NULL),
-(9, 'Heart Wave Long Chain Necklace', 60000, 58000, 'heart-wave-long-chain-necklace-RVCuuIytkU', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', 't0UudonZpG', 2, 2, 5, 2, 'No', NULL, 'Yes', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', NULL, NULL, 'Gold', NULL, '9-Heart Wave Long Chain Necklace-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:17:34', '2023-02-27 10:07:59', NULL),
-(10, 'Dust free Car', 600000, 580000, 'dust-free-car-Doro5f2326', 'Advance dust free cover series. Water-repellent treated fabric. Durable double-stitched construction. Reinforced antenna patch. Theft-deterrent trunk lock strap. Snug fit elastic hem surrounds the entire vehicle. Adjustable front tie-down strap for a more secure fit. Flexible yet snug fit with elasticized bottom. Defend your vehicle\\\'s paint job with the reliable, durable Car Cover. Outdoor protection for light to moderate weather conditions. UV-Treated to prevent sun fade. Universal Fit.Adjust.able front tie-down strap for a more secure fit', 'MYO3GF4neO', 6, 4, 6, 1, 'No', NULL, 'No', 'Advance dust free cover series. Water-repellent treated fabric. Durable double-stitched construction. Reinforced antenna patch. Theft-deterrent trunk lock strap. Snug fit elastic hem surrounds the entire vehicle. Adjustable front tie-down strap for a more secure fit. Flexible yet snug fit with elasticized bottom. Defend your vehicle\\\'s paint job with the reliable, durable Car Cover. Outdoor protection for light to moderate weather conditions. UV-Treated to prevent sun fade. Universal Fit.Adjust.able front tie-down strap for a more secure fit', NULL, NULL, NULL, 'Advance dust free cover series. Water-repellent treated fabric. Durable double-stitched construction. Reinforced antenna patch. Theft-deterrent trunk lock strap. Snug fit elastic hem surrounds the entire vehicle. Adjustable front tie-down strap for a more secure fit. Flexible yet snug fit with elasticized bottom. Defend your vehicle\\\'s paint job with the reliable, durable Car Cover. Outdoor protection for light to moderate weather conditions. UV-Treated to prevent sun fade. Universal Fit.Adjust.able front tie-down strap for a more secure fit', '10-Dust free Car-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:18:28', '2023-02-27 10:08:05', NULL),
-(11, '125cc Motor Cycle', 180000, 175000, '125cc-motor-cycle-qVk4zYDgnp', 'Type: single cylinder , 4 stroke, air cooled spark ignition engine Cylinder: 57 mm Stroke: 48.8 mm Piston displacement: 124.5 cc Compression Carburetor: UCAL UCD 25 Air filter: Paper filter element Lubrication system: Positive lubrication Maximum power in kW: 8.0 (11 BHP) @ 8000 rpm Maximum torque in Nm: 10.8 NM @ 5500 rpm Maximum speed: Around 100 km/hr Engine idling rpm: 1400 ± 100 rpm (under warm condition) Starting system: Kick starter /Electric starter', 'c01Iyu78Kr', 6, 5, 11, 4, 'No', NULL, 'No', 'Type: single cylinder , 4 stroke, air cooled spark ignition engine Cylinder: 57 mm Stroke: 48.8 mm Piston displacement: 124.5 cc Compression Carburetor: UCAL UCD 25 Air filter: Paper filter element Lubrication system: Positive lubrication Maximum power in kW: 8.0 (11 BHP) @ 8000 rpm Maximum torque in Nm: 10.8 NM @ 5500 rpm Maximum speed: Around 100 km/hr Engine idling rpm: 1400 ± 100 rpm (under warm condition) Starting system: Kick starter /Electric starter', NULL, NULL, NULL, 'Type: single cylinder , 4 stroke, air cooled spark ignition engine Cylinder: 57 mm Stroke: 48.8 mm Piston displacement: 124.5 cc Compression Carburetor: UCAL UCD 25 Air filter: Paper filter element Lubrication system: Positive lubrication Maximum power in kW: 8.0 (11 BHP) @ 8000 rpm Maximum torque in Nm: 10.8 NM @ 5500 rpm Maximum speed: Around 100 km/hr Engine idling rpm: 1400 ± 100 rpm (under warm condition) Starting system: Kick starter /Electric starter', '11-125cc Motor Cycle-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:19:26', '2023-02-27 10:55:03', NULL),
-(12, 'Mi G3 Laptop', 50000, 50000, 'mi-g3-laptop-yhHZN9jJAH', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System  14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life', 'aVOOJVaotU', 3, 6, 3, 5, 'No', NULL, 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System&nbsp; 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life', '2Kg', NULL, 'Steel', NULL, 'default_product_thumbnail_photo.jpg', 1, 'Yes', 1, NULL, NULL, '2023-02-27 06:03:36', '2023-02-27 06:03:51', NULL);
+INSERT INTO `products` (`id`, `product_name`, `regular_price`, `discounted_price`, `product_slug`, `short_description`, `sku`, `category_id`, `subcategory_id`, `childcategory_id`, `brand_id`, `flashsale_status`, `today_deal_status`, `long_description`, `weight`, `dimensions`, `materials`, `other_info`, `product_thumbnail_photo`, `view_count`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Stylish Stretchy Skinny Tais Pant For Woman', 800, 750, 'stylish-stretchy-skinny-tais-pant-for-woman-NqP6D60znL', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', 'hAeGktSxTl', 2, 8, 9, 8, 'Yes', 'Yes', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '400G', NULL, NULL, 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '1-Stylish Stretchy Skinny Tais Pant For Woman-Photo.jpg', 21, 'Yes', 1, 2, NULL, '2023-02-18 00:07:37', '2023-12-04 05:07:26', NULL),
+(2, 'Dhupiyan Check Saree For Women', 1200, 1120, 'dhupiyan-check-saree-for-women-qkFx4sPwso', 'Product Type: Silk Saree Color: Black & White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari  Occasion: Casual, Party & Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', 'xfvEXf1Hxd', 2, 8, 8, 2, 'Yes', 'No', 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', NULL, NULL, NULL, 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', '2-Dhupiyan Check Saree For Women-Photo.jpg', 6, 'Yes', 1, 2, NULL, '2023-02-18 00:09:40', '2023-12-04 05:07:12', NULL),
+(3, 'Gumboot JCD Waterproof Rain Boots', 1500, 1400, 'gumboot-jcd-waterproof-rain-boots-GcIkqa3xW2', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', 'Ukqhw0BsVg', 1, 1, 1, 2, 'Yes', 'Yes', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', NULL, NULL, NULL, 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', '3-Gumboot JCD Waterproof Rain Boots-Photo.jpg', 5, 'Yes', 1, 2, NULL, '2023-02-18 00:10:53', '2023-12-04 06:05:09', NULL),
+(4, 'HP ProBook 450 G4', 60000, 58000, 'hp-probook-450-g4-4XBmC2G8Ul', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', 'l1rQuZc9bO', 3, 6, 3, 6, 'Yes', 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', NULL, NULL, NULL, '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', '4-HP ProBook 450 G4-Photo.jpg', 5, 'Yes', 1, 2, NULL, '2023-02-18 00:12:06', '2023-12-04 04:14:11', NULL),
+(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'Yes', 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 3, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-12-04 04:14:11', NULL),
+(6, 'ELECTRIC WATER KETTLE', 1200, 1100, 'electric-water-kettle-8B9LPbRu0v', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '56ECyvWMHQ', 4, 7, 10, 5, 'Yes', 'No', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', NULL, NULL, NULL, 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '6-ELECTRIC WATER KETTLE-Photo.jpg', 4, 'Yes', 1, 1, NULL, '2023-02-18 00:14:52', '2023-12-04 04:14:11', NULL),
+(7, 'Keyboard Standard English with Bangla', 600, 550, 'keyboard-standard-english-with-bangla-7za7kBWoLB', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '2nVMdjnCxT', 3, 3, 2, 3, 'Yes', 'Yes', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', NULL, NULL, NULL, 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '7-Keyboard Standard English with Bangla-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:15:39', '2023-12-04 04:14:11', NULL),
+(8, 'Wireless Mouse Speedy Lite 2.4G', 500, 480, 'wireless-mouse-speedy-lite-24g-YN4OLQFFf6', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', 'SiZbgCmykz', 3, 3, 7, 6, 'Yes', 'No', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', NULL, NULL, NULL, 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', '8-Wireless Mouse Speedy Lite 2.4G-Photo.jpg', 0, 'Yes', 1, 1, NULL, '2023-02-18 00:16:27', '2023-12-04 04:14:11', NULL),
+(9, 'Heart Wave Long Chain Necklace', 60000, 58000, 'heart-wave-long-chain-necklace-RVCuuIytkU', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', 't0UudonZpG', 2, 2, 5, 2, 'Yes', 'Yes', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', NULL, NULL, 'Gold', NULL, '9-Heart Wave Long Chain Necklace-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:17:34', '2023-12-04 04:14:11', NULL),
+(10, 'Dust free Car', 600000, 580000, 'dust-free-car-Doro5f2326', 'Advance dust free cover series. Water-repellent treated fabric. Durable double-stitched construction. Reinforced antenna patch. Theft-deterrent trunk lock strap. Snug fit elastic hem surrounds the entire vehicle. Adjustable front tie-down strap for a more secure fit. Flexible yet snug fit with elasticized bottom. Defend your vehicle\\\'s paint job with the reliable, durable Car Cover. Outdoor protection for light to moderate weather conditions. UV-Treated to prevent sun fade. Universal Fit.Adjust.able front tie-down strap for a more secure fit', 'MYO3GF4neO', 6, 4, 6, 1, 'Yes', 'No', 'Advance dust free cover series. Water-repellent treated fabric. Durable double-stitched construction. Reinforced antenna patch. Theft-deterrent trunk lock strap. Snug fit elastic hem surrounds the entire vehicle. Adjustable front tie-down strap for a more secure fit. Flexible yet snug fit with elasticized bottom. Defend your vehicle\\\'s paint job with the reliable, durable Car Cover. Outdoor protection for light to moderate weather conditions. UV-Treated to prevent sun fade. Universal Fit.Adjust.able front tie-down strap for a more secure fit', NULL, NULL, NULL, 'Advance dust free cover series. Water-repellent treated fabric. Durable double-stitched construction. Reinforced antenna patch. Theft-deterrent trunk lock strap. Snug fit elastic hem surrounds the entire vehicle. Adjustable front tie-down strap for a more secure fit. Flexible yet snug fit with elasticized bottom. Defend your vehicle\\\'s paint job with the reliable, durable Car Cover. Outdoor protection for light to moderate weather conditions. UV-Treated to prevent sun fade. Universal Fit.Adjust.able front tie-down strap for a more secure fit', '10-Dust free Car-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:18:28', '2023-12-04 04:14:11', NULL),
+(11, '125cc Motor Cycle', 180000, 175000, '125cc-motor-cycle-qVk4zYDgnp', 'Type: single cylinder , 4 stroke, air cooled spark ignition engine Cylinder: 57 mm Stroke: 48.8 mm Piston displacement: 124.5 cc Compression Carburetor: UCAL UCD 25 Air filter: Paper filter element Lubrication system: Positive lubrication Maximum power in kW: 8.0 (11 BHP) @ 8000 rpm Maximum torque in Nm: 10.8 NM @ 5500 rpm Maximum speed: Around 100 km/hr Engine idling rpm: 1400 ± 100 rpm (under warm condition) Starting system: Kick starter /Electric starter', 'c01Iyu78Kr', 6, 5, 11, 4, 'Yes', 'No', 'Type: single cylinder , 4 stroke, air cooled spark ignition engine Cylinder: 57 mm Stroke: 48.8 mm Piston displacement: 124.5 cc Compression Carburetor: UCAL UCD 25 Air filter: Paper filter element Lubrication system: Positive lubrication Maximum power in kW: 8.0 (11 BHP) @ 8000 rpm Maximum torque in Nm: 10.8 NM @ 5500 rpm Maximum speed: Around 100 km/hr Engine idling rpm: 1400 ± 100 rpm (under warm condition) Starting system: Kick starter /Electric starter', NULL, NULL, NULL, 'Type: single cylinder , 4 stroke, air cooled spark ignition engine Cylinder: 57 mm Stroke: 48.8 mm Piston displacement: 124.5 cc Compression Carburetor: UCAL UCD 25 Air filter: Paper filter element Lubrication system: Positive lubrication Maximum power in kW: 8.0 (11 BHP) @ 8000 rpm Maximum torque in Nm: 10.8 NM @ 5500 rpm Maximum speed: Around 100 km/hr Engine idling rpm: 1400 ± 100 rpm (under warm condition) Starting system: Kick starter /Electric starter', '11-125cc Motor Cycle-Photo.jpg', 1, 'Yes', 1, 2, NULL, '2023-02-18 00:19:26', '2023-12-04 04:14:11', NULL),
+(12, 'Mi G3 Laptop', 50000, 50000, 'mi-g3-laptop-yhHZN9jJAH', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System  14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life', 'aVOOJVaotU', 3, 6, 3, 5, 'Yes', 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System&nbsp; 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life', '2Kg', NULL, 'Steel', NULL, 'default_product_thumbnail_photo.jpg', 1, 'Yes', 1, 2, NULL, '2023-02-27 06:03:36', '2023-12-04 04:14:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -1372,9 +1417,9 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `slider_title`, `slider_subtitle`, `slider_link`, `slider_photo`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '14 February', 'Year End Offer', 'new-year-offer', 'Slider-Photo-UYP4t.jpg', 'Yes', 1, NULL, NULL, '2023-02-18 00:23:59', NULL, NULL),
-(2, '14 February', 'Year End Offer', 'new-year-offer', 'Slider-Photo-aHsFU.jpg', 'Yes', 1, NULL, NULL, '2023-02-18 00:24:18', NULL, NULL),
-(3, '14 February', 'Year End Offer', 'new-year-offer', 'Slider-Photo-Pv17H.jpg', 'Yes', 1, NULL, NULL, '2023-02-18 00:24:29', NULL, NULL);
+(1, 'New Year Offor', 'New Year Offor', 'new-year-offer', 'Slider-Photo-UYP4t.jpg', 'Yes', 1, 2, NULL, '2023-02-18 00:23:59', '2023-12-01 08:40:46', NULL),
+(2, '14 February', 'Year End Offer', 'year-ending-offer', 'Slider-Photo-aHsFU.jpg', 'Yes', 1, 2, NULL, '2023-02-18 00:24:18', '2023-12-04 04:16:34', NULL),
+(3, 'Year End Offer', 'Year End Offer', 'year-ending-offer', 'Slider-Photo-Pv17H.jpg', 'Yes', 1, 2, NULL, '2023-02-18 00:24:29', '2023-12-01 08:40:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -1564,6 +1609,317 @@ CREATE TABLE `visitors` (
   `visit_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
+(1, '127.0.0.1', '2023-11-30 05:51:09'),
+(2, '127.0.0.1', '2023-11-30 05:51:18'),
+(3, '127.0.0.1', '2023-11-30 05:51:29'),
+(4, '127.0.0.1', '2023-11-30 05:52:37'),
+(5, '127.0.0.1', '2023-11-30 05:52:42'),
+(6, '127.0.0.1', '2023-11-30 05:52:46'),
+(7, '127.0.0.1', '2023-11-30 05:52:51'),
+(8, '127.0.0.1', '2023-11-30 05:54:30'),
+(9, '127.0.0.1', '2023-11-30 05:54:50'),
+(10, '127.0.0.1', '2023-11-30 05:54:58'),
+(11, '127.0.0.1', '2023-11-30 05:55:21'),
+(12, '127.0.0.1', '2023-11-30 05:55:52'),
+(13, '127.0.0.1', '2023-11-30 05:56:07'),
+(14, '127.0.0.1', '2023-11-30 05:56:31'),
+(15, '127.0.0.1', '2023-11-30 05:56:41'),
+(16, '127.0.0.1', '2023-11-30 05:57:07'),
+(17, '127.0.0.1', '2023-11-30 05:59:06'),
+(18, '127.0.0.1', '2023-11-30 06:01:25'),
+(19, '127.0.0.1', '2023-11-30 06:01:27'),
+(20, '127.0.0.1', '2023-11-30 06:01:41'),
+(21, '127.0.0.1', '2023-11-30 06:02:24'),
+(22, '127.0.0.1', '2023-11-30 06:02:28'),
+(23, '127.0.0.1', '2023-11-30 06:02:35'),
+(24, '127.0.0.1', '2023-11-30 06:02:39'),
+(25, '127.0.0.1', '2023-11-30 06:02:42'),
+(26, '127.0.0.1', '2023-11-30 06:02:44'),
+(27, '127.0.0.1', '2023-11-30 06:02:48'),
+(28, '127.0.0.1', '2023-11-30 06:02:51'),
+(29, '127.0.0.1', '2023-11-30 06:02:55'),
+(30, '127.0.0.1', '2023-11-30 06:02:57'),
+(31, '127.0.0.1', '2023-11-30 06:03:00'),
+(32, '127.0.0.1', '2023-11-30 06:03:05'),
+(33, '127.0.0.1', '2023-11-30 06:03:14'),
+(34, '127.0.0.1', '2023-11-30 06:03:25'),
+(35, '127.0.0.1', '2023-11-30 06:03:28'),
+(36, '127.0.0.1', '2023-11-30 06:03:31'),
+(37, '127.0.0.1', '2023-11-30 06:04:40'),
+(38, '127.0.0.1', '2023-11-30 06:04:54'),
+(39, '127.0.0.1', '2023-11-30 06:05:29'),
+(40, '127.0.0.1', '2023-11-30 06:09:02'),
+(41, '127.0.0.1', '2023-11-30 06:09:05'),
+(42, '127.0.0.1', '2023-11-30 06:09:07'),
+(43, '127.0.0.1', '2023-11-30 06:09:10'),
+(44, '127.0.0.1', '2023-11-30 06:09:12'),
+(45, '127.0.0.1', '2023-11-30 06:09:14'),
+(46, '127.0.0.1', '2023-11-30 06:12:05'),
+(47, '127.0.0.1', '2023-11-30 06:12:07'),
+(48, '127.0.0.1', '2023-11-30 06:12:10'),
+(49, '127.0.0.1', '2023-11-30 06:12:46'),
+(50, '127.0.0.1', '2023-11-30 06:13:16'),
+(51, '127.0.0.1', '2023-11-30 06:13:24'),
+(52, '127.0.0.1', '2023-11-30 06:13:37'),
+(53, '127.0.0.1', '2023-11-30 06:13:47'),
+(54, '127.0.0.1', '2023-11-30 06:14:10'),
+(55, '127.0.0.1', '2023-11-30 06:14:27'),
+(56, '127.0.0.1', '2023-11-30 06:14:36'),
+(57, '127.0.0.1', '2023-11-30 06:14:51'),
+(58, '127.0.0.1', '2023-11-30 06:15:01'),
+(59, '127.0.0.1', '2023-11-30 06:15:32'),
+(60, '127.0.0.1', '2023-11-30 06:15:56'),
+(61, '127.0.0.1', '2023-11-30 06:15:58'),
+(62, '127.0.0.1', '2023-11-30 06:15:59'),
+(63, '127.0.0.1', '2023-11-30 06:16:01'),
+(64, '127.0.0.1', '2023-11-30 06:16:03'),
+(65, '127.0.0.1', '2023-11-30 06:16:05'),
+(66, '127.0.0.1', '2023-11-30 06:16:08'),
+(67, '127.0.0.1', '2023-11-30 06:16:40'),
+(68, '127.0.0.1', '2023-11-30 06:16:59'),
+(69, '127.0.0.1', '2023-11-30 06:17:04'),
+(70, '127.0.0.1', '2023-11-30 06:17:32'),
+(71, '127.0.0.1', '2023-11-30 06:17:45'),
+(72, '127.0.0.1', '2023-11-30 06:17:58'),
+(73, '127.0.0.1', '2023-11-30 06:18:19'),
+(74, '127.0.0.1', '2023-11-30 06:18:27'),
+(75, '127.0.0.1', '2023-11-30 06:18:57'),
+(76, '127.0.0.1', '2023-11-30 06:18:59'),
+(77, '127.0.0.1', '2023-11-30 06:19:07'),
+(78, '127.0.0.1', '2023-11-30 06:19:11'),
+(79, '127.0.0.1', '2023-11-30 06:19:15'),
+(80, '127.0.0.1', '2023-11-30 06:19:44'),
+(81, '127.0.0.1', '2023-11-30 06:19:50'),
+(82, '127.0.0.1', '2023-11-30 06:21:55'),
+(83, '127.0.0.1', '2023-11-30 06:21:59'),
+(84, '127.0.0.1', '2023-11-30 06:22:16'),
+(85, '127.0.0.1', '2023-11-30 06:23:00'),
+(86, '127.0.0.1', '2023-11-30 06:23:03'),
+(87, '127.0.0.1', '2023-11-30 06:23:08'),
+(88, '127.0.0.1', '2023-11-30 06:25:04'),
+(89, '127.0.0.1', '2023-11-30 06:25:07'),
+(90, '127.0.0.1', '2023-11-30 06:25:10'),
+(91, '127.0.0.1', '2023-11-30 06:25:23'),
+(92, '127.0.0.1', '2023-11-30 06:28:53'),
+(93, '127.0.0.1', '2023-11-30 06:28:54'),
+(94, '127.0.0.1', '2023-11-30 06:28:54'),
+(95, '127.0.0.1', '2023-11-30 06:28:54'),
+(96, '127.0.0.1', '2023-11-30 06:28:55'),
+(97, '127.0.0.1', '2023-11-30 06:28:55'),
+(98, '127.0.0.1', '2023-11-30 06:28:55'),
+(99, '127.0.0.1', '2023-11-30 06:28:55'),
+(100, '127.0.0.1', '2023-11-30 06:28:55'),
+(101, '127.0.0.1', '2023-11-30 06:31:27'),
+(102, '127.0.0.1', '2023-11-30 06:31:57'),
+(103, '127.0.0.1', '2023-11-30 06:32:00'),
+(104, '127.0.0.1', '2023-11-30 06:32:03'),
+(105, '127.0.0.1', '2023-11-30 06:32:33'),
+(106, '127.0.0.1', '2023-11-30 06:32:39'),
+(107, '127.0.0.1', '2023-11-30 06:34:45'),
+(108, '127.0.0.1', '2023-11-30 06:34:58'),
+(109, '127.0.0.1', '2023-11-30 06:35:04'),
+(110, '127.0.0.1', '2023-11-30 06:35:41'),
+(111, '127.0.0.1', '2023-11-30 06:35:51'),
+(112, '127.0.0.1', '2023-11-30 06:37:28'),
+(113, '127.0.0.1', '2023-11-30 10:44:52'),
+(114, '127.0.0.1', '2023-11-30 11:33:53'),
+(115, '127.0.0.1', '2023-11-30 11:50:58'),
+(116, '127.0.0.1', '2023-11-30 11:51:24'),
+(117, '127.0.0.1', '2023-11-30 11:51:57'),
+(118, '127.0.0.1', '2023-11-30 12:05:42'),
+(119, '127.0.0.1', '2023-11-30 12:06:34'),
+(120, '127.0.0.1', '2023-11-30 12:06:40'),
+(121, '127.0.0.1', '2023-11-30 12:06:46'),
+(122, '127.0.0.1', '2023-11-30 12:06:49'),
+(123, '127.0.0.1', '2023-12-01 04:29:27'),
+(124, '127.0.0.1', '2023-12-01 04:55:53'),
+(125, '127.0.0.1', '2023-12-01 08:28:27'),
+(126, '127.0.0.1', '2023-12-02 04:20:47'),
+(127, '127.0.0.1', '2023-12-02 05:58:46'),
+(128, '127.0.0.1', '2023-12-02 08:53:44'),
+(129, '127.0.0.1', '2023-12-02 11:20:51'),
+(130, '127.0.0.1', '2023-12-02 11:21:56'),
+(131, '127.0.0.1', '2023-12-02 11:24:07'),
+(132, '127.0.0.1', '2023-12-02 11:24:25'),
+(133, '127.0.0.1', '2023-12-02 11:25:59'),
+(134, '127.0.0.1', '2023-12-02 11:34:30'),
+(135, '127.0.0.1', '2023-12-02 11:37:45'),
+(136, '127.0.0.1', '2023-12-02 11:38:52'),
+(137, '127.0.0.1', '2023-12-02 11:39:22'),
+(138, '127.0.0.1', '2023-12-02 11:39:40'),
+(139, '127.0.0.1', '2023-12-02 11:43:11'),
+(140, '127.0.0.1', '2023-12-02 11:44:01'),
+(141, '127.0.0.1', '2023-12-02 11:45:06'),
+(142, '127.0.0.1', '2023-12-03 06:03:35'),
+(143, '127.0.0.1', '2023-12-03 06:04:53'),
+(144, '127.0.0.1', '2023-12-03 06:06:13'),
+(145, '127.0.0.1', '2023-12-03 06:06:48'),
+(146, '127.0.0.1', '2023-12-03 06:07:49'),
+(147, '127.0.0.1', '2023-12-03 06:08:32'),
+(148, '127.0.0.1', '2023-12-03 06:10:23'),
+(149, '127.0.0.1', '2023-12-03 06:11:48'),
+(150, '127.0.0.1', '2023-12-03 06:12:28'),
+(151, '127.0.0.1', '2023-12-03 06:19:18'),
+(152, '127.0.0.1', '2023-12-03 06:20:35'),
+(153, '127.0.0.1', '2023-12-03 06:22:24'),
+(154, '127.0.0.1', '2023-12-03 06:30:58'),
+(155, '127.0.0.1', '2023-12-03 06:32:44'),
+(156, '127.0.0.1', '2023-12-03 06:33:09'),
+(157, '127.0.0.1', '2023-12-03 06:33:14'),
+(158, '127.0.0.1', '2023-12-03 06:33:17'),
+(159, '127.0.0.1', '2023-12-03 06:33:25'),
+(160, '127.0.0.1', '2023-12-03 06:46:26'),
+(161, '127.0.0.1', '2023-12-03 06:51:14'),
+(162, '127.0.0.1', '2023-12-03 06:51:27'),
+(163, '127.0.0.1', '2023-12-03 09:19:39'),
+(164, '127.0.0.1', '2023-12-03 09:25:25'),
+(165, '127.0.0.1', '2023-12-03 09:26:39'),
+(166, '127.0.0.1', '2023-12-03 09:26:50'),
+(167, '127.0.0.1', '2023-12-03 09:32:01'),
+(168, '127.0.0.1', '2023-12-03 09:35:05'),
+(169, '127.0.0.1', '2023-12-03 09:35:07'),
+(170, '127.0.0.1', '2023-12-03 09:38:05'),
+(171, '127.0.0.1', '2023-12-03 09:45:10'),
+(172, '127.0.0.1', '2023-12-03 09:46:19'),
+(173, '127.0.0.1', '2023-12-03 09:46:22'),
+(174, '127.0.0.1', '2023-12-03 09:46:27'),
+(175, '127.0.0.1', '2023-12-03 09:47:06'),
+(176, '127.0.0.1', '2023-12-03 09:47:16'),
+(177, '127.0.0.1', '2023-12-03 09:47:25'),
+(178, '127.0.0.1', '2023-12-03 09:47:35'),
+(179, '127.0.0.1', '2023-12-03 09:48:31'),
+(180, '127.0.0.1', '2023-12-03 09:49:55'),
+(181, '127.0.0.1', '2023-12-03 09:50:12'),
+(182, '127.0.0.1', '2023-12-03 10:17:32'),
+(183, '127.0.0.1', '2023-12-03 10:28:56'),
+(184, '127.0.0.1', '2023-12-03 10:35:20'),
+(185, '127.0.0.1', '2023-12-03 10:38:04'),
+(186, '127.0.0.1', '2023-12-04 04:00:32'),
+(187, '127.0.0.1', '2023-12-04 04:02:15'),
+(188, '127.0.0.1', '2023-12-04 04:02:36'),
+(189, '127.0.0.1', '2023-12-04 04:08:54'),
+(190, '127.0.0.1', '2023-12-04 04:09:17'),
+(191, '127.0.0.1', '2023-12-04 04:09:51'),
+(192, '127.0.0.1', '2023-12-04 04:13:50'),
+(193, '127.0.0.1', '2023-12-04 04:13:54'),
+(194, '127.0.0.1', '2023-12-04 04:14:20'),
+(195, '127.0.0.1', '2023-12-04 04:14:24'),
+(196, '127.0.0.1', '2023-12-04 04:14:47'),
+(197, '127.0.0.1', '2023-12-04 04:14:54'),
+(198, '127.0.0.1', '2023-12-04 04:14:59'),
+(199, '127.0.0.1', '2023-12-04 04:15:08'),
+(200, '127.0.0.1', '2023-12-04 04:16:37'),
+(201, '127.0.0.1', '2023-12-04 04:16:44'),
+(202, '127.0.0.1', '2023-12-04 04:17:03'),
+(203, '127.0.0.1', '2023-12-04 04:19:55'),
+(204, '127.0.0.1', '2023-12-04 04:21:33'),
+(205, '127.0.0.1', '2023-12-04 04:22:15'),
+(206, '127.0.0.1', '2023-12-04 04:22:24'),
+(207, '127.0.0.1', '2023-12-04 04:25:32'),
+(208, '127.0.0.1', '2023-12-04 04:26:25'),
+(209, '127.0.0.1', '2023-12-04 04:34:54'),
+(210, '127.0.0.1', '2023-12-04 04:35:23'),
+(211, '127.0.0.1', '2023-12-04 04:36:13'),
+(212, '127.0.0.1', '2023-12-04 04:39:39'),
+(213, '127.0.0.1', '2023-12-04 04:41:33'),
+(214, '127.0.0.1', '2023-12-04 04:42:18'),
+(215, '127.0.0.1', '2023-12-04 04:42:35'),
+(216, '127.0.0.1', '2023-12-04 04:43:26'),
+(217, '127.0.0.1', '2023-12-04 04:43:32'),
+(218, '127.0.0.1', '2023-12-04 04:44:11'),
+(219, '127.0.0.1', '2023-12-04 04:44:52'),
+(220, '127.0.0.1', '2023-12-04 04:45:55'),
+(221, '127.0.0.1', '2023-12-04 04:47:36'),
+(222, '127.0.0.1', '2023-12-04 04:47:56'),
+(223, '127.0.0.1', '2023-12-04 04:48:01'),
+(224, '127.0.0.1', '2023-12-04 04:48:31'),
+(225, '127.0.0.1', '2023-12-04 04:49:43'),
+(226, '127.0.0.1', '2023-12-04 04:53:54'),
+(227, '127.0.0.1', '2023-12-04 05:05:09'),
+(228, '127.0.0.1', '2023-12-04 05:05:15'),
+(229, '127.0.0.1', '2023-12-04 05:07:04'),
+(230, '127.0.0.1', '2023-12-04 05:07:12'),
+(231, '127.0.0.1', '2023-12-04 05:07:16'),
+(232, '127.0.0.1', '2023-12-04 05:07:22'),
+(233, '127.0.0.1', '2023-12-04 05:07:26'),
+(234, '127.0.0.1', '2023-12-04 05:09:33'),
+(235, '127.0.0.1', '2023-12-04 05:18:02'),
+(236, '127.0.0.1', '2023-12-04 05:22:42'),
+(237, '127.0.0.1', '2023-12-04 05:24:16'),
+(238, '127.0.0.1', '2023-12-04 05:27:50'),
+(239, '127.0.0.1', '2023-12-04 05:28:21'),
+(240, '127.0.0.1', '2023-12-04 05:29:29'),
+(241, '127.0.0.1', '2023-12-04 05:29:38'),
+(242, '127.0.0.1', '2023-12-04 05:29:41'),
+(243, '127.0.0.1', '2023-12-04 05:29:50'),
+(244, '127.0.0.1', '2023-12-04 05:32:11'),
+(245, '127.0.0.1', '2023-12-04 05:34:05'),
+(246, '127.0.0.1', '2023-12-04 05:34:36'),
+(247, '127.0.0.1', '2023-12-04 05:35:18'),
+(248, '127.0.0.1', '2023-12-04 05:35:29'),
+(249, '127.0.0.1', '2023-12-04 05:35:48'),
+(250, '127.0.0.1', '2023-12-04 05:36:32'),
+(251, '127.0.0.1', '2023-12-04 05:36:40'),
+(252, '127.0.0.1', '2023-12-04 05:36:45'),
+(253, '127.0.0.1', '2023-12-04 05:36:52'),
+(254, '127.0.0.1', '2023-12-04 05:37:21'),
+(255, '127.0.0.1', '2023-12-04 05:38:29'),
+(256, '127.0.0.1', '2023-12-04 05:39:35'),
+(257, '127.0.0.1', '2023-12-04 05:40:42'),
+(258, '127.0.0.1', '2023-12-04 05:40:59'),
+(259, '127.0.0.1', '2023-12-04 05:41:55'),
+(260, '127.0.0.1', '2023-12-04 05:43:18'),
+(261, '127.0.0.1', '2023-12-04 05:43:49'),
+(262, '127.0.0.1', '2023-12-04 05:44:31'),
+(263, '127.0.0.1', '2023-12-04 05:45:03'),
+(264, '127.0.0.1', '2023-12-04 05:45:56'),
+(265, '127.0.0.1', '2023-12-04 05:46:30'),
+(266, '127.0.0.1', '2023-12-04 05:54:37'),
+(267, '127.0.0.1', '2023-12-04 05:56:49'),
+(268, '127.0.0.1', '2023-12-04 05:56:49'),
+(269, '127.0.0.1', '2023-12-04 05:56:50'),
+(270, '127.0.0.1', '2023-12-04 05:56:50'),
+(271, '127.0.0.1', '2023-12-04 05:56:50'),
+(272, '127.0.0.1', '2023-12-04 05:56:50'),
+(273, '127.0.0.1', '2023-12-04 05:56:50'),
+(274, '127.0.0.1', '2023-12-04 05:56:50'),
+(275, '127.0.0.1', '2023-12-04 05:56:50'),
+(276, '127.0.0.1', '2023-12-04 05:57:46'),
+(277, '127.0.0.1', '2023-12-04 05:57:47'),
+(278, '127.0.0.1', '2023-12-04 05:57:47'),
+(279, '127.0.0.1', '2023-12-04 05:57:47'),
+(280, '127.0.0.1', '2023-12-04 05:57:47'),
+(281, '127.0.0.1', '2023-12-04 05:57:47'),
+(282, '127.0.0.1', '2023-12-04 05:57:48'),
+(283, '127.0.0.1', '2023-12-04 05:57:48'),
+(284, '127.0.0.1', '2023-12-04 05:57:48'),
+(285, '127.0.0.1', '2023-12-04 05:58:28'),
+(286, '127.0.0.1', '2023-12-04 06:04:17'),
+(287, '127.0.0.1', '2023-12-04 06:04:23'),
+(288, '127.0.0.1', '2023-12-04 06:04:50'),
+(289, '127.0.0.1', '2023-12-04 06:05:05'),
+(290, '127.0.0.1', '2023-12-04 06:05:09'),
+(291, '127.0.0.1', '2023-12-04 06:05:55'),
+(292, '127.0.0.1', '2023-12-04 06:06:01'),
+(293, '127.0.0.1', '2023-12-04 06:06:05'),
+(294, '127.0.0.1', '2023-12-04 06:06:24'),
+(295, '127.0.0.1', '2023-12-04 06:06:37'),
+(296, '127.0.0.1', '2023-12-04 06:08:02'),
+(297, '127.0.0.1', '2023-12-04 06:08:30'),
+(298, '127.0.0.1', '2023-12-04 06:08:53'),
+(299, '127.0.0.1', '2023-12-04 06:09:05'),
+(300, '127.0.0.1', '2023-12-04 06:09:28'),
+(301, '127.0.0.1', '2023-12-04 06:15:36'),
+(302, '127.0.0.1', '2023-12-04 06:15:56'),
+(303, '127.0.0.1', '2023-12-04 06:16:06'),
+(304, '127.0.0.1', '2023-12-04 06:16:13'),
+(305, '127.0.0.1', '2023-12-04 06:17:44');
+
 -- --------------------------------------------------------
 
 --
@@ -1720,6 +2076,13 @@ ALTER TABLE `features`
 --
 ALTER TABLE `flashsales`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `flashsale_products`
+--
+ALTER TABLE `flashsale_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flashsale_products_flashsale_id_foreign` (`flashsale_id`);
 
 --
 -- Indexes for table `jobs`
@@ -2007,7 +2370,13 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT for table `flashsales`
 --
 ALTER TABLE `flashsales`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `flashsale_products`
+--
+ALTER TABLE `flashsale_products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=289;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -2025,7 +2394,7 @@ ALTER TABLE `mail_settings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
@@ -2157,7 +2526,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=306;
 
 --
 -- AUTO_INCREMENT for table `warehouses`
@@ -2170,6 +2539,16 @@ ALTER TABLE `warehouses`
 --
 ALTER TABLE `wishlists`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `flashsale_products`
+--
+ALTER TABLE `flashsale_products`
+  ADD CONSTRAINT `flashsale_products_flashsale_id_foreign` FOREIGN KEY (`flashsale_id`) REFERENCES `flashsales` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
