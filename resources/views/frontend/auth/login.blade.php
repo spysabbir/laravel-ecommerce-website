@@ -104,6 +104,7 @@ Login
                                         <th>Email</th>
                                         <th>Password</th>
                                         <th>Role</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,6 +112,9 @@ Login
                                         <td>customer1@email.com</td>
                                         <td>12345678</td>
                                         <td>Customer</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" onclick="copyUserDetails('customer1@email.com', '12345678')">Copy</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -140,6 +144,9 @@ Login
 
 @section('custom_script')
 <script>
-
+    function copyUserDetails(email, password) {
+        document.getElementById('email').value = email;
+        document.getElementById('password').value = password;
+    }
 </script>
 @endsection

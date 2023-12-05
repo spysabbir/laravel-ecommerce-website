@@ -36,6 +36,8 @@
     <script src="{{asset('admin')}}/bundles/vendorscripts.bundle.js"></script>
 
     <script src="{{asset('admin')}}/bundles/mainscripts.bundle.js"></script>
+
+    @yield('script')
 </body>
 
 </html>
