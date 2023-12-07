@@ -360,14 +360,29 @@ class FlashsaleController extends Controller
         }
     }
 
-    public function flashsaleAllProductAdded($id)
+    public function flashsaleAllProductAdded(Request $request, $id)
     {
         $flashSale = FlashSale::find($id);
-        $productIdsToAdd  = Product::where('status', 'Yes')->where('regular_price', '>', $flashSale->flashsale_minimum_product_price)->pluck('id');
+        $query  = Product::where('status', 'Yes')->where('regular_price', '>', $flashSale->flashsale_minimum_product_price);
+
+        if($request->category_id){
+            $query->where('category_id', $request->category_id);
+        }
+        if($request->subcategory_id){
+            $query->where('subcategory_id', $request->subcategory_id);
+        }
+        if($request->childcategory_id){
+            $query->where('childcategory_id', $request->childcategory_id);
+        }
+        if($request->brand_id){
+            $query->where('brand_id', $request->brand_id);
+        }
+
+        $productIdsToAdd =  $query->pluck('id');
+
         Product::whereIn('id', $productIdsToAdd)->update(['flashsale_status' => 'Yes']);
 
         $flashSale->products()->attach($productIdsToAdd);
-
 
         $notification = array(
             'message' => 'All product added in flashsale.',

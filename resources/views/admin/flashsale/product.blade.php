@@ -15,59 +15,68 @@ Flashsale Product
                     <p class="card-text">Product List</p>
                 </div>
                 <div class="action">
-                    <a href="javascript:history.go(-1)" class="btn btn-info btn-block"><i class="fa fa-arrow-left"></i> <span>Go Back</span></a>
+                    <a href="{{ route('flashsale.index') }}" class="btn btn-info btn-block"><i class="fa fa-arrow-left"></i> <span>Go Back</span></a>
                 </div>
             </div>
             <div class="card-body">
                 <div class="filter">
                     <div class="row mb-3">
-                        <div class="col-lg-2">
-                            <label class="form-label">Category Name</label>
-                            <select class="form-control filter_data" id="category_id">
-                                <option value="">--Select Category--</option>
-                                @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-lg-2">
-                            <label class="form-label">Subcategory Name</label>
-                            <select class="form-control filter_data" id="subcategory_id">
-                                <option value="">--Select Subcategory--</option>
-                                @foreach ($subcategories as $subcategory)
-                                <option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-lg-2">
-                            <label class="form-label">Childcategory Name</label>
-                            <select class="form-control filter_data" id="childcategory_id">
-                                <option value="">--Select Childcategory--</option>
-                                @foreach ($childcategories as $childcategory)
-                                <option value="{{$childcategory->id}}">{{$childcategory->childcategory_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-lg-2">
-                            <label class="form-label">Brand Name</label>
-                            <select class="form-control filter_data" id="brand_id">
-                                <option value="">--Select Brand--</option>
-                                @foreach ($brands as $brand)
-                                <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-lg-2">
-                            <label class="form-label">Flashsale Status</label>
-                            <select class="form-control filter_data" id="flashsale_status">
-                                <option value="">--Flashsale Status--</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2">
-                            <a href="{{ route('flashsale.all-product.added', $flashsale->id) }}" class="btn btn-success btn-sm mb-2">Added All Product</a>
-                            <a href="{{ route('flashsale.all-product.remove', $flashsale->id) }}" class="btn btn-warning btn-sm">Remove All Product</a>
+                        <div class="col-lg-12">
+                            <form action="{{ route('flashsale.all-product.added', $flashsale->id) }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Category Name</label>
+                                        <select class="form-control filter_data" id="category_id" name="category_id">
+                                            <option value="">--Select Category--</option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Subcategory Name</label>
+                                        <select class="form-control filter_data" id="subcategory_id" name="subcategory_id">
+                                            <option value="">--Select Subcategory--</option>
+                                            @foreach ($subcategories as $subcategory)
+                                            <option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Childcategory Name</label>
+                                        <select class="form-control filter_data" id="childcategory_id" name="childcategory_id">
+                                            <option value="">--Select Childcategory--</option>
+                                            @foreach ($childcategories as $childcategory)
+                                            <option value="{{$childcategory->id}}">{{$childcategory->childcategory_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Brand Name</label>
+                                        <select class="form-control filter_data" id="brand_id" name="brand_id">
+                                            <option value="">--Select Brand--</option>
+                                            @foreach ($brands as $brand)
+                                            <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <button type="submit" class="btn btn-success btn-sm mt-3 py-3">Add All</button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-control filter_data" id="flashsale_status">
+                                            <option value="">--Status--</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <a href="{{ route('flashsale.all-product.remove', $flashsale->id) }}" class="btn btn-warning btn-sm">Remove All Product</a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -105,7 +114,7 @@ Flashsale Product
         let id =  $('#flashsale_id').val();
         var url = "{{ route('flashsale.manage.product.list', ":id") }}";
         url = url.replace(':id', id);
-        
+
         table = $('.all_products_table').DataTable({
             processing: true,
             serverSide: true,

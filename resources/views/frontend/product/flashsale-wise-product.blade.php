@@ -62,7 +62,8 @@
                         <img class="banner-l" width="479" height="185" src="{{ asset('uploads/flashsale_offer_banner_photo') }}/{{ $flashsale->flashsale_offer_banner_photo }}" alt="">
                         <div class="banner-content bg-dark text-center py-2 px-5">
                             <p class="m-0 p-0">Hurry Up!</p>
-                            <p class="m-0 p-0"><strong>Offer : </strong>{{ $flashsale->flashsale_offer_amount }} {{ ($flashsale->flashsale_offer_type == 'Percentage') ? '%' : '৳' }}</p>
+                            <p class="m-0 p-0"><strong>Offer Amount: </strong>{{ $flashsale->flashsale_offer_amount }} {{ ($flashsale->flashsale_offer_type == 'Percentage') ? '%' : '৳' }}</p>
+                            <p class="m-0 p-0"><strong>Minimum Product Price: </strong>{{ $flashsale->flashsale_minimum_product_price }} ৳</p>
                             <p class="m-0 p-0"><strong>Start End: </strong>{{ date('d-M-Y H:i:s A', strtotime($flashsale->flashsale_offer_start_date)) }}</p>
                             <p class="m-0 p-0"><strong>Offer End: </strong>{{ date('d-M-Y H:i:s A', strtotime($flashsale->flashsale_offer_end_date)) }}</p>
                             <input type="hidden" value="{{ $flashsale->id }}" id="flashsale_id">
