@@ -47,7 +47,7 @@ Childcategory
                                         </div>
                                         <div class="col-lg-6">
                                             <label class="form-label">Subcategory Name</label>
-                                            <select class="form-control" name="subcategory_id" id="all_subcategories">
+                                            <select class="form-control all_subcategories" name="subcategory_id" id="">
                                                 <option value="">-- Select Category First --</option>
                                             </select>
                                             <span class="text-danger error-text subcategory_id_error"></span>
@@ -109,7 +109,7 @@ Childcategory
                     <div class="row mb-3">
                         <div class="col-lg-3">
                             <label class="form-label">Category Name</label>
-                            <select class="form-control filter_data" id="category_id">
+                            <select class="form-control filter_data" id="filter_category_id">
                                 <option value="">--Select Category--</option>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->category_name}}</option>
@@ -118,7 +118,7 @@ Childcategory
                         </div>
                         <div class="col-lg-3">
                             <label class="form-label">Subcategory Name</label>
-                            <select class="form-control filter_data" id="subcategory_id">
+                            <select class="form-control filter_data" id="filter_subcategory_id">
                                 <option value="">--Select Subcategory--</option>
                                 @foreach ($subcategories as $subcategory)
                                 <option value="{{$subcategory->id}}">{{$subcategory->subcategory_name}}</option>
@@ -127,7 +127,7 @@ Childcategory
                         </div>
                         <div class="col-lg-3">
                             <label class="form-label">Childcategory Status</label>
-                            <select class="form-control filter_data" id="status">
+                            <select class="form-control filter_data" id="filter_status">
                                 <option value="">--Select Childcategory Status--</option>
                                 <option value="Yes">Active</option>
                                 <option value="No">Inactive</option>
@@ -167,7 +167,7 @@ Childcategory
                                                     <input type="hidden" name="childcategory_id" id="childcategory_id">
                                                     <div class="col-lg-6">
                                                         <label class="form-label">Category Name</label>
-                                                        <select class="form-control category_id" name="category_id" id="category_id">
+                                                        <select class="form-control select_category" name="category_id" id="category_id">
                                                             @foreach ($categories as $category)
                                                             <option value="{{$category->id}}" >{{$category->category_name}}</option>
                                                             @endforeach
@@ -176,7 +176,7 @@ Childcategory
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label class="form-label">Subcategory Name</label>
-                                                        <select class="form-control subcategory_id" name="subcategory_id" id="subcategory_id">
+                                                        <select class="form-control all_subcategories" name="subcategory_id" id="subcategory_id">
                                                             @foreach ($subcategories as $subcategory)
                                                             <option value="{{$subcategory->id}}" >{{$subcategory->subcategory_name}}</option>
                                                             @endforeach
@@ -242,9 +242,9 @@ Childcategory
             ajax: {
                 url: "{{ route('childcategory.index') }}",
                 "data":function(e){
-                    e.category_id = $('#category_id').val();
-                    e.subcategory_id = $('#subcategory_id').val();
-                    e.status = $('#status').val();
+                    e.category_id = $('#filter_category_id').val();
+                    e.subcategory_id = $('#filter_subcategory_id').val();
+                    e.status = $('#filter_status').val();
                 },
             },
             columns: [
@@ -272,7 +272,7 @@ Childcategory
                 method: 'POST',
                 data: {category_id:category_id},
                 success: function(response) {
-                    $('#all_subcategories').html(response);
+                    $('.all_subcategories').html(response);
                 }
             });
         })
@@ -323,8 +323,8 @@ Childcategory
                 url:  url,
                 method: 'GET',
                 success: function(response) {
-                    $(".category_id").val(response.category_id);
-                    $(".subcategory_id").val(response.subcategory_id);
+                    $("#category_id").val(response.category_id);
+                    $("#subcategory_id").val(response.subcategory_id);
                     $("#childcategory_name").val(response.childcategory_name);
                     $('#childcategory_photo').val(response.childcategory_photo)
                     $('#childcategory_id').val(response.id)
