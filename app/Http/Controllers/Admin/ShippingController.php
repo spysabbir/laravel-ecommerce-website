@@ -72,8 +72,8 @@ class ShippingController extends Controller
             $send_trashed_shippings_data .= '
             <tr>
                 <td>'.$trashed_shipping->id.'</td>
-                <td>'.$trashed_shipping->division_id.'</td>
-                <td>'.$trashed_shipping->district_id.'</td>
+                <td>'.$trashed_shipping->division->name.'</td>
+                <td>'.$trashed_shipping->district->name.'</td>
                 <td>
                     <button type="button" id="'.$trashed_shipping->id.'" class="btn btn-success btn-sm shippingRestoreBtn"><i class="fa fa-undo"></i></button>
                     <button type="button" id="'.$trashed_shipping->id.'" class="btn btn-danger btn-sm shippingForceDeleteBtn"><i class="fa fa-times"></i></button>
@@ -85,6 +85,15 @@ class ShippingController extends Controller
         return response()->json([
             'trashed_shippings' => $send_trashed_shippings_data,
         ]);
+    }
+
+    public function getDistricts(Request $request){
+        $send_data = "<option>--Select District--</option>";
+        $districts = District::where('division_id', $request->division_id)->get();
+        foreach ($districts as $district) {
+            $send_data .= "<option value='$district->id'>$district->name</option>";
+        }
+        return response()->json($send_data);
     }
 
     public function store(Request $request)

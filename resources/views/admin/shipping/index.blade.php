@@ -38,7 +38,7 @@ Shipping
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label class="form-label">Division Name</label>
-                                            <select name="division_id" class="form-control" id="">
+                                            <select name="division_id" class="form-control select_division">
                                                 <option value="">--Select Division--</option>
                                                 @foreach ($divisions as $division)
                                                 <option value="{{$division->id}}">{{$division->name}}</option>
@@ -48,11 +48,8 @@ Shipping
                                         </div>
                                         <div class="col-lg-6">
                                             <label class="form-label">District Name</label>
-                                            <select name="district_id" class="form-control" id="">
-                                                <option value="">--Select District--</option>
-                                                @foreach ($districts as $district)
-                                                <option value="{{$district->id}}">{{$district->name}}</option>
-                                                @endforeach
+                                            <select name="district_id" class="form-control all_district">
+                                                <option value="">--Select Division First--</option>
                                             </select>
                                             <span class="text-danger error-text district_id_error"></span>
                                         </div>
@@ -108,7 +105,7 @@ Shipping
                     <div class="row mb-3">
                         <div class="col-lg-3">
                             <label class="form-label">Division Name</label>
-                            <select class="form-control filter_data" id="division_id">
+                            <select class="form-control filter_data" id="filter_division_id">
                                 <option value="">--Division Name--</option>
                                 @foreach ($divisions as $division)
                                 <option value="{{ $division->id }}">{{ $division->name }}</option>
@@ -117,7 +114,7 @@ Shipping
                         </div>
                         <div class="col-lg-3">
                             <label class="form-label">Shipping Status</label>
-                            <select class="form-control filter_data" id="status">
+                            <select class="form-control filter_data" id="filter_status">
                                 <option value="">--Shipping Status--</option>
                                 <option value="Yes">Active</option>
                                 <option value="No">Inactive</option>
@@ -156,7 +153,7 @@ Shipping
                                                     <input type="hidden" name="shipping_id" id="shipping_id">
                                                     <div class="col-lg-6">
                                                         <label class="form-label">Division Name</label>
-                                                        <select name="division_id" class="form-control division_id" id="division_id">
+                                                        <select name="division_id" class="form-control select_division" id="division_id">
                                                             <option value="">--Select Division--</option>
                                                             @foreach ($divisions as $division)
                                                             <option value="{{$division->id}}">{{$division->name}}</option>
@@ -166,8 +163,8 @@ Shipping
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label class="form-label">District Name</label>
-                                                        <select name="district_id" class="form-control district_id" id="district_id">
-                                                            <option value="">--Select District--</option>
+                                                        <select name="district_id" class="form-control all_district" id="district_id">
+                                                            <option value="">--Select Division First--</option>
                                                             @foreach ($districts as $district)
                                                             <option value="{{$district->id}}">{{$district->name}}</option>
                                                             @endforeach
@@ -227,8 +224,8 @@ Shipping
             ajax: {
                 url: "{{ route('shipping.index') }}",
                 "data":function(e){
-                    e.division_id = $('#division_id').val();
-                    e.status = $('#status').val();
+                    e.division_id = $('#filter_division_id').val();
+                    e.status = $('#filter_status').val();
                 },
             },
             columns: [
@@ -244,6 +241,20 @@ Shipping
         $(document).on('change', '.filter_data', function(e){
             e.preventDefault();
             $('.all_shipping_table').DataTable().ajax.reload()
+        })
+
+        // Division Data
+        $(document).on('change', '.select_division', function(e){
+            e.preventDefault();
+            var division_id = $(this).val();
+            $.ajax({
+                url: '{{ route('get.districts') }}',
+                method: 'POST',
+                data: {division_id:division_id},
+                success: function(response) {
+                    $('.all_district').html(response);
+                }
+            });
         })
 
         // Store Data
@@ -293,8 +304,8 @@ Shipping
                 url:  url,
                 method: 'GET',
                 success: function(response) {
-                    $(".division_id").val(response.division__id);
-                    $(".district_id").val(response.district__id);
+                    $("#division_id").val(response.division_id);
+                    $("#district_id").val(response.district_id);
                     $("#shipping_charge").val(response.shipping_charge);
                     $('#shipping_id').val(response.id)
                 }

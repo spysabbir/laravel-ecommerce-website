@@ -191,6 +191,7 @@ Route::prefix('admin')->middleware(['admin_auth'])->group(function () {
         Route::get('/flashsale/all-product/remove/{id}', [FlashsaleController::class, 'flashsaleAllProductRemove'])->name('flashsale.all-product.remove');
 
         Route::resource('shipping', ShippingController::class);
+        Route::post('/get/districts', [ShippingController::class, 'getDistricts'])->name('get.districts');
         Route::get('/fetch/trashed/shipping', [ShippingController::class, 'fetchTrashedShipping'])->name('fetch.trashed.shipping');
         Route::get('/shipping/restore/{id}', [ShippingController::class, 'shippingRestore'])->name('shipping.restore');
         Route::get('/shipping/forcedelete/{id}', [ShippingController::class, 'shippingForceDelete'])->name('shipping.forcedelete');
