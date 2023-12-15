@@ -66,37 +66,21 @@ Checkout
                             </div>
                             <div class="col-md-12">
                                 <div class="country-select">
-                                    <label>Country Name <span class="required">*</span></label>
-                                    <select style="display: none;" name="country_id" id="select_country" class="country_select">
-                                        <option value="">Select Country</option>
+                                    <label>Division Name <span class="required">*</span></label>
+                                    <select name="billing_division_id" id="select_division" class="division_select">
+                                        <option value="">Select Division</option>
                                         @foreach ($shippings as $shipping)
-                                        <option value="{{$shipping->country_id}}">{{$shipping->relationtocountry->country_name}}</option>
+                                        <option value="{{$shipping->division_id}}">{{$shipping->division->name}}</option>
                                         @endforeach
                                     </select>
-                                    <div class="nice-select" tabindex="0" hidden>
-                                        <span class="current">Select Country</span>
-                                        <ul class="list">
-                                            @foreach ($shippings as $shipping)
-                                            <li data-value="{{$shipping->country_id}}" class="option">{{$shipping->relationtocountry->country_name}}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="country-select">
-                                    <label>City Name <span class="required">*</span></label>
-                                    <select style="display: none;" name="city_name" id="select_city_details" class="city_select">
-                                        <option value="">Select City</option>
-
+                                    <label>District Name <span class="required">*</span></label>
+                                    <select name="billing_district_id" id="all_district_list" class="district_select">
+                                        <option value="">Select Division First</option>
                                     </select>
-                                    <div class="nice-select" tabindex="0" hidden>
-                                        <span class="current">Select Country First</span>
-                                        <ul class="list" id="ul_city_details">
-
-                                        </ul>
-                                    </div>
-                                    <small class="text-warning">First select a country then the list of city will show.</small>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -138,14 +122,14 @@ Checkout
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>Country Name<span class="required">*</span></label>
-                                            <input type="text" placeholder="Country" value="" name="shipping_country" id="ship_country" readonly>
+                                            <label>Division Name<span class="required">*</span></label>
+                                            <input type="text" placeholder="Division" value="" name="shipping_division_id" id="shipping_division" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>City Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="City" value="" name="shipping_city" id="ship_city" readonly>
+                                            <label>District Name <span class="required">*</span></label>
+                                            <input type="text" placeholder="District" value="" name="shipping_district_id" id="shipping_district" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -304,63 +288,62 @@ Checkout
             // ajax end
         })
 
-        // Select Country
-        $('#select_country').change(function(){
+        // Select Division
+        $('#select_division').change(function(){
+            var division_name = $('#select_division :selected').html();
+            $('#shipping_division').html(division_name);
+
             $('.checkout_btn').addClass('d-none');
             $('#shipping_charge').html("00");
-            var country_id = $(this).val();
-            var country_name = $('#select_country :selected').html();
-            $('#ship_country').val(country_name);
             var sub_total = $('#sub_total').html();
             var discount_amount = $('#discount_amount').html();
             var grand_total = parseInt(sub_total) - parseInt(discount_amount);
             $('.grand_total').html(grand_total);
+
+            var division_id = $(this).val();
+            $('#shipping_division').val(division_id);
             // ajax start
             $.ajax({
                 type:'POST',
-                url: "{{route('get.city.list')}}",
-                data:{country_id:country_id},
-
-                success: function(data){
-                    $('#select_city_details').html(data.select_city_details);
-                    $('#ul_city_details').html(data.ul_city_details);
+                url: "{{route('get.district.list')}}",
+                data:{division_id:division_id},
+                success: function(response){
+                    $('#all_district_list').html(response);
                 }
             })
             // ajax end
         })
 
-        // Select City
-        $('#select_city_details').change(function(){
-            var country_id= $('#select_country :selected').val();
-            var city_name = $('#select_city_details :selected').html();
-            $('#ship_city').val(city_name);
-            $('#shipping_charge').html($(this).val());
-            $('.checkout_btn').removeClass('d-none');
-            var sub_total = $('#sub_total').html();
-            var discount_amount = $('#discount_amount').html();
-            var shipping_charge = $(this).val();
-            var grand_total = parseInt(sub_total) + parseInt(shipping_charge) - parseInt(discount_amount);
-            $('.grand_total').html(grand_total);
+        // Select District
+        $('.district_select').change(function(){
+            var district_name = $('.district_select :selected').html();
+            $('#shipping_district').html(district_name);
+
+            var division_id= $('#select_division :selected').val();
+            var district_id = $(this).val();
+            $('#shipping_district').val(district_id);
             // ajax start
             $.ajax({
                 type:'POST',
-                url: "{{route('set.country.city')}}",
-                data:{country_id:country_id, city_name:city_name},
-
-                success: function(data){
-
+                url: "{{route('get.shipping.charge')}}",
+                data:{division_id:division_id, district_id:district_id},
+                success: function(response){
+                    $('.checkout_btn').removeClass('d-none');
+                    $('#shipping_charge').html(response);
+                    var sub_total = $('#sub_total').html();
+                    var discount_amount = $('#discount_amount').html();
+                    var grand_total = parseInt(sub_total) + parseInt(response) - parseInt(discount_amount);
+                    $('.grand_total').html(grand_total);
                 }
             })
             // ajax end
         })
 
         // Select2 Option
-        $('.country_select').select2({
-            placeholder: 'Select country',
+        $('.division_select').select2({
         });
 
-        $('.city_select').select2({
-            placeholder: 'Select City',
+        $('.district_select').select2({
         });
 
     });

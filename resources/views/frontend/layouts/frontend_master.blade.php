@@ -209,7 +209,7 @@
                                         @php
                                         $categories = App\Models\Category::where('status', 'Yes')->get();
                                         @endphp
-                                        <select name="category_id">
+                                        <select name="category_id" class="search_select">
                                             <option value="ALL" {{ request('category_id') == "All" ? 'selected' : '' }}>All Categories</option>
                                             @foreach ($categories as $category)
                                             <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
@@ -432,7 +432,7 @@
                             @php
                             $categories = App\Models\Category::where('status', 'Yes')->get();
                             @endphp
-                            <select>
+                            <select class="search_select">
                                 <option value="ALL" {{ request('category') == "All" ? 'selected' : '' }}>All Categories</option>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}" {{ request('category') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>

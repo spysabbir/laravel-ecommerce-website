@@ -24,7 +24,7 @@ class CheckoutController extends Controller
         if (!Auth::check()) {
             return redirect()->route('login');
         } else {
-            $shippings = Shipping::where('status', "Yes")->select('country_id')->groupBy('country_id')->get();
+            $shippings = Shipping::where('status', "Yes")->select('division_id')->groupBy('division_id')->get();
             $carts = Cart::where('user_id', auth()->user()->id)->where('status', 'Yes')->get();
 
             $sub_total = 0;
@@ -53,24 +53,24 @@ class CheckoutController extends Controller
         }
     }
 
-    public function getCityList(Request $request){
-        $select_city_details = "<option value=''>--Select City--</option>";
-        $ul_city_details = "";
-        $cities = Shipping::where('country_id', $request->country_id)->get();
-        foreach($cities as $city){
-            $select_city_details .= "<option value='$city->shipping_charge'>$city->city_name</option>";
-            $ul_city_details .= "<li data-value='$city->shipping_charge' class='option'>$city->city_name</li>";
+    public function getDistrictList(Request $request){
+        $get_district_list = "<option value=''>--Select District--</option>";
+        $shippings = Shipping::where('division_id', $request->division_id)->get();
+        foreach($shippings as $shipping){
+            $get_district_list .= "<option value='$shipping->district_id'>$shipping->district_id</option>";
         }
-        return response()->json([
-            'select_city_details' => $select_city_details,
-            'ul_city_details' => $ul_city_details,
-        ]);
+        return response()->json($get_district_list);
     }
 
-    public function setCountryCity(Request $request)
+    public function getShippingCharge(Request $request)
     {
-        Session::put('session_country_id', $request->country_id);
-        Session::put('session_city_name', $request->city_name);
+        Session::put('session_division_id', $request->division_id);
+        Session::put('session_district_id', $request->district_id);
+
+        $shipping_charge = Shipping::where('division_id', $request->division_id)
+                        ->where('district_id', $request->district_id)
+                        ->value('shipping_charge');
+        return response()->json($shipping_charge);
     }
 
     public function checkoutPost(Request $request)
@@ -81,8 +81,8 @@ class CheckoutController extends Controller
         ]);
 
         $shipping_charge =  Shipping::where([
-            'country_id' => Session::get('session_country_id'),
-            'city_name' => Session::get('session_city_name'),
+            'country_id' => Session::get('session_division_id'),
+            'city_name' => Session::get('session_district_id'),
         ])->first()->shipping_charge;
 
         if ($request->shipping_address == NULL) {
@@ -103,14 +103,14 @@ class CheckoutController extends Controller
             'billing_name' => $request->billing_name,
             'billing_email' => $request->billing_email,
             'billing_phone' => $request->billing_phone,
-            'country_id' => Session::get('session_country_id'),
-            'city_name' => Session::get('session_city_name'),
+            'division_id' => Session::get('session_division_id'),
+            'district_id' => Session::get('session_district_id'),
             'billing_address' => $request->billing_address,
             'shipping_name' => $request->shipping_name,
             'shipping_email' => $request->shipping_email,
             'shipping_phone' => $shipping_phone,
-            'shipping_country' => $request->shipping_country,
-            'shipping_city' => $request->shipping_city,
+            'shipping_division' => $request->shipping_division,
+            'shipping_district' => $request->shipping_district,
             'shipping_address' => $shipping_address,
             'customer_order_notes' => $request->customer_order_notes,
             'payment_method' => $request->payment_method,

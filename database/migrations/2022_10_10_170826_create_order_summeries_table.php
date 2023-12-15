@@ -19,14 +19,14 @@ return new class extends Migration
             $table->string('billing_name');
             $table->string('billing_email');
             $table->string('billing_phone');
-            $table->string('country_id');
-            $table->string('city_name');
+            $table->integer('billing_division_id');
+            $table->integer('billing_district_id');
             $table->text('billing_address');
             $table->string('shipping_name');
             $table->string('shipping_email');
             $table->string('shipping_phone');
-            $table->string('shipping_country');
-            $table->string('shipping_city');
+            $table->integer('shipping_division_id');
+            $table->integer('shipping_district_id');
             $table->text('shipping_address');
             $table->longText('customer_order_notes')->nullable();
             $table->float('sub_total');

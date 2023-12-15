@@ -67,8 +67,8 @@ Route::middleware('auth')->group(function () {
         Route::post('buy/now', [CartController::class, 'buyNow'])->name('buy.now');
 
         Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
-        Route::post('get/city/list', [CheckoutController::class, 'getCityList'])->name('get.city.list');
-        Route::post('set/country/city', [CheckoutController::class, 'setCountryCity'])->name('set.country.city');
+        Route::post('get/district/list', [CheckoutController::class, 'getDistrictList'])->name('get.district.list');
+        Route::post('get/shipping/charge', [CheckoutController::class, 'getShippingCharge'])->name('get.shipping.charge');
         Route::post('checkout/post', [CheckoutController::class, 'checkoutPost'])->name('checkout.post');
 
         Route::get('later/pay/{grand_total}/{order_summery_id}', [CheckoutController::class, 'laterPay']);
