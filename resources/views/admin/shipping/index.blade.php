@@ -37,19 +37,24 @@ Shipping
                                     <span id="shipping_charge_exists_error" class="text-danger"></span>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <label class="form-label">Country Name</label>
-                                            <select name="country_id" class="form-control" id="">
-                                                <option value="">--Select Country--</option>
-                                                @foreach ($countries as $country)
-                                                <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                            <label class="form-label">Division Name</label>
+                                            <select name="division_id" class="form-control" id="">
+                                                <option value="">--Select Division--</option>
+                                                @foreach ($divisions as $division)
+                                                <option value="{{$division->id}}">{{$division->name}}</option>
                                                 @endforeach
                                             </select>
-                                            <span class="text-danger error-text country_id_error"></span>
+                                            <span class="text-danger error-text division_id_error"></span>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label class="form-label">City Name</label>
-                                            <input type="text" name="city_name" class="form-control" placeholder="City Name">
-                                            <span class="text-danger error-text city_name_error"></span>
+                                            <label class="form-label">District Name</label>
+                                            <select name="district_id" class="form-control" id="">
+                                                <option value="">--Select District--</option>
+                                                @foreach ($districts as $district)
+                                                <option value="{{$district->id}}">{{$district->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="text-danger error-text district_id_error"></span>
                                         </div>
                                         <div class="col-lg-6">
                                             <label class="form-label">Shipping Charge</label>
@@ -81,8 +86,8 @@ Shipping
                                     <thead class="bg-dark text-white">
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Country Name</th>
-                                            <th>City Name</th>
+                                            <th>Division Name</th>
+                                            <th>District Name</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -102,11 +107,11 @@ Shipping
                 <div class="filter">
                     <div class="row mb-3">
                         <div class="col-lg-3">
-                            <label class="form-label">Country Name</label>
-                            <select class="form-control filter_data" id="country_id">
-                                <option value="">--Country Name--</option>
-                                @foreach ($countries as $country)
-                                <option value="{{ $country->id }}">{{ $country->country_name }}</option>
+                            <label class="form-label">Division Name</label>
+                            <select class="form-control filter_data" id="division_id">
+                                <option value="">--Division Name--</option>
+                                @foreach ($divisions as $division)
+                                <option value="{{ $division->id }}">{{ $division->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -125,8 +130,8 @@ Shipping
                         <thead>
                             <tr>
                                 <th>Sl No</th>
-                                <th>Country Name</th>
-                                <th>City Photo</th>
+                                <th>Division Name</th>
+                                <th>District Name</th>
                                 <th>Shipping Charge</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -150,19 +155,24 @@ Shipping
                                                 <div class="row">
                                                     <input type="hidden" name="shipping_id" id="shipping_id">
                                                     <div class="col-lg-6">
-                                                        <label class="form-label">Country Name</label>
-                                                        <select name="country_id" class="form-control country_id" id="country_id">
-                                                            <option value="">--Select Country--</option>
-                                                            @foreach ($countries as $country)
-                                                            <option value="{{$country->id}}">{{$country->country_name}}</option>
+                                                        <label class="form-label">Division Name</label>
+                                                        <select name="division_id" class="form-control division_id" id="division_id">
+                                                            <option value="">--Select Division--</option>
+                                                            @foreach ($divisions as $division)
+                                                            <option value="{{$division->id}}">{{$division->name}}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span class="text-danger error-text update_country_id_error"></span>
+                                                        <span class="text-danger error-text update_division_id_error"></span>
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <label class="form-label">City Name</label>
-                                                        <input type="text" name="city_name" id="city_name" class="form-control" placeholder="City Name">
-                                                        <span class="text-danger error-text update_city_name_error"></span>
+                                                        <label class="form-label">District Name</label>
+                                                        <select name="district_id" class="form-control district_id" id="district_id">
+                                                            <option value="">--Select District--</option>
+                                                            @foreach ($districts as $district)
+                                                            <option value="{{$district->id}}">{{$district->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <span class="text-danger error-text update_district_id_error"></span>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label class="form-label">Shipping Charge</label>
@@ -217,14 +227,14 @@ Shipping
             ajax: {
                 url: "{{ route('shipping.index') }}",
                 "data":function(e){
-                    e.country_id = $('#country_id').val();
+                    e.division_id = $('#division_id').val();
                     e.status = $('#status').val();
                 },
             },
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'country_name', name: 'country_name'},
-                {data: 'city_name', name: 'city_name'},
+                {data: 'division_name', name: 'division_name'},
+                {data: 'district_name', name: 'district_name'},
                 {data: 'shipping_charge', name: 'shipping_charge'},
                 {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -283,8 +293,8 @@ Shipping
                 url:  url,
                 method: 'GET',
                 success: function(response) {
-                    $(".country_id").val(response.country_id);
-                    $("#city_name").val(response.city_name);
+                    $(".division_id").val(response.division__id);
+                    $(".district_id").val(response.district__id);
                     $("#shipping_charge").val(response.shipping_charge);
                     $('#shipping_id').val(response.id)
                 }

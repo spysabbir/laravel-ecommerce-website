@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->integer('country_id');
-            $table->text('city_name');
+            $table->integer('division_id');
+            $table->integer('district_id');
             $table->float('shipping_charge');
             $table->string('status')->default('Yes');
             $table->integer('created_by');

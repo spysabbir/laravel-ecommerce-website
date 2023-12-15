@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Country;
+use App\Models\District;
+use App\Models\Division;
 use App\Models\Shipping;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,18 +18,19 @@ class ShippingController extends Controller
     {
         if ($request->ajax()) {
             $shippings = "";
-            $query = Shipping::leftJoin('countries', 'shippings.country_id', 'countries.id');
+            $query = Shipping::leftJoin('divisions', 'shippings.division_id', 'divisions.id')
+                            ->leftJoin('districts', 'shippings.district_id', 'districts.id');
 
-            if($request->country_id){
-                $query->where('shippings.country_id', $request->country_id);
+            if($request->division_id){
+                $query->where('shippings.division_id', $request->division_id);
             }
 
             if($request->status){
                 $query->where('shippings.status', $request->status);
             }
 
-            $shippings = $query->select('shippings.*', 'countries.country_name')
-            ->get();
+            $shippings = $query->select('shippings.*', 'divisions.name AS division_name', 'districts.name AS district_name')
+                ->get();
 
             return Datatables::of($shippings)
                     ->addIndexColumn()
@@ -52,11 +54,12 @@ class ShippingController extends Controller
                             ';
                         return $btn;
                     })
-                    ->rawColumns(['country_name', 'status', 'action'])
+                    ->rawColumns(['division_name', 'district_name', 'status', 'action'])
                     ->make(true);
         }
-        $countries = Country::all();
-        return view('admin.shipping.index', compact('countries'));
+        $divisions = Division::all();
+        $districts = District::all();
+        return view('admin.shipping.index', compact('divisions', 'districts'));
     }
 
     public function fetchTrashedShipping()
@@ -69,8 +72,8 @@ class ShippingController extends Controller
             $send_trashed_shippings_data .= '
             <tr>
                 <td>'.$trashed_shipping->id.'</td>
-                <td>'.$trashed_shipping->country_id.'</td>
-                <td>'.$trashed_shipping->city_name.'</td>
+                <td>'.$trashed_shipping->division_id.'</td>
+                <td>'.$trashed_shipping->district_id.'</td>
                 <td>
                     <button type="button" id="'.$trashed_shipping->id.'" class="btn btn-success btn-sm shippingRestoreBtn"><i class="fa fa-undo"></i></button>
                     <button type="button" id="'.$trashed_shipping->id.'" class="btn btn-danger btn-sm shippingForceDeleteBtn"><i class="fa fa-times"></i></button>
@@ -96,14 +99,14 @@ class ShippingController extends Controller
             ]);
         }else{
             $status = Shipping::where([
-                'country_id' => $request->country_id,
-                'city_name' => $request->city_name,
+                'division_id' => $request->division_id,
+                'district_id' => $request->district_id,
             ])->exists();
 
             if($status){
                 return response()->json([
                     'status' => 401,
-                    'error' => 'This country & city already exists.',
+                    'error' => 'This division & district already exists.',
                 ]);
             }else{
                 Shipping::insert($request->except('_token')+['created_at' => Carbon::now(), 'created_by' => Auth::guard('admin')->user()->id]);
@@ -135,19 +138,19 @@ class ShippingController extends Controller
             ]);
         }else{
             $exists = Shipping::where([
-                'country_id' => $request->country_id,
-                'city_name' => $request->city_name,
+                'division_id' => $request->division_id,
+                'district_id' => $request->district_id,
             ])->exists();
 
             if($exists){
                 return response()->json([
                     'status' => 401,
-                    'error' => 'This country & city already exists.',
+                    'error' => 'This division & district already exists.',
                 ]);
             }else{
                 $shipping->update([
-                    'country_id' => $request->country_id,
-                    'city_name' => $request->city_name,
+                    'division_id' => $request->division_id,
+                    'district_id' => $request->district_id,
                     'shipping_charge' => $request->shipping_charge,
                     'updated_by' => Auth::guard('admin')->user()->id,
                 ]);
@@ -206,7 +209,7 @@ class ShippingController extends Controller
                 'updated_by' => Auth::guard('admin')->user()->id,
             ]);
             return response()->json([
-            'message' => 'Shipping status active',
+                'message' => 'Shipping status active',
             ]);
         }
     }
