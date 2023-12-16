@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 05:08 AM
+-- Generation Time: Dec 15, 2023 at 01:33 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -52,7 +52,7 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `status`, `last_active`, `password`, `role`, `warehouse_id`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'superadmin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-12-07 05:25:38', '$2y$10$CAcFMkGYrHnfPGn4pl8rguKMvf799pp57LUGqJMyc/Yzsq1BI4s/2', 'Super Admin', NULL, '7uklGLKg3jU6UruQiCi9c2fRrv8bdzYeY9EnBiS1Idekm8ilNMs5Myqsqu6c', '2023-06-14 05:35:31', '2023-12-07 05:25:38'),
-(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-12-04 04:16:28', '$2y$10$vXW3rTLZMRzTRZ74VGY5jOQHEz6xKRgCRAVJd/n9HBfutx5JuOTaq', 'Admin', NULL, '036fYNxGn99nOTChFXlyCeExR5YA18RselV8wR3n2wc62q2R5rDCWa4I2GwS', '2023-06-13 18:00:00', '2023-12-04 04:16:28'),
+(2, 'Admin', 'admin@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-12-15 11:55:12', '$2y$10$vXW3rTLZMRzTRZ74VGY5jOQHEz6xKRgCRAVJd/n9HBfutx5JuOTaq', 'Admin', NULL, '036fYNxGn99nOTChFXlyCeExR5YA18RselV8wR3n2wc62q2R5rDCWa4I2GwS', '2023-06-13 18:00:00', '2023-12-15 11:55:12'),
 (3, 'Warehouse Manager', 'dhakawarehouse@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', 'Yes', '2023-12-05 05:12:27', '$2y$10$3kkZzTLRBqO3ouqweO7jnO1weoQbvHFqif8QRmYFcMmNfOcK4oj/S', 'Manager', 1, NULL, '2023-06-15 05:35:53', '2023-12-05 05:12:27');
 
 -- --------------------------------------------------------
@@ -369,275 +369,6 @@ INSERT INTO `contact_messages` (`id`, `full_name`, `email_address`, `phone_numbe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
---
-
-CREATE TABLE `countries` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `country_name` varchar(255) NOT NULL,
-  `country_code` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `countries`
---
-
-INSERT INTO `countries` (`id`, `country_name`, `country_code`, `created_at`, `updated_at`) VALUES
-(1, 'Afghanistan', 'AF', NULL, NULL),
-(2, 'Åland Islands', 'AX', NULL, NULL),
-(3, 'Albania', 'AL', NULL, NULL),
-(4, 'Algeria', 'DZ', NULL, NULL),
-(5, 'American Samoa', 'AS', NULL, NULL),
-(6, 'Andorra', 'AD', NULL, NULL),
-(7, 'Angola', 'AO', NULL, NULL),
-(8, 'Anguilla', 'AI', NULL, NULL),
-(9, 'Antarctica', 'AQ', NULL, NULL),
-(10, 'Antigua and Barbuda', 'AG', NULL, NULL),
-(11, 'Argentina', 'AR', NULL, NULL),
-(12, 'Armenia', 'AM', NULL, NULL),
-(13, 'Aruba', 'AW', NULL, NULL),
-(14, 'Australia', 'AU', NULL, NULL),
-(15, 'Austria', 'AT', NULL, NULL),
-(16, 'Azerbaijan', 'AZ', NULL, NULL),
-(17, 'Bahamas', 'BS', NULL, NULL),
-(18, 'Bahrain', 'BH', NULL, NULL),
-(19, 'Bangladesh', 'BD', NULL, NULL),
-(20, 'Barbados', 'BB', NULL, NULL),
-(21, 'Belarus', 'BY', NULL, NULL),
-(22, 'Belgium', 'BE', NULL, NULL),
-(23, 'Belize', 'BZ', NULL, NULL),
-(24, 'Benin', 'BJ', NULL, NULL),
-(25, 'Bermuda', 'BM', NULL, NULL),
-(26, 'Bhutan', 'BT', NULL, NULL),
-(27, 'Bolivia, Plurinational State of', 'BO', NULL, NULL),
-(28, 'Bonaire, Sint Eustatius and Saba', 'BQ', NULL, NULL),
-(29, 'Bosnia and Herzegovina', 'BA', NULL, NULL),
-(30, 'Botswana', 'BW', NULL, NULL),
-(31, 'Bouvet Island', 'BV', NULL, NULL),
-(32, 'Brazil', 'BR', NULL, NULL),
-(33, 'British Indian Ocean Territory', 'IO', NULL, NULL),
-(34, 'Brunei Darussalam', 'BN', NULL, NULL),
-(35, 'Bulgaria', 'BG', NULL, NULL),
-(36, 'Burkina Faso', 'BF', NULL, NULL),
-(37, 'Burundi', 'BI', NULL, NULL),
-(38, 'Cambodia', 'KH', NULL, NULL),
-(39, 'Cameroon', 'CM', NULL, NULL),
-(40, 'Canada', 'CA', NULL, NULL),
-(41, 'Cape Verde', 'CV', NULL, NULL),
-(42, 'Cayman Islands', 'KY', NULL, NULL),
-(43, 'Central African Republic', 'CF', NULL, NULL),
-(44, 'Chad', 'TD', NULL, NULL),
-(45, 'Chile', 'CL', NULL, NULL),
-(46, 'China', 'CN', NULL, NULL),
-(47, 'Christmas Island', 'CX', NULL, NULL),
-(48, 'Cocos (Keeling) Islands', 'CC', NULL, NULL),
-(49, 'Colombia', 'CO', NULL, NULL),
-(50, 'Comoros', 'KM', NULL, NULL),
-(51, 'Congo', 'CG', NULL, NULL),
-(52, 'Congo, the Democratic Republic of the', 'CD', NULL, NULL),
-(53, 'Cook Islands', 'CK', NULL, NULL),
-(54, 'Costa Rica', 'CR', NULL, NULL),
-(55, 'Côte d\'Ivoire', 'CI', NULL, NULL),
-(56, 'Croatia', 'HR', NULL, NULL),
-(57, 'Cuba', 'CU', NULL, NULL),
-(58, 'Curaçao', 'CW', NULL, NULL),
-(59, 'Cyprus', 'CY', NULL, NULL),
-(60, 'Czech Republic', 'CZ', NULL, NULL),
-(61, 'Denmark', 'DK', NULL, NULL),
-(62, 'Djibouti', 'DJ', NULL, NULL),
-(63, 'Dominica', 'DM', NULL, NULL),
-(64, 'Dominican Republic', 'DO', NULL, NULL),
-(65, 'Ecuador', 'EC', NULL, NULL),
-(66, 'Egypt', 'EG', NULL, NULL),
-(67, 'El Salvador', 'SV', NULL, NULL),
-(68, 'Equatorial Guinea', 'GQ', NULL, NULL),
-(69, 'Eritrea', 'ER', NULL, NULL),
-(70, 'Estonia', 'EE', NULL, NULL),
-(71, 'Ethiopia', 'ET', NULL, NULL),
-(72, 'Falkland Islands (Malvinas)', 'FK', NULL, NULL),
-(73, 'Faroe Islands', 'FO', NULL, NULL),
-(74, 'Fiji', 'FJ', NULL, NULL),
-(75, 'Finland', 'FI', NULL, NULL),
-(76, 'France', 'FR', NULL, NULL),
-(77, 'French Guiana', 'GF', NULL, NULL),
-(78, 'French Polynesia', 'PF', NULL, NULL),
-(79, 'French Southern Territories', 'TF', NULL, NULL),
-(80, 'Gabon', 'GA', NULL, NULL),
-(81, 'Gambia', 'GM', NULL, NULL),
-(82, 'Georgia', 'GE', NULL, NULL),
-(83, 'Germany', 'DE', NULL, NULL),
-(84, 'Ghana', 'GH', NULL, NULL),
-(85, 'Gibraltar', 'GI', NULL, NULL),
-(86, 'Greece', 'GR', NULL, NULL),
-(87, 'Greenland', 'GL', NULL, NULL),
-(88, 'Grenada', 'GD', NULL, NULL),
-(89, 'Guadeloupe', 'GP', NULL, NULL),
-(90, 'Guam', 'GU', NULL, NULL),
-(91, 'Guatemala', 'GT', NULL, NULL),
-(92, 'Guernsey', 'GG', NULL, NULL),
-(93, 'Guinea', 'GN', NULL, NULL),
-(94, 'Guinea-Bissau', 'GW', NULL, NULL),
-(95, 'Guyana', 'GY', NULL, NULL),
-(96, 'Haiti', 'HT', NULL, NULL),
-(97, 'Heard Island and McDonald Mcdonald Islands', 'HM', NULL, NULL),
-(98, 'Holy See (Vatican City State)', 'VA', NULL, NULL),
-(99, 'Honduras', 'HN', NULL, NULL),
-(100, 'Hong Kong', 'HK', NULL, NULL),
-(101, 'Hungary', 'HU', NULL, NULL),
-(102, 'Iceland', 'IS', NULL, NULL),
-(103, 'India', 'IN', NULL, NULL),
-(104, 'Indonesia', 'ID', NULL, NULL),
-(105, 'Iran, Islamic Republic of', 'IR', NULL, NULL),
-(106, 'Iraq', 'IQ', NULL, NULL),
-(107, 'Ireland', 'IE', NULL, NULL),
-(108, 'Isle of Man', 'IM', NULL, NULL),
-(109, 'Israel', 'IL', NULL, NULL),
-(110, 'Italy', 'IT', NULL, NULL),
-(111, 'Jamaica', 'JM', NULL, NULL),
-(112, 'Japan', 'JP', NULL, NULL),
-(113, 'Jersey', 'JE', NULL, NULL),
-(114, 'Jordan', 'JO', NULL, NULL),
-(115, 'Kazakhstan', 'KZ', NULL, NULL),
-(116, 'Kenya', 'KE', NULL, NULL),
-(117, 'Kiribati', 'KI', NULL, NULL),
-(118, 'Korea, Democratic People\'s Republic of', 'KP', NULL, NULL),
-(119, 'Korea, Republic of', 'KR', NULL, NULL),
-(120, 'Kuwait', 'KW', NULL, NULL),
-(121, 'Kyrgyzstan', 'KG', NULL, NULL),
-(122, 'Lao People\'s Democratic Republic', 'LA', NULL, NULL),
-(123, 'Latvia', 'LV', NULL, NULL),
-(124, 'Lebanon', 'LB', NULL, NULL),
-(125, 'Lesotho', 'LS', NULL, NULL),
-(126, 'Liberia', 'LR', NULL, NULL),
-(127, 'Libya', 'LY', NULL, NULL),
-(128, 'Liechtenstein', 'LI', NULL, NULL),
-(129, 'Lithuania', 'LT', NULL, NULL),
-(130, 'Luxembourg', 'LU', NULL, NULL),
-(131, 'Macao', 'MO', NULL, NULL),
-(132, 'Macedonia, the Former Yugoslav Republic of', 'MK', NULL, NULL),
-(133, 'Madagascar', 'MG', NULL, NULL),
-(134, 'Malawi', 'MW', NULL, NULL),
-(135, 'Malaysia', 'MY', NULL, NULL),
-(136, 'Maldives', 'MV', NULL, NULL),
-(137, 'Mali', 'ML', NULL, NULL),
-(138, 'Malta', 'MT', NULL, NULL),
-(139, 'Marshall Islands', 'MH', NULL, NULL),
-(140, 'Martinique', 'MQ', NULL, NULL),
-(141, 'Mauritania', 'MR', NULL, NULL),
-(142, 'Mauritius', 'MU', NULL, NULL),
-(143, 'Mayotte', 'YT', NULL, NULL),
-(144, 'Mexico', 'MX', NULL, NULL),
-(145, 'Micronesia, Federated States of', 'FM', NULL, NULL),
-(146, 'Moldova, Republic of', 'MD', NULL, NULL),
-(147, 'Monaco', 'MC', NULL, NULL),
-(148, 'Mongolia', 'MN', NULL, NULL),
-(149, 'Montenegro', 'ME', NULL, NULL),
-(150, 'Montserrat', 'MS', NULL, NULL),
-(151, 'Morocco', 'MA', NULL, NULL),
-(152, 'Mozambique', 'MZ', NULL, NULL),
-(153, 'Myanmar', 'MM', NULL, NULL),
-(154, 'Namibia', 'NA', NULL, NULL),
-(155, 'Nauru', 'NR', NULL, NULL),
-(156, 'Nepal', 'NP', NULL, NULL),
-(157, 'Netherlands', 'NL', NULL, NULL),
-(158, 'New Caledonia', 'NC', NULL, NULL),
-(159, 'New Zealand', 'NZ', NULL, NULL),
-(160, 'Nicaragua', 'NI', NULL, NULL),
-(161, 'Niger', 'NE', NULL, NULL),
-(162, 'Nigeria', 'NG', NULL, NULL),
-(163, 'Niue', 'NU', NULL, NULL),
-(164, 'Norfolk Island', 'NF', NULL, NULL),
-(165, 'Northern Mariana Islands', 'MP', NULL, NULL),
-(166, 'Norway', 'NO', NULL, NULL),
-(167, 'Oman', 'OM', NULL, NULL),
-(168, 'Pakistan', 'PK', NULL, NULL),
-(169, 'Palau', 'PW', NULL, NULL),
-(170, 'Palestine, State of', 'PS', NULL, NULL),
-(171, 'Panama', 'PA', NULL, NULL),
-(172, 'Papua New Guinea', 'PG', NULL, NULL),
-(173, 'Paraguay', 'PY', NULL, NULL),
-(174, 'Peru', 'PE', NULL, NULL),
-(175, 'Philippines', 'PH', NULL, NULL),
-(176, 'Pitcairn', 'PN', NULL, NULL),
-(177, 'Poland', 'PL', NULL, NULL),
-(178, 'Portugal', 'PT', NULL, NULL),
-(179, 'Puerto Rico', 'PR', NULL, NULL),
-(180, 'Qatar', 'QA', NULL, NULL),
-(181, 'Réunion', 'RE', NULL, NULL),
-(182, 'Romania', 'RO', NULL, NULL),
-(183, 'Russian Federation', 'RU', NULL, NULL),
-(184, 'Rwanda', 'RW', NULL, NULL),
-(185, 'Saint Barthélemy', 'BL', NULL, NULL),
-(186, 'Saint Helena, Ascension and Tristan da Cunha', 'SH', NULL, NULL),
-(187, 'Saint Kitts and Nevis', 'KN', NULL, NULL),
-(188, 'Saint Lucia', 'LC', NULL, NULL),
-(189, 'Saint Martin (French part)', 'MF', NULL, NULL),
-(190, 'Saint Pierre and Miquelon', 'PM', NULL, NULL),
-(191, 'Saint Vincent and the Grenadines', 'VC', NULL, NULL),
-(192, 'Samoa', 'WS', NULL, NULL),
-(193, 'San Marino', 'SM', NULL, NULL),
-(194, 'Sao Tome and Principe', 'ST', NULL, NULL),
-(195, 'Saudi Arabia', 'SA', NULL, NULL),
-(196, 'Senegal', 'SN', NULL, NULL),
-(197, 'Serbia', 'RS', NULL, NULL),
-(198, 'Seychelles', 'SC', NULL, NULL),
-(199, 'Sierra Leone', 'SL', NULL, NULL),
-(200, 'Singapore', 'SG', NULL, NULL),
-(201, 'Sint Maarten (Dutch part)', 'SX', NULL, NULL),
-(202, 'Slovakia', 'SK', NULL, NULL),
-(203, 'Slovenia', 'SI', NULL, NULL),
-(204, 'Solomon Islands', 'SB', NULL, NULL),
-(205, 'Somalia', 'SO', NULL, NULL),
-(206, 'South Africa', 'ZA', NULL, NULL),
-(207, 'South Georgia and the South Sandwich Islands', 'GS', NULL, NULL),
-(208, 'South Sudan', 'SS', NULL, NULL),
-(209, 'Spain', 'ES', NULL, NULL),
-(210, 'Sri Lanka', 'LK', NULL, NULL),
-(211, 'Sudan', 'SD', NULL, NULL),
-(212, 'Suriname', 'SR', NULL, NULL),
-(213, 'Svalbard and Jan Mayen', 'SJ', NULL, NULL),
-(214, 'Swaziland', 'SZ', NULL, NULL),
-(215, 'Sweden', 'SE', NULL, NULL),
-(216, 'Switzerland', 'CH', NULL, NULL),
-(217, 'Syrian Arab Republic', 'SY', NULL, NULL),
-(218, 'Taiwan', 'TW', NULL, NULL),
-(219, 'Tajikistan', 'TJ', NULL, NULL),
-(220, 'Tanzania, United Republic of', 'TZ', NULL, NULL),
-(221, 'Thailand', 'TH', NULL, NULL),
-(222, 'Timor-Leste', 'TL', NULL, NULL),
-(223, 'Togo', 'TG', NULL, NULL),
-(224, 'Tokelau', 'TK', NULL, NULL),
-(225, 'Tonga', 'TO', NULL, NULL),
-(226, 'Trinidad and Tobago', 'TT', NULL, NULL),
-(227, 'Tunisia', 'TN', NULL, NULL),
-(228, 'Turkey', 'TR', NULL, NULL),
-(229, 'Turkmenistan', 'TM', NULL, NULL),
-(230, 'Turks and Caicos Islands', 'TC', NULL, NULL),
-(231, 'Tuvalu', 'TV', NULL, NULL),
-(232, 'Uganda', 'UG', NULL, NULL),
-(233, 'Ukraine', 'UA', NULL, NULL),
-(234, 'United Arab Emirates', 'AE', NULL, NULL),
-(235, 'United Kingdom', 'GB', NULL, NULL),
-(236, 'United States', 'US', NULL, NULL),
-(237, 'United States Minor Outlying Islands', 'UM', NULL, NULL),
-(238, 'Uruguay', 'UY', NULL, NULL),
-(239, 'Uzbekistan', 'UZ', NULL, NULL),
-(240, 'Vanuatu', 'VU', NULL, NULL),
-(241, 'Venezuela, Bolivarian Republic of', 'VE', NULL, NULL),
-(242, 'Viet Nam', 'VN', NULL, NULL),
-(243, 'Virgin Islands, British', 'VG', NULL, NULL),
-(244, 'Virgin Islands, U.S.', 'VI', NULL, NULL),
-(245, 'Wallis and Futuna', 'WF', NULL, NULL),
-(246, 'Western Sahara', 'EH', NULL, NULL),
-(247, 'Yemen', 'YE', NULL, NULL),
-(248, 'Zambia', 'ZM', NULL, NULL),
-(249, 'Zimbabwe', 'ZW', NULL, NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `coupons`
 --
 
@@ -701,6 +432,113 @@ CREATE TABLE `default_settings` (
 
 INSERT INTO `default_settings` (`id`, `app_name`, `app_url`, `time_zone`, `favicon`, `logo_photo`, `main_phone`, `support_phone`, `main_email`, `support_email`, `address`, `google_map_link`, `facebook_link`, `twitter_link`, `instagram_link`, `linkedin_link`, `youtube_link`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 (1, 'Spy Zone', 'http://127.0.0.1:8000/', 'Asia/Dhaka', 'Favicon.png', 'Logo-Photo.png', '01878136530', '01878136530', 'info@spyzone', 'support@spyzone.com', 'Dhaka, BD', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116834.13673771221!2d90.41928169999998!3d23.780636450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1677494841456!5m2!1sbn!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'spyzone', 'spyzone', 'spyzone', 'spyzone', 'spyzone', 1, 1, '2023-02-18 04:50:05', '2023-05-21 04:21:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `districts`
+--
+
+CREATE TABLE `districts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `division_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `districts`
+--
+
+INSERT INTO `districts` (`id`, `division_id`, `name`) VALUES
+(1, 1, 'Comilla'),
+(2, 1, 'Feni'),
+(3, 1, 'Brahmanbaria'),
+(4, 1, 'Rangamati'),
+(5, 1, 'Noakhali'),
+(6, 1, 'Chandpur'),
+(7, 1, 'Lakshmipur'),
+(8, 1, 'Chattogram'),
+(9, 1, 'Coxsbazar'),
+(10, 1, 'Khagrachhari'),
+(11, 1, 'Bandarban'),
+(12, 2, 'Sirajganj'),
+(13, 2, 'Pabna'),
+(14, 2, 'Bogura'),
+(15, 2, 'Rajshahi'),
+(16, 2, 'Natore'),
+(17, 2, 'Joypurhat'),
+(18, 2, 'Chapainawabganj'),
+(19, 2, 'Naogaon'),
+(20, 3, 'Jashore'),
+(21, 3, 'Satkhira'),
+(22, 3, 'Meherpur'),
+(23, 3, 'Narail'),
+(24, 3, 'Chuadanga'),
+(25, 3, 'Kushtia'),
+(26, 3, 'Magura'),
+(27, 3, 'Khulna'),
+(28, 3, 'Bagerhat'),
+(29, 3, 'Jhenaidah'),
+(30, 4, 'Jhalakathi'),
+(31, 4, 'Patuakhali'),
+(32, 4, 'Pirojpur'),
+(33, 4, 'Barisal'),
+(34, 4, 'Bhola'),
+(35, 4, 'Barguna'),
+(36, 5, 'Sylhet'),
+(37, 5, 'Moulvibazar'),
+(38, 5, 'Habiganj'),
+(39, 5, 'Sunamganj'),
+(40, 6, 'Narsingdi'),
+(41, 6, 'Gazipur'),
+(42, 6, 'Shariatpur'),
+(43, 6, 'Narayanganj'),
+(44, 6, 'Tangail'),
+(45, 6, 'Kishoreganj'),
+(46, 6, 'Manikganj'),
+(47, 6, 'Dhaka'),
+(48, 6, 'Munshiganj'),
+(49, 6, 'Rajbari'),
+(50, 6, 'Madaripur'),
+(51, 6, 'Gopalganj'),
+(52, 6, 'Faridpur'),
+(53, 7, 'Panchagarh'),
+(54, 7, 'Dinajpur'),
+(55, 7, 'Lalmonirhat'),
+(56, 7, 'Nilphamari'),
+(57, 7, 'Gaibandha'),
+(58, 7, 'Thakurgaon'),
+(59, 7, 'Rangpur'),
+(60, 7, 'Kurigram'),
+(61, 8, 'Sherpur'),
+(62, 8, 'Mymensingh'),
+(63, 8, 'Jamalpur'),
+(64, 8, 'Netrokona');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `divisions`
+--
+
+CREATE TABLE `divisions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `divisions`
+--
+
+INSERT INTO `divisions` (`id`, `name`) VALUES
+(1, 'Chattagram'),
+(2, 'Rajshahi'),
+(3, 'Khulna'),
+(4, 'Barisal'),
+(5, 'Sylhet'),
+(6, 'Dhaka'),
+(7, 'Rangpur'),
+(8, 'Mymensingh');
 
 -- --------------------------------------------------------
 
@@ -932,7 +770,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2022_08_28_174156_create_sizes_table', 1),
 (18, '2022_08_29_143227_create_product_featured_photos_table', 1),
 (19, '2022_09_07_133057_create_product_inventories_table', 1),
-(20, '2022_09_08_152939_create_countries_table', 1),
 (21, '2022_09_09_161550_create_subscribers_table', 1),
 (22, '2022_09_15_100314_create_features_table', 1),
 (23, '2022_09_17_131726_create_faqs_table', 1),
@@ -958,7 +795,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (43, '2023_02_21_165741_create_newsletters_table', 2),
 (44, '2023_04_18_112539_create_jobs_table', 3),
 (45, '2023_05_23_103244_create_sms_settings_table', 4),
-(47, '2023_12_01_145403_create_flashsale_products_table', 5);
+(47, '2023_12_01_145403_create_flashsale_products_table', 5),
+(50, '2023_12_15_120546_create_divisions_table', 6),
+(51, '2023_12_15_120617_create_districts_table', 6);
 
 -- --------------------------------------------------------
 
@@ -1039,14 +878,14 @@ CREATE TABLE `order_summeries` (
   `billing_name` varchar(255) NOT NULL,
   `billing_email` varchar(255) NOT NULL,
   `billing_phone` varchar(255) NOT NULL,
-  `country_id` varchar(255) NOT NULL,
-  `city_name` varchar(255) NOT NULL,
+  `billing_division_id` int(11) NOT NULL,
+  `billing_district_id` int(11) NOT NULL,
   `billing_address` text NOT NULL,
   `shipping_name` varchar(255) NOT NULL,
   `shipping_email` varchar(255) NOT NULL,
   `shipping_phone` varchar(255) NOT NULL,
-  `shipping_country` varchar(255) NOT NULL,
-  `shipping_city` varchar(255) NOT NULL,
+  `shipping_division_id` int(11) NOT NULL,
+  `shipping_district_id` int(11) NOT NULL,
   `shipping_address` text NOT NULL,
   `customer_order_notes` longtext DEFAULT NULL,
   `sub_total` double(8,2) NOT NULL,
@@ -1191,7 +1030,7 @@ INSERT INTO `products` (`id`, `product_name`, `regular_price`, `discounted_price
 (2, 'Dhupiyan Check Saree For Women', 1200, 1120, 'dhupiyan-check-saree-for-women-qkFx4sPwso', 'Product Type: Silk Saree Color: Black & White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari  Occasion: Casual, Party & Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', 'xfvEXf1Hxd', 2, 8, 8, 2, 'Yes', 'No', 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', NULL, NULL, NULL, 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', '2-Dhupiyan Check Saree For Women-Photo.jpg', 6, 'Yes', 1, 1, NULL, '2023-02-18 00:09:40', '2023-12-07 05:21:22', NULL),
 (3, 'Gumboot JCD Waterproof Rain Boots', 1500, 1400, 'gumboot-jcd-waterproof-rain-boots-GcIkqa3xW2', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', 'Ukqhw0BsVg', 1, 1, 1, 2, 'Yes', 'Yes', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', NULL, NULL, NULL, 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', '3-Gumboot JCD Waterproof Rain Boots-Photo.jpg', 5, 'Yes', 1, 1, NULL, '2023-02-18 00:10:53', '2023-12-07 05:21:22', NULL),
 (4, 'HP ProBook 450 G4', 60000, 58000, 'hp-probook-450-g4-4XBmC2G8Ul', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', 'l1rQuZc9bO', 3, 6, 3, 6, 'Yes', 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', NULL, NULL, NULL, '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', '4-HP ProBook 450 G4-Photo.jpg', 5, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-12-07 05:21:22', NULL),
-(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'Yes', 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 3, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-12-07 05:21:22', NULL),
+(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'Yes', 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 5, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-12-15 09:32:35', NULL),
 (6, 'ELECTRIC WATER KETTLE', 1200, 1100, 'electric-water-kettle-8B9LPbRu0v', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '56ECyvWMHQ', 4, 7, 10, 5, 'Yes', 'No', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', NULL, NULL, NULL, 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '6-ELECTRIC WATER KETTLE-Photo.jpg', 4, 'Yes', 1, 1, NULL, '2023-02-18 00:14:52', '2023-12-07 05:21:22', NULL),
 (7, 'Keyboard Standard English with Bangla', 600, 550, 'keyboard-standard-english-with-bangla-7za7kBWoLB', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '2nVMdjnCxT', 3, 3, 2, 3, 'Yes', 'Yes', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', NULL, NULL, NULL, 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '7-Keyboard Standard English with Bangla-Photo.jpg', 2, 'Yes', 1, 1, NULL, '2023-02-18 00:15:39', '2023-12-07 05:21:22', NULL),
 (8, 'Wireless Mouse Speedy Lite 2.4G', 500, 480, 'wireless-mouse-speedy-lite-24g-YN4OLQFFf6', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', 'SiZbgCmykz', 3, 3, 7, 6, 'Yes', 'No', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', NULL, NULL, NULL, 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', '8-Wireless Mouse Speedy Lite 2.4G-Photo.jpg', 0, 'Yes', 1, 1, NULL, '2023-02-18 00:16:27', '2023-12-07 05:21:22', NULL),
@@ -1298,13 +1137,6 @@ CREATE TABLE `reviews` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`id`, `order_detail_id`, `product_id`, `color_id`, `size_id`, `user_id`, `review`, `rating`, `created_at`, `updated_at`) VALUES
-(1, 5, 4, 6, 8, 1, 'Good Laptop', 5, '2023-02-27 10:16:32', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -1338,8 +1170,8 @@ INSERT INTO `seo_settings` (`id`, `title`, `keywords`, `description`, `seo_image
 
 CREATE TABLE `shippings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `country_id` int(11) NOT NULL,
-  `city_name` text NOT NULL,
+  `division_id` int(11) NOT NULL,
+  `district_id` int(11) NOT NULL,
   `shipping_charge` double(8,2) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'Yes',
   `created_by` int(11) NOT NULL,
@@ -1354,8 +1186,10 @@ CREATE TABLE `shippings` (
 -- Dumping data for table `shippings`
 --
 
-INSERT INTO `shippings` (`id`, `country_id`, `city_name`, `shipping_charge`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 19, 'Dhaka', 50.00, 'Yes', 1, NULL, NULL, '2023-02-18 00:22:32', NULL, NULL);
+INSERT INTO `shippings` (`id`, `division_id`, `district_id`, `shipping_charge`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 3, 20, 50.00, 'Yes', 2, NULL, NULL, '2023-12-15 11:55:22', NULL, NULL),
+(4, 6, 41, 20.00, 'Yes', 2, NULL, NULL, '2023-12-15 11:55:37', NULL, NULL),
+(5, 6, 47, 0.00, 'Yes', 2, NULL, NULL, '2023-12-15 11:55:58', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1593,7 +1427,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `address`, `profile_photo`, `last_active`, `password`, `status`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Customer 1', 'customer1@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', '2023-12-05 05:07:21', '$2y$10$QRy53lLpdvPEQgAPED.8JuEt.9ytjmcmtjJGi9k/dOxxgl/4arfDW', 'Yes', '2023-06-17 04:00:23', 'uvsvKCvdl3tCiSuc4txM9r2z2j5cW4SNQrk0Yx5qesEy4nhLvyrDKLMWcsjT', '2023-06-17 05:18:37', '2023-12-05 05:07:21');
+(1, NULL, NULL, 'Customer 1', 'customer1@email.com', NULL, NULL, NULL, NULL, 'default_profile_photo.png', '2023-12-15 12:22:35', '$2y$10$QRy53lLpdvPEQgAPED.8JuEt.9ytjmcmtjJGi9k/dOxxgl/4arfDW', 'Yes', '2023-06-17 04:00:23', 'uvsvKCvdl3tCiSuc4txM9r2z2j5cW4SNQrk0Yx5qesEy4nhLvyrDKLMWcsjT', '2023-06-17 05:18:37', '2023-12-15 12:22:35');
 
 -- --------------------------------------------------------
 
@@ -1606,332 +1440,6 @@ CREATE TABLE `visitors` (
   `ip_address` varchar(255) NOT NULL,
   `visit_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `visitors`
---
-
-INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
-(1, '127.0.0.1', '2023-11-30 05:51:09'),
-(2, '127.0.0.1', '2023-11-30 05:51:18'),
-(3, '127.0.0.1', '2023-11-30 05:51:29'),
-(4, '127.0.0.1', '2023-11-30 05:52:37'),
-(5, '127.0.0.1', '2023-11-30 05:52:42'),
-(6, '127.0.0.1', '2023-11-30 05:52:46'),
-(7, '127.0.0.1', '2023-11-30 05:52:51'),
-(8, '127.0.0.1', '2023-11-30 05:54:30'),
-(9, '127.0.0.1', '2023-11-30 05:54:50'),
-(10, '127.0.0.1', '2023-11-30 05:54:58'),
-(11, '127.0.0.1', '2023-11-30 05:55:21'),
-(12, '127.0.0.1', '2023-11-30 05:55:52'),
-(13, '127.0.0.1', '2023-11-30 05:56:07'),
-(14, '127.0.0.1', '2023-11-30 05:56:31'),
-(15, '127.0.0.1', '2023-11-30 05:56:41'),
-(16, '127.0.0.1', '2023-11-30 05:57:07'),
-(17, '127.0.0.1', '2023-11-30 05:59:06'),
-(18, '127.0.0.1', '2023-11-30 06:01:25'),
-(19, '127.0.0.1', '2023-11-30 06:01:27'),
-(20, '127.0.0.1', '2023-11-30 06:01:41'),
-(21, '127.0.0.1', '2023-11-30 06:02:24'),
-(22, '127.0.0.1', '2023-11-30 06:02:28'),
-(23, '127.0.0.1', '2023-11-30 06:02:35'),
-(24, '127.0.0.1', '2023-11-30 06:02:39'),
-(25, '127.0.0.1', '2023-11-30 06:02:42'),
-(26, '127.0.0.1', '2023-11-30 06:02:44'),
-(27, '127.0.0.1', '2023-11-30 06:02:48'),
-(28, '127.0.0.1', '2023-11-30 06:02:51'),
-(29, '127.0.0.1', '2023-11-30 06:02:55'),
-(30, '127.0.0.1', '2023-11-30 06:02:57'),
-(31, '127.0.0.1', '2023-11-30 06:03:00'),
-(32, '127.0.0.1', '2023-11-30 06:03:05'),
-(33, '127.0.0.1', '2023-11-30 06:03:14'),
-(34, '127.0.0.1', '2023-11-30 06:03:25'),
-(35, '127.0.0.1', '2023-11-30 06:03:28'),
-(36, '127.0.0.1', '2023-11-30 06:03:31'),
-(37, '127.0.0.1', '2023-11-30 06:04:40'),
-(38, '127.0.0.1', '2023-11-30 06:04:54'),
-(39, '127.0.0.1', '2023-11-30 06:05:29'),
-(40, '127.0.0.1', '2023-11-30 06:09:02'),
-(41, '127.0.0.1', '2023-11-30 06:09:05'),
-(42, '127.0.0.1', '2023-11-30 06:09:07'),
-(43, '127.0.0.1', '2023-11-30 06:09:10'),
-(44, '127.0.0.1', '2023-11-30 06:09:12'),
-(45, '127.0.0.1', '2023-11-30 06:09:14'),
-(46, '127.0.0.1', '2023-11-30 06:12:05'),
-(47, '127.0.0.1', '2023-11-30 06:12:07'),
-(48, '127.0.0.1', '2023-11-30 06:12:10'),
-(49, '127.0.0.1', '2023-11-30 06:12:46'),
-(50, '127.0.0.1', '2023-11-30 06:13:16'),
-(51, '127.0.0.1', '2023-11-30 06:13:24'),
-(52, '127.0.0.1', '2023-11-30 06:13:37'),
-(53, '127.0.0.1', '2023-11-30 06:13:47'),
-(54, '127.0.0.1', '2023-11-30 06:14:10'),
-(55, '127.0.0.1', '2023-11-30 06:14:27'),
-(56, '127.0.0.1', '2023-11-30 06:14:36'),
-(57, '127.0.0.1', '2023-11-30 06:14:51'),
-(58, '127.0.0.1', '2023-11-30 06:15:01'),
-(59, '127.0.0.1', '2023-11-30 06:15:32'),
-(60, '127.0.0.1', '2023-11-30 06:15:56'),
-(61, '127.0.0.1', '2023-11-30 06:15:58'),
-(62, '127.0.0.1', '2023-11-30 06:15:59'),
-(63, '127.0.0.1', '2023-11-30 06:16:01'),
-(64, '127.0.0.1', '2023-11-30 06:16:03'),
-(65, '127.0.0.1', '2023-11-30 06:16:05'),
-(66, '127.0.0.1', '2023-11-30 06:16:08'),
-(67, '127.0.0.1', '2023-11-30 06:16:40'),
-(68, '127.0.0.1', '2023-11-30 06:16:59'),
-(69, '127.0.0.1', '2023-11-30 06:17:04'),
-(70, '127.0.0.1', '2023-11-30 06:17:32'),
-(71, '127.0.0.1', '2023-11-30 06:17:45'),
-(72, '127.0.0.1', '2023-11-30 06:17:58'),
-(73, '127.0.0.1', '2023-11-30 06:18:19'),
-(74, '127.0.0.1', '2023-11-30 06:18:27'),
-(75, '127.0.0.1', '2023-11-30 06:18:57'),
-(76, '127.0.0.1', '2023-11-30 06:18:59'),
-(77, '127.0.0.1', '2023-11-30 06:19:07'),
-(78, '127.0.0.1', '2023-11-30 06:19:11'),
-(79, '127.0.0.1', '2023-11-30 06:19:15'),
-(80, '127.0.0.1', '2023-11-30 06:19:44'),
-(81, '127.0.0.1', '2023-11-30 06:19:50'),
-(82, '127.0.0.1', '2023-11-30 06:21:55'),
-(83, '127.0.0.1', '2023-11-30 06:21:59'),
-(84, '127.0.0.1', '2023-11-30 06:22:16'),
-(85, '127.0.0.1', '2023-11-30 06:23:00'),
-(86, '127.0.0.1', '2023-11-30 06:23:03'),
-(87, '127.0.0.1', '2023-11-30 06:23:08'),
-(88, '127.0.0.1', '2023-11-30 06:25:04'),
-(89, '127.0.0.1', '2023-11-30 06:25:07'),
-(90, '127.0.0.1', '2023-11-30 06:25:10'),
-(91, '127.0.0.1', '2023-11-30 06:25:23'),
-(92, '127.0.0.1', '2023-11-30 06:28:53'),
-(93, '127.0.0.1', '2023-11-30 06:28:54'),
-(94, '127.0.0.1', '2023-11-30 06:28:54'),
-(95, '127.0.0.1', '2023-11-30 06:28:54'),
-(96, '127.0.0.1', '2023-11-30 06:28:55'),
-(97, '127.0.0.1', '2023-11-30 06:28:55'),
-(98, '127.0.0.1', '2023-11-30 06:28:55'),
-(99, '127.0.0.1', '2023-11-30 06:28:55'),
-(100, '127.0.0.1', '2023-11-30 06:28:55'),
-(101, '127.0.0.1', '2023-11-30 06:31:27'),
-(102, '127.0.0.1', '2023-11-30 06:31:57'),
-(103, '127.0.0.1', '2023-11-30 06:32:00'),
-(104, '127.0.0.1', '2023-11-30 06:32:03'),
-(105, '127.0.0.1', '2023-11-30 06:32:33'),
-(106, '127.0.0.1', '2023-11-30 06:32:39'),
-(107, '127.0.0.1', '2023-11-30 06:34:45'),
-(108, '127.0.0.1', '2023-11-30 06:34:58'),
-(109, '127.0.0.1', '2023-11-30 06:35:04'),
-(110, '127.0.0.1', '2023-11-30 06:35:41'),
-(111, '127.0.0.1', '2023-11-30 06:35:51'),
-(112, '127.0.0.1', '2023-11-30 06:37:28'),
-(113, '127.0.0.1', '2023-11-30 10:44:52'),
-(114, '127.0.0.1', '2023-11-30 11:33:53'),
-(115, '127.0.0.1', '2023-11-30 11:50:58'),
-(116, '127.0.0.1', '2023-11-30 11:51:24'),
-(117, '127.0.0.1', '2023-11-30 11:51:57'),
-(118, '127.0.0.1', '2023-11-30 12:05:42'),
-(119, '127.0.0.1', '2023-11-30 12:06:34'),
-(120, '127.0.0.1', '2023-11-30 12:06:40'),
-(121, '127.0.0.1', '2023-11-30 12:06:46'),
-(122, '127.0.0.1', '2023-11-30 12:06:49'),
-(123, '127.0.0.1', '2023-12-01 04:29:27'),
-(124, '127.0.0.1', '2023-12-01 04:55:53'),
-(125, '127.0.0.1', '2023-12-01 08:28:27'),
-(126, '127.0.0.1', '2023-12-02 04:20:47'),
-(127, '127.0.0.1', '2023-12-02 05:58:46'),
-(128, '127.0.0.1', '2023-12-02 08:53:44'),
-(129, '127.0.0.1', '2023-12-02 11:20:51'),
-(130, '127.0.0.1', '2023-12-02 11:21:56'),
-(131, '127.0.0.1', '2023-12-02 11:24:07'),
-(132, '127.0.0.1', '2023-12-02 11:24:25'),
-(133, '127.0.0.1', '2023-12-02 11:25:59'),
-(134, '127.0.0.1', '2023-12-02 11:34:30'),
-(135, '127.0.0.1', '2023-12-02 11:37:45'),
-(136, '127.0.0.1', '2023-12-02 11:38:52'),
-(137, '127.0.0.1', '2023-12-02 11:39:22'),
-(138, '127.0.0.1', '2023-12-02 11:39:40'),
-(139, '127.0.0.1', '2023-12-02 11:43:11'),
-(140, '127.0.0.1', '2023-12-02 11:44:01'),
-(141, '127.0.0.1', '2023-12-02 11:45:06'),
-(142, '127.0.0.1', '2023-12-03 06:03:35'),
-(143, '127.0.0.1', '2023-12-03 06:04:53'),
-(144, '127.0.0.1', '2023-12-03 06:06:13'),
-(145, '127.0.0.1', '2023-12-03 06:06:48'),
-(146, '127.0.0.1', '2023-12-03 06:07:49'),
-(147, '127.0.0.1', '2023-12-03 06:08:32'),
-(148, '127.0.0.1', '2023-12-03 06:10:23'),
-(149, '127.0.0.1', '2023-12-03 06:11:48'),
-(150, '127.0.0.1', '2023-12-03 06:12:28'),
-(151, '127.0.0.1', '2023-12-03 06:19:18'),
-(152, '127.0.0.1', '2023-12-03 06:20:35'),
-(153, '127.0.0.1', '2023-12-03 06:22:24'),
-(154, '127.0.0.1', '2023-12-03 06:30:58'),
-(155, '127.0.0.1', '2023-12-03 06:32:44'),
-(156, '127.0.0.1', '2023-12-03 06:33:09'),
-(157, '127.0.0.1', '2023-12-03 06:33:14'),
-(158, '127.0.0.1', '2023-12-03 06:33:17'),
-(159, '127.0.0.1', '2023-12-03 06:33:25'),
-(160, '127.0.0.1', '2023-12-03 06:46:26'),
-(161, '127.0.0.1', '2023-12-03 06:51:14'),
-(162, '127.0.0.1', '2023-12-03 06:51:27'),
-(163, '127.0.0.1', '2023-12-03 09:19:39'),
-(164, '127.0.0.1', '2023-12-03 09:25:25'),
-(165, '127.0.0.1', '2023-12-03 09:26:39'),
-(166, '127.0.0.1', '2023-12-03 09:26:50'),
-(167, '127.0.0.1', '2023-12-03 09:32:01'),
-(168, '127.0.0.1', '2023-12-03 09:35:05'),
-(169, '127.0.0.1', '2023-12-03 09:35:07'),
-(170, '127.0.0.1', '2023-12-03 09:38:05'),
-(171, '127.0.0.1', '2023-12-03 09:45:10'),
-(172, '127.0.0.1', '2023-12-03 09:46:19'),
-(173, '127.0.0.1', '2023-12-03 09:46:22'),
-(174, '127.0.0.1', '2023-12-03 09:46:27'),
-(175, '127.0.0.1', '2023-12-03 09:47:06'),
-(176, '127.0.0.1', '2023-12-03 09:47:16'),
-(177, '127.0.0.1', '2023-12-03 09:47:25'),
-(178, '127.0.0.1', '2023-12-03 09:47:35'),
-(179, '127.0.0.1', '2023-12-03 09:48:31'),
-(180, '127.0.0.1', '2023-12-03 09:49:55'),
-(181, '127.0.0.1', '2023-12-03 09:50:12'),
-(182, '127.0.0.1', '2023-12-03 10:17:32'),
-(183, '127.0.0.1', '2023-12-03 10:28:56'),
-(184, '127.0.0.1', '2023-12-03 10:35:20'),
-(185, '127.0.0.1', '2023-12-03 10:38:04'),
-(186, '127.0.0.1', '2023-12-04 04:00:32'),
-(187, '127.0.0.1', '2023-12-04 04:02:15'),
-(188, '127.0.0.1', '2023-12-04 04:02:36'),
-(189, '127.0.0.1', '2023-12-04 04:08:54'),
-(190, '127.0.0.1', '2023-12-04 04:09:17'),
-(191, '127.0.0.1', '2023-12-04 04:09:51'),
-(192, '127.0.0.1', '2023-12-04 04:13:50'),
-(193, '127.0.0.1', '2023-12-04 04:13:54'),
-(194, '127.0.0.1', '2023-12-04 04:14:20'),
-(195, '127.0.0.1', '2023-12-04 04:14:24'),
-(196, '127.0.0.1', '2023-12-04 04:14:47'),
-(197, '127.0.0.1', '2023-12-04 04:14:54'),
-(198, '127.0.0.1', '2023-12-04 04:14:59'),
-(199, '127.0.0.1', '2023-12-04 04:15:08'),
-(200, '127.0.0.1', '2023-12-04 04:16:37'),
-(201, '127.0.0.1', '2023-12-04 04:16:44'),
-(202, '127.0.0.1', '2023-12-04 04:17:03'),
-(203, '127.0.0.1', '2023-12-04 04:19:55'),
-(204, '127.0.0.1', '2023-12-04 04:21:33'),
-(205, '127.0.0.1', '2023-12-04 04:22:15'),
-(206, '127.0.0.1', '2023-12-04 04:22:24'),
-(207, '127.0.0.1', '2023-12-04 04:25:32'),
-(208, '127.0.0.1', '2023-12-04 04:26:25'),
-(209, '127.0.0.1', '2023-12-04 04:34:54'),
-(210, '127.0.0.1', '2023-12-04 04:35:23'),
-(211, '127.0.0.1', '2023-12-04 04:36:13'),
-(212, '127.0.0.1', '2023-12-04 04:39:39'),
-(213, '127.0.0.1', '2023-12-04 04:41:33'),
-(214, '127.0.0.1', '2023-12-04 04:42:18'),
-(215, '127.0.0.1', '2023-12-04 04:42:35'),
-(216, '127.0.0.1', '2023-12-04 04:43:26'),
-(217, '127.0.0.1', '2023-12-04 04:43:32'),
-(218, '127.0.0.1', '2023-12-04 04:44:11'),
-(219, '127.0.0.1', '2023-12-04 04:44:52'),
-(220, '127.0.0.1', '2023-12-04 04:45:55'),
-(221, '127.0.0.1', '2023-12-04 04:47:36'),
-(222, '127.0.0.1', '2023-12-04 04:47:56'),
-(223, '127.0.0.1', '2023-12-04 04:48:01'),
-(224, '127.0.0.1', '2023-12-04 04:48:31'),
-(225, '127.0.0.1', '2023-12-04 04:49:43'),
-(226, '127.0.0.1', '2023-12-04 04:53:54'),
-(227, '127.0.0.1', '2023-12-04 05:05:09'),
-(228, '127.0.0.1', '2023-12-04 05:05:15'),
-(229, '127.0.0.1', '2023-12-04 05:07:04'),
-(230, '127.0.0.1', '2023-12-04 05:07:12'),
-(231, '127.0.0.1', '2023-12-04 05:07:16'),
-(232, '127.0.0.1', '2023-12-04 05:07:22'),
-(233, '127.0.0.1', '2023-12-04 05:07:26'),
-(234, '127.0.0.1', '2023-12-04 05:09:33'),
-(235, '127.0.0.1', '2023-12-04 05:18:02'),
-(236, '127.0.0.1', '2023-12-04 05:22:42'),
-(237, '127.0.0.1', '2023-12-04 05:24:16'),
-(238, '127.0.0.1', '2023-12-04 05:27:50'),
-(239, '127.0.0.1', '2023-12-04 05:28:21'),
-(240, '127.0.0.1', '2023-12-04 05:29:29'),
-(241, '127.0.0.1', '2023-12-04 05:29:38'),
-(242, '127.0.0.1', '2023-12-04 05:29:41'),
-(243, '127.0.0.1', '2023-12-04 05:29:50'),
-(244, '127.0.0.1', '2023-12-04 05:32:11'),
-(245, '127.0.0.1', '2023-12-04 05:34:05'),
-(246, '127.0.0.1', '2023-12-04 05:34:36'),
-(247, '127.0.0.1', '2023-12-04 05:35:18'),
-(248, '127.0.0.1', '2023-12-04 05:35:29'),
-(249, '127.0.0.1', '2023-12-04 05:35:48'),
-(250, '127.0.0.1', '2023-12-04 05:36:32'),
-(251, '127.0.0.1', '2023-12-04 05:36:40'),
-(252, '127.0.0.1', '2023-12-04 05:36:45'),
-(253, '127.0.0.1', '2023-12-04 05:36:52'),
-(254, '127.0.0.1', '2023-12-04 05:37:21'),
-(255, '127.0.0.1', '2023-12-04 05:38:29'),
-(256, '127.0.0.1', '2023-12-04 05:39:35'),
-(257, '127.0.0.1', '2023-12-04 05:40:42'),
-(258, '127.0.0.1', '2023-12-04 05:40:59'),
-(259, '127.0.0.1', '2023-12-04 05:41:55'),
-(260, '127.0.0.1', '2023-12-04 05:43:18'),
-(261, '127.0.0.1', '2023-12-04 05:43:49'),
-(262, '127.0.0.1', '2023-12-04 05:44:31'),
-(263, '127.0.0.1', '2023-12-04 05:45:03'),
-(264, '127.0.0.1', '2023-12-04 05:45:56'),
-(265, '127.0.0.1', '2023-12-04 05:46:30'),
-(266, '127.0.0.1', '2023-12-04 05:54:37'),
-(267, '127.0.0.1', '2023-12-04 05:56:49'),
-(268, '127.0.0.1', '2023-12-04 05:56:49'),
-(269, '127.0.0.1', '2023-12-04 05:56:50'),
-(270, '127.0.0.1', '2023-12-04 05:56:50'),
-(271, '127.0.0.1', '2023-12-04 05:56:50'),
-(272, '127.0.0.1', '2023-12-04 05:56:50'),
-(273, '127.0.0.1', '2023-12-04 05:56:50'),
-(274, '127.0.0.1', '2023-12-04 05:56:50'),
-(275, '127.0.0.1', '2023-12-04 05:56:50'),
-(276, '127.0.0.1', '2023-12-04 05:57:46'),
-(277, '127.0.0.1', '2023-12-04 05:57:47'),
-(278, '127.0.0.1', '2023-12-04 05:57:47'),
-(279, '127.0.0.1', '2023-12-04 05:57:47'),
-(280, '127.0.0.1', '2023-12-04 05:57:47'),
-(281, '127.0.0.1', '2023-12-04 05:57:47'),
-(282, '127.0.0.1', '2023-12-04 05:57:48'),
-(283, '127.0.0.1', '2023-12-04 05:57:48'),
-(284, '127.0.0.1', '2023-12-04 05:57:48'),
-(285, '127.0.0.1', '2023-12-04 05:58:28'),
-(286, '127.0.0.1', '2023-12-04 06:04:17'),
-(287, '127.0.0.1', '2023-12-04 06:04:23'),
-(288, '127.0.0.1', '2023-12-04 06:04:50'),
-(289, '127.0.0.1', '2023-12-04 06:05:05'),
-(290, '127.0.0.1', '2023-12-04 06:05:09'),
-(291, '127.0.0.1', '2023-12-04 06:05:55'),
-(292, '127.0.0.1', '2023-12-04 06:06:01'),
-(293, '127.0.0.1', '2023-12-04 06:06:05'),
-(294, '127.0.0.1', '2023-12-04 06:06:24'),
-(295, '127.0.0.1', '2023-12-04 06:06:37'),
-(296, '127.0.0.1', '2023-12-04 06:08:02'),
-(297, '127.0.0.1', '2023-12-04 06:08:30'),
-(298, '127.0.0.1', '2023-12-04 06:08:53'),
-(299, '127.0.0.1', '2023-12-04 06:09:05'),
-(300, '127.0.0.1', '2023-12-04 06:09:28'),
-(301, '127.0.0.1', '2023-12-04 06:15:36'),
-(302, '127.0.0.1', '2023-12-04 06:15:56'),
-(303, '127.0.0.1', '2023-12-04 06:16:06'),
-(304, '127.0.0.1', '2023-12-04 06:16:13'),
-(305, '127.0.0.1', '2023-12-04 06:17:44'),
-(306, '127.0.0.1', '2023-12-05 05:06:19'),
-(307, '127.0.0.1', '2023-12-05 05:06:26'),
-(308, '127.0.0.1', '2023-12-05 05:07:07'),
-(309, '127.0.0.1', '2023-12-05 05:07:13'),
-(310, '127.0.0.1', '2023-12-05 05:07:21'),
-(311, '127.0.0.1', '2023-12-05 05:07:29'),
-(312, '127.0.0.1', '2023-12-07 03:45:07'),
-(313, '127.0.0.1', '2023-12-07 05:15:03'),
-(314, '127.0.0.1', '2023-12-07 05:15:06'),
-(315, '127.0.0.1', '2023-12-07 05:15:23'),
-(316, '127.0.0.1', '2023-12-07 05:16:09'),
-(317, '127.0.0.1', '2023-12-07 05:16:35'),
-(318, '127.0.0.1', '2023-12-07 05:16:39'),
-(319, '127.0.0.1', '2023-12-07 05:26:00'),
-(320, '127.0.0.1', '2023-12-07 05:26:16');
 
 -- --------------------------------------------------------
 
@@ -2047,12 +1555,6 @@ ALTER TABLE `contact_messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `countries`
---
-ALTER TABLE `countries`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `coupons`
 --
 ALTER TABLE `coupons`
@@ -2063,6 +1565,18 @@ ALTER TABLE `coupons`
 -- Indexes for table `default_settings`
 --
 ALTER TABLE `default_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `districts`
+--
+ALTER TABLE `districts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `divisions`
+--
+ALTER TABLE `divisions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2344,12 +1858,6 @@ ALTER TABLE `contact_messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `countries`
---
-ALTER TABLE `countries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
-
---
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
@@ -2360,6 +1868,18 @@ ALTER TABLE `coupons`
 --
 ALTER TABLE `default_settings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `districts`
+--
+ALTER TABLE `districts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT for table `divisions`
+--
+ALTER TABLE `divisions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -2407,7 +1927,7 @@ ALTER TABLE `mail_settings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
@@ -2473,7 +1993,7 @@ ALTER TABLE `product_inventories`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `seo_settings`
@@ -2485,7 +2005,7 @@ ALTER TABLE `seo_settings`
 -- AUTO_INCREMENT for table `shippings`
 --
 ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sizes`
@@ -2539,7 +2059,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `warehouses`

@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Order_cancelMail;
+use App\Models\District;
+use App\Models\Division;
 use App\Models\Order_detail;
 use App\Models\Order_return;
 use App\Models\Order_summery;
 use Illuminate\Support\Str;
 use App\Models\Review;
+use App\Models\Shipping;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -90,19 +93,34 @@ class CustomerController extends Controller
     public function dashboard()
     {
         $order_summeries = Order_summery::where('user_id', Auth::user()->id)->latest()->get();
-        return view('frontend.dashboard', compact('order_summeries'));
+        $divisions = Division::all();
+        $districts = District::all();
+        return view('frontend.dashboard', compact('order_summeries', 'divisions', 'districts'));
+    }
+
+    public function getDistricts(Request $request){
+        $send_data = "<option>--Select District--</option>";
+        $districts = District::where('division_id', $request->division_id)->get();
+        foreach ($districts as $district) {
+            $send_data .= "<option value='$district->id'>$district->name</option>";
+        }
+        return response()->json($send_data);
     }
 
     public function changeProfile(Request $request){
         $request->validate([
             'name' => 'required',
-            'phone_number' => 'nullable|digits:11',
+            'phone_number' => 'required|digits:11',
+            'division_id' => 'required',
+            'district_id' => 'required',
         ]);
         User::find(auth()->id())->update([
             'name' => $request->name,
             'gender' => $request->gender,
             'date_of_birth' => $request->date_of_birth,
             'phone_number' => $request->phone_number,
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
             'address' => $request->address,
         ]);
 

@@ -22,4 +22,24 @@ class Order_summery extends Model
     function relationtouser(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function billingDivision()
+    {
+        return $this->belongsTo(Division::class, 'billing_division_id');
+    }
+
+    public function shippingDivision()
+    {
+        return $this->belongsTo(Division::class, 'shipping_division_id');
+    }
+
+    public function billingDistrict()
+    {
+        return $this->belongsTo(District::class, 'billing_district_id');
+    }
+
+    public function shippingDistrict()
+    {
+        return $this->belongsTo(District::class, 'shipping_district_id');
+    }
 }

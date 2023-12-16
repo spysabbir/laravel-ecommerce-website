@@ -24,7 +24,8 @@ class CheckoutController extends Controller
         if (!Auth::check()) {
             return redirect()->route('login');
         } else {
-            $shippings = Shipping::where('status', "Yes")->select('division_id')->groupBy('division_id')->get();
+            $divisions = Shipping::where('status', 'Yes')->groupBy('division_id')->select('division_id')->get();
+            $districts = Shipping::where('status', 'Yes')->where('division_id', Auth::user()->division_id)->groupBy('district_id')->select('district_id')->get();
             $carts = Cart::where('user_id', auth()->user()->id)->where('status', 'Yes')->get();
 
             $sub_total = 0;
@@ -32,32 +33,40 @@ class CheckoutController extends Controller
                 $sub_total += ($cart->product_current_price * $cart->cart_qty);
             }
 
+            $shipping_charge = Shipping::where('division_id', Auth::user()->division_id)->where('district_id', Auth::user()->district_id)->value('shipping_charge');
+            if($shipping_charge){
+                $shipping_charge = $shipping_charge;
+            }else{
+                $shipping_charge = 0;
+            }
+
             if(Session::get('session_coupon_name')){
                 $coupon = Coupon::where('coupon_name', Session::get('session_coupon_name'))->first();
                 if($coupon->coupon_offer_type == 'percentage'){
                     $discount_amount = $coupon->coupon_offer_amount/100;
-                    $grand_total = ($sub_total - $coupon->coupon_offer_amount/100);
+                    $grand_total = ($sub_total - $coupon->coupon_offer_amount/100) + $shipping_charge;
                 }else{
                     $discount_amount = $coupon->coupon_offer_amount;
-                    $grand_total = ($sub_total - $coupon->coupon_offer_amount);
+                    $grand_total = ($sub_total - $coupon->coupon_offer_amount) + $shipping_charge;
                 }
             }else{
-                $discount_amount = "00";
-                $grand_total = $sub_total;
+                $discount_amount = 0;
+                $grand_total = $sub_total + $shipping_charge;
             }
 
             Session::put('session_sub_total', $sub_total);
             Session::put('session_grand_total', $grand_total);
             Session::put('session_discount_amount', $discount_amount);
-            return view('frontend.checkout', compact('shippings', 'carts', 'sub_total', 'discount_amount', 'grand_total'));
+            return view('frontend.checkout', compact('divisions', 'districts', 'carts', 'sub_total', 'discount_amount', 'shipping_charge', 'grand_total'));
         }
     }
 
     public function getDistrictList(Request $request){
-        $get_district_list = "<option value=''>--Select District--</option>";
-        $shippings = Shipping::where('division_id', $request->division_id)->get();
+        $get_district_list = "<option value=''>Select District</option>";
+        $shippings = Shipping::with('district')->where('division_id', $request->division_id)->get();
         foreach($shippings as $shipping){
-            $get_district_list .= "<option value='$shipping->district_id'>$shipping->district_id</option>";
+            $district_name = $shipping->district->name;
+            $get_district_list .= "<option value='$shipping->district_id'>$district_name</option>";
         }
         return response()->json($get_district_list);
     }
@@ -78,11 +87,13 @@ class CheckoutController extends Controller
         $request->validate([
             'billing_phone' => 'required',
             'billing_address' => 'required',
+            'billing_division_id' => 'required',
+            'billing_district_id' => 'required',
         ]);
 
         $shipping_charge =  Shipping::where([
-            'country_id' => Session::get('session_division_id'),
-            'city_name' => Session::get('session_district_id'),
+            'division_id' => Session::get('session_division_id'),
+            'district_id' => Session::get('session_district_id'),
         ])->first()->shipping_charge;
 
         if ($request->shipping_address == NULL) {
@@ -96,21 +107,21 @@ class CheckoutController extends Controller
             $shipping_phone = $request->shipping_phone;
         }
 
-        $grand_total = Session::get('session_grand_total') + $shipping_charge;
+        $grand_total = Session::get('session_sub_total') - Session::get('session_discount_amount') + $shipping_charge;
 
         $order_summery_id = Order_summery::insertGetId([
             'user_id' => auth()->id(),
             'billing_name' => $request->billing_name,
             'billing_email' => $request->billing_email,
             'billing_phone' => $request->billing_phone,
-            'division_id' => Session::get('session_division_id'),
-            'district_id' => Session::get('session_district_id'),
+            'billing_division_id' => $request->billing_division_id,
+            'billing_district_id' => $request->billing_district_id,
             'billing_address' => $request->billing_address,
             'shipping_name' => $request->shipping_name,
             'shipping_email' => $request->shipping_email,
             'shipping_phone' => $shipping_phone,
-            'shipping_division' => $request->shipping_division,
-            'shipping_district' => $request->shipping_district,
+            'shipping_division_id' => Session::get('session_division_id'),
+            'shipping_district_id' => Session::get('session_district_id'),
             'shipping_address' => $shipping_address,
             'customer_order_notes' => $request->customer_order_notes,
             'payment_method' => $request->payment_method,

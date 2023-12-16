@@ -118,7 +118,11 @@ $default_setting = App\Models\Default_setting::first();
                             {{$order_summery->billing_name}}<br>
                             {{$order_summery->billing_email}}<br>
                             {{$order_summery->billing_phone}}<br>
-                            {{$order_summery->billing_address}}
+                            <address>
+                                {{$order_summery->billingDivision->name}},
+                                {{$order_summery->billingDistrict->name}},
+                                {{$order_summery->billing_address}}
+                            </address>
                         </td>
                     </tr>
                 </table>
@@ -131,7 +135,11 @@ $default_setting = App\Models\Default_setting::first();
                             {{$order_summery->shipping_name}}<br>
                             {{$order_summery->shipping_email}}<br>
                             {{$order_summery->shipping_phone}}<br>
-                            {{$order_summery->shipping_address}}<br>
+                            <address>
+                                {{$order_summery->shippingDivision->name}},
+                                {{$order_summery->shippingDistrict->name}},
+                                {{$order_summery->shipping_address}}
+                            </address>
                         </td>
                     </tr>
                 </table>

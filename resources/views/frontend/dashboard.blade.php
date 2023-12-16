@@ -204,7 +204,7 @@ Dashboard
                                     <div class="m-3">
                                         <div class="country-select">
                                             <label>Gender</label>
-                                            <select style="display: none;" name="gender">
+                                            <select name="gender">
                                                 <option value="">Select Gender</option>
                                                 <option value="Male" {{(auth()->user()->gender == 'Male') ? 'selected' : ''}}>Male</option>
                                                 <option value="Female" {{(auth()->user()->gender == 'Female') ? 'selected' : ''}}>Female
@@ -220,6 +220,34 @@ Dashboard
                                         @error('date_of_birth')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror
+                                    </div>
+                                    <div class="m-3">
+                                        <div class="country-select">
+                                            <label>Division</label>
+                                            <select name="division_id" id="profile_division_select">
+                                                <option value="">Select Division</option>
+                                                @foreach ($divisions as $division)
+                                                <option value="{{$division->id}}" @selected($division->id == auth()->user()->division_id)>{{$division->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('division_id')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="m-3">
+                                        <div class="country-select">
+                                            <label>District</label>
+                                            <select name="district_id" id="profile_all_district_list">
+                                                <option value="">Select District</option>
+                                                @foreach ($districts as $district)
+                                                <option value="{{$district->id}}" @selected($district->id == auth()->user()->district_id)>{{$district->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('district_id')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="m-3">
                                         <label>Address</label>
@@ -379,6 +407,21 @@ Dashboard
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+         // Select Division
+         $('#profile_division_select').change(function(){
+            var division_id = $(this).val();
+            // ajax start
+            $.ajax({
+                type:'POST',
+                url: "{{route('profile.get.district.list')}}",
+                data:{division_id:division_id},
+                success: function(response){
+                    $('#profile_all_district_list').html(response);
+                }
+            })
+            // ajax end
+        })
 
         // Log out
         $(document).on('click', '#logout_btn', function (e) {

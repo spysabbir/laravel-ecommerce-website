@@ -5,14 +5,17 @@
     </div>
     <div class="card-body d-flex">
         <ul>
-            <li>User Id: <strong>{{ $order_summery->relationtouser->id }}</strong></li>
-            <li>User Name: <strong>{{ $order_summery->relationtouser->name }}</strong></li>
-            <li>User Email: <strong>{{ $order_summery->relationtouser->email }}</strong></li>
-            <li>User Phone Number: <strong>{{ $order_summery->relationtouser->phone_number }}</strong></li>
+            <li>Billing User Id: <strong>{{ $order_summery->relationtouser->id }}</strong></li>
+            <li>Billing Name: <strong>{{ $order_summery->relationtouser->name }}</strong></li>
+            <li>Billing Email: <strong>{{ $order_summery->relationtouser->email }}</strong></li>
+            <li>Billing Phone Number: <strong>{{ $order_summery->relationtouser->phone_number }}</strong></li>
+            <li>Billing Division: <strong>{{ $order_summery->billingDivision->name }}</strong></li>
+            <li>Billing District: <strong>{{ $order_summery->billingDistrict->name }}</strong></li>
+            <li>Billing Address: <strong>{{ $order_summery->billing_address }}</strong></li>
             <li>Shipping Name: <strong>{{ $order_summery->shipping_name }}</strong></li>
             <li>Shipping Phone: <strong>{{ $order_summery->shipping_phone }}</strong></li>
-            <li>Shipping Country: <strong>{{ $order_summery->shipping_country }}</strong></li>
-            <li>Shipping City: <strong>{{ $order_summery->shipping_city }}</strong></li>
+            <li>Shipping Division: <strong>{{ $order_summery->shippingDivision->name }}</strong></li>
+            <li>Shipping District: <strong>{{ $order_summery->shippingDistrict->name }}</strong></li>
             <li>Shipping Address: <strong>{{ $order_summery->shipping_address }}</strong></li>
             <li>Customer Order Notes: <strong>{{ $order_summery->customer_order_notes }}</strong></li>
         </ul>

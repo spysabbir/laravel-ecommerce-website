@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('verified')->group(function () {
         Route::get('dashboard', [CustomerController::class, 'dashboard'])->name('dashboard');
+        Route::post('profile/get/districts', [CustomerController::class, 'getDistricts'])->name('profile.get.district.list');
         Route::post('change/profile', [CustomerController::class, 'changeProfile'])->name('change.profile');
         Route::post('change/password', [CustomerController::class, 'changePassword'])->name('change.password');
 

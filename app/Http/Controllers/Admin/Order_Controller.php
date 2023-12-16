@@ -55,7 +55,9 @@ class Order_Controller extends Controller
                     ->addIndexColumn()
                     ->editColumn('shipping_address', function($row){
                         return'
-                        <span>'.$row->shipping_city.'</span>
+                        <span>'.$row->shippingDivision->name.'</span>
+                        <br>
+                        <span>'.$row->shippingDistrict->name.'</span>
                         <br>
                         <span>'.$row->shipping_address.'</span>
                         ';
@@ -156,7 +158,9 @@ class Order_Controller extends Controller
                     ->addIndexColumn()
                     ->editColumn('shipping_address', function($row){
                         return'
-                        <span>'.$row->shipping_city.'</span>
+                        <span>'.$row->shippingDivision->name.'</span>
+                        <br>
+                        <span>'.$row->shippingDistrict->name.'</span>
                         <br>
                         <span>'.$row->shipping_address.'</span>
                         ';

@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('gender')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->integer('division_id')->nullable();
+            $table->integer('district_id')->nullable();
             $table->text('address')->nullable();
             $table->string('profile_photo')->default('default_profile_photo.png');
             $table->timestamp('last_active')->useCurrent();

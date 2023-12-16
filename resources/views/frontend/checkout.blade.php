@@ -46,47 +46,58 @@ Checkout
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Full Name<span class="required">*</span></label>
-                                    <input type="text" placeholder="Full Name" name="billing_name" value="{{auth()->user()->name}}" readonly>
+                                    <input type="text" name="billing_name" value="{{auth()->user()->name}}" readonly>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Email Address<span class="required">*</span></label>
-                                    <input type="text" placeholder="Email Address" name="billing_email" value="{{auth()->user()->email}}" readonly>
+                                    <input type="text" name="billing_email" value="{{auth()->user()->email}}" readonly>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Phone Number<span class="required">*</span></label>
-                                    <input type="text" class="@error('billing_phone') is-invalid @enderror" placeholder="Phone Number" name="billing_phone" value="{{old('billing_phone', auth()->user()->phone_number)}}" >
+                                    <input type="text" class="@error('billing_phone') is-invalid @enderror" placeholder="Phone Number" name="billing_phone" value="{{old('billing_phone', auth()->user()->phone_number)}}" readonly>
                                     @error('billing_phone')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="country-select">
+                                <div class="checkout-form-list country-select">
                                     <label>Division Name <span class="required">*</span></label>
-                                    <select name="billing_division_id" id="select_division" class="division_select">
+                                    <input type="text" placeholder="Billing Division Name" value="{{ App\Models\Division::find(auth()->user()->division_id)->name }}" readonly>
+                                    <select name="billing_division_id" class="billing_division_select @error('billing_division_id') is-invalid @enderror d-none" >
                                         <option value="">Select Division</option>
-                                        @foreach ($shippings as $shipping)
-                                        <option value="{{$shipping->division_id}}">{{$shipping->division->name}}</option>
+                                        @foreach ($divisions as $division)
+                                        <option value="{{$division->division_id}}" @selected($division->division_id == old('billing_division_id', auth()->user()->division_id))>{{$division->division->name}}</option>
                                         @endforeach
                                     </select>
+                                    @error('billing_division_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="country-select">
+                                <div class="checkout-form-list country-select">
                                     <label>District Name <span class="required">*</span></label>
-                                    <select name="billing_district_id" id="all_district_list" class="district_select">
+                                    <input type="text" placeholder="Billing District Name" value="{{ App\Models\District::find(auth()->user()->district_id)->name }}" readonly>
+                                    <select name="billing_district_id" id="billing_all_district_list" class="billing_district_select @error('billing_district_id') is-invalid @enderror d-none">
                                         <option value="">Select Division First</option>
+                                        @foreach ($districts as $district)
+                                        <option value="{{$district->district_id}}" @selected($district->district_id == old('billing_district_id', auth()->user()->district_id))>{{$district->district->name}}</option>
+                                        @endforeach
                                     </select>
+                                    @error('billing_district_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Address <span class="required">*</span></label>
-                                    <input type="text" class="@error('billing_address') is-invalid @enderror" placeholder="Address" name="billing_address" value="{{auth()->user()->address}}">
+                                    <textarea class="@error('billing_address') is-invalid @enderror" style="width: 100%" placeholder="Address" name="billing_address" readonly>{{auth()->user()->address}}</textarea>
                                     @error('billing_address')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -121,21 +132,31 @@ Checkout
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Division Name<span class="required">*</span></label>
-                                            <input type="text" placeholder="Division" value="" name="shipping_division_id" id="shipping_division" readonly>
+                                        <div class="country-select">
+                                            <label>Division Name <span class="required">*</span></label>
+                                            <select style="width: 100%" name="shipping_division_id" class="shipping_division_select">
+                                                <option value="">Select Division</option>
+                                                @foreach ($divisions as $division)
+                                                <option value="{{$division->division_id}}" @selected($division->division_id == old('shipping_division_id', auth()->user()->division_id))>{{$division->division->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="checkout-form-list">
+                                        <div class="country-select" >
                                             <label>District Name <span class="required">*</span></label>
-                                            <input type="text" placeholder="District" value="" name="shipping_district_id" id="shipping_district" readonly>
+                                            <select style="width: 100%" name="shipping_district_id" id="shipping_all_district_list" class="shipping_district_select">
+                                                <option value="">Select Division First</option>
+                                                @foreach ($districts as $district)
+                                                <option value="{{$district->district_id}}" @selected($district->district_id == old('shipping_district_id', auth()->user()->district_id))>{{$district->district->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Address <span class="required">*</span></label>
-                                            <input type="text" placeholder="Address" name="shipping_address" value="{{auth()->user()->address}}">
+                                            <textarea placeholder="Address" class="form-control" name="shipping_address">{{auth()->user()->address}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +234,7 @@ Checkout
                                     </tr>
                                     <tr class="cart-subtotal">
                                         <td class="p-2">Shipping Amount</td>
-                                        <td class="p-2"><span class="amount" id="shipping_charge">00</span></td>
+                                        <td class="p-2"><span class="amount" id="shipping_charge">{{ $shipping_charge }}</span></td>
                                     </tr>
                                     <tr class="cart-subtotal">
                                         <td class="p-2">Total</td>
@@ -234,8 +255,9 @@ Checkout
                                     <label for="Online">Online</label>
                                 </span>
                             </div>
-                            <div class="order-button-payment mt-20">
-                                <button type="submit" class="tp-btn-h1 d-none checkout_btn">Place order</button>
+                            <div class="order-button-payment mt-20 text-center">
+                                <strong class="text-warning {{ (auth()->user()->division_id && auth()->user()->district_id) ? 'd-none' : '' }} checkout_warning_btn">Please Select Shipping Division & District.</strong>
+                                <button type="submit" class="tp-btn-h1 {{ (!auth()->user()->division_id && !auth()->user()->district_id) ? 'd-none' : '' }} checkout_btn">Place order</button>
                             </div>
                         </div>
                     </div>
@@ -288,40 +310,32 @@ Checkout
             // ajax end
         })
 
-        // Select Division
-        $('#select_division').change(function(){
-            var division_name = $('#select_division :selected').html();
-            $('#shipping_division').html(division_name);
-
+        // Select Shipping Division
+        $('.shipping_division_select').change(function(){
             $('.checkout_btn').addClass('d-none');
+            $('.checkout_warning_btn').removeClass('d-none');
             $('#shipping_charge').html("00");
             var sub_total = $('#sub_total').html();
             var discount_amount = $('#discount_amount').html();
             var grand_total = parseInt(sub_total) - parseInt(discount_amount);
             $('.grand_total').html(grand_total);
-
             var division_id = $(this).val();
-            $('#shipping_division').val(division_id);
             // ajax start
             $.ajax({
                 type:'POST',
                 url: "{{route('get.district.list')}}",
                 data:{division_id:division_id},
                 success: function(response){
-                    $('#all_district_list').html(response);
+                    $('#shipping_all_district_list').html(response);
                 }
             })
             // ajax end
         })
 
-        // Select District
-        $('.district_select').change(function(){
-            var district_name = $('.district_select :selected').html();
-            $('#shipping_district').html(district_name);
-
-            var division_id= $('#select_division :selected').val();
+        // Select Shipping District
+        $('.shipping_district_select').change(function(){
+            var division_id= $('.shipping_division_select :selected').val();
             var district_id = $(this).val();
-            $('#shipping_district').val(district_id);
             // ajax start
             $.ajax({
                 type:'POST',
@@ -329,6 +343,7 @@ Checkout
                 data:{division_id:division_id, district_id:district_id},
                 success: function(response){
                     $('.checkout_btn').removeClass('d-none');
+                    $('.checkout_warning_btn').addClass('d-none');
                     $('#shipping_charge').html(response);
                     var sub_total = $('#sub_total').html();
                     var discount_amount = $('#discount_amount').html();
@@ -340,10 +355,12 @@ Checkout
         })
 
         // Select2 Option
-        $('.division_select').select2({
+        $('.shipping_division_select').select2({
+            placeholder: "Select Division"
         });
 
-        $('.district_select').select2({
+        $('.shipping_district_select').select2({
+            placeholder: "Select District"
         });
 
     });
