@@ -34,7 +34,6 @@ Shipping
                             <form action="#" id="create_shipping_form" method="POST">
                                 @csrf
                                 <div class="modal-body">
-                                    <span id="shipping_charge_exists_error" class="text-danger"></span>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label class="form-label">Division Name</label>
@@ -280,10 +279,8 @@ Shipping
                         })
                     }else{
                         if(response.status == 401){
-                            $('#shipping_charge_exists_error').html("");
-                            $('#shipping_charge_exists_error').html(response.error);
+                            toastr.error(response.error);
                         }else{
-                            toastr.success(response.message);
                             table.ajax.reload(null, false);
                             $("#create_shipping_btn").text('Add Shipping');
                             $("#create_shipping_form")[0].reset();
@@ -335,11 +332,15 @@ Shipping
                         })
                     }
                     else{
-                        toastr.success(response.message);
-                        table.ajax.reload(null, false);
-                        $("#edit_shipping_btn").text('Updated Shipping');
-                        $("#edit_shipping_form")[0].reset();
-                        $("#editShippingModel").modal('hide');
+                        if(response.status == 401){
+                            toastr.error(response.error);
+                        }else{
+                            toastr.success(response.message);
+                            table.ajax.reload(null, false);
+                            $("#edit_shipping_btn").text('Updated Shipping');
+                            $("#edit_shipping_form")[0].reset();
+                            $("#editShippingModel").modal('hide');
+                        }
                     }
                 }
             });

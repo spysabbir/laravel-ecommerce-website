@@ -18,7 +18,7 @@ class ShippingController extends Controller
     {
         if ($request->ajax()) {
             $shippings = "";
-            $query = Shipping::leftJoin('divisions', 'shippings.division_id', 'divisions.id')
+            $query = Shipping::latest()->leftJoin('divisions', 'shippings.division_id', 'divisions.id')
                             ->leftJoin('districts', 'shippings.district_id', 'districts.id');
 
             if($request->division_id){
@@ -146,7 +146,7 @@ class ShippingController extends Controller
                 'error'=> $validator->errors()->toArray()
             ]);
         }else{
-            $exists = Shipping::where([
+            $exists = Shipping::whereNot('id', $id)->where([
                 'division_id' => $request->division_id,
                 'district_id' => $request->district_id,
             ])->exists();
