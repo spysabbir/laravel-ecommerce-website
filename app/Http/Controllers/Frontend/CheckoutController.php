@@ -43,11 +43,11 @@ class CheckoutController extends Controller
             if(Session::get('session_coupon_name')){
                 $coupon = Coupon::where('coupon_name', Session::get('session_coupon_name'))->first();
                 if($coupon->coupon_offer_type == 'percentage'){
-                    $discount_amount = $coupon->coupon_offer_amount/100;
-                    $grand_total = ($sub_total - $coupon->coupon_offer_amount/100) + $shipping_charge;
+                    $discount_amount = ($sub_total*($coupon->coupon_offer_amount/100));
+                    $grand_total = ($sub_total - $discount_amount) + $shipping_charge;
                 }else{
                     $discount_amount = $coupon->coupon_offer_amount;
-                    $grand_total = ($sub_total - $coupon->coupon_offer_amount) + $shipping_charge;
+                    $grand_total = ($sub_total - $discount_amount) + $shipping_charge;
                 }
             }else{
                 $discount_amount = 0;
@@ -57,7 +57,8 @@ class CheckoutController extends Controller
             Session::put('session_sub_total', $sub_total);
             Session::put('session_grand_total', $grand_total);
             Session::put('session_discount_amount', $discount_amount);
-            return view('frontend.checkout', compact('divisions', 'districts', 'carts', 'sub_total', 'discount_amount', 'shipping_charge', 'grand_total'));
+            $shipping_address = Shipping::where('division_id', Auth::user()->division_id)->where('district_id', Auth::user()->district_id)->exists();
+            return view('frontend.checkout', compact('divisions', 'districts', 'carts', 'sub_total', 'discount_amount', 'shipping_charge', 'grand_total', 'shipping_address'));
         }
     }
 

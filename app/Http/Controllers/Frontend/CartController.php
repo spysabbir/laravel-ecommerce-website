@@ -188,49 +188,63 @@ class CartController extends Controller
 
     public function checkCoupon(Request $request){
         if ($request->coupon_name) {
-            if(Coupon::where('coupon_name', $request->coupon_name)->exists()){
-                $coupon = Coupon::where('coupon_name', $request->coupon_name)->first();
-                if(Carbon::today() <= $coupon->coupon_validity_date){
-                    if($coupon->coupon_minimum_order > $request->sub_total){
-                        Session::put('session_coupon_name', '');
-                        return response()->json([
-                            'status' => 400,
-                            'error' => 'You have to order minimum '.$coupon->coupon_minimum_order
-                        ]);
-                    }else{
-                        if($coupon->coupon_user_limit == 0){
+            $order_Status = Cart::where('user_id', Auth::user()->id)->where('status', 'Yes')->count();
+            if($order_Status > 0){
+                if(Coupon::where('coupon_name', $request->coupon_name)->exists()){
+                    $coupon = Coupon::where('coupon_name', $request->coupon_name)->first();
+                    if(Carbon::today() <= $coupon->coupon_validity_date){
+                        if($coupon->coupon_minimum_order > $request->sub_total){
                             Session::put('session_coupon_name', '');
                             return response()->json([
                                 'status' => 400,
-                                'error' => 'This coupon usage limit is over!'
+                                'error' => 'You have to order minimum '.$coupon->coupon_minimum_order
                             ]);
                         }else{
-                            Session::put('session_coupon_name', $request->coupon_name);
-                            if($coupon->coupon_offer_type == 'percentage'){
-                                $grand_total = $request->sub_total - ($request->sub_total*($coupon->coupon_offer_amount/100));
+                            if($coupon->coupon_user_limit == 0){
+                                Session::put('session_coupon_name', '');
+                                return response()->json([
+                                    'status' => 400,
+                                    'error' => 'This coupon usage limit is over!'
+                                ]);
                             }else{
-                                $grand_total = $request->sub_total - $coupon->coupon_offer_amount;
+                                Session::put('session_coupon_name', $request->coupon_name);
+                                if($coupon->coupon_offer_type == 'percentage'){
+                                    $grand_total = $request->sub_total - ($request->sub_total*($coupon->coupon_offer_amount/100));
+                                    $coupon_offer_type = $coupon->coupon_offer_amount . " %";
+                                    $coupon_offer_amount = ($request->sub_total*($coupon->coupon_offer_amount/100));
+                                }else{
+                                    $grand_total = $request->sub_total - $coupon->coupon_offer_amount;
+                                    $coupon_offer_type = $coupon->coupon_offer_amount . " ৳";
+                                    $coupon_offer_amount = $coupon->coupon_offer_amount;
+                                }
+                                return response()->json([
+                                    'coupon_offer_type' => $coupon_offer_type,
+                                    'coupon_offer_amount' => $coupon_offer_amount,
+                                    'grand_total' => $grand_total,
+                                    'status' => 200,
+                                    'success' => 'This coupon usage successfully.'
+                                ]);
                             }
-                            return response()->json([
-                                'coupon_offer_amount' => $coupon->coupon_offer_amount,
-                                'grand_total' => $grand_total,
-                                'status' => 200,
-                                'success' => 'This coupon usage successfully.'
-                            ]);
                         }
+                    }else{
+                        Session::put('session_coupon_name', '');
+                        return response()->json([
+                            'status' => 400,
+                            'error' => 'This coupon validity date is over!'
+                        ]);
                     }
                 }else{
                     Session::put('session_coupon_name', '');
                     return response()->json([
                         'status' => 400,
-                        'error' => 'This coupon validity date is over!'
+                        'error' => 'This coupon dose not exists!'
                     ]);
                 }
             }else{
                 Session::put('session_coupon_name', '');
                 return response()->json([
                     'status' => 400,
-                    'error' => 'This coupon dose not exists!'
+                    'error' => 'Please select minimum 1 order!'
                 ]);
             }
         } else {

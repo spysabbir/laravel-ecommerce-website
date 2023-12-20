@@ -59,7 +59,7 @@ Cart
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <div class="coupon-all mb-3">
                     <div class="coupon">
                        <input id="coupon_input_field" class="input-text" name="coupon_name" value="" placeholder="Coupon code" type="text">
@@ -67,16 +67,16 @@ Cart
                        <a href="#" id="remove_coupon_btn" class="text-danger p-2"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
-                <span class="alert alert-danger d-none" id="coupon_error"></span>
-                <span class="alert alert-success d-none" id="coupon_success"></span>
+                <span class="text text-danger d-none" id="coupon_error"></span>
+                <span class="text text-info d-none" id="coupon_success"></span>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="cart-page-total">
                     <h2>Cart totals</h2>
                     <ul class="mb-20">
-                        <li>Sub Total<span id="sub_total">00</span></li>
-                        <li>Coupon Discount (-)<span id="discount_amount">00</span></li>
-                        <li>Grand Total<span id="grand_total">00</span></li>
+                        <li>Sub Total: <span id="sub_total">00</span> <strong>৳</strong></li>
+                        <li>Coupon Discount: (-) <span id="discount_amount">00</span><strong id="offer_type"></strong></li>
+                        <li>Grand Total: <span id="grand_total">00</span> <strong>৳</strong></li>
                     </ul>
                     <a class="tp-btn-h1 d-none" id="checkout_btn" href="{{ route('checkout') }}">Proceed to checkout</a>
                 </div>
@@ -298,6 +298,7 @@ Cart
                         $('#coupon_success').removeClass('d-none');
                         $('#coupon_success').html(data.success);
                         $('#discount_amount').html(data.coupon_offer_amount);
+                        $('#offer_type').html(data.coupon_offer_type);
                         $('#grand_total').html(data.grand_total);
                     }
                 }
@@ -324,6 +325,7 @@ Cart
                         $('#coupon_success').html(data.success);
                         $('#discount_amount').html("00");
                         $('#grand_total').html(sub_total);
+                        $('#coupon_input_field').val("");
                     }
                 }
             })

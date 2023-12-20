@@ -42,6 +42,16 @@ Checkout
                 <div class="col-lg-6">
                     <div class="checkbox-form">
                         <h3>Billing Details</h3>
+                        @if (!$shipping_address)
+                        <div class="alert alert-info">
+                            <strong>Currently your billing address shipping not possible please select different shipping address.</strong>
+                        </div>
+                        @endif
+                        @if (!auth()->user()->division_id || !auth()->user()->district_id || !auth()->user()->phone_number)
+                        <div class="alert alert-warning">
+                            <strong>Please update billing address in your profile.</strong>
+                        </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
@@ -67,7 +77,7 @@ Checkout
                             <div class="col-md-12">
                                 <div class="checkout-form-list country-select">
                                     <label>Division Name <span class="required">*</span></label>
-                                    <input type="text" placeholder="Billing Division Name" value="{{ App\Models\Division::find(auth()->user()->division_id)->name }}" readonly>
+                                    <input type="text" placeholder="Billing Division Name" value="{{ auth()->user()->division_id ? auth()->user()->division->name : '' }}" readonly>
                                     <select name="billing_division_id" class="billing_division_select @error('billing_division_id') is-invalid @enderror d-none" >
                                         <option value="">Select Division</option>
                                         @foreach ($divisions as $division)
@@ -82,7 +92,7 @@ Checkout
                             <div class="col-md-12">
                                 <div class="checkout-form-list country-select">
                                     <label>District Name <span class="required">*</span></label>
-                                    <input type="text" placeholder="Billing District Name" value="{{ App\Models\District::find(auth()->user()->district_id)->name }}" readonly>
+                                    <input type="text" placeholder="Billing District Name" value="{{ auth()->user()->district_id ? auth()->user()->district->name : '' }}" readonly>
                                     <select name="billing_district_id" id="billing_all_district_list" class="billing_district_select @error('billing_district_id') is-invalid @enderror d-none">
                                         <option value="">Select Division First</option>
                                         @foreach ($districts as $district)
@@ -256,8 +266,8 @@ Checkout
                                 </span>
                             </div>
                             <div class="order-button-payment mt-20 text-center">
-                                <strong class="text-warning {{ (auth()->user()->division_id && auth()->user()->district_id) ? 'd-none' : '' }} checkout_warning_btn">Please Select Shipping Division & District.</strong>
-                                <button type="submit" class="tp-btn-h1 {{ (!auth()->user()->division_id && !auth()->user()->district_id) ? 'd-none' : '' }} checkout_btn">Place order</button>
+                                <strong class="text-warning {{ (auth()->user()->division_id && auth()->user()->district_id) || $shipping_address ? 'd-none' : '' }} checkout_warning_btn">Please Select Shipping Division & District Address.</strong>
+                                <button type="submit" class="tp-btn-h1 {{ (!auth()->user()->division_id && !auth()->user()->district_id) || !$shipping_address ? 'd-none' : '' }} checkout_btn">Place order</button>
                             </div>
                         </div>
                     </div>

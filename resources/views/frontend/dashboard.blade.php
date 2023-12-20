@@ -173,6 +173,7 @@ Dashboard
                                 <h4 class="card-title">Edit Profile</h4>
                             </div>
                             <div class="card-body">
+                                <span><strong class="text-warning">The * mark field is required.</strong></span>
                                 <form action="{{route('change.profile')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="m-3">
@@ -183,7 +184,7 @@ Dashboard
                                         @enderror
                                     </div>
                                     <div class="m-3">
-                                        <label>Full Name</label>
+                                        <label>Full Name <strong class="text-danger">*</strong></label>
                                         <input type="text" class="form-control" name="name" value="{{auth()->user()->name}}">
                                         @error('name')
                                         <span class="text-danger">{{$message}}</span>
@@ -194,7 +195,7 @@ Dashboard
                                         <input type="text" class="form-control"  value="{{auth()->user()->email}}" disabled>
                                     </div>
                                     <div class="m-3">
-                                        <label>Phone Number</label>
+                                        <label>Phone Number <strong class="text-danger">*</strong></label>
                                         <input type="text" class="form-control" name="phone_number" placeholder="Phone Number"
                                             value="{{auth()->user()->phone_number}}">
                                         @error('phone_number')
@@ -223,7 +224,7 @@ Dashboard
                                     </div>
                                     <div class="m-3">
                                         <div class="country-select">
-                                            <label>Division</label>
+                                            <label>Division <strong class="text-danger">*</strong></label>
                                             <select name="division_id" id="profile_division_select">
                                                 <option value="">Select Division</option>
                                                 @foreach ($divisions as $division)
@@ -237,7 +238,7 @@ Dashboard
                                     </div>
                                     <div class="m-3">
                                         <div class="country-select">
-                                            <label>District</label>
+                                            <label>District <strong class="text-danger">*</strong></label>
                                             <select name="district_id" id="profile_all_district_list">
                                                 <option value="">Select District</option>
                                                 @foreach ($districts as $district)
@@ -250,7 +251,7 @@ Dashboard
                                         </div>
                                     </div>
                                     <div class="m-3">
-                                        <label>Address</label>
+                                        <label>Address <strong class="text-danger">*</strong></label>
                                         <textarea name="address" class="form-control"
                                             placeholder="Address">{{auth()->user()->address}}</textarea>
                                     </div>
