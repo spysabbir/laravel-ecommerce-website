@@ -385,7 +385,7 @@ Product
                                                     <div class="col-lg-9">
                                                         <label class="form-label">Product Featured Photo</label>
                                                         <input type="file" name="product_featured_photos[]" class="form-control" multiple >
-                                                        <small>Input file accept extension (jpg, png, jpeg, webp)</small>
+                                                        <small>Input file accept extension (jpg, png, jpeg)</small>
                                                         <span class="text-danger error-text product_featured_photos_error"></span>
                                                         <span class="text-danger" id="featured_photo_extension_error"></span>
                                                     </div>

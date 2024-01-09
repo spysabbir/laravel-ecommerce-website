@@ -180,7 +180,7 @@ class ProductController extends Controller
             'childcategory_id' => 'required',
             'brand_id' => 'required',
             'long_description' => 'required',
-            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){
@@ -254,7 +254,7 @@ class ProductController extends Controller
             'subcategory_id' => 'required',
             'childcategory_id' => 'required',
             'long_description' => 'required',
-            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'product_thumbnail_photo' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){
@@ -429,7 +429,7 @@ class ProductController extends Controller
 
     public function productFeaturedPhotoStore(Request $request, $id){
         $validator = Validator::make($request->all(), [
-            'product_featured_photos' => 'required|image|mimes:png,jpg,jpeg,webp'
+            'product_featured_photos' => 'required|image|mimes:png,jpg,jpeg'
         ]);
         if($validator->fails()){
             return response()->json([
@@ -439,7 +439,7 @@ class ProductController extends Controller
         }else{
             $status = true;
             foreach($request->file('product_featured_photos') as $product_featured_photo){
-                if(!in_array($product_featured_photo->getClientOriginalExtension(), ['jpg', 'png', 'jpeg', 'webp'])){
+                if(!in_array($product_featured_photo->getClientOriginalExtension(), ['jpg', 'png', 'jpeg'])){
                     $status = false;
                 }
             }
@@ -464,7 +464,7 @@ class ProductController extends Controller
             else{
                 return response()->json([
                     'status' => 401,
-                    'error'=> 'Uploaded file must be this extension [ jpg, png, jpeg, webp ].'
+                    'error'=> 'Uploaded file must be this extension [ jpg, png, jpeg ].'
                 ]);
             }
 

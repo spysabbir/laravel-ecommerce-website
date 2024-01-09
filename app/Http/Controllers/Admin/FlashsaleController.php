@@ -100,7 +100,7 @@ class FlashsaleController extends Controller
         $validator = Validator::make($request->all(), [
             '*' => 'required',
             'flashsale_offer_name' => 'required|unique:flashsales',
-            'flashsale_offer_banner_photo' => 'required|image|mimes:png,jpg,jpeg,webp',
+            'flashsale_offer_banner_photo' => 'required|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){
@@ -153,7 +153,7 @@ class FlashsaleController extends Controller
         $validator = Validator::make($request->all(), [
             '*' => 'required',
             'flashsale_offer_name' => 'required|unique:flashsales,flashsale_offer_name,'.$flashsale->id,
-            'flashsale_offer_banner_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'flashsale_offer_banner_photo' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         if($validator->fails()){

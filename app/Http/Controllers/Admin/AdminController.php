@@ -53,7 +53,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required',
             'phone_number' => 'nullable',
-            'profile_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'profile_photo' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
         Admin::find(Auth::guard('admin')->id())->update([

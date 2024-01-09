@@ -43,8 +43,8 @@ class SettingController extends Controller
     public function defaultSettingUpdate(Request $request, $id){
         $request->validate([
             '*' => 'required',
-            'logo_photo' => 'nullable|image|mimes:png,jpg,jpeg,webp',
-            'favicon' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'logo_photo' => 'nullable|image|mimes:png,jpg,jpeg',
+            'favicon' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
         $this->changeEnv("APP_NAME", "'$request->app_name'");
         $this->changeEnv("APP_URL", "'$request->app_url'");
@@ -226,7 +226,7 @@ class SettingController extends Controller
     public function seoSettingUpdate(Request $request, $id){
         $request->validate([
             '*' => 'required',
-            'seo_image' => 'nullable|image|mimes:png,jpg,jpeg,webp',
+            'seo_image' => 'nullable|image|mimes:png,jpg,jpeg',
         ]);
         $seo_setting = Seo_setting::where('id', $id)->first();
 
