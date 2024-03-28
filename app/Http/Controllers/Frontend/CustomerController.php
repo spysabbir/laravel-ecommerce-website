@@ -23,6 +23,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -107,58 +108,75 @@ class CustomerController extends Controller
         return response()->json($send_data);
     }
 
-    public function changeProfile(Request $request){
-        $request->validate([
+    public function changeProfile(Request $request) {
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'phone_number' => 'required|digits:11',
             'division_id' => 'required',
             'district_id' => 'required',
         ]);
-        User::find(auth()->id())->update([
-            'name' => $request->name,
-            'gender' => $request->gender,
-            'date_of_birth' => $request->date_of_birth,
-            'phone_number' => $request->phone_number,
-            'division_id' => $request->division_id,
-            'district_id' => $request->district_id,
-            'address' => $request->address,
-        ]);
 
-        // Photo Upload
-        if($request->hasFile('profile_photo')){
-            // Photo Delete
-            if(User::find(auth()->id())->profile_photo != "default_profile_photo.png"){
-                unlink(base_path("public/uploads/profile_photo/"). User::find(auth()->id())->profile_photo);
-            }
-            // Stap 01 : New Profile Photo Name Create (photo.jpg)
-            $profile_photo_name =  "Customer-Profile-Photo-".User::find(auth()->id())->id.".". $request->file('profile_photo')->getClientOriginalExtension();
-            // Stap 02 : New Profile Photo Upload
-            $upload_link = base_path("public/uploads/profile_photo/").$profile_photo_name;
-            Image::make($request->file('profile_photo'))->resize(300,300)->save($upload_link);
-            // Stap 03 : New Profile Photo Name Update at Database
-            User::find(auth()->id())->update([
-                'profile_photo' => $profile_photo_name,
-            ]);
+        if ($validator->fails()) {
+            return back()->with('error', 'Profile Not Updated')->withErrors($validator)->withInput();
         }
-        return back()->with('success', 'Profile Updated Successfully');
+
+        $user = User::find(auth()->id());
+
+        if (!$user) {
+            return back()->with('error', 'User not found');
+        }
+
+        $user->name = $request->name;
+        $user->gender = $request->gender;
+        $user->date_of_birth = $request->date_of_birth;
+        $user->phone_number = $request->phone_number;
+        $user->division_id = $request->division_id;
+        $user->district_id = $request->district_id;
+        $user->address = $request->address;
+
+        if ($request->hasFile('profile_photo')) {
+            // Photo Delete
+            if ($user->profile_photo != "default_profile_photo.png") {
+                unlink(public_path("uploads/profile_photo/") . $user->profile_photo);
+            }
+            // Step 01: New Profile Photo Name Create (photo.jpg)
+            $profile_photo_name = "Customer-Profile-Photo-" . $user->id . "." . $request->file('profile_photo')->getClientOriginalExtension();
+            // Step 02: New Profile Photo Upload
+            $upload_link = public_path("uploads/profile_photo/") . $profile_photo_name;
+            Image::make($request->file('profile_photo'))->resize(300,300)->save($upload_link);
+            // Step 03: New Profile Photo Name Update at Database
+            $user->profile_photo = $profile_photo_name;
+        }
+
+        if ($user->save()) {
+            return back()->with('success', 'Profile Updated Successfully');
+        } else {
+            return back()->with('error', 'Profile not updated. Check the profile section and modify the profile data.');
+        }
     }
 
     public function changePassword(Request $request){
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'old_password' => 'required',
             'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required',
         ]);
-        if($request->old_password == $request->password){
-            return back()->withErrors(['password_error' => 'New password can not same as old password']);
+
+        if ($validator->fails()) {
+            return back()->with('error', 'Password Not Updated. Check the profile section and modify the password data.')->withErrors($validator)->withInput();
         }
-        if(Hash::check($request->old_password, auth()->user()->password)){
+
+        if ($request->old_password == $request->password) {
+            return back()->withErrors(['password_error' => 'New password cannot be the same as the old password']);
+        }
+
+        if (Hash::check($request->old_password, auth()->user()->password)) {
             User::find(auth()->id())->update([
                 'password' => bcrypt($request->password)
             ]);
-            return back()->with('success', 'Password Change Successfully.');
-        }else{
-            return back()->withErrors(['password_error' => 'Your Old Password is Wrong!']);
+            return back()->with('success', 'Password Changed Successfully');
+        } else {
+            return back()->withErrors(['password_error' => 'Your Old Password is Incorrect']);
         }
     }
 
