@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class SslCommerzPaymentController extends Controller
     public function index()
     {
         $post_data = array();
-        $post_data['total_amount'] = session('session_final_grand_total'); # You cant not pay less than 10
+        $post_data['total_amount'] = Session::get('session_final_grand_total'); # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 

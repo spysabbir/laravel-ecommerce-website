@@ -209,13 +209,13 @@ class CartController extends Controller
                             }else{
                                 Session::put('session_coupon_name', $request->coupon_name);
                                 if($coupon->coupon_offer_type == 'percentage'){
-                                    $grand_total = $request->sub_total - ($request->sub_total*($coupon->coupon_offer_amount/100));
                                     $coupon_offer_type = $coupon->coupon_offer_amount . " %";
-                                    $coupon_offer_amount = ($request->sub_total*($coupon->coupon_offer_amount/100));
+                                    $coupon_offer_amount = round($request->sub_total*($coupon->coupon_offer_amount/100));
+                                    $grand_total = $request->sub_total - $coupon_offer_amount;
                                 }else{
-                                    $grand_total = $request->sub_total - $coupon->coupon_offer_amount;
                                     $coupon_offer_type = $coupon->coupon_offer_amount . " ৳";
                                     $coupon_offer_amount = $coupon->coupon_offer_amount;
+                                    $grand_total = $request->sub_total - $coupon->coupon_offer_amount;
                                 }
                                 return response()->json([
                                     'coupon_offer_type' => $coupon_offer_type,

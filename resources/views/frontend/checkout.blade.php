@@ -36,80 +36,75 @@ Checkout
 <!-- checkout-area-start -->
 <section class="checkout-area pt-120 pb-85">
     <div class="container">
-        <form action="{{route('checkout.post')}}" method="POST">
+        <form action="{{ route('checkout.post') }}" method="POST">
             @csrf
             <div class="row">
+                @if (session('error'))
+                <div class="alert alert-danger text-center">
+                    <strong>{{ session('error') }}</strong>
+                </div>
+                @endif
                 <div class="col-lg-6">
                     <div class="checkbox-form">
                         <h3>Billing Details</h3>
-                        @if (!$shipping_address)
-                        <div class="alert alert-info">
+                        @if (!$check_shipping_address)
+                        <div class="alert alert-warning">
                             <strong>Currently your billing address shipping not possible please select different shipping address.</strong>
                         </div>
                         @endif
-                        @if (!auth()->user()->division_id || !auth()->user()->district_id || !auth()->user()->phone_number)
+                        @if ($check_billing_address)
                         <div class="alert alert-warning">
-                            <strong>Please update billing address in your profile.</strong>
+                            <strong>Please go to your profile and update your billing address.</strong>
                         </div>
                         @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Full Name<span class="required">*</span></label>
-                                    <input type="text" name="billing_name" value="{{auth()->user()->name}}" readonly>
+                                    <input type="text" value="{{ auth()->user()->name }}" readonly>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Email Address<span class="required">*</span></label>
-                                    <input type="text" name="billing_email" value="{{auth()->user()->email}}" readonly>
+                                    <input type="email" value="{{ auth()->user()->email }}" readonly>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Phone Number<span class="required">*</span></label>
-                                    <input type="text" class="@error('billing_phone') is-invalid @enderror" placeholder="Phone Number" name="billing_phone" value="{{old('billing_phone', auth()->user()->phone_number)}}" readonly>
+                                    <input type="text" value="{{ auth()->user()->phone_number }}" name="billing_phone" placeholder="Phone Number" readonly>
                                     @error('billing_phone')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list country-select">
-                                    <label>Division Name <span class="required">*</span></label>
-                                    <input type="text" placeholder="Billing Division Name" value="{{ auth()->user()->division_id ? auth()->user()->division->name : '' }}" readonly>
-                                    <select name="billing_division_id" class="billing_division_select @error('billing_division_id') is-invalid @enderror d-none" >
-                                        <option value="">Select Division</option>
-                                        @foreach ($divisions as $division)
-                                        <option value="{{$division->division_id}}" @selected($division->division_id == old('billing_division_id', auth()->user()->division_id))>{{$division->division->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>Division Name<span class="required">*</span></label>
+                                    <input type="hidden" value="{{ auth()->user()->division_id }}" name="billing_division_id">
+                                    <input type="text" value="{{ auth()->user()->division_id ? auth()->user()->division->name : '' }}" placeholder="Division Name" readonly>
                                     @error('billing_division_id')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list country-select">
-                                    <label>District Name <span class="required">*</span></label>
-                                    <input type="text" placeholder="Billing District Name" value="{{ auth()->user()->district_id ? auth()->user()->district->name : '' }}" readonly>
-                                    <select name="billing_district_id" id="billing_all_district_list" class="billing_district_select @error('billing_district_id') is-invalid @enderror d-none">
-                                        <option value="">Select Division First</option>
-                                        @foreach ($districts as $district)
-                                        <option value="{{$district->district_id}}" @selected($district->district_id == old('billing_district_id', auth()->user()->district_id))>{{$district->district->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>District Name<span class="required">*</span></label>
+                                    <input type="hidden" value="{{ auth()->user()->district_id }}" name="billing_district_id">
+                                    <input type="text" value="{{ auth()->user()->district_id ? auth()->user()->district->name : '' }}" placeholder="District Name" readonly>
                                     @error('billing_district_id')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
-                                    <label>Address <span class="required">*</span></label>
-                                    <textarea class="@error('billing_address') is-invalid @enderror" style="width: 100%" placeholder="Address" name="billing_address" readonly>{{auth()->user()->address}}</textarea>
+                                    <label>Address<span class="required">*</span></label>
+                                    <textarea class="form-control" placeholder="Address" name="billing_address" readonly>{{auth()->user()->address}}</textarea>
                                     @error('billing_address')
-                                    <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
@@ -126,47 +121,65 @@ Checkout
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Full Name<span class="required">*</span></label>
-                                            <input type="text" placeholder="Full Name" name="shipping_name" value="{{auth()->user()->name}}">
+                                            <input type="text" placeholder="Full Name" name="shipping_name" value="{{ auth()->user()->name }}">
+                                            @error('shipping_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Email Address<span class="required">*</span></label>
-                                            <input type="text" placeholder="Email Address" name="shipping_email" value="{{auth()->user()->email}}">
+                                            <input type="text" placeholder="Email Address" name="shipping_email" value="{{ auth()->user()->email }}">
+                                            @error('shipping_email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>Phone Number <span class="required">*</span></label>
-                                            <input type="text" placeholder="Phone Number" name="shipping_phone" value="{{auth()->user()->phone_number}}">
+                                            <label>Phone Number<span class="required">*</span></label>
+                                            <input type="text" placeholder="Phone Number" name="shipping_phone" value="{{ auth()->user()->phone_number }}">
                                         </div>
+                                        @error('shipping_phone')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-md-12">
                                         <div class="country-select">
-                                            <label>Division Name <span class="required">*</span></label>
+                                            <label>Division Name<span class="required">*</span></label>
                                             <select style="width: 100%" name="shipping_division_id" class="shipping_division_select">
                                                 <option value="">Select Division</option>
-                                                @foreach ($divisions as $division)
-                                                <option value="{{$division->division_id}}" @selected($division->division_id == old('shipping_division_id', auth()->user()->division_id))>{{$division->division->name}}</option>
+                                                @foreach ( $shipping_divisions as $division )
+                                                <option value="{{ $division->division_id }}" @selected($division->division_id == old('shipping_division_id', auth()->user()->division_id))>{{ $division->division->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('shipping_division_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="country-select" >
-                                            <label>District Name <span class="required">*</span></label>
+                                            <label>District Name<span class="required">*</span></label>
                                             <select style="width: 100%" name="shipping_district_id" id="shipping_all_district_list" class="shipping_district_select">
                                                 <option value="">Select Division First</option>
-                                                @foreach ($districts as $district)
-                                                <option value="{{$district->district_id}}" @selected($district->district_id == old('shipping_district_id', auth()->user()->district_id))>{{$district->district->name}}</option>
+                                                @foreach ($shipping_district as $district)
+                                                <option value="{{ $district->district_id }}" @selected($district->district_id == old('shipping_district_id', auth()->user()->district_id))>{{$district->district->name}}</option>
                                                 @endforeach
                                             </select>
+                                            @error('shipping_district_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>Address <span class="required">*</span></label>
-                                            <textarea placeholder="Address" class="form-control" name="shipping_address">{{auth()->user()->address}}</textarea>
+                                            <label>Address<span class="required">*</span></label>
+                                            <textarea placeholder="Address" class="form-control" name="shipping_address">{{ auth()->user()->address }}</textarea>
+                                            @error('shipping_address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -174,8 +187,7 @@ Checkout
                             <div class="order-notes">
                                 <div class="checkout-form-list">
                                     <label>Order Notes</label>
-                                    <textarea id="checkout-mess" cols="30" rows="10" name="customer_order_notes"
-                                        placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    <textarea id="checkout-mess" cols="30" rows="10" name="customer_order_notes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +196,7 @@ Checkout
                 <div class="col-lg-6">
                     <div class="coupon-accordion mb-3">
                         <!-- ACCORDION START -->
-                        <h3>If you don't use a coupon? <span id="showcoupon">Click here to enter your code {{ session('session_coupon_name') }}</span></h3>
+                        <h3>If you don't use a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
                         <div id="checkout_coupon" class="coupon-checkout-content">
                             <span class="text-danger d-none" id="coupon_error"></span>
                             <span class="text-success d-none" id="coupon_success"></span>
@@ -215,11 +227,11 @@ Checkout
                                     @foreach ($carts as $cart)
                                     <tr class="cart_item">
                                         <td class="product-name p-2">
-                                            <span>{{$cart->relationtoproduct->product_name}}</span><br>
-                                            <strong> Color: </strong> {{$cart->relationtocolor->color_name}} | <strong>Size: </strong> {{$cart->relationtosize->size_name}}
+                                            <span>{{ $cart->relationtoproduct->product_name }}</span><br>
+                                            <strong> Color: </strong> {{ $cart->relationtocolor->color_name }} | <strong>Size: </strong> {{$cart->relationtosize->size_name}}
                                         </td>
                                         <td class="product-total p-2">
-                                            <span class="amount"> <strong> {{$cart->cart_qty}} </strong> * <strong> {{$cart->product_current_price}} </strong> = <strong class="product-quantity"> {{$cart->product_current_price * $cart->cart_qty}} </strong></span>
+                                            <span class="amount"> <strong> {{ $cart->cart_qty }} </strong> * <strong> {{$cart->product_current_price}} </strong> = <strong class="product-quantity"> {{$cart->product_current_price * $cart->cart_qty}} </strong></span>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -236,11 +248,11 @@ Checkout
                                 <tbody>
                                     <tr class="cart-subtotal">
                                         <td class="p-2">Cart Subtotal</td>
-                                        <td class="p-2"><span class="amount" id="sub_total">{{$sub_total}}</span></td>
+                                        <td class="p-2"><span class="amount" id="sub_total">{{ $sub_total }}</span></td>
                                     </tr>
                                     <tr class="cart-subtotal">
                                         <td class="p-2">Discount Amount</td>
-                                        <td class="p-2"><span class="amount" id="discount_amount">{{$discount_amount}}</span></td>
+                                        <td class="p-2"><span class="amount" id="discount_amount">{{ $discount_amount }}</span></td>
                                     </tr>
                                     <tr class="cart-subtotal">
                                         <td class="p-2">Shipping Amount</td>
@@ -266,8 +278,8 @@ Checkout
                                 </span>
                             </div>
                             <div class="order-button-payment mt-20 text-center">
-                                <strong class="text-warning {{ (auth()->user()->division_id && auth()->user()->district_id) || $shipping_address ? 'd-none' : '' }} checkout_warning_btn">Please Select Shipping Division & District Address.</strong>
-                                <button type="submit" class="tp-btn-h1 {{ (!auth()->user()->division_id && !auth()->user()->district_id) || !$shipping_address ? 'd-none' : '' }} checkout_btn">Place order</button>
+                                <strong class="text-warning {{ (!$check_billing_address && $check_shipping_address)  ? 'd-none' : '' }} checkout_warning_btn">Please complete the Shipping & Billing Details.</strong>
+                                <button type="submit" class="tp-btn-h1 {{ ($check_billing_address || !$check_shipping_address) ? 'd-none' : '' }} checkout_btn">Place order</button>
                             </div>
                         </div>
                     </div>

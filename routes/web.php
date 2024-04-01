@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\Admin\SslCommerzPaymentController;
-use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
