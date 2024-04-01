@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 11:57 AM
+-- Generation Time: Apr 01, 2024 at 07:08 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -232,13 +232,6 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `color_id`, `size_id`, `product_current_price`, `cart_qty`, `status`, `created_at`, `updated_at`) VALUES
-(5, 1, 5, 7, 1, 1700, 1, 'Yes', '2023-12-20 10:16:29', '2023-12-20 10:41:39');
-
 -- --------------------------------------------------------
 
 --
@@ -401,8 +394,8 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_offer_type`, `coupon_offer_amount`, `coupon_minimum_order`, `coupon_validity_date`, `coupon_user_limit`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'bd23', 'flat', 100.00, 500.00, '2024-12-31', 48, 'Yes', 1, 2, NULL, '2023-02-18 00:20:14', '2023-12-20 08:35:10', NULL),
-(2, 'bd2023', 'percentage', 5.00, 50.00, '2024-12-31', 48, 'Yes', 2, NULL, NULL, '2023-12-20 08:34:56', '2023-12-20 10:15:59', NULL);
+(1, 'bd24', 'flat', 100.00, 500.00, '2024-12-31', 45, 'Yes', 1, 2, NULL, '2023-02-18 00:20:14', '2024-04-01 04:32:10', NULL),
+(2, 'bd2024', 'percentage', 5.00, 50.00, '2024-12-31', 44, 'Yes', 2, NULL, NULL, '2023-12-20 08:34:56', '2024-04-01 04:56:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -853,15 +846,6 @@ CREATE TABLE `order_details` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `order_details`
---
-
-INSERT INTO `order_details` (`id`, `order_no`, `product_id`, `product_current_price`, `color_id`, `size_id`, `cart_qty`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 750.00, 3, 5, 1, '2023-12-20 10:11:27', NULL),
-(2, 1, 7, 550.00, 2, 1, 1, '2023-12-20 10:11:27', NULL),
-(3, 2, 2, 1120.00, 5, 5, 1, '2023-12-20 10:15:59', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -918,14 +902,6 @@ CREATE TABLE `order_summeries` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `order_summeries`
---
-
-INSERT INTO `order_summeries` (`id`, `user_id`, `billing_name`, `billing_email`, `billing_phone`, `billing_division_id`, `billing_district_id`, `billing_address`, `shipping_name`, `shipping_email`, `shipping_phone`, `shipping_division_id`, `shipping_district_id`, `shipping_address`, `customer_order_notes`, `sub_total`, `shipping_charge`, `coupon_name`, `discount_amount`, `grand_total`, `payment_method`, `payment_status`, `transaction_id`, `order_status`, `warehouse_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Md Sabbir Ahammed', 'customer1@email.com', '01953321402', 3, 20, 'Chowrasta', 'Md Sabbir Ahammed', 'customer1@email.com', '01953321402', 6, 47, 'Chowrasta', NULL, 1300.00, 10.00, 'bd2023', 65.00, 1245.00, 'COD', 'Unpaid', NULL, 'Panding', NULL, '2023-12-20 10:11:27', NULL),
-(2, 1, 'Md Sabbir Ahammed', 'customer1@email.com', '01953321402', 3, 20, 'Chowrasta', 'Md Sabbir Ahammed', 'customer1@email.com', '01953321402', 6, 47, 'Chowrasta', NULL, 1120.00, 10.00, 'bd2023', 0.00, 1130.00, 'COD', 'Unpaid', NULL, 'Panding', NULL, '2023-12-20 10:15:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -1051,12 +1027,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `regular_price`, `discounted_price`, `product_slug`, `short_description`, `sku`, `category_id`, `subcategory_id`, `childcategory_id`, `brand_id`, `flashsale_status`, `today_deal_status`, `long_description`, `weight`, `dimensions`, `materials`, `other_info`, `product_thumbnail_photo`, `view_count`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Stylish Stretchy Skinny Tais Pant For Woman', 800, 750, 'stylish-stretchy-skinny-tais-pant-for-woman-NqP6D60znL', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', 'hAeGktSxTl', 2, 8, 9, 8, 'Yes', 'Yes', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '400G', NULL, NULL, 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '1-Stylish Stretchy Skinny Tais Pant For Woman-Photo.jpg', 22, 'Yes', 1, 2, NULL, '2023-02-18 00:07:37', '2023-12-20 09:05:17', NULL),
-(2, 'Dhupiyan Check Saree For Women', 1200, 1120, 'dhupiyan-check-saree-for-women-qkFx4sPwso', 'Product Type: Silk Saree Color: Black & White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari  Occasion: Casual, Party & Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', 'xfvEXf1Hxd', 2, 8, 8, 2, 'Yes', 'No', 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', NULL, NULL, NULL, 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', '2-Dhupiyan Check Saree For Women-Photo.jpg', 9, 'Yes', 1, 1, NULL, '2023-02-18 00:09:40', '2023-12-20 10:14:57', NULL),
-(3, 'Gumboot JCD Waterproof Rain Boots', 1500, 1400, 'gumboot-jcd-waterproof-rain-boots-GcIkqa3xW2', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', 'Ukqhw0BsVg', 1, 1, 1, 2, 'Yes', 'Yes', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', NULL, NULL, NULL, 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', '3-Gumboot JCD Waterproof Rain Boots-Photo.jpg', 6, 'Yes', 1, 1, NULL, '2023-02-18 00:10:53', '2023-12-16 04:36:32', NULL),
-(4, 'HP ProBook 450 G4', 60000, 58000, 'hp-probook-450-g4-4XBmC2G8Ul', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', 'l1rQuZc9bO', 3, 6, 3, 6, 'Yes', 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', NULL, NULL, NULL, '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', '4-HP ProBook 450 G4-Photo.jpg', 5, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-12-07 05:21:22', NULL),
-(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'Yes', 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 6, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2023-12-20 10:16:19', NULL),
-(6, 'ELECTRIC WATER KETTLE', 1200, 1100, 'electric-water-kettle-8B9LPbRu0v', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '56ECyvWMHQ', 4, 7, 10, 5, 'Yes', 'No', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', NULL, NULL, NULL, 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '6-ELECTRIC WATER KETTLE-Photo.jpg', 4, 'Yes', 1, 1, NULL, '2023-02-18 00:14:52', '2023-12-07 05:21:22', NULL),
+(1, 'Stylish Stretchy Skinny Tais Pant For Woman', 800, 750, 'stylish-stretchy-skinny-tais-pant-for-woman-NqP6D60znL', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', 'hAeGktSxTl', 2, 8, 9, 8, 'Yes', 'Yes', 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '400G', NULL, NULL, 'Features: Stretchable.. Size: Free Size Country/Region of Manufacture: Bangladesh Material: Cotton 92% Polyester, 8% Spandex YOGA WAISTBAND: Popinjay quality soft brushed leggings have no side seam and are high waisted. The yoga waist band is comfortable and fits snuggly to keep them in place without digging into your skin. This makes wearing them easier than tights and jeans.', '1-Stylish Stretchy Skinny Tais Pant For Woman-Photo.jpg', 23, 'Yes', 1, 2, NULL, '2023-02-18 00:07:37', '2024-04-01 04:32:44', NULL),
+(2, 'Dhupiyan Check Saree For Women', 1200, 1120, 'dhupiyan-check-saree-for-women-qkFx4sPwso', 'Product Type: Silk Saree Color: Black & White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari  Occasion: Casual, Party & Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', 'xfvEXf1Hxd', 2, 8, 8, 2, 'Yes', 'No', 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', NULL, NULL, NULL, 'Product Type: Silk Saree Color: Black &amp; White Main Material:Dhupiyan No extra blouse piece 12 Haat Bohor Brand:UniQue Fashion Sari Style:Regular Sari Occasion: Casual, Party &amp; Festive Eye catching colors occasion party, festive, wedding wear best gift for your loved ones Product color may slightly vary due to photographic lighting sources or your monitor settings.', '2-Dhupiyan Check Saree For Women-Photo.jpg', 12, 'Yes', 1, 1, NULL, '2023-02-18 00:09:40', '2024-04-01 04:44:09', NULL),
+(3, 'Gumboot JCD Waterproof Rain Boots', 1500, 1400, 'gumboot-jcd-waterproof-rain-boots-GcIkqa3xW2', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', 'Ukqhw0BsVg', 1, 1, 1, 2, 'Yes', 'Yes', 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', NULL, NULL, NULL, 'Black Upper / Yellow SoleSize Range: 40,41,42,43,44Bata Size: 7,8,9,10,11Slip Resistant SoleTunnel SystemOil/Acid Resistant SoleWide comfortable fittingBroad “Natural” toe designWide soft leg for comfortCushioned Hi-poly comfort insoleKick-off lugComfort moisture-absorbing fabric liningOil acid-resistant industrial sole designOutdoor tread designed for rough terrain and uneven surfacesMulti-directional slip resistanceThicker PVC shank for strength & supportSelf-cleaning treadSuperior liquid dispersion', '3-Gumboot JCD Waterproof Rain Boots-Photo.jpg', 9, 'Yes', 1, 1, NULL, '2023-02-18 00:10:53', '2024-04-01 04:57:15', NULL),
+(4, 'HP ProBook 450 G4', 60000, 58000, 'hp-probook-450-g4-4XBmC2G8Ul', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', 'l1rQuZc9bO', 3, 6, 3, 6, 'Yes', 'No', '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', NULL, NULL, NULL, '2K Full Vision Display Stereo Surround Sound By DTS PC Connect Seamless multi-screen collaboration Dual-Fan Storm Cooling System 14.9 Super Slim Design Memory: 8GB Dual channel LPDDR4x RAM 512 SSD Storage 11 Hours Battery Life 3-Mode Backlit Keyboard Length: 307.21 mm Width: 228.96 mm Height: 14.9 mm (thickest point: 15.5mm) Weight: Approx. 1.38 kg Size: 14 inches Type: IPS Screen-to-body Ratio: 90% Aspect Ratio: 3:2 Resolution: 2160 ÃÂ 1440 11th Gen IntelCorei5-1135G7 Processor Quad-core Octa-thread Dual-core quad-thread IntelIrisXÃÂ¡ÃÂµÃÂ Graphicsi5 Version i5 Version: IEEE802.11 a/b/g/n/Wi-Fi 5/WI-FI 6 i5 Version: Bluetooth 5.2 Windows 10 Home Pre-installed i5 Version: Thunderbolt 4/ USB 4 (Data: Max.40 Gbps)USB-C 3.2 Gen 2USB-A 3.1 Gen 1 3.5mm Headphone and Microphone Jack', '4-HP ProBook 450 G4-Photo.jpg', 7, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2024-04-01 04:53:34', NULL),
+(5, 'Classic Dry Iron', 1800, 1700, 'classic-dry-iron-GTGT79Od2E', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', 'miyMB1RoNy', 4, 7, 4, 5, 'Yes', 'Yes', '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', NULL, NULL, NULL, '1-Year International Seller Warranty Pointed tip for ironing tricky areas Linished soleplate for easy gliding on your clothes Button groove speeds up ironing along with buttons and seams Iron temperature-ready light Easy temperature control Slim tip soleplate reaches easily in tricky areas Cord winder for easy cord storage Long-lasting cord for extended lifetime Temperature light indicates when the iron is hot enough Tested design for maximum durability Fast and efficient-guaranteed', '5-Classic Dry Iron-Photo.jpg', 7, 'Yes', 1, 1, NULL, '2023-02-18 00:12:06', '2024-03-28 06:03:17', NULL),
+(6, 'ELECTRIC WATER KETTLE', 1200, 1100, 'electric-water-kettle-8B9LPbRu0v', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '56ECyvWMHQ', 4, 7, 10, 5, 'Yes', 'No', 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', NULL, NULL, NULL, 'Item code: 823455  Model: VIS-EK-008  Capacity: 1.5L  Power: 1500w, 220v, 50hz  360° rotatable cordless electric kettle  Stainless steel body with concealed heating element  Automatically turn off when water boils  Boil-dry and overheat protection  Triple safety protection  Safety lock lid  Illuminated on-off switch', '6-ELECTRIC WATER KETTLE-Photo.jpg', 6, 'Yes', 1, 1, NULL, '2023-02-18 00:14:52', '2024-04-01 04:55:00', NULL),
 (7, 'Keyboard Standard English with Bangla', 600, 550, 'keyboard-standard-english-with-bangla-7za7kBWoLB', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '2nVMdjnCxT', 3, 3, 2, 3, 'Yes', 'Yes', 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', NULL, NULL, NULL, 'Model: WKS013WN Type: Standard Wired Keyboard Dimension: (L) 435mm (W) 129mm (H) 22.6mm Weight: 345g Character: Silk Screen Cable: 1.5m PVC Cable Keys: 104 Operating Voltage: 5V', '7-Keyboard Standard English with Bangla-Photo.jpg', 3, 'Yes', 1, 1, NULL, '2023-02-18 00:15:39', '2023-12-20 09:59:25', NULL),
 (8, 'Wireless Mouse Speedy Lite 2.4G', 500, 480, 'wireless-mouse-speedy-lite-24g-YN4OLQFFf6', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', 'SiZbgCmykz', 3, 3, 7, 6, 'Yes', 'No', 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', NULL, NULL, NULL, 'Interface type: 2.4G Transmission distance: 8-10M Button: 3D DPI: 1000dpi resolution', '8-Wireless Mouse Speedy Lite 2.4G-Photo.jpg', 0, 'Yes', 1, 1, NULL, '2023-02-18 00:16:27', '2023-12-07 05:21:22', NULL),
 (9, 'Heart Wave Long Chain Necklace', 60000, 58000, 'heart-wave-long-chain-necklace-RVCuuIytkU', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', 't0UudonZpG', 2, 2, 5, 2, 'Yes', 'Yes', 'Fine or Fashion:Fashion Item Type:Necklaces Style:Trendy Shape\\\\pattern:Geometric Pendant Size:none Necklace Type:Chokers Necklaces Chain Type:Link Chain Model Number:M178-M179 Metals Type:Zinc Alloy Material:Metal Gender:Women Compatibility:none Function:none Material:Zinc Alloy Length:45+5cm Material:Alloy', NULL, NULL, 'Gold', NULL, '9-Heart Wave Long Chain Necklace-Photo.jpg', 1, 'Yes', 1, 1, NULL, '2023-02-18 00:17:34', '2023-12-07 05:21:22', NULL),
@@ -1134,13 +1110,13 @@ CREATE TABLE `product_inventories` (
 --
 
 INSERT INTO `product_inventories` (`id`, `product_id`, `color_id`, `size_id`, `quantity`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, 2, 29, 1, NULL, NULL, '2023-02-20 08:29:26', '2023-02-20 08:51:02', NULL),
+(1, 1, 1, 2, 28, 1, NULL, NULL, '2023-02-20 08:29:26', '2024-04-01 04:39:05', NULL),
 (2, 1, 3, 5, 797, 1, NULL, NULL, '2023-02-20 08:29:39', '2023-12-20 10:11:27', NULL),
-(3, 2, 5, 5, 197, 1, NULL, NULL, '2023-02-20 08:29:57', '2023-12-20 10:15:59', NULL),
-(4, 3, 2, 1, 398, 1, NULL, NULL, '2023-02-20 08:30:09', '2023-12-16 15:27:50', NULL),
-(5, 4, 6, 8, 211, 1, NULL, NULL, '2023-02-20 08:30:29', '2023-02-27 10:15:10', NULL),
-(6, 5, 7, 1, 198, 1, NULL, NULL, '2023-02-20 08:30:40', '2023-06-17 04:13:17', NULL),
-(7, 6, 1, 3, 800, 1, NULL, NULL, '2023-02-20 08:30:55', NULL, NULL),
+(3, 2, 5, 5, 195, 1, NULL, NULL, '2023-02-20 08:29:57', '2024-04-01 04:45:00', NULL),
+(4, 3, 2, 1, 396, 1, NULL, NULL, '2023-02-20 08:30:09', '2024-04-01 04:58:16', NULL),
+(5, 4, 6, 8, 209, 1, NULL, NULL, '2023-02-20 08:30:29', '2024-04-01 04:54:03', NULL),
+(6, 5, 7, 1, 196, 1, NULL, NULL, '2023-02-20 08:30:40', '2024-03-31 10:00:30', NULL),
+(7, 6, 1, 3, 798, 1, NULL, NULL, '2023-02-20 08:30:55', '2024-04-01 04:56:03', NULL),
 (8, 7, 2, 1, 299, 1, NULL, NULL, '2023-02-20 08:31:15', '2023-12-20 10:11:28', NULL);
 
 -- --------------------------------------------------------
@@ -1455,7 +1431,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `facebook_id`, `name`, `email`, `phone_number`, `gender`, `date_of_birth`, `division_id`, `district_id`, `address`, `profile_photo`, `last_active`, `password`, `status`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Md Sabbir Ahammed', 'customer1@email.com', NULL, 'Male', '2023-12-16', NULL, NULL, 'Chowrasta', 'default_profile_photo.png', '2023-12-20 10:57:11', '$2y$10$QRy53lLpdvPEQgAPED.8JuEt.9ytjmcmtjJGi9k/dOxxgl/4arfDW', 'Yes', '2023-06-17 04:00:23', 'uvsvKCvdl3tCiSuc4txM9r2z2j5cW4SNQrk0Yx5qesEy4nhLvyrDKLMWcsjT', '2023-06-17 05:18:37', '2023-12-20 10:57:11');
+(1, NULL, NULL, 'Md Sabbir Ahammed', 'customer1@email.com', '01878136530', 'Male', '2024-03-05', 3, 20, 'Jsr', 'default_profile_photo.png', '2024-04-01 05:05:05', '$2y$10$QRy53lLpdvPEQgAPED.8JuEt.9ytjmcmtjJGi9k/dOxxgl/4arfDW', 'Yes', '2023-06-17 04:00:23', 'uvsvKCvdl3tCiSuc4txM9r2z2j5cW4SNQrk0Yx5qesEy4nhLvyrDKLMWcsjT', '2023-06-17 05:18:37', '2024-04-01 05:05:05');
 
 -- --------------------------------------------------------
 
@@ -1474,143 +1450,61 @@ CREATE TABLE `visitors` (
 --
 
 INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
-(1, '127.0.0.1', '2023-12-20 09:04:18'),
-(2, '127.0.0.1', '2023-12-20 09:04:25'),
-(3, '127.0.0.1', '2023-12-20 09:05:00'),
-(4, '127.0.0.1', '2023-12-20 09:05:04'),
-(5, '127.0.0.1', '2023-12-20 09:05:18'),
-(6, '127.0.0.1', '2023-12-20 09:05:33'),
-(7, '127.0.0.1', '2023-12-20 09:11:06'),
-(8, '127.0.0.1', '2023-12-20 09:12:12'),
-(9, '127.0.0.1', '2023-12-20 09:14:14'),
-(10, '127.0.0.1', '2023-12-20 09:15:05'),
-(11, '127.0.0.1', '2023-12-20 09:15:21'),
-(12, '127.0.0.1', '2023-12-20 09:15:54'),
-(13, '127.0.0.1', '2023-12-20 09:22:15'),
-(14, '127.0.0.1', '2023-12-20 09:22:34'),
-(15, '127.0.0.1', '2023-12-20 09:24:25'),
-(16, '127.0.0.1', '2023-12-20 09:24:38'),
-(17, '127.0.0.1', '2023-12-20 09:25:33'),
-(18, '127.0.0.1', '2023-12-20 09:26:22'),
-(19, '127.0.0.1', '2023-12-20 09:27:17'),
-(20, '127.0.0.1', '2023-12-20 09:27:55'),
-(21, '127.0.0.1', '2023-12-20 09:29:48'),
-(22, '127.0.0.1', '2023-12-20 09:30:26'),
-(23, '127.0.0.1', '2023-12-20 09:30:41'),
-(24, '127.0.0.1', '2023-12-20 09:32:16'),
-(25, '127.0.0.1', '2023-12-20 09:32:31'),
-(26, '127.0.0.1', '2023-12-20 09:33:39'),
-(27, '127.0.0.1', '2023-12-20 09:33:57'),
-(28, '127.0.0.1', '2023-12-20 09:34:10'),
-(29, '127.0.0.1', '2023-12-20 09:34:27'),
-(30, '127.0.0.1', '2023-12-20 09:34:30'),
-(31, '127.0.0.1', '2023-12-20 09:34:56'),
-(32, '127.0.0.1', '2023-12-20 09:35:19'),
-(33, '127.0.0.1', '2023-12-20 09:35:40'),
-(34, '127.0.0.1', '2023-12-20 09:36:34'),
-(35, '127.0.0.1', '2023-12-20 09:36:49'),
-(36, '127.0.0.1', '2023-12-20 09:37:08'),
-(37, '127.0.0.1', '2023-12-20 09:37:50'),
-(38, '127.0.0.1', '2023-12-20 09:38:58'),
-(39, '127.0.0.1', '2023-12-20 09:39:24'),
-(40, '127.0.0.1', '2023-12-20 09:39:35'),
-(41, '127.0.0.1', '2023-12-20 09:39:49'),
-(42, '127.0.0.1', '2023-12-20 09:40:03'),
-(43, '127.0.0.1', '2023-12-20 09:45:42'),
-(44, '127.0.0.1', '2023-12-20 09:45:47'),
-(45, '127.0.0.1', '2023-12-20 09:47:09'),
-(46, '127.0.0.1', '2023-12-20 09:48:16'),
-(47, '127.0.0.1', '2023-12-20 09:48:50'),
-(48, '127.0.0.1', '2023-12-20 09:49:10'),
-(49, '127.0.0.1', '2023-12-20 09:50:17'),
-(50, '127.0.0.1', '2023-12-20 09:50:50'),
-(51, '127.0.0.1', '2023-12-20 09:51:34'),
-(52, '127.0.0.1', '2023-12-20 09:52:28'),
-(53, '127.0.0.1', '2023-12-20 09:53:07'),
-(54, '127.0.0.1', '2023-12-20 09:53:29'),
-(55, '127.0.0.1', '2023-12-20 09:53:47'),
-(56, '127.0.0.1', '2023-12-20 09:59:20'),
-(57, '127.0.0.1', '2023-12-20 09:59:25'),
-(58, '127.0.0.1', '2023-12-20 09:59:31'),
-(59, '127.0.0.1', '2023-12-20 10:00:24'),
-(60, '127.0.0.1', '2023-12-20 10:02:59'),
-(61, '127.0.0.1', '2023-12-20 10:03:10'),
-(62, '127.0.0.1', '2023-12-20 10:08:05'),
-(63, '127.0.0.1', '2023-12-20 10:09:58'),
-(64, '127.0.0.1', '2023-12-20 10:11:35'),
-(65, '127.0.0.1', '2023-12-20 10:12:04'),
-(66, '127.0.0.1', '2023-12-20 10:14:11'),
-(67, '127.0.0.1', '2023-12-20 10:14:15'),
-(68, '127.0.0.1', '2023-12-20 10:14:18'),
-(69, '127.0.0.1', '2023-12-20 10:14:29'),
-(70, '127.0.0.1', '2023-12-20 10:14:54'),
-(71, '127.0.0.1', '2023-12-20 10:14:57'),
-(72, '127.0.0.1', '2023-12-20 10:15:05'),
-(73, '127.0.0.1', '2023-12-20 10:15:14'),
-(74, '127.0.0.1', '2023-12-20 10:16:06'),
-(75, '127.0.0.1', '2023-12-20 10:16:10'),
-(76, '127.0.0.1', '2023-12-20 10:16:16'),
-(77, '127.0.0.1', '2023-12-20 10:16:20'),
-(78, '127.0.0.1', '2023-12-20 10:16:30'),
-(79, '127.0.0.1', '2023-12-20 10:16:49'),
-(80, '127.0.0.1', '2023-12-20 10:17:00'),
-(81, '127.0.0.1', '2023-12-20 10:17:20'),
-(82, '127.0.0.1', '2023-12-20 10:17:26'),
-(83, '127.0.0.1', '2023-12-20 10:18:30'),
-(84, '127.0.0.1', '2023-12-20 10:18:41'),
-(85, '127.0.0.1', '2023-12-20 10:18:51'),
-(86, '127.0.0.1', '2023-12-20 10:18:57'),
-(87, '127.0.0.1', '2023-12-20 10:24:59'),
-(88, '127.0.0.1', '2023-12-20 10:25:14'),
-(89, '127.0.0.1', '2023-12-20 10:25:26'),
-(90, '127.0.0.1', '2023-12-20 10:25:29'),
-(91, '127.0.0.1', '2023-12-20 10:25:33'),
-(92, '127.0.0.1', '2023-12-20 10:27:06'),
-(93, '127.0.0.1', '2023-12-20 10:27:10'),
-(94, '127.0.0.1', '2023-12-20 10:27:19'),
-(95, '127.0.0.1', '2023-12-20 10:27:21'),
-(96, '127.0.0.1', '2023-12-20 10:27:24'),
-(97, '127.0.0.1', '2023-12-20 10:28:38'),
-(98, '127.0.0.1', '2023-12-20 10:31:10'),
-(99, '127.0.0.1', '2023-12-20 10:31:20'),
-(100, '127.0.0.1', '2023-12-20 10:31:56'),
-(101, '127.0.0.1', '2023-12-20 10:32:02'),
-(102, '127.0.0.1', '2023-12-20 10:32:13'),
-(103, '127.0.0.1', '2023-12-20 10:32:15'),
-(104, '127.0.0.1', '2023-12-20 10:32:21'),
-(105, '127.0.0.1', '2023-12-20 10:33:07'),
-(106, '127.0.0.1', '2023-12-20 10:33:55'),
-(107, '127.0.0.1', '2023-12-20 10:34:04'),
-(108, '127.0.0.1', '2023-12-20 10:34:08'),
-(109, '127.0.0.1', '2023-12-20 10:34:13'),
-(110, '127.0.0.1', '2023-12-20 10:35:11'),
-(111, '127.0.0.1', '2023-12-20 10:37:19'),
-(112, '127.0.0.1', '2023-12-20 10:37:23'),
-(113, '127.0.0.1', '2023-12-20 10:37:35'),
-(114, '127.0.0.1', '2023-12-20 10:41:16'),
-(115, '127.0.0.1', '2023-12-20 10:41:30'),
-(116, '127.0.0.1', '2023-12-20 10:41:35'),
-(117, '127.0.0.1', '2023-12-20 10:44:19'),
-(118, '127.0.0.1', '2023-12-20 10:44:58'),
-(119, '127.0.0.1', '2023-12-20 10:46:44'),
-(120, '127.0.0.1', '2023-12-20 10:47:22'),
-(121, '127.0.0.1', '2023-12-20 10:47:34'),
-(122, '127.0.0.1', '2023-12-20 10:51:07'),
-(123, '127.0.0.1', '2023-12-20 10:51:22'),
-(124, '127.0.0.1', '2023-12-20 10:51:38'),
-(125, '127.0.0.1', '2023-12-20 10:51:53'),
-(126, '127.0.0.1', '2023-12-20 10:52:04'),
-(127, '127.0.0.1', '2023-12-20 10:52:15'),
-(128, '127.0.0.1', '2023-12-20 10:52:56'),
-(129, '127.0.0.1', '2023-12-20 10:53:36'),
-(130, '127.0.0.1', '2023-12-20 10:53:53'),
-(131, '127.0.0.1', '2023-12-20 10:54:27'),
-(132, '127.0.0.1', '2023-12-20 10:55:30'),
-(133, '127.0.0.1', '2023-12-20 10:56:10'),
-(134, '127.0.0.1', '2023-12-20 10:56:27'),
-(135, '127.0.0.1', '2023-12-20 10:56:47'),
-(136, '127.0.0.1', '2023-12-20 10:57:07'),
-(137, '127.0.0.1', '2023-12-20 10:57:11');
+(1, '127.0.0.1', '2024-04-01 04:15:03'),
+(2, '127.0.0.1', '2024-04-01 04:15:11'),
+(3, '127.0.0.1', '2024-04-01 04:15:17'),
+(4, '127.0.0.1', '2024-04-01 04:15:22'),
+(5, '127.0.0.1', '2024-04-01 04:15:28'),
+(6, '127.0.0.1', '2024-04-01 04:16:19'),
+(7, '127.0.0.1', '2024-04-01 04:24:15'),
+(8, '127.0.0.1', '2024-04-01 04:24:19'),
+(9, '127.0.0.1', '2024-04-01 04:24:23'),
+(10, '127.0.0.1', '2024-04-01 04:24:28'),
+(11, '127.0.0.1', '2024-04-01 04:26:17'),
+(12, '127.0.0.1', '2024-04-01 04:27:34'),
+(13, '127.0.0.1', '2024-04-01 04:28:24'),
+(14, '127.0.0.1', '2024-04-01 04:29:00'),
+(15, '127.0.0.1', '2024-04-01 04:29:05'),
+(16, '127.0.0.1', '2024-04-01 04:29:09'),
+(17, '127.0.0.1', '2024-04-01 04:29:44'),
+(18, '127.0.0.1', '2024-04-01 04:29:58'),
+(19, '127.0.0.1', '2024-04-01 04:31:58'),
+(20, '127.0.0.1', '2024-04-01 04:32:20'),
+(21, '127.0.0.1', '2024-04-01 04:32:41'),
+(22, '127.0.0.1', '2024-04-01 04:32:44'),
+(23, '127.0.0.1', '2024-04-01 04:32:51'),
+(24, '127.0.0.1', '2024-04-01 04:35:43'),
+(25, '127.0.0.1', '2024-04-01 04:36:12'),
+(26, '127.0.0.1', '2024-04-01 04:36:20'),
+(27, '127.0.0.1', '2024-04-01 04:38:00'),
+(28, '127.0.0.1', '2024-04-01 04:38:30'),
+(29, '127.0.0.1', '2024-04-01 04:38:44'),
+(30, '127.0.0.1', '2024-04-01 04:39:13'),
+(31, '127.0.0.1', '2024-04-01 04:44:00'),
+(32, '127.0.0.1', '2024-04-01 04:44:06'),
+(33, '127.0.0.1', '2024-04-01 04:44:09'),
+(34, '127.0.0.1', '2024-04-01 04:44:12'),
+(35, '127.0.0.1', '2024-04-01 04:45:09'),
+(36, '127.0.0.1', '2024-04-01 04:53:29'),
+(37, '127.0.0.1', '2024-04-01 04:53:31'),
+(38, '127.0.0.1', '2024-04-01 04:53:34'),
+(39, '127.0.0.1', '2024-04-01 04:53:39'),
+(40, '127.0.0.1', '2024-04-01 04:54:12'),
+(41, '127.0.0.1', '2024-04-01 04:54:51'),
+(42, '127.0.0.1', '2024-04-01 04:55:00'),
+(43, '127.0.0.1', '2024-04-01 04:55:14'),
+(44, '127.0.0.1', '2024-04-01 04:55:38'),
+(45, '127.0.0.1', '2024-04-01 04:56:10'),
+(46, '127.0.0.1', '2024-04-01 04:57:10'),
+(47, '127.0.0.1', '2024-04-01 04:57:13'),
+(48, '127.0.0.1', '2024-04-01 04:57:16'),
+(49, '127.0.0.1', '2024-04-01 04:57:20'),
+(50, '127.0.0.1', '2024-04-01 04:57:33'),
+(51, '127.0.0.1', '2024-04-01 04:57:41'),
+(52, '127.0.0.1', '2024-04-01 04:57:45'),
+(53, '127.0.0.1', '2024-04-01 04:59:03'),
+(54, '127.0.0.1', '2024-04-01 05:00:04'),
+(55, '127.0.0.1', '2024-04-01 05:05:05');
 
 -- --------------------------------------------------------
 
@@ -2002,7 +1896,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -2110,7 +2004,7 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_returns`
@@ -2122,7 +2016,7 @@ ALTER TABLE `order_returns`
 -- AUTO_INCREMENT for table `order_summeries`
 --
 ALTER TABLE `order_summeries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `page_settings`
@@ -2230,7 +2124,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `warehouses`
