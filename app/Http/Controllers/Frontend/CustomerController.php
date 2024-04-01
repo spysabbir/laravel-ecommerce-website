@@ -114,10 +114,11 @@ class CustomerController extends Controller
             'phone_number' => 'required|digits:11',
             'division_id' => 'required',
             'district_id' => 'required',
+            'address' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return back()->with('error', 'Profile Not Updated')->withErrors($validator)->withInput();
+            return back()->with('error', 'Profile not updated. Check the profile section and modify the profile data.')->withErrors($validator)->withInput();
         }
 
         $user = User::find(auth()->id());
