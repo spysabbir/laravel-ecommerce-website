@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content="{{ $default_setting->app_name }} Admin Template">
-    <meta name="author" content="Spy IT Firm, www.spyitfirm.com">
+    <meta name="author" content="Spy Sabbir, www.spysabbir.com">
 
     <link rel="icon" href="{{asset('uploads/default_photo')}}/{{$default_setting->favicon}}" type="image/x-icon">
     <!-- VENDOR CSS -->
@@ -38,6 +38,7 @@
     <script src="{{asset('admin')}}/bundles/mainscripts.bundle.js"></script>
 
     @yield('script')
+
 </body>
 
 </html>
